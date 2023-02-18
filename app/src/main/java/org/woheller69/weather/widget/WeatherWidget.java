@@ -130,8 +130,13 @@ public class WeatherWidget extends AppWidgetProvider {
             views.setTextViewText(R.id.widget_sunrise_sunset,"\u2600\u25b2\u2009" + StringFormatUtils.formatTimeWithoutZone(context, riseTime) + " \u25bc\u2009" + StringFormatUtils.formatTimeWithoutZone(context, setTime));
         }
 
-        views.setTextViewText(R.id.widget_UVindex,"UV");
-        views.setInt(R.id.widget_UVindex,"setBackgroundResource",StringFormatUtils.widgetColorUVindex(context,Math.round(weekforecasts.get(0).getUv_index())));
+        if (weekforecasts.get(0).getUv_index()==-1f) {
+            views.setViewVisibility(R.id.widget_UVindex,View.GONE);
+        } else {
+            views.setViewVisibility(R.id.widget_UVindex,View.VISIBLE);
+            views.setTextViewText(R.id.widget_UVindex,"UV");
+            views.setInt(R.id.widget_UVindex,"setBackgroundResource",StringFormatUtils.widgetColorUVindex(context,Math.round(weekforecasts.get(0).getUv_index())));
+        }
 
         boolean isDay = weatherData.isDay(context);
 

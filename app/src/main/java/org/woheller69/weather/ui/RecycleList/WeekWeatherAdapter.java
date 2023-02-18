@@ -95,8 +95,13 @@ public class WeekWeatherAdapter extends RecyclerView.Adapter<WeekWeatherAdapter.
         else
             holder.precipitation.setText(StringFormatUtils.formatDecimal(dayValues[4], context.getString(R.string.units_mm)));
 
-        holder.uv_index.setText(String.format("UV %s",StringFormatUtils.formatInt(Math.round(dayValues[7]))));
-        holder.uv_index.setBackground(StringFormatUtils.colorUVindex(context,Math.round(dayValues[7])));
+        if (dayValues[7]==-1) {
+            holder.uv_index.setVisibility(View.GONE);
+        } else {
+            holder.uv_index.setVisibility(View.VISIBLE);
+            holder.uv_index.setText(String.format("UV %s",StringFormatUtils.formatInt(Math.round(dayValues[7]))));
+            holder.uv_index.setBackground(StringFormatUtils.colorUVindex(context,Math.round(dayValues[7])));
+        }
         holder.wind_speed.setText(StringFormatUtils.formatWindSpeed(context, dayValues[5]));
         holder.wind_speed.setBackground(StringFormatUtils.colorWindSpeed(context, dayValues[5]));
 

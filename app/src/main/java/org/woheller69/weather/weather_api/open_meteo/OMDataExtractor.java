@@ -68,7 +68,9 @@ public class OMDataExtractor implements IDataExtractor {
                 if (!tempMinArray.isNull(i))weekForecast.setMinTemperature((float) tempMinArray.getDouble(i));
                 if (!sunriseArray.isNull(i))weekForecast.setTimeSunrise(sunriseArray.getLong(i));
                 if (!sunsetArray.isNull(i))weekForecast.setTimeSunset(sunsetArray.getLong(i));
-                if (!uvIndexArray.isNull(i)) weekForecast.setUv_index((float) uvIndexArray.getDouble(i));
+                if (!uvIndexArray.isNull(i)) {
+                    weekForecast.setUv_index((float) uvIndexArray.getDouble(i));
+                } else weekForecast.setUv_index(-1);
                 if (!precipitationArray.isNull(i))weekForecast.setPrecipitation((float) precipitationArray.getDouble(i));
                 if (!windSpeedArray.isNull(i))weekForecast.setWind_speed((float) windSpeedArray.getDouble(i));
                 weekforecasts.add(weekForecast);
