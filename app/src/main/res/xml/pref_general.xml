@@ -1,6 +1,20 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <PreferenceCategory android:title="@string/settings_position">
+        <SwitchPreference
+            android:key="pref_GPS"
+            android:title="@string/settings_GPS_position"
+            android:summary="@string/settings_GPS_summary"
+            android:defaultValue="false"
+            />
+        <SwitchPreference
+            android:key="pref_GPS_manual"
+            android:title="@string/settings_GPS_manual"
+            android:defaultValue="false"
+            />
+    </PreferenceCategory>
+
     <PreferenceCategory android:title="@string/settings_title_units">
         <ListPreference
             app:useSimpleSummaryProvider="true"
@@ -65,20 +79,6 @@
             android:key="pref_updateInterval"
             android:summary="@string/settings_interval_summary"
             android:title="@string/settings_update_interval" />
-    </PreferenceCategory>
-
-    <PreferenceCategory android:title="@string/settings_position">
-        <SwitchPreference
-            android:key="pref_GPS"
-            android:title="@string/settings_GPS_position"
-            android:summary="@string/settings_GPS_summary"
-            android:defaultValue="false"
-            />
-        <SwitchPreference
-            android:key="pref_GPS_manual"
-            android:title="@string/settings_GPS_manual"
-            android:defaultValue="false"
-            />
     </PreferenceCategory>
 
 </PreferenceScreen>
