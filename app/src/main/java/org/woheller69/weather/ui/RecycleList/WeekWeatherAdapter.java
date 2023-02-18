@@ -89,7 +89,7 @@ public class WeekWeatherAdapter extends RecyclerView.Adapter<WeekWeatherAdapter.
         }
 
         setIcon((int) dayValues[9], holder.weather, isDay);
-
+        holder.windicon.setImageResource(StringFormatUtils.colorWindSpeedWidget(dayValues[5]));
         if (dayValues[4] == 0)
             holder.precipitation.setText("-");
         else
@@ -137,6 +137,7 @@ public class WeekWeatherAdapter extends RecyclerView.Adapter<WeekWeatherAdapter.
         TextView wind_speed;
         TextView precipitation;
         TextView uv_index;
+        ImageView windicon;
 
         WeekForecastViewHolder(View itemView) {
             super(itemView);
@@ -150,6 +151,7 @@ public class WeekWeatherAdapter extends RecyclerView.Adapter<WeekWeatherAdapter.
             wind_speed = itemView.findViewById(R.id.week_forecast_wind_speed);
             precipitation = itemView.findViewById(R.id.week_forecast_precipitation);
             uv_index = itemView.findViewById(R.id.week_forecast_uv_index);
+            windicon = itemView.findViewById(R.id.week_forecast_wind_icon);
         }
     }
 

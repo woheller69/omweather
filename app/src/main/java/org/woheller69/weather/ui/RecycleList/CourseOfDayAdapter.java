@@ -96,6 +96,7 @@ public class CourseOfDayAdapter extends RecyclerView.Adapter<CourseOfDayAdapter.
 
         updateRecyclerViewHeader();  //update header according to date in first visible item on the left
 
+        holder.windicon.setImageResource(StringFormatUtils.colorWindSpeedWidget(courseOfDayList.get(position).getWindSpeed()));
         setIcon(courseOfDayList.get(position).getWeatherID(), holder.weather, isDay);
         holder.humidity.setText(StringFormatUtils.formatInt(courseOfDayList.get(position).getHumidity(), context.getString(R.string.units_rh)));
 
@@ -153,6 +154,7 @@ public class CourseOfDayAdapter extends RecyclerView.Adapter<CourseOfDayAdapter.
         TextView precipitation;
         TextView wind_speed;
         ImageView wind_direction;
+        ImageView windicon;
 
         CourseOfDayViewHolder(View itemView) {
             super(itemView);
@@ -165,6 +167,7 @@ public class CourseOfDayAdapter extends RecyclerView.Adapter<CourseOfDayAdapter.
             precipitation = itemView.findViewById(R.id.course_of_day_precipitation);
             wind_speed = itemView.findViewById(R.id.course_of_day_wind_speed);
             wind_direction = itemView.findViewById(R.id.course_of_day_wind_direction);
+            windicon = itemView.findViewById(R.id.course_of_day_wind_icon);
 
         }
     }
