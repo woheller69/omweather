@@ -76,7 +76,7 @@ public class ProcessOMweatherAPIRequest implements IProcessHttpRequest {
             //Extract daily weather
             dbHelper.deleteWeekForecastsByCityId(cityId);
             List<WeekForecast> weekforecasts = new ArrayList<>();
-            weekforecasts = extractor.extractWeekForecast(json.getString("daily"),json.getInt("utc_offset_seconds"));
+            weekforecasts = extractor.extractWeekForecast(json.getString("daily"));
 
             if (weekforecasts!=null && !weekforecasts.isEmpty()){
                 for (WeekForecast weekForecast: weekforecasts){

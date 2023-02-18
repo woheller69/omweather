@@ -44,7 +44,7 @@ public class OMDataExtractor implements IDataExtractor {
 
 
     @Override
-    public List<WeekForecast> extractWeekForecast(String data, int utc_offset_seconds) {
+    public List<WeekForecast> extractWeekForecast(String data) {
         try {
             List<WeekForecast> weekforecasts = new ArrayList<>();
             JSONObject jsonData = new JSONObject(data);
