@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fitsSystemWindows="true"
+    tools:context="org.woheller69.weather.activities.ManageLocationsActivity">
+
+    <include layout="@layout/toolbar" />
+
+    <include layout="@layout/content_manage_locations" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAddLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@drawable/ic_add_location_alt_24px" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

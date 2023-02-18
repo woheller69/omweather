@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="org.woheller69.weather">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <!-- For requesting background location access on Android 10 (API level 29+)-->
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:fontFamily = "sans-serif-light"
+        android:theme="@style/AppTheme">
+
+        <meta-data android:name="android.webkit.WebView.MetricsOptOut"
+            android:value="true" />
+
+        <activity
+            android:name="org.woheller69.weather.activities.SplashActivity"
+            android:theme="@style/SplashTheme"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="org.woheller69.weather.activities.ManageLocationsActivity"
+            android:launchMode="singleTop"
+            android:label="@string/activity_manage"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName="org.woheller69.weather.activities.ForecastCityActivity" />
+        <activity
+            android:name="org.woheller69.weather.activities.ForecastCityActivity"
+            android:launchMode="singleTop"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="org.woheller69.weather.activities.AboutActivity"
+            android:label="@string/about"
+            android:parentActivityName="org.woheller69.weather.activities.ForecastCityActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.woheller69.weather.activities.ForecastCityActivity" />
+        </activity>
+
+        <activity
+            android:name="org.woheller69.weather.activities.SettingsActivity"
+            android:label="@string/activity_settings_title"
+            android:parentActivityName="org.woheller69.weather.activities.ForecastCityActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.woheller69.weather.activities.ForecastCityActivity" />
+
+        </activity>
+        <activity
+            android:name="org.woheller69.weather.firststart.TutorialActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <service
+            android:name="org.woheller69.weather.services.UpdateDataService"
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            android:exported="false" />
+
+        <receiver android:name="org.woheller69.weather.widget.WeatherWidget"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/weather_widget_info" />
+        </receiver>
+
+        <receiver android:name="org.woheller69.weather.widget.WeatherWidget5day"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/weather_widget_5day_info" />
+        </receiver>
+
+    </application>
+
+</manifest>

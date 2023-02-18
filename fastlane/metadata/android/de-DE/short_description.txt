@@ -1,0 +1,1 @@
+Mit omWeather kann das Wetter von Orten eingesehen werden.

@@ -1,0 +1,44 @@
+apply plugin: 'com.android.application'
+
+android {
+
+    compileSdkVersion 32
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    defaultConfig {
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        applicationId "org.woheller69.omweather"
+        minSdkVersion 21
+        targetSdkVersion 31
+        versionCode 10
+        versionName "1.0"
+
+        buildConfigField "String", "BASE_URL", "\"https://api.open-meteo.com/v1/\""
+        buildConfigField "String", "GITHUB_URL","\"https://github.com/woheller69/omweather/\""
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.diogobernardino:williamchart:2.2'
+    implementation 'androidx.preference:preference:1.2.0'
+    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'com.google.android.material:material:1.6.1'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'com.android.volley:volley:1.2.1'
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'com.readystatesoftware.sqliteasset:sqliteassethelper:2.0.1'
+    implementation "androidx.lifecycle:lifecycle-viewmodel:2.5.1" //needed due to duplicate class error
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1" //needed due to duplicate class error
+}

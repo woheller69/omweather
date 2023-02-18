@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/card_margin">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/backgroundBlue"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:textAllCaps="true"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold"
+            android:text="@string/card_details_heading"
+            android:id="@+id/card_details_title"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/white" />
+
+        <GridLayout
+            android:id="@+id/card_details_content_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_marginStart="10dp"
+            android:columnCount="2"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/card_details_tv_rain60min"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_marginBottom="5dp"
+                android:layout_row="0"
+                android:text="@string/card_details_rain60min"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/colorPrimaryDark" />
+
+            <TextView
+                android:id="@+id/card_details_rain60min_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_marginStart="10dp"
+                android:layout_row="0"
+                android:text=""
+                android:letterSpacing="-0.07"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/colorPrimaryDark" />
+
+            <TextView
+                android:id="@+id/card_details_legend_rain60min"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_columnSpan="2"
+                android:layout_marginBottom="5dp"
+                android:layout_row="1"
+                android:layout_gravity="center_horizontal"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/colorPrimaryDark" />
+
+            <TextView
+                android:id="@+id/card_details_tv_humidity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_marginBottom="5dp"
+                android:layout_row="2"
+                android:text="@string/card_details_humidity"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/colorPrimaryDark" />
+
+            <TextView
+                android:id="@+id/card_details_humidity_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_marginStart="10dp"
+                android:layout_row="2"
+                android:text=""
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/colorPrimaryDark" />
+
+            <TextView
+                android:id="@+id/card_details_tv_pressure"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_marginBottom="5dp"
+                android:layout_row="3"
+                android:text="@string/card_details_pressure"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/colorPrimaryDark" />
+
+            <TextView
+                android:id="@+id/card_details_pressure_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_marginStart="10dp"
+                android:layout_row="3"
+                android:text=""
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/colorPrimaryDark" />
+
+            <TextView
+                android:id="@+id/card_details_tv_wind_speed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_marginBottom="5dp"
+                android:layout_row="4"
+                android:text="@string/card_details_wind_speed"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/colorPrimaryDark" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_marginStart="5dp"
+                android:layout_row="4">
+
+                <TextView
+                    android:id="@+id/card_details_wind_speed_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/colorPrimaryDark" />
+
+                <ImageView
+                    android:id="@+id/card_details_wind_direction_value"
+                    android:layout_width="15sp"
+                    android:layout_height="15sp"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@id/card_details_wind_speed_value"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_south_24px"
+                    tools:ignore="ContentDescription" />
+
+            </RelativeLayout>
+
+        </GridLayout>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

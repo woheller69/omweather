@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menu_update_location"
+        android:orderInCategory="80"
+        android:visible="false"
+        android:icon="@drawable/ic_location_on_white_24dp"
+        app:actionViewClass="android.widget.ImageButton"
+        app:showAsAction="always"
+        style="@android:style/Widget.ActionButton"
+        android:title="@string/action_position" />
+    <item
+        android:id="@+id/menu_refresh"
+        android:orderInCategory="90"
+        android:title="@string/action_refresh"
+        android:icon="@drawable/ic_refresh_24px"
+        app:actionViewClass="android.widget.ImageButton"
+        app:showAsAction="always"
+        style="@android:style/Widget.ActionButton" />
+
+</menu>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorStatusBar">#181818</color>
+    <color name="colorPrimary">#181818</color>
+    <color name="colorPrimaryDark">#666666</color>
+    <color name="colorAccent">#707070</color>
+    <color name="colorListItem">#FFFFFF</color>
+    <color name="middlegrey">#A0A0A0</color>
+    <color name="backgroundHighlight">#2A2A2A</color>
+    <color name="white">#303030</color>
+    <color name="red">#d01530</color>
+    <color name="lightred">#fa7972</color>
+    <color name="yellow">#f8f49f</color>
+    <color name="orange">#fec58e</color>
+    <color name="green">#c3f5b2</color>
+    <color name="blue">#0274b2</color>
+    <color name="lightblue">#1382d4</color>
+    <color name="midblue">#1b5cd9</color>
+    <color name="backgroundBlue">#181818</color>
+    <color name="widgetBackground">#DD181818</color>
+</resources>
+

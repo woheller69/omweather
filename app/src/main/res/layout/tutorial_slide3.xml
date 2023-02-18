@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ic_launcher_background">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/slide3_heading"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/slide_title"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="@dimen/img_width_height"
+            android:layout_height="@dimen/img_width_height"
+            android:background="@drawable/splash_icon" />
+        <androidx.legacy.widget.Space
+            android:layout_width="1dp"
+            android:layout_height="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:paddingLeft="@dimen/desc_padding"
+            android:paddingRight="@dimen/desc_padding"
+            android:text="@string/infoOpenMeteo"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/slide_desc" />
+
+        <androidx.legacy.widget.Space
+            android:layout_width="1dp"
+            android:layout_height="60dp"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

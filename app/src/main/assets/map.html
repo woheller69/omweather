@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="leaflet.css"/>
+    <script src="leaflet.js"></script>
+</head>
+
+
+
+<div id="mapid" style="position: absolute; top: 0px; left: 0; bottom: 0; right: 0;"></div>
+
+<script>
+
+var getUrlParameter = function getUrlParameter(sParam) {
+            var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+                sURLVariables = sPageURL.split('&'),
+                sParameterName,
+                i;
+
+            for (i = 0; i < sURLVariables.length; i++) {
+                sParameterName = sURLVariables[i].split('=');
+
+                if (sParameterName[0] === sParam) {
+                    return sParameterName[1] === undefined ? true : sParameterName[1];
+                }
+            }
+        };
+
+
+var map = L.map('mapid', {
+            zoomControl:true,
+            attributionControl: true
+        }).setView([getUrlParameter('lat'), getUrlParameter('lon')], 10);  //zoom factor 10
+
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: 'Map data ©<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+var marker = L.marker([getUrlParameter('lat'), getUrlParameter('lon')]).addTo(map);
+
+</script>
+
+</html>

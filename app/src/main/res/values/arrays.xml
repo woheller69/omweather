@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="temperatureUnitsArray">
+        <item>@string/settings_celsius</item>
+        <item>@string/settings_fahrenheit</item>
+    </string-array>
+    <string-array name="temperatureUnitsValues">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <string-array name="distanceUnitsArray">
+        <item>@string/settings_kilometers</item>
+        <item>@string/settings_miles</item>
+    </string-array>
+    <string-array name="distanceUnitsValues">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <string-array name="refreshIntervalArray">
+        <item>@string/settings_interval_quarter</item>
+        <item>@string/settings_interval_half</item>
+        <item>@string/settings_interval_one</item>
+        <item>@string/settings_interval_two</item>
+        <item>@string/settings_interval_six</item>
+        <item>@string/settings_interval_twelve</item>
+        <item>@string/settings_interval_twentyfour</item>
+    </string-array>
+
+    <string-array name="refreshIntervalValues">
+        <item>0.25</item>
+        <item>0.5</item>
+        <item>1</item>
+        <item>2</item>
+        <item>6</item>
+        <item>12</item>
+        <item>24</item>
+    </string-array>
+
+    <!-- dots inactive colors -->
+    <color name="dot_dark_screen">#026499</color>
+
+    <!-- dots active colors -->
+    <color name="dot_light_screen">#448bb2</color>
+
+    <array name="array_dot_active">
+        <item>@color/dot_light_screen</item>
+        <item>@color/dot_light_screen</item>
+        <item>@color/dot_light_screen</item>
+        <item>@color/dot_light_screen</item>
+    </array>
+
+    <array name="array_dot_inactive">
+        <item>@color/dot_dark_screen</item>
+        <item>@color/dot_dark_screen</item>
+        <item>@color/dot_dark_screen</item>
+        <item>@color/dot_dark_screen</item>
+    </array>
+
+    <string-array name="forecastChoiceArray">
+        <item>@string/settings_forecast_option_1</item>
+        <item>@string/settings_forecast_option_2</item>
+    </string-array>
+    <string-array name="forecastChoiceValues">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+</resources>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group
+        android:id="@+id/nav_group_main"
+        android:checkableBehavior="all">
+        <item
+            android:id="@+id/nav_weather"
+            android:icon="@drawable/ic_wb_sunny_24px"
+            android:title="@string/activity_weather" />
+        <item
+            android:id="@+id/nav_manage"
+            android:icon="@drawable/ic_edit_location_24px"
+            android:title="@string/activity_manage" />
+    </group>
+
+    <group
+        android:id="@+id/nav_group_add"
+        android:checkableBehavior="all">
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_settings_24px"
+            android:title="@string/activity_settings" />
+        <item
+            android:id="@+id/nav_about"
+            android:icon="@drawable/ic_info_24px"
+            android:title="@string/activity_about" />
+        <item
+            android:id="@+id/star_on_github"
+            android:icon="@drawable/baseline_star_rate_24"
+            android:title="Star on GitHub" />
+    </group>
+</menu>

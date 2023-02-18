@@ -1,0 +1,15 @@
+Mit omWeather kann das Wetter von Orten eingesehen werden.
+
+Die Wetterdaten werden über die freie API von Open-Meteo.com bereitgestellt.
+
+Features:
+- Aktuelles Wetter
+- Stündliches Wetter für 7 Tage
+- Widget mit optionaler automatischer GPS-Positionsaktualisierung
+- Keine Werbung
+
+Minimale Berechtigungen:
+omWeather benötigt nur ein Minimum an Berechtigungen, nämlich nur die INTERNET-Berechtigung. Diese ist nötig, um HTTP-Anfragen an entfernte Server zu stellen, um Wetterdaten zu erhalten.
+Optional: Berechtigung für GPS.
+
+

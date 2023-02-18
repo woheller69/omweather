@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+
+<LinearLayout
+    android:id="@+id/about"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:layout_marginTop="53dp"
+    android:weightSum="1">
+
+    <TextView
+        android:id="@+id/appName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        android:text="@string/app_name"
+        android:textStyle="bold"/>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:gravity="center">
+
+
+        <TextView
+            android:id="@+id/textFieldVersion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@string/version_number" />
+
+        <TextView
+            android:id="@+id/textFieldVersionName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@+id/textFieldVersion" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/textFieldSources"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        android:text="@string/about_where_from"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:gravity="center_horizontal"
+        android:text="@string/about_where_from_answer" />
+
+    <TextView
+        android:id="@+id/openmeteoURL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:text="@string/about_openmeteo"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textFieldLicence"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:text="@string/about_license"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:gravity="center_horizontal"
+        android:text="@string/about_license_text" />
+
+    <TextView
+        android:id="@+id/textFieldPermissions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:text="@string/about_permissions"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:gravity="center_horizontal"
+        android:text="@string/about_permission_internet_description" />
+
+    <TextView
+        android:id="@+id/textFieldPrivacy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:text="@string/about_privacy_heading"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:gravity="center_horizontal"
+        android:text="@string/about_privacy_answer" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:text="@string/about_more_info" />
+
+    <TextView
+        android:id="@+id/githubURL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:text="@string/about_github"
+        android:textStyle="bold" />
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="100dp">
+    </Space>
+</LinearLayout>
+</ScrollView>

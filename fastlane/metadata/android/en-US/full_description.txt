@@ -1,0 +1,13 @@
+omWeather lets you watch the weather for cities and locations you are interested in.
+
+Weather data is provided via the free API from Open-Meteo.com.
+
+Features:
+- Current weather
+- Hourly forecasts for 7 days
+- Widget with optional GPS auto position update
+- No advertisement
+
+Minimum permissions:
+omWeather only requires the minimum amount of permission, namely only the INTERNET permission. This permission is necessary to make HTTP requests to remote servers for retrieving weather data.
+Optional: authorization for GPS.
