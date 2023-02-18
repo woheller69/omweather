@@ -58,12 +58,12 @@ public class OMDataExtractor implements IDataExtractor {
             JSONArray precipitationArray = jsonData.getJSONArray("precipitation_sum");
             JSONArray windSpeedArray = jsonData.getJSONArray("windspeed_10m_max");
 
-
+            IApiToDatabaseConversion conversion = new OMToDatabaseConversion();
             for (int i = 0; i < timeArray.length(); i++) {
                 WeekForecast weekForecast = new WeekForecast();
                 weekForecast.setTimestamp(System.currentTimeMillis() / 1000);
                 if (!timeArray.isNull(i))weekForecast.setForecastTime((timeArray.getLong(i)+12*3600)*1000L);  //shift to midday
-                if (!weathercodeArray.isNull(i))weekForecast.setWeatherID(weathercodeArray.getInt(i));
+                if (!weathercodeArray.isNull(i))weekForecast.setWeatherID(conversion.convertWeatherCategory(weathercodeArray.getString(i)));
                 if (!tempMaxArray.isNull(i))weekForecast.setMaxTemperature((float) tempMaxArray.getDouble(i));
                 if (!tempMinArray.isNull(i))weekForecast.setMinTemperature((float) tempMinArray.getDouble(i));
                 if (!sunriseArray.isNull(i))weekForecast.setTimeSunrise(sunriseArray.getLong(i));
@@ -99,12 +99,12 @@ public class OMDataExtractor implements IDataExtractor {
             JSONArray windSpeedArray = jsonData.getJSONArray("windspeed_10m");
             JSONArray windDirArray = jsonData.getJSONArray("winddirection_10m");
 
-
+            IApiToDatabaseConversion conversion = new OMToDatabaseConversion();
             for (int i = 0; i < timeArray.length(); i++) {
                 HourlyForecast hourlyForecast = new HourlyForecast();
                 hourlyForecast.setTimestamp(System.currentTimeMillis() / 1000);
                 if (!timeArray.isNull(i)) hourlyForecast.setForecastTime(timeArray.getLong(i)*1000L);
-                if (!weathercodeArray.isNull(i)) hourlyForecast.setWeatherID(weathercodeArray.getInt(i));
+                if (!weathercodeArray.isNull(i)) hourlyForecast.setWeatherID(conversion.convertWeatherCategory(weathercodeArray.getString(i)));
                 if (!tempArray.isNull(i)) hourlyForecast.setTemperature((float) tempArray.getDouble(i));
                 if (!rhArray.isNull(i)) hourlyForecast.setHumidity((float) rhArray.getDouble(i));
                 if (!pressureArray.isNull(i)) hourlyForecast.setPressure((float) pressureArray.getDouble(i));
