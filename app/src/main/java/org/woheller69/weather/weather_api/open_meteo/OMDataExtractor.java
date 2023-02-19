@@ -120,59 +120,6 @@ public class OMDataExtractor implements IDataExtractor {
         return null;
     }
 
-    /*
-    /**
-     * @see IDataExtractor#extractHourlyForecast(String)
-     */
- /*   @Override
-    public HourlyForecast extractHourlyForecast(String data) {
-        try {
-
-            HourlyForecast hourlyForecast = new HourlyForecast();
-            JSONObject jsonData = new JSONObject(data);
-
-            hourlyForecast.setTimestamp(System.currentTimeMillis() / 1000);
-            hourlyForecast.setForecastTime(jsonData.getLong("dt") * 1000L);
-
-            IApiToDatabaseConversion conversion = new OMToDatabaseConversion();
-
-            JSONArray jsonWeatherArray = jsonData.getJSONArray("weather");
-            JSONObject jsonWeather = new JSONObject(jsonWeatherArray.get(0).toString());
-            hourlyForecast.setWeatherID(conversion.convertWeatherCategory(jsonWeather.getString("id")));
-
-            if (jsonData.has("temp")) hourlyForecast.setTemperature((float) jsonData.getDouble("temp"));
-            if (jsonData.has("humidity")) hourlyForecast.setHumidity((float) jsonData.getDouble("humidity"));
-            if (jsonData.has("pressure")) hourlyForecast.setPressure((float) jsonData.getDouble("pressure"));
-            if (jsonData.has("wind_speed")) hourlyForecast.setWindSpeed((float) jsonData.getDouble("wind_speed"));
-            if (jsonData.has("wind_deg")) hourlyForecast.setWindDirection((float) jsonData.getDouble("wind_deg"));
-
-            // In case there was no rain in the past 3 hours, there is no "rain" field
-            if (jsonData.isNull("rain")) {
-                hourlyForecast.setPrecipitation(HourlyForecast.NO_RAIN_VALUE);
-            } else {
-                JSONObject jsonRain = jsonData.getJSONObject("rain");
-                if (jsonRain.isNull("1h")) {
-                    hourlyForecast.setPrecipitation(HourlyForecast.NO_RAIN_VALUE);
-                } else {
-                    hourlyForecast.setPrecipitation((float) jsonRain.getDouble("1h"));
-                }
-            }
-            //add snow precipitation to rain
-            if (!jsonData.isNull("snow")) {
-                JSONObject jsonSnow = jsonData.getJSONObject("snow");
-                if (!jsonSnow.isNull("1h")) {
-                    hourlyForecast.setPrecipitation(hourlyForecast.getPrecipitation() + (float) jsonSnow.getDouble("1h"));
-                }
-            }
-
-            return hourlyForecast;
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }*/
-
-
 
     /**
      * @see IDataExtractor#extractRain60min(String, String, String, String, String)
@@ -215,26 +162,6 @@ public class OMDataExtractor implements IDataExtractor {
      * @return Returns the ID of the city or Integer#MIN_VALUE in case the data is not well-formed
      * and the information could not be extracted.
      */
-
-
-    /**
-     * @see IDataExtractor#extractLatitudeLongitude(String)
-     */
-    @Override
-    public double[] extractLatitudeLongitude(String data) {
-
-        try {
-            JSONObject json = new JSONObject(data);
-            JSONObject coordinationObject = json.getJSONObject("coord");
-            return new double[]{
-                    coordinationObject.getDouble("lat"),
-                    coordinationObject.getDouble("lon")
-            };
-        } catch (JSONException e) {
-            e.printStackTrace();
-            return new double[0];
-        }
-    }
 
 
 }
