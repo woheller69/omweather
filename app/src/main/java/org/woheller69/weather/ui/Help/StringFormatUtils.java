@@ -175,7 +175,7 @@ public final class StringFormatUtils {
         } else if (uvindex <= 10) {
             return ResourcesCompat.getDrawable(context.getResources(),R.drawable.rounded_lightred,null);
         } else  {
-            return ResourcesCompat.getDrawable(context.getResources(),R.drawable.rounded_red,null);
+            return ResourcesCompat.getDrawable(context.getResources(),R.drawable.rounded_violet,null);
         }
     }
 
@@ -219,7 +219,7 @@ public final class StringFormatUtils {
         } else if (uvindex <= 10) {
             return R.drawable.rounded_lightred;
         } else  {
-            return R.drawable.rounded_red;
+            return R.drawable.rounded_violet;
         }
     }
 
