@@ -22,11 +22,13 @@ public abstract class IApiToDatabaseConversion {
         LIGHT_RAIN(70),
         MODERATE_RAIN(71),
         HEAVY_RAIN(72),
+        LIGHT_SHOWER_RAIN(74),
         SHOWER_RAIN(75),
         LIGHT_SNOW(80),
         MODERATE_SNOW(81),
         HEAVY_SNOW(82),
         RAIN_SNOW(83),
+        LIGHT_SHOWER_SNOW(84),
         SHOWER_SNOW(85),
         SHOWER_RAIN_SNOW(86),   //only used as icon in week forecasts
         THUNDERSTORM(90);

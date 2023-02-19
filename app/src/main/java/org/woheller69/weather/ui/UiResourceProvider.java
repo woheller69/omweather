@@ -81,6 +81,12 @@ public class UiResourceProvider {
                 } else {
                     return R.mipmap.weather_icon_72n;
                 }
+            case 74:
+                if (isDay) {
+                    return R.mipmap.weather_icon_74d;
+                } else {
+                    return R.mipmap.weather_icon_74n;
+                }
             case 75:
                 if (isDay) {
                     return R.mipmap.weather_icon_75d;
@@ -110,6 +116,12 @@ public class UiResourceProvider {
                     return R.mipmap.weather_icon_83d;
                 } else {
                     return R.mipmap.weather_icon_83n;
+                }
+            case 84:
+                if (isDay) {
+                    return R.mipmap.weather_icon_84d;
+                } else {
+                    return R.mipmap.weather_icon_84n;
                 }
             case 85:
                 if (isDay) {
@@ -206,6 +218,12 @@ public class UiResourceProvider {
                 } else {
                     return R.drawable.weather_image_72n;
                 }
+            case 74:
+                if (isDay) {
+                    return R.drawable.weather_image_74d;
+                } else {
+                    return R.drawable.weather_image_74n;
+                }
             case 75:
                 if (isDay) {
                     return R.drawable.weather_image_75d;
@@ -236,11 +254,23 @@ public class UiResourceProvider {
                 } else {
                     return R.drawable.weather_image_83n;
                 }
+            case 84:
+                if (isDay) {
+                    return R.drawable.weather_image_84d;
+                } else {
+                    return R.drawable.weather_image_84n;
+                }
             case 85:
                 if (isDay) {
                     return R.drawable.weather_image_85d;
                 } else {
                     return R.drawable.weather_image_85n;
+                }
+            case 86:
+                if (isDay) {
+                    return R.drawable.weather_image_86d;
+                } else {
+                    return R.drawable.weather_image_86n;
                 }
             case 90:
                 if (isDay) {
