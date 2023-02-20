@@ -17,9 +17,9 @@ public class OMToDatabaseConversion extends IApiToDatabaseConversion {
             return WeatherCategories.MODERATE_RAIN.getNumVal();
         } else if (value == 65) {
             return WeatherCategories.HEAVY_RAIN.getNumVal();
-        } else if (value >= 80 && value <= 81 ) {
+        } else if (value == 80 ) {
             return WeatherCategories.LIGHT_SHOWER_RAIN.getNumVal();
-        } else if (value == 82 ) {
+        } else if (value == 81 || value == 82 ) {
             return WeatherCategories.SHOWER_RAIN.getNumVal();
         } else if (value == 71 || value == 77) {  // 77=snow grain
             return WeatherCategories.LIGHT_SNOW.getNumVal();
