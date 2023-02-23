@@ -4,14 +4,11 @@ import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.os.Handler;
-
-import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.woheller69.weather.R;
@@ -66,8 +63,6 @@ public class ProcessOMweatherAPIRequest implements IProcessHttpRequest {
      */
     @Override
     public void processSuccessScenario(String response, int cityId) {
-
-        Log.d("API ",response);
 
         IDataExtractor extractor = new OMDataExtractor();
         try {

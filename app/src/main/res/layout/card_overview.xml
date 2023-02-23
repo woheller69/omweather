@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
-        android:src="@drawable/weather_image_10d" />
+        android:src="@drawable/wmo_image_00d" />
 
     <TextView
         android:layout_width="wrap_content"

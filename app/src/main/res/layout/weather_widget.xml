@@ -27,7 +27,7 @@
         android:layout_toEndOf="@id/widget_hour10"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
-        android:src="@mipmap/weather_icon_85n"
+        android:src="@mipmap/wmo_icon_86n"
         android:translationX="-3dp" />
 
     <ImageView
@@ -39,7 +39,7 @@
         android:translationY="-5dp"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
-        android:src="@mipmap/weather_icon_85n" />
+        android:src="@mipmap/wmo_icon_86n" />
 
     <ImageView
         android:id="@+id/widget_hour1"
@@ -49,7 +49,7 @@
         android:layout_toEndOf="@id/widget_hour12"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
-        android:src="@mipmap/weather_icon_85n"
+        android:src="@mipmap/wmo_icon_86n"
         android:translationX="3dp" />
 
     <ImageView
@@ -61,7 +61,7 @@
         android:layout_marginStart="15dp"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
-        android:src="@mipmap/weather_icon_85n"
+        android:src="@mipmap/wmo_icon_86n"
         android:translationY="-3dp" />
 
     <ImageView
@@ -73,7 +73,7 @@
         android:layout_marginStart="15dp"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
-        android:src="@mipmap/weather_icon_85n"
+        android:src="@mipmap/wmo_icon_86n"
         android:translationX="-5dp" />
 
     <ImageView
@@ -85,7 +85,7 @@
         android:layout_marginStart="15dp"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
-        android:src="@mipmap/weather_icon_85n"
+        android:src="@mipmap/wmo_icon_86n"
         android:translationY="3dp" />
 
     <ImageView
@@ -96,7 +96,7 @@
         android:layout_toEndOf="@id/widget_hour1"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
-        android:src="@mipmap/weather_icon_85n"
+        android:src="@mipmap/wmo_icon_86n"
         android:translationY="-3dp" />
 
     <ImageView
@@ -108,7 +108,7 @@
         android:translationX="5dp"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
-        android:src="@mipmap/weather_icon_85n" />
+        android:src="@mipmap/wmo_icon_86n" />
 
     <ImageView
         android:id="@+id/widget_hour4"
@@ -118,7 +118,7 @@
         android:layout_toEndOf="@id/widget_hour1"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
-        android:src="@mipmap/weather_icon_85n"
+        android:src="@mipmap/wmo_icon_86n"
         android:translationY="3dp" />
 
     <ImageView
@@ -129,7 +129,7 @@
         android:layout_toEndOf="@id/widget_hour8"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
-        android:src="@mipmap/weather_icon_85n"
+        android:src="@mipmap/wmo_icon_86n"
         android:translationX="-3dp" />
 
     <ImageView
@@ -141,7 +141,7 @@
         android:translationY="5dp"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
-        android:src="@mipmap/weather_icon_85n" />
+        android:src="@mipmap/wmo_icon_86n" />
 
     <ImageView
         android:id="@+id/widget_hour5"
@@ -151,7 +151,7 @@
         android:layout_toEndOf="@id/widget_hour6"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
-        android:src="@mipmap/weather_icon_85n"
+        android:src="@mipmap/wmo_icon_86n"
         android:translationX="3dp" />
 
     <ImageView
@@ -164,7 +164,7 @@
         android:layout_toEndOf="@id/widget_hour9"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
-        android:src="@mipmap/weather_icon_10d" />
+        android:src="@mipmap/wmo_icon_00d" />
 
     <TextView
         android:id="@+id/widget_city_name"

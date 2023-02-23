@@ -1,6 +1,7 @@
 package org.woheller69.weather.ui;
 
 import org.woheller69.weather.R;
+import org.woheller69.weather.weather_api.IApiToDatabaseConversion.WeatherCategories;
 
 /**
  * This static class provides image / icon resources for the UI.
@@ -20,134 +21,141 @@ public class UiResourceProvider {
      * @return Returns the icon (resource) that belongs to the given category number.
      */
     public static int getIconResourceForWeatherCategory(int categoryNumber, boolean isDay) {
-        switch (categoryNumber) {
-            case 10:
-                if (isDay) {
-                    return R.mipmap.weather_icon_10d;
-                } else {
-                    return R.mipmap.weather_icon_10n;
-                }
-            case 20:
-                if (isDay) {
-                    return R.mipmap.weather_icon_20d;
-                } else {
-                    return R.mipmap.weather_icon_20n;
-                }
-            case 30:
-                if (isDay) {
-                    return R.mipmap.weather_icon_30d;
-                } else {
-                    return R.mipmap.weather_icon_30n;
-                }
-            case 40:
-                if (isDay) {
-                    return R.mipmap.weather_icon_40d;
-                } else {
-                    return R.mipmap.weather_icon_40n;
-                }
-            case 45:
-                if (isDay) {
-                    return R.mipmap.weather_icon_45d;
-                } else {
-                    return R.mipmap.weather_icon_45n;
-                }
-            case 50:
-                if (isDay) {
-                    return R.mipmap.weather_icon_50d;
-                } else {
-                    return R.mipmap.weather_icon_50n;
-                }
-            case 60:
-                if (isDay) {
-                    return R.mipmap.weather_icon_60d;
-                } else {
-                    return R.mipmap.weather_icon_60n;
-                }
-            case 70:
-                if (isDay) {
-                    return R.mipmap.weather_icon_70d;
-                } else {
-                    return R.mipmap.weather_icon_70n;
-                }
-            case 71:
-                if (isDay) {
-                    return R.mipmap.weather_icon_71d;
-                } else {
-                    return R.mipmap.weather_icon_71n;
-                }
-            case 72:
-                if (isDay) {
-                    return R.mipmap.weather_icon_72d;
-                } else {
-                    return R.mipmap.weather_icon_72n;
-                }
-            case 74:
-                if (isDay) {
-                    return R.mipmap.weather_icon_74d;
-                } else {
-                    return R.mipmap.weather_icon_74n;
-                }
-            case 75:
-                if (isDay) {
-                    return R.mipmap.weather_icon_75d;
-                } else {
-                    return R.mipmap.weather_icon_75n;
-                }
-            case 80:
-                if (isDay) {
-                    return R.mipmap.weather_icon_80d;
-                } else {
-                    return R.mipmap.weather_icon_80n;
-                }
-            case 81:
-                if (isDay) {
-                    return R.mipmap.weather_icon_81d;
-                } else {
-                    return R.mipmap.weather_icon_81n;
-                }
-            case 82:
-                if (isDay) {
-                    return R.mipmap.weather_icon_82d;
-                } else {
-                    return R.mipmap.weather_icon_82n;
-                }
-            case 83:
-                if (isDay) {
-                    return R.mipmap.weather_icon_83d;
-                } else {
-                    return R.mipmap.weather_icon_83n;
-                }
-            case 84:
-                if (isDay) {
-                    return R.mipmap.weather_icon_84d;
-                } else {
-                    return R.mipmap.weather_icon_84n;
-                }
-            case 85:
-                if (isDay) {
-                    return R.mipmap.weather_icon_85d;
-                } else {
-                    return R.mipmap.weather_icon_85n;
-                }
-            case 86:
-                if (isDay) {
-                    return R.mipmap.weather_icon_86d;
-                } else {
-                    return R.mipmap.weather_icon_86n;
-                }
-            case 90:
-                if (isDay) {
-                    return R.mipmap.weather_icon_90d;
-                } else {
-                    return R.mipmap.weather_icon_90n;
-                }
-            default:
-                if (isDay) {
-                    return R.mipmap.weather_icon_30d;
-                } else {
-                    return R.mipmap.weather_icon_30n;
-                }
-        }
+        if (categoryNumber == WeatherCategories.CLEAR_SKY.getNumVal()) {
+            if (isDay) {
+                return R.mipmap.wmo_icon_00d;
+            } else {
+                return R.mipmap.wmo_icon_00n;
+            }
+        } else if (categoryNumber == WeatherCategories.FEW_CLOUDS.getNumVal()) {
+            if (isDay) {
+                return R.mipmap.wmo_icon_01d;
+            } else {
+                return R.mipmap.wmo_icon_01n;
+            }
+        } else if (categoryNumber == WeatherCategories.SCATTERED_CLOUDS.getNumVal()) {
+            if (isDay) {
+                return R.mipmap.wmo_icon_02d;
+            } else {
+                return R.mipmap.wmo_icon_02n;
+            }
+        } else if (categoryNumber == WeatherCategories.OVERCAST_CLOUDS.getNumVal()) {
+            if (isDay) {
+                return R.mipmap.wmo_icon_03d;
+            } else {
+                return R.mipmap.wmo_icon_03n;
+            }
+        } else if (categoryNumber == WeatherCategories.MIST.getNumVal()) {
+            if (isDay) {
+                return R.mipmap.wmo_icon_45d;
+            } else {
+                return R.mipmap.wmo_icon_45n;
+            }
+        } else if (categoryNumber == WeatherCategories.DRIZZLE_RAIN.getNumVal()) {
+            if (isDay) {
+                return R.mipmap.wmo_icon_53d;
+            } else {
+                return R.mipmap.wmo_icon_53n;
+            }
+        } else if (categoryNumber == WeatherCategories.FREEZING_DRIZZLE_RAIN.getNumVal()) {
+            if (isDay) {
+                return R.mipmap.wmo_icon_57d;
+            } else {
+                return R.mipmap.wmo_icon_57n;
+            }
+        } else if (categoryNumber == WeatherCategories.LIGHT_RAIN.getNumVal()) {
+            if (isDay) {
+                return R.mipmap.wmo_icon_61d;
+            } else {
+                return R.mipmap.wmo_icon_61n;
+            }
+        } else if (categoryNumber == WeatherCategories.MODERATE_RAIN.getNumVal()) {
+            if (isDay) {
+                return R.mipmap.wmo_icon_63d;
+            } else {
+                return R.mipmap.wmo_icon_63n;
+            }
+        } else if (categoryNumber == WeatherCategories.HEAVY_RAIN.getNumVal()) {
+            if (isDay) {
+                return R.mipmap.wmo_icon_65d;
+            } else {
+                return R.mipmap.wmo_icon_65n;
+            }
+        } else if (categoryNumber == WeatherCategories.LIGHT_SHOWER_RAIN.getNumVal()) {
+            if (isDay) {
+                return R.mipmap.wmo_icon_80d;
+            } else {
+                return R.mipmap.wmo_icon_80n;
+            }
+        } else if (categoryNumber == WeatherCategories.SHOWER_RAIN.getNumVal()) {
+            if (isDay) {
+                return R.mipmap.wmo_icon_81d;
+            } else {
+                return R.mipmap.wmo_icon_81n;
+            }
+        } else if (categoryNumber == WeatherCategories.LIGHT_SNOW.getNumVal()) {
+            if (isDay) {
+                return R.mipmap.wmo_icon_71d;
+            } else {
+                return R.mipmap.wmo_icon_71n;
+            }
+        } else if (categoryNumber == WeatherCategories.MODERATE_SNOW.getNumVal()) {
+            if (isDay) {
+                return R.mipmap.wmo_icon_73d;
+            } else {
+                return R.mipmap.wmo_icon_73n;
+            }
+        } else if (categoryNumber == WeatherCategories.HEAVY_SNOW.getNumVal()) {
+            if (isDay) {
+                return R.mipmap.wmo_icon_75d;
+            } else {
+                return R.mipmap.wmo_icon_75n;
+            }
+        } else if (categoryNumber == WeatherCategories.LIGHT_FREEZING_RAIN.getNumVal()) {
+            if (isDay) {
+                return R.mipmap.wmo_icon_66d;
+            } else {
+                return R.mipmap.wmo_icon_66n;
+            }
+        } else if (categoryNumber == WeatherCategories.FREEZING_RAIN.getNumVal()) {
+            if (isDay) {
+                return R.mipmap.wmo_icon_67d;
+            } else {
+                return R.mipmap.wmo_icon_67n;
+            }
+        } else if (categoryNumber == WeatherCategories.LIGHT_SHOWER_SNOW.getNumVal()) {
+            if (isDay) {
+                return R.mipmap.wmo_icon_85d;
+            } else {
+                return R.mipmap.wmo_icon_85n;
+            }
+        } else if (categoryNumber == WeatherCategories.SHOWER_SNOW.getNumVal()) {
+            if (isDay) {
+                return R.mipmap.wmo_icon_86d;
+            } else {
+                return R.mipmap.wmo_icon_86n;
+            }
+        } else if (categoryNumber == WeatherCategories.SHOWER_RAIN_SNOW.getNumVal()) {
+            if (isDay) {
+                return R.mipmap.wmo_icon_84d;
+            } else {
+                return R.mipmap.wmo_icon_84n;
+            }
+        } else if (categoryNumber == WeatherCategories.THUNDERSTORM.getNumVal()) {
+            if (isDay) {
+                return R.mipmap.wmo_icon_95d;
+            } else {
+                return R.mipmap.wmo_icon_95n;
+            }
+        } else if (categoryNumber == WeatherCategories.THUNDERSTORM_HAIL.getNumVal()) {
+            if (isDay) {
+                return R.mipmap.wmo_icon_96d;
+            } else {
+                return R.mipmap.wmo_icon_96n;
+            }
+        } else {  //this should not occur
+                return R.mipmap.wmo_icon_error;
+            }
     }
 
     /**
@@ -157,134 +165,140 @@ public class UiResourceProvider {
      * @return Returns the image resource that belongs to the given category number.
      */
     public static int getImageResourceForWeatherCategory(int categoryNumber, boolean isDay) {
-        switch (categoryNumber) {
-            case 10:
-                if (isDay) {
-                    return R.drawable.weather_image_10d;
-                } else {
-                    return R.drawable.weather_image_10n;
-                }
-            case 20:
-                if (isDay) {
-                    return R.drawable.weather_image_20d;
-                } else {
-                    return R.drawable.weather_image_20n;
-                }
-            case 30:
-                if (isDay) {
-                    return R.drawable.weather_image_30d;
-                } else {
-                    return R.drawable.weather_image_30n;
-                }
-            case 40:
-                if (isDay) {
-                    return R.drawable.weather_image_40d;
-                } else {
-                    return R.drawable.weather_image_40n;
-                }
-            case 45:
-                if (isDay) {
-                    return R.drawable.weather_image_45d;
-                } else {
-                    return R.drawable.weather_image_45n;
-                }
-            case 50:
-                if (isDay) {
-                    return R.drawable.weather_image_50d;
-                } else {
-                    return R.drawable.weather_image_50n;
-                }
-            case 60:
-                if (isDay) {
-                    return R.drawable.weather_image_60d;
-                } else {
-                    return R.drawable.weather_image_60n;
-                }
-            case 70:
-                if (isDay) {
-                    return R.drawable.weather_image_70d;
-                } else {
-                    return R.drawable.weather_image_70n;
-                }
-            case 71:
-                if (isDay) {
-                    return R.drawable.weather_image_71d;
-                } else {
-                    return R.drawable.weather_image_71n;
-                }
-            case 72:
-                if (isDay) {
-                    return R.drawable.weather_image_72d;
-                } else {
-                    return R.drawable.weather_image_72n;
-                }
-            case 74:
-                if (isDay) {
-                    return R.drawable.weather_image_74d;
-                } else {
-                    return R.drawable.weather_image_74n;
-                }
-            case 75:
-                if (isDay) {
-                    return R.drawable.weather_image_75d;
-                } else {
-                    return R.drawable.weather_image_75n;
-                }
-            case 80:
-                if (isDay) {
-                    return R.drawable.weather_image_80d;
-                } else {
-                    return R.drawable.weather_image_80n;
-                }
-            case 81:
-                if (isDay) {
-                    return R.drawable.weather_image_81d;
-                } else {
-                    return R.drawable.weather_image_81n;
-                }
-            case 82:
-                if (isDay) {
-                    return R.drawable.weather_image_82d;
-                } else {
-                    return R.drawable.weather_image_82n;
-                }
-            case 83:
-                if (isDay) {
-                    return R.drawable.weather_image_83d;
-                } else {
-                    return R.drawable.weather_image_83n;
-                }
-            case 84:
-                if (isDay) {
-                    return R.drawable.weather_image_84d;
-                } else {
-                    return R.drawable.weather_image_84n;
-                }
-            case 85:
-                if (isDay) {
-                    return R.drawable.weather_image_85d;
-                } else {
-                    return R.drawable.weather_image_85n;
-                }
-            case 86:
-                if (isDay) {
-                    return R.drawable.weather_image_86d;
-                } else {
-                    return R.drawable.weather_image_86n;
-                }
-            case 90:
-                if (isDay) {
-                    return R.drawable.weather_image_90d;
-                } else {
-                    return R.drawable.weather_image_90n;
-                }
-            default:
-                if (isDay) {
-                    return R.drawable.weather_image_30d;
-                } else {
-                    return R.drawable.weather_image_30n;
-                }
-        }
+        if (categoryNumber == WeatherCategories.CLEAR_SKY.getNumVal()) {
+            if (isDay) {
+                return R.drawable.wmo_image_00d;
+            } else {
+                return R.drawable.wmo_image_00n;
+            }
+        } else if (categoryNumber == WeatherCategories.FEW_CLOUDS.getNumVal()) {
+            if (isDay) {
+                return R.drawable.wmo_image_01d;
+            } else {
+                return R.drawable.wmo_image_01n;
+            }
+        } else if (categoryNumber == WeatherCategories.SCATTERED_CLOUDS.getNumVal()) {
+            if (isDay) {
+                return R.drawable.wmo_image_02d;
+            } else {
+                return R.drawable.wmo_image_02n;
+            }
+        } else if (categoryNumber == WeatherCategories.OVERCAST_CLOUDS.getNumVal()) {
+            if (isDay) {
+                return R.drawable.wmo_image_03d;
+            } else {
+                return R.drawable.wmo_image_03n;
+            }
+        } else if (categoryNumber == WeatherCategories.MIST.getNumVal()) {
+            if (isDay) {
+                return R.drawable.wmo_image_45d;
+            } else {
+                return R.drawable.wmo_image_45n;
+            }
+        } else if (categoryNumber == WeatherCategories.DRIZZLE_RAIN.getNumVal()) {
+            if (isDay) {
+                return R.drawable.wmo_image_53d;
+            } else {
+                return R.drawable.wmo_image_53n;
+            }
+        } else if (categoryNumber == WeatherCategories.FREEZING_DRIZZLE_RAIN.getNumVal()) {
+            if (isDay) {
+                return R.drawable.wmo_image_57d;
+            } else {
+                return R.drawable.wmo_image_57n;
+            }
+        } else if (categoryNumber == WeatherCategories.LIGHT_RAIN.getNumVal()) {
+            if (isDay) {
+                return R.drawable.wmo_image_61d;
+            } else {
+                return R.drawable.wmo_image_61n;
+            }
+        } else if (categoryNumber == WeatherCategories.MODERATE_RAIN.getNumVal()) {
+            if (isDay) {
+                return R.drawable.wmo_image_63d;
+            } else {
+                return R.drawable.wmo_image_63n;
+            }
+        } else if (categoryNumber == WeatherCategories.HEAVY_RAIN.getNumVal()) {
+            if (isDay) {
+                return R.drawable.wmo_image_65d;
+            } else {
+                return R.drawable.wmo_image_65n;
+            }
+        } else if (categoryNumber == WeatherCategories.LIGHT_SHOWER_RAIN.getNumVal()) {
+            if (isDay) {
+                return R.drawable.wmo_image_80d;
+            } else {
+                return R.drawable.wmo_image_80n;
+            }
+        } else if (categoryNumber == WeatherCategories.SHOWER_RAIN.getNumVal()) {
+            if (isDay) {
+                return R.drawable.wmo_image_81d;
+            } else {
+                return R.drawable.wmo_image_81n;
+            }
+        } else if (categoryNumber == WeatherCategories.LIGHT_SNOW.getNumVal()) {
+            if (isDay) {
+                return R.drawable.wmo_image_71d;
+            } else {
+                return R.drawable.wmo_image_71n;
+            }
+        } else if (categoryNumber == WeatherCategories.MODERATE_SNOW.getNumVal()) {
+            if (isDay) {
+                return R.drawable.wmo_image_73d;
+            } else {
+                return R.drawable.wmo_image_73n;
+            }
+        } else if (categoryNumber == WeatherCategories.HEAVY_SNOW.getNumVal()) {
+            if (isDay) {
+                return R.drawable.wmo_image_75d;
+            } else {
+                return R.drawable.wmo_image_75n;
+            }
+        } else if (categoryNumber == WeatherCategories.LIGHT_FREEZING_RAIN.getNumVal()) {
+            if (isDay) {
+                return R.drawable.wmo_image_66d;
+            } else {
+                return R.drawable.wmo_image_66n;
+            }
+        } else if (categoryNumber == WeatherCategories.FREEZING_RAIN.getNumVal()) {
+            if (isDay) {
+                return R.drawable.wmo_image_67d;
+            } else {
+                return R.drawable.wmo_image_67n;
+            }
+        } else if (categoryNumber == WeatherCategories.LIGHT_SHOWER_SNOW.getNumVal()) {
+            if (isDay) {
+                return R.drawable.wmo_image_85d;
+            } else {
+                return R.drawable.wmo_image_85n;
+            }
+        } else if (categoryNumber == WeatherCategories.SHOWER_SNOW.getNumVal()) {
+            if (isDay) {
+                return R.drawable.wmo_image_86d;
+            } else {
+                return R.drawable.wmo_image_86n;
+            }
+        } else if (categoryNumber == WeatherCategories.SHOWER_RAIN_SNOW.getNumVal()) {
+            if (isDay) {
+                return R.drawable.wmo_image_84d;
+            } else {
+                return R.drawable.wmo_image_84n;
+            }
+        } else if (categoryNumber == WeatherCategories.THUNDERSTORM.getNumVal()) {
+            if (isDay) {
+                return R.drawable.wmo_image_95d;
+            } else {
+                return R.drawable.wmo_image_95n;
+            }
+        } else if (categoryNumber == WeatherCategories.THUNDERSTORM_HAIL.getNumVal()) {
+            if (isDay) {
+                return R.drawable.wmo_image_96d;
+            } else {
+                return R.drawable.wmo_image_96n;
+            }
+        } else {  //this should not occur
+                return R.drawable.wmo_image_error;
+            }
     }
-
 }

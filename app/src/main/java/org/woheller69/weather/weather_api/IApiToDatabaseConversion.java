@@ -12,26 +12,29 @@ public abstract class IApiToDatabaseConversion {
      * (THUNDERSTORM).
      */
     public enum WeatherCategories {
-        CLEAR_SKY(10),
-        FEW_CLOUDS(20),
-        SCATTERED_CLOUDS(30),
-        BROKEN_CLOUDS(40),
-        OVERCAST_CLOUDS(45),
-        MIST(50),
-        DRIZZLE_RAIN(60),
-        LIGHT_RAIN(70),
-        MODERATE_RAIN(71),
-        HEAVY_RAIN(72),
-        LIGHT_SHOWER_RAIN(74),
-        SHOWER_RAIN(75),
-        LIGHT_SNOW(80),
-        MODERATE_SNOW(81),
-        HEAVY_SNOW(82),
-        RAIN_SNOW(83),
-        LIGHT_SHOWER_SNOW(84),
-        SHOWER_SNOW(85),
-        SHOWER_RAIN_SNOW(86),   //only used as icon in week forecasts
-        THUNDERSTORM(90);
+        ERROR(-1),
+        CLEAR_SKY(0),
+        FEW_CLOUDS(1),
+        SCATTERED_CLOUDS(2),
+        OVERCAST_CLOUDS(3),
+        MIST(45),
+        DRIZZLE_RAIN(53),
+        FREEZING_DRIZZLE_RAIN(57),
+        LIGHT_RAIN(61),
+        MODERATE_RAIN(63),
+        HEAVY_RAIN(65),
+        LIGHT_FREEZING_RAIN(66),
+        FREEZING_RAIN(67),
+        LIGHT_SNOW(71),
+        MODERATE_SNOW(73),
+        HEAVY_SNOW(75),
+        LIGHT_SHOWER_RAIN(80),
+        SHOWER_RAIN(81),
+        SHOWER_RAIN_SNOW(84),   //only used as icon in week forecasts
+        LIGHT_SHOWER_SNOW(85),
+        SHOWER_SNOW(86),
+        THUNDERSTORM(95),
+        THUNDERSTORM_HAIL(96);
 
         private int numVal;
 

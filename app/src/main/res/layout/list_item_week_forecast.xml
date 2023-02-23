@@ -24,7 +24,7 @@
             android:id="@+id/week_forecast_weather"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/weather_icon_10d"
+            android:src="@mipmap/wmo_icon_00d"
             android:layout_gravity="center" />
         <ImageView
             android:id="@+id/week_forecast_wind_icon"

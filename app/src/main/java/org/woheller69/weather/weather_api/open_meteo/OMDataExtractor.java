@@ -105,8 +105,10 @@ public class OMDataExtractor implements IDataExtractor {
                 hourlyForecast.setTimestamp(System.currentTimeMillis() / 1000);
                 if (!timeArray.isNull(i)) hourlyForecast.setForecastTime(timeArray.getLong(i)*1000L);
                 if (!weathercodeArray.isNull(i)) hourlyForecast.setWeatherID(conversion.convertWeatherCategory(weathercodeArray.getString(i)));
+                //if (!weathercodeArray.isNull(i)) hourlyForecast.setWeatherID(conversion.convertWeatherCategory(Integer.toString(i-24)));  //for icon test
                 if (!tempArray.isNull(i)) hourlyForecast.setTemperature((float) tempArray.getDouble(i));
                 if (!rhArray.isNull(i)) hourlyForecast.setHumidity((float) rhArray.getDouble(i));
+                //if (!rhArray.isNull(i)) hourlyForecast.setHumidity((float) (i-24));  //for icon test
                 if (!pressureArray.isNull(i)) hourlyForecast.setPressure((float) pressureArray.getDouble(i));
                 if (!precipitationArray.isNull(i)) hourlyForecast.setPrecipitation((float) precipitationArray.getDouble(i));
                 if (!windSpeedArray.isNull(i)) hourlyForecast.setWindSpeed((float) windSpeedArray.getDouble(i));
