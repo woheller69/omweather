@@ -22,6 +22,9 @@
         <meta-data android:name="android.webkit.WebView.MetricsOptOut"
             android:value="true" />
 
+        <activity android:name="org.woheller69.weather.activities.RainViewerActivity"
+            android:label="@string/RainViewer"/>
+
         <activity
             android:name="org.woheller69.weather.activities.SplashActivity"
             android:theme="@style/SplashTheme"

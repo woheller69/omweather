@@ -4,6 +4,7 @@ import static java.lang.Boolean.TRUE;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -11,6 +12,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.preference.PreferenceManager;
 import com.google.android.material.tabs.TabLayout;
@@ -206,6 +208,10 @@ public class ForecastCityActivity extends NavigationActivity implements IUpdatea
         refreshActionButton.setActionView(R.layout.menu_refresh_action_view);
         refreshActionButton.getActionView().setOnClickListener(v -> m.performIdentifierAction(refreshActionButton.getItemId(), 0));
 
+        rainviewerButton = menu.findItem(R.id.menu_rainviewer);
+        rainviewerButton.setActionView(R.layout.menu_rainviewer_view);
+        rainviewerButton.getActionView().setOnClickListener(v -> m.performIdentifierAction(rainviewerButton.getItemId(), 0));
+
         return true;
     }
 
@@ -216,7 +222,39 @@ public class ForecastCityActivity extends NavigationActivity implements IUpdatea
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         SQLiteHelper db = SQLiteHelper.getInstance(this);
-        if (id==R.id.menu_refresh){
+        if (id==R.id.menu_rainviewer) {
+            SharedPreferences prefManager = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+            if (!prefManager.getBoolean("pref_rainviewer",false)) {
+
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+                alertDialogBuilder.setMessage(R.string.nonFreeNet);
+                alertDialogBuilder.setPositiveButton(getString(R.string.dialog_OK_button), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        startActivity(new Intent(context, SettingsActivity.class));
+                    }
+                });
+                alertDialogBuilder.setNegativeButton(getString(R.string.dialog_NO_button), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
+
+
+            } else {
+                if (!db.getAllCitiesToWatch().isEmpty()) {  //only if at least one city is watched, otherwise crash
+                    Intent intent = new Intent(this, RainViewerActivity.class);
+                    intent.putExtra("latitude", pagerAdapter.getLatForPos((viewPager2.getCurrentItem())));
+                    intent.putExtra("longitude", pagerAdapter.getLonForPos((viewPager2.getCurrentItem())));
+                    CurrentWeatherData currentWeather = db.getCurrentWeatherByCityId(pagerAdapter.getCityIDForPos(viewPager2.getCurrentItem()));
+                    intent.putExtra("timezoneseconds", currentWeather.getTimeZoneSeconds());
+                    startActivity(intent);
+                }
+            }
+        }else if (id==R.id.menu_refresh){
             if (!db.getAllCitiesToWatch().isEmpty()) {  //only if at least one city is watched, otherwise crash
                 WeatherPagerAdapter.refreshSingleData(getApplicationContext(),true, pagerAdapter.getCityIDForPos(viewPager2.getCurrentItem()));
                 ForecastCityActivity.startRefreshAnimation();

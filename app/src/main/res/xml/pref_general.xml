@@ -15,34 +15,14 @@
             />
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/settings_title_units">
-        <ListPreference
-            app:useSimpleSummaryProvider="true"
-            android:defaultValue="1"
-            android:entries="@array/temperatureUnitsArray"
-            android:entryValues="@array/temperatureUnitsValues"
-            android:key="temperatureUnit"
-            android:summary="@string/settings_summary_temperature"
-            android:title="@string/settings_title_temperature" />
-
-        <ListPreference
-            app:useSimpleSummaryProvider="true"
-            android:defaultValue="1"
-            android:entries="@array/distanceUnitsArray"
-            android:entryValues="@array/distanceUnitsValues"
-            android:key="distanceUnit"
-            android:summary="@string/settings_summary_distance"
-            android:title="@string/settings_title_distance" />
-
-        <SwitchPreference
-            android:key="pref_WindFormat"
-            android:title="@string/settings_wind"
-            android:defaultValue="true"
-            />
-    </PreferenceCategory>
-
     <PreferenceCategory android:title="@string/settings_title_forecastChoice">
 
+        <SwitchPreference
+            android:key="pref_rainviewer"
+            android:title="@string/RainViewer"
+            android:summary="@string/nonFreeNet"
+            android:defaultValue="false"
+            />
         <SwitchPreference
             android:key="pref_DarkMode"
             android:title="@string/settings_darkmode"
@@ -68,6 +48,32 @@
             android:defaultValue="true"
             />
 
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/settings_title_units">
+        <ListPreference
+            app:useSimpleSummaryProvider="true"
+            android:defaultValue="1"
+            android:entries="@array/temperatureUnitsArray"
+            android:entryValues="@array/temperatureUnitsValues"
+            android:key="temperatureUnit"
+            android:summary="@string/settings_summary_temperature"
+            android:title="@string/settings_title_temperature" />
+
+        <ListPreference
+            app:useSimpleSummaryProvider="true"
+            android:defaultValue="1"
+            android:entries="@array/distanceUnitsArray"
+            android:entryValues="@array/distanceUnitsValues"
+            android:key="distanceUnit"
+            android:summary="@string/settings_summary_distance"
+            android:title="@string/settings_title_distance" />
+
+        <SwitchPreference
+            android:key="pref_WindFormat"
+            android:title="@string/settings_wind"
+            android:defaultValue="true"
+            />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/settings_intervals">

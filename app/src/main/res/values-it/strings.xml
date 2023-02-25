@@ -63,7 +63,7 @@
     <string name="settings_interval_summary">Imposta l\'intervallo degli aggiornamenti automatici</string>
     <string name="about_privacy_answer">omWeather utilizza solo l\'autorizzazione \"Internet\" per recuperare i dati meteorologici. Inoltre non include alcun meccanismo di tracciamento o pubblicità.</string>
     <string name="about_where_from">Da dove vengono le informazioni meteorologiche?</string>
-    <string name="about_where_from_answer">Le informazioni meteorologiche vengono recuperate dal servizio Open-Meteo.com. (Attribution 4.0 International CC BY 4.0)</string>
+    <string name="about_where_from_answer">Le informazioni meteorologiche vengono recuperate da</string>
     <string name="about_permissions">Permessi</string>
     <string name="long_press_text">Tieni premuto e trascina per ordinare.</string>
     <string name="swipe_to_delete">Scorri per eliminare</string>
@@ -72,7 +72,7 @@
     <string name="settings_forecast_option_1">5 giorni / 3h</string>
     <string name="settings_forecast_option_2">2 giorni / 1h + 3 giorni / 3h</string>
     <string name="settings_forecastChoice">Previsioni</string>
-    <string name="infoOpenMeteo">Le informazioni meteorologiche vengono recuperate da Open-Meteo.com. (Attribution 4.0 International CC BY 4.0)</string>
+    <string name="infoProvider">Le informazioni meteorologiche vengono recuperate da Open-Meteo.com \&amp; Rainviewer.com</string>
     <string name="registerOWMbutton">Registrati gratis</string>
     <string name="monday">Lunedì</string>
     <string name="tuesday">Martedì</string>
@@ -120,4 +120,6 @@
     <string name="rationale_background_location">Consenti anche l\'uso del GPS in background nel widget</string>
     <string name="error_no_gps">Si prega di attivare il GPS</string>
     <string name="slide3_heading">Open-Meteo</string>
+    <string name="RainViewer">Radar Pioggia</string>
+    <string name="nonFreeNet">Consenti l\'accesso a RainViewer.com che non è una rete open source.</string>
 </resources>

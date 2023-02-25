@@ -18,5 +18,13 @@
         app:actionViewClass="android.widget.ImageButton"
         app:showAsAction="always"
         style="@android:style/Widget.ActionButton" />
-
+    <item
+        android:id="@+id/menu_rainviewer"
+        android:orderInCategory="100"
+        android:title="@string/action_rainviewer"
+        android:icon="@drawable/ic_map_24px"
+        app:actionViewClass="android.widget.ImageButton"
+        app:showAsAction="always"
+        style="@android:style/Widget.ActionButton"
+        />
 </menu>

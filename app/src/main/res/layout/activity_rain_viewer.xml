@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.RainViewerActivity"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/backgroundBlue"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/rainviewer_prev"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_skip_previous_24px"
+            android:layout_height="wrap_content" />
+        <ImageButton
+            android:id="@+id/rainviewer_startstop"
+            android:layout_width="wrap_content"
+            android:layout_weight="3"
+            android:src="@drawable/ic_playpause"
+            android:layout_height="wrap_content" />
+        <ImageButton
+            android:id="@+id/rainviewer_next"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_skip_next_24px"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <WebView
+        android:id="@+id/webView"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent" />
+</LinearLayout>

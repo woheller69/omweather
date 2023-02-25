@@ -10,7 +10,7 @@
     <string name="about_permissions">Berechtigungen</string>
     <string name="about_privacy_answer">omWeather benötigt nur Zugang zum Internet. Es werden weder persönliche Daten gesammelt, noch wird Werbung angezeigt.</string>
     <string name="about_where_from">Woher kommen die Wetterinformationen?</string>
-    <string name="about_where_from_answer">Die Wetterinformationen stammen von dem Dienst Open-Meteo.com. (Attribution 4.0 International CC BY 4.0)</string>
+    <string name="about_where_from_answer">Die Wetterinformationen stammen von</string>
     <string name="activity_about">Über</string>
     <string name="activity_weather">Wetter</string>
     <string name="activity_manage">Orte verwalten</string>
@@ -67,7 +67,7 @@
     <string name="card_error_heading">Fehler beim Abrufen der Wetterdaten</string>
     <string name="long_press_text">Halten und ziehen Sie, um die Städte zu sortieren.</string>
     <string name="swipe_to_delete">Wischen Sie zum Löschen</string>
-    <string name="infoOpenMeteo">Die Wetterinformationen stammen von Open-Meteo.com. (Attribution 4.0 International CC BY 4.0)</string>
+    <string name="infoProvider">Die Wetterinformationen stammen von Open-Meteo.com \&amp; Rainviewer.com</string>
     <string name="registerOWMbutton">Kostenfrei registrieren</string>
 
     <string name="monday">Montag</string>
@@ -123,4 +123,7 @@
     <string name="rationale_background_location">Bitte erlauben Sie auch die GPS Nutzung im Hintergrund für die Verwendung im Widget</string>
     <string name="error_no_gps">Bitte GPS einschalten</string>
     <string name="slide3_heading">Open-Meteo</string>
+    <string name="RainViewer">Regenradar</string>
+    <string name="nonFreeNet">Erlauben Sie den Zugriff auf RainViewer.com, das kein Open-Source-Netzwerk ist.</string>
+
 </resources>

@@ -29,7 +29,8 @@
     <string name="about_license_text">This application is derived from Privacy Friendly Weather, developed by the research group SECUSO. Sourcecode licensed under GPLv3. The app uses icons from Google Material Design Icons licensed under Apache License Version 2.0, the Leaflet library which is licensed under 2-clause BSD License, the Leaflet.TileLayer.ColorFilter plugin which is licensed under MIT License, Android SQLiteAssetHelper library (com.readystatesoftware.sqliteasset) which is licensed under Apache License Version 2.0, AutoSuggestTextViewAPICall which is licensed under Apache License Version 2.0 and WilliamChart library (com.db.chart) which is licensed under Apache License Version 2.0</string>
     <string name="about_more_info">More information can be found on:</string>
     <string name="about_github" translatable="false"><a href="https://github.com/woheller69/omweather">Github-Repo</a></string>
-    <string name="about_openmeteo" translatable="false"><a href="https://open-meteo.com">Open-Meteo</a></string>
+    <string name="about_openmeteo" translatable="false"><a href="https://open-meteo.com">Open-Meteo \n(Attribution 4.0 International CC BY 4.0)</a></string>
+    <string name="about_rainviewer" translatable="false"><a href="https://rainviewer.com">RainViewer</a></string>
     <string name="activity_settings_title">Settings</string>
     <string name="settings_title_units">Units</string>
     <string name="settings_summary_temperature">Set the unit to use for displaying temperatures</string>
@@ -67,7 +68,7 @@
     <string name="settings_interval_summary">Set the interval of automatic updates</string>
     <string name="about_privacy_answer">omWeather only uses the permission \"Internet\" to retrieve weather data. It further does not include any tracking mechanisms or advertisement.</string>
     <string name="about_where_from">Where do the weather informations come from?</string>
-    <string name="about_where_from_answer">Weather information is fetched from the service Open-Meteo.com (Attribution 4.0 International CC BY 4.0)</string>
+    <string name="about_where_from_answer">Weather information is fetched from</string>
     <string name="about_permissions">Permissions</string>
     <string name="long_press_text">Hold and drag to sort.</string>
     <string name="swipe_to_delete">Swipe to delete</string>
@@ -76,7 +77,7 @@
     <string name="settings_forecast_option_1">5 day / 3h</string>
     <string name="settings_forecast_option_2">2 day / 1h + 3 day / 3h</string>
     <string name="settings_forecastChoice">Forecast</string>
-    <string name="infoOpenMeteo">Weather information is fetched from Open-Meteo.com. (Attribution 4.0 International CC BY 4.0)</string>
+    <string name="infoProvider">Weather information is fetched from Open-Meteo.com \&amp; Rainviewer.com</string>
     <string name="registerOWMbutton">Register for free</string>
     <string name="monday">Monday</string>
     <string name="tuesday">Tuesday</string>
@@ -126,4 +127,7 @@
     <string name="rationale_background_location">Please also allow GPS usage in the background for use in the widget</string>
     <string name="error_no_gps">Please turn on GPS</string>
     <string name="slide3_heading">Open-Meteo</string>
+    <string name="RainViewer">Rain Radar</string>
+    <string name="action_rainviewer" translatable="false">Rain radar</string>
+    <string name="nonFreeNet">Allow access to RainViewer.com which is not an open-source network.</string>
 </resources>

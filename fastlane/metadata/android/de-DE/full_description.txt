@@ -1,10 +1,11 @@
 Mit omWeather kann das Wetter von Orten eingesehen werden.
 
-Die Wetterdaten werden über die freie API von Open-Meteo.com bereitgestellt.
+Die Wetterdaten werden über die freie API von Open-Meteo.com und RainViewer.com bereitgestellt.
 
 Features:
 - Aktuelles Wetter
 - Stündliches Wetter für 7 Tage
+- Regenradar
 - Widget mit optionaler automatischer GPS-Positionsaktualisierung
 - Keine Werbung
 

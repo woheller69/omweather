@@ -12,7 +12,7 @@
     <string name="about_permissions">Autorisations</string>
     <string name="about_privacy_answer">omWeather n\'a besoin que d\'accéder à Internet. Aucune donnée personnelle n\'est collectée et aucune publicité n\'est affichée.</string>
     <string name="about_where_from">D\'où proviennent les informations météorologiques?</string>
-    <string name="about_where_from_answer">Les informations météorologiques proviennent du service Open-Meteo.com. (Attribution 4.0 International CC BY 4.0)</string>
+    <string name="about_where_from_answer">Les informations météorologiques proviennent du</string>
     <string name="activity_about">À propos</string>
     <string name="activity_weather">Temps</string>
     <string name="activity_manage">Gérer les lieux</string>
@@ -68,7 +68,7 @@
     <string name="card_error_heading">Erreur lors de l\'obtention des données météorologiques</string>
     <string name="long_press_text">Maintenez et faites glisser pour trier les villes.</string>
     <string name="swipe_to_delete">Balayez pour effacer</string>
-    <string name="infoOpenMeteo">Les informations météorologiques proviennent du Open-Meteo.com. (Attribution 4.0 International CC BY 4.0)</string>
+    <string name="infoProvider">Les informations météorologiques proviennent du Open-Meteo.com \&amp; Rainviewer.com</string>
     <string name="registerOWMbutton">Inscription gratuite</string>
     <string name="monday">Lundi</string>
     <string name="tuesday">Mardi</string>
@@ -123,4 +123,7 @@
     <string name="rationale_background_location">Autoriser également l\'utilisation du GPS en arrière-plan dans le widget</string>
     <string name="error_no_gps">Veuillez activer le GPS</string>
     <string name="slide3_heading">Open-Meteo</string>
+    <string name="RainViewer">Radar de pluie</string>
+    <string name="nonFreeNet">Autorisez l\'accès à RainViewer.com qui n\'est pas un réseau open source.</string>
+
 </resources>
