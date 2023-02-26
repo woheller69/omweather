@@ -72,13 +72,8 @@
     <string name="about_permissions">Permissions</string>
     <string name="long_press_text">Hold and drag to sort.</string>
     <string name="swipe_to_delete">Swipe to delete</string>
-    <string name="settings_title_forecastChoice">Display options</string>
-    <string name="settings_summary_forecastChoice">Select between 5 day / 3h and 2 day / 1h + 3 day / 3h hourlyForecasts</string>
-    <string name="settings_forecast_option_1">5 day / 3h</string>
-    <string name="settings_forecast_option_2">2 day / 1h + 3 day / 3h</string>
-    <string name="settings_forecastChoice">Forecast</string>
+    <string name="settings_title_display_options">Display options</string>
     <string name="infoProvider">Weather information is fetched from Open-Meteo.com \&amp; Rainviewer.com</string>
-    <string name="registerOWMbutton">Register for free</string>
     <string name="monday">Monday</string>
     <string name="tuesday">Tuesday</string>
     <string name="wednesday">Wednesday</string>
@@ -98,14 +93,7 @@
     <string name="card_details_rain60min">☔ 60 min:</string>
     <string name="error_no_rain60min_data">no data</string>
     <string name="dialog_edit_change_button">Modify</string>
-    <string name="dialog_edit_label">CAUTION: This will modify the internal city list!</string>
-    <string name="edit_location_hint_search">Search location</string>
     <string name="edit_location_hint_name">Name</string>
-    <string name="edit_location_hint_latitude">Latitude</string>
-    <string name="edit_location_hint_longitude">Longitude</string>
-    <string name="edit_location_hint_country_code">Country Code</string>
-    <string name="edit_location_hint_ID" translatable="false">ID</string>
-    <string name="edit_location_range_error">Value out of range</string>
     <string name="settings_search">Search</string>
     <string name="settings_temp_decimal">Show temperature with one decimal</string>
     <string name="settings_darkmode">Android 10+ Dark Mode</string>
@@ -123,7 +111,6 @@
     <string name="settings_show_pressure">Show air pressure</string>
     <string name="action_position" translatable="false">Update Location</string>
     <string name="settings_GPS_manual">Manual update only</string>
-    <string name="settings_register_summary">You need a free subscription and OneCallAPI 3.0 with a limit of 1000 (free) calls per day.</string>
     <string name="rationale_background_location">Please also allow GPS usage in the background for use in the widget</string>
     <string name="error_no_gps">Please turn on GPS</string>
     <string name="slide3_heading">Open-Meteo</string>

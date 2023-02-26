@@ -53,13 +53,13 @@
     <string name="error_no_internet">Uw apparaat is niet verbonden met internet</string>
     <string name="error_fetch_forecast">Fout tijdens het bijwerken van de prognose, probeer het opnieuw!</string>
     <string name="error_no_city_selected">Er is geen stad geselecteerd. Ga naar \"Locaties beheren\" om een ​​stad te selecteren.</string>
-    <string name="settings_interval_quarter" translatable="false">15 min</string>
-    <string name="settings_interval_half" translatable="false">30 min</string>
-    <string name="settings_interval_one" translatable="false">1 h</string>
-    <string name="settings_interval_two" translatable="false">2 h</string>
-    <string name="settings_interval_six" translatable="false">6 h</string>
-    <string name="settings_interval_twelve" translatable="false">12 h</string>
-    <string name="settings_interval_twentyfour" translatable="false">24 h</string>
+    <string name="settings_interval_quarter">15 min</string>
+    <string name="settings_interval_half">30 min</string>
+    <string name="settings_interval_one">1 h</string>
+    <string name="settings_interval_two">2 h</string>
+    <string name="settings_interval_six">6 h</string>
+    <string name="settings_interval_twelve">12 h</string>
+    <string name="settings_interval_twentyfour">24 h</string>
     <string name="settings_intervals">Intervallen</string>
     <string name="settings_update_interval">Bijwerkingsonderbreking</string>
     <string name="settings_interval_summary">Stel het interval van automatische updates in</string>
@@ -69,13 +69,8 @@
     <string name="about_permissions">Rechten</string>
     <string name="long_press_text">Houd ingedrukt en sleep om te sorteren.</string>
     <string name="swipe_to_delete">Veeg om te verwijderen</string>
-    <string name="settings_title_forecastChoice">weergaveopties</string>
-    <string name="settings_summary_forecastChoice">Kies tussen 5 dagen /3 uur en 2 dagen /1 uur 3 dagen /3 uur voorspellingen</string>
-    <string name="settings_forecast_option_1">5 dagen /3u</string>
-    <string name="settings_forecast_option_2">2 dagen /1 uur 3 dagen /3 uur</string>
-    <string name="settings_forecastChoice">Voorspelling</string>
+    <string name="settings_title_display_options">weergaveopties</string>
     <string name="infoProvider">Weerinformatie wordt opgehaald uit Open-Meteo.com \&amp; Rainviewer.com</string>
-    <string name="registerOWMbutton">Registreer gratis</string>
     <string name="monday">Maandag</string>
     <string name="tuesday">Dinsdag</string>
     <string name="wednesday">Woensdag</string>
@@ -95,13 +90,7 @@
     <string name="card_details_rain60min">☔ 60 minuten:</string>
     <string name="error_no_rain60min_data">geen gegevens</string>
     <string name="dialog_edit_change_button">Bewerken</string>
-    <string name="dialog_edit_label">LET OP: Dit zal de interne lijst met steden wijzigen!</string>
-    <string name="edit_location_hint_search">Zoek locatie</string>
     <string name="edit_location_hint_name">Naam</string>
-    <string name="edit_location_hint_latitude">Breedtegraad</string>
-    <string name="edit_location_hint_longitude">Lengtegraad</string>
-    <string name="edit_location_hint_country_code">Landcode</string>
-    <string name="edit_location_range_error">Waarde buiten bereik</string>
     <string name="settings_search">Zoekopdracht</string>
     <string name="settings_temp_decimal">Toon temperatuur met één decimaal</string>
     <string name="settings_darkmode">Android 10 donkere modus</string>
@@ -118,7 +107,6 @@
     <string name="dialog_StarOnGitHub">Vind je deze app leuk? Geef een ster op GitHub of koop de ontwikkelaar een kopje koffie via PayPal.</string>
     <string name="settings_show_pressure">Toon luchtdruk</string>
     <string name="settings_GPS_manual">Alleen handmatige update</string>
-    <string name="settings_register_summary">Je hebt een gratis abonnement en OneCallAPI 3.0 nodig met een limiet van 1000 (gratis) bellen per dag.</string>
     <string name="rationale_background_location">Sta ook GPS-gebruik op de achtergrond toe voor gebruik in de widget</string>
     <string name="error_no_gps">Zet a.u.b. GPS aan</string>
     <string name="slide3_heading">Open-Meteo</string>

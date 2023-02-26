@@ -53,13 +53,13 @@
     <string name="error_no_internet">Din enhed er ikke forbundet til internettet</string>
     <string name="error_fetch_forecast">Fejl under opdatering af prognose, prøv venligst igen!</string>
     <string name="error_no_city_selected">Der er ikke valgt nogen by. For at vælge en by skal du gå til \"Administrer lokationer\".</string>
-    <string name="settings_interval_quarter" translatable="false">15 min</string>
-    <string name="settings_interval_half" translatable="false">30 min</string>
-    <string name="settings_interval_one" translatable="false">1 h</string>
-    <string name="settings_interval_two" translatable="false">2 h</string>
-    <string name="settings_interval_six" translatable="false">6 h</string>
-    <string name="settings_interval_twelve" translatable="false">12 h</string>
-    <string name="settings_interval_twentyfour" translatable="false">24 h</string>
+    <string name="settings_interval_quarter">15 min</string>
+    <string name="settings_interval_half">30 min</string>
+    <string name="settings_interval_one">1 h</string>
+    <string name="settings_interval_two">2 h</string>
+    <string name="settings_interval_six">6 h</string>
+    <string name="settings_interval_twelve">12 h</string>
+    <string name="settings_interval_twentyfour">24 h</string>
     <string name="settings_intervals">Intervaller</string>
     <string name="settings_update_interval">Opdateringsinterval</string>
     <string name="settings_interval_summary">Indstil intervallet for automatiske opdateringer</string>
@@ -69,13 +69,8 @@
     <string name="about_permissions">Tilladelser</string>
     <string name="long_press_text">Hold og træk for at sortere.</string>
     <string name="swipe_to_delete">Stryg for at slette</string>
-    <string name="settings_title_forecastChoice">Visningsmuligheder</string>
-    <string name="settings_summary_forecastChoice">Vælg mellem 5 dage /3 timer og 2 dage /1 timer 3 dage /3 timer prognoser</string>
-    <string name="settings_forecast_option_1">5 dage /3 timer</string>
-    <string name="settings_forecast_option_2">2 dage /1 t 3 dag /3 timer</string>
-    <string name="settings_forecastChoice">Vejrudsigt</string>
+    <string name="settings_title_display_options">Visningsmuligheder</string>
     <string name="infoProvider">Vejrinformation hentes fra Open-Meteo.com \&amp; Rainviewer.com</string>
-    <string name="registerOWMbutton">Tilmeld dig gratis</string>
     <string name="monday">Mandag</string>
     <string name="tuesday">Tirsdag</string>
     <string name="wednesday">Onsdag</string>
@@ -95,13 +90,7 @@
     <string name="card_details_rain60min">☔ 60 min:</string>
     <string name="error_no_rain60min_data">ingen data</string>
     <string name="dialog_edit_change_button">Modificere</string>
-    <string name="dialog_edit_label">FORSIGTIG: Dette vil ændre den interne byliste!</string>
-    <string name="edit_location_hint_search">Søg efter placering</string>
     <string name="edit_location_hint_name">Navn</string>
-    <string name="edit_location_hint_latitude">Breddegrad</string>
-    <string name="edit_location_hint_longitude">Længde</string>
-    <string name="edit_location_hint_country_code">Landekode</string>
-    <string name="edit_location_range_error">Værdi uden for rækkevidde</string>
     <string name="settings_search">Søg</string>
     <string name="settings_temp_decimal">Vis temperatur med én decimal</string>
     <string name="settings_darkmode">Android 10 mørk tilstand</string>
@@ -118,7 +107,6 @@
     <string name="dialog_StarOnGitHub">Kan du lide denne app? Giv venligst en stjerne på GitHub eller køb udvikleren en kop kaffe via PayPal.</string>
     <string name="settings_show_pressure">Vis lufttryk</string>
     <string name="settings_GPS_manual">Kun manuel opdatering</string>
-    <string name="settings_register_summary">Du har brug for et gratis abonnement og OneCallAPI 3.0 med en grænse på 1000 (gratis) opkald pr. dag.</string>
     <string name="rationale_background_location">Tillad også GPS-brug i baggrunden til brug i widgetten</string>
     <string name="error_no_gps">Tænd venligst GPS</string>
     <string name="slide3_heading">Open-Meteo</string>

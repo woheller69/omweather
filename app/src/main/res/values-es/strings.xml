@@ -62,13 +62,8 @@
     <string name="about_permissions">Permisos</string>
     <string name="long_press_text">Mantenga presionado y arrastre para ordenar.</string>
     <string name="swipe_to_delete">Deslizar para eliminar</string>
-    <string name="settings_title_forecastChoice">opciones de pantalla</string>
-    <string name="settings_summary_forecastChoice">Seleccione entre pronósticos de 5 días /3h y 2 días /1h + 3 días /3h</string>
-    <string name="settings_forecast_option_1">5 días /3h</string>
-    <string name="settings_forecast_option_2">2 días /1h + 3 días /3h</string>
-    <string name="settings_forecastChoice">Previsión del tiempo</string>
+    <string name="settings_title_display_options">opciones de pantalla</string>
     <string name="infoProvider">La información meteorológica se obtiene de Open-Meteo.com \&amp; Rainviewer.com</string>
-    <string name="registerOWMbutton">Registrate gratis</string>
     <string name="monday">lunes</string>
     <string name="tuesday">martes</string>
     <string name="wednesday">miércoles</string>
@@ -88,13 +83,7 @@
     <string name="card_details_rain60min">☔ 60 min:</string>
     <string name="error_no_rain60min_data">sin datos</string>
     <string name="dialog_edit_change_button">"Modificar "</string>
-    <string name="dialog_edit_label">PRECAUCIÓN: ¡Esto modificará la lista interna de ciudades!</string>
-    <string name="edit_location_hint_search">"Buscar una ubicación "</string>
     <string name="edit_location_hint_name">Nombre</string>
-    <string name="edit_location_hint_latitude">Latitud</string>
-    <string name="edit_location_hint_longitude">Longitud</string>
-    <string name="edit_location_hint_country_code">Código de país</string>
-    <string name="edit_location_range_error">Valor fuera de rango</string>
     <string name="settings_search">Buscar </string>
     <string name="settings_temp_decimal">Muestra la temperatura con un decimal</string>
     <string name="settings_darkmode">Android 10+ modo oscuro </string>
@@ -118,7 +107,6 @@
     <string name="settings_interval_six">6 h</string>
     <string name="settings_interval_twelve">12 h</string>
     <string name="settings_interval_twentyfour">24 h</string>
-    <string name="settings_register_summary">Necesita una suscripción gratuita y OneCallAPI 3.0 con un límite de 1000 llamadas (gratuitas) por día.</string>
     <string name="rationale_background_location">También permitir el uso de fondo de GPS en el widget</string>
     <string name="error_no_gps">Por favor, encienda el GPS</string>
     <string name="slide3_heading">Open-Meteo</string>

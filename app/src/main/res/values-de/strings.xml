@@ -44,11 +44,7 @@
     <string name="settings_interval_summary">Setzen Sie das Interval der automatischen Updates</string>
     <string name="settings_intervals">Intervalle</string>
     <string name="settings_update_interval">Update Intervall</string>
-    <string name="settings_title_forecastChoice">Anzeigeoptionen</string>
-    <string name="settings_summary_forecastChoice">Wählen Sie zwischen 5 Tage / 3h und 2 Tage / 1h + 3 Tage / 3h Vorhersage</string>
-    <string name="settings_forecast_option_1">5 Tage / 3h</string>
-    <string name="settings_forecast_option_2">2 Tage / 1h + 3 Tage / 3h</string>
-    <string name="settings_forecastChoice">Vorhersage</string>
+    <string name="settings_title_display_options">Anzeigeoptionen</string>
 
     <string name="navigation_drawer_open">Navigationsleiste öffnen</string>
     <string name="abbreviation_friday">Fr.</string>
@@ -68,7 +64,6 @@
     <string name="long_press_text">Halten und ziehen Sie, um die Städte zu sortieren.</string>
     <string name="swipe_to_delete">Wischen Sie zum Löschen</string>
     <string name="infoProvider">Die Wetterinformationen stammen von Open-Meteo.com \&amp; Rainviewer.com</string>
-    <string name="registerOWMbutton">Kostenfrei registrieren</string>
 
     <string name="monday">Montag</string>
     <string name="tuesday">Dienstag</string>
@@ -89,13 +84,7 @@
     <string name="card_details_rain60min">☔ 60 min:</string>
     <string name="error_no_rain60min_data">keine Daten</string>
     <string name="dialog_edit_change_button">Ändern</string>
-    <string name="dialog_edit_label">ACHTUNG: Dies ändert die interne Städteliste!</string>
-    <string name="edit_location_hint_search">Stadt suchen</string>
     <string name="edit_location_hint_name">Name</string>
-    <string name="edit_location_hint_latitude">Breitengrad</string>
-    <string name="edit_location_hint_longitude">Längengrad</string>
-    <string name="edit_location_hint_country_code">Länderkennung</string>
-    <string name="edit_location_range_error">Wert außerhalb des Bereichs</string>
     <string name="settings_search">Suche</string>
     <string name="settings_temp_decimal">Temperatur mit einer Dezimalstelle anzeigen</string>
     <string name="settings_darkmode">Android 10+ Dark Mode</string>
@@ -119,7 +108,6 @@
     <string name="settings_interval_six">6 h</string>
     <string name="settings_interval_twelve">12 h</string>
     <string name="settings_interval_twentyfour">24 h</string>
-    <string name="settings_register_summary">Sie benötigen ein kostenloses Abonnement und OneCallAPI 3.0 mit einem Limit von 1000 (kostenlosen) Anrufen pro Tag.</string>
     <string name="rationale_background_location">Bitte erlauben Sie auch die GPS Nutzung im Hintergrund für die Verwendung im Widget</string>
     <string name="error_no_gps">Bitte GPS einschalten</string>
     <string name="slide3_heading">Open-Meteo</string>

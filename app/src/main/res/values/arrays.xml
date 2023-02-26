@@ -59,12 +59,4 @@
         <item>@color/dot_dark_screen</item>
     </array>
 
-    <string-array name="forecastChoiceArray">
-        <item>@string/settings_forecast_option_1</item>
-        <item>@string/settings_forecast_option_2</item>
-    </string-array>
-    <string-array name="forecastChoiceValues">
-        <item>1</item>
-        <item>2</item>
-    </string-array>
 </resources>

@@ -51,13 +51,13 @@
     <string name="error_no_internet">Seu dispositivo não está conectado à Internet</string>
     <string name="error_fetch_forecast">Erro ao atualizar a Previsão. Por favor, tente novamente!</string>
     <string name="error_no_city_selected">Nenhuma cidade selecionada. Para selecionar uma cidade, vá para \"Gerenciar Locais\".</string>
-    <string name="settings_interval_quarter" translatable="false">15 min</string>
-    <string name="settings_interval_half" translatable="false">30 min</string>
-    <string name="settings_interval_one" translatable="false">1 h</string>
-    <string name="settings_interval_two" translatable="false">2 h</string>
-    <string name="settings_interval_six" translatable="false">6 h</string>
-    <string name="settings_interval_twelve" translatable="false">12 h</string>
-    <string name="settings_interval_twentyfour" translatable="false">24 h</string>
+    <string name="settings_interval_quarter">15 min</string>
+    <string name="settings_interval_half">30 min</string>
+    <string name="settings_interval_one">1 h</string>
+    <string name="settings_interval_two">2 h</string>
+    <string name="settings_interval_six">6 h</string>
+    <string name="settings_interval_twelve">12 h</string>
+    <string name="settings_interval_twentyfour">24 h</string>
     <string name="settings_intervals">Intervalos</string>
     <string name="settings_update_interval">Intervalos de atualização</string>
     <string name="settings_interval_summary">Defina o intervalo para atualizações automáticas</string>
@@ -67,13 +67,8 @@
     <string name="about_permissions">Permissões</string>
     <string name="long_press_text">Segure e arraste para ordenar.</string>
     <string name="swipe_to_delete">Deslize para remover</string>
-    <string name="settings_title_forecastChoice">Opções de Visualização</string>
-    <string name="settings_summary_forecastChoice">Selecione entre previsões de 5 dias / 3h e 2 dias / 1h + 3 dias / 3h</string>
-    <string name="settings_forecast_option_1">5 day / 3h</string>
-    <string name="settings_forecast_option_2">2 day / 1h + 3 day / 3h</string>
-    <string name="settings_forecastChoice">Previsão</string>
+    <string name="settings_title_display_options">Opções de Visualização</string>
     <string name="infoProvider">As informações do tempo são recuperadas do Open-Meteo.com \&amp; Rainviewer.com</string>
-    <string name="registerOWMbutton">Registrar gratuitamente</string>
     <string name="monday">Segunda</string>
     <string name="tuesday">Terça</string>
     <string name="wednesday">Quarta</string>
@@ -93,13 +88,7 @@
     <string name="card_details_rain60min">☔ 60 min:</string>
     <string name="error_no_rain60min_data">sem dados</string>
     <string name="dialog_edit_change_button">Modificar</string>
-    <string name="dialog_edit_label">CUIDADO: Esta ação modificará a lista interna de cidades!</string>
-    <string name="edit_location_hint_search">Pesquisar local</string>
     <string name="edit_location_hint_name">Nome</string>
-    <string name="edit_location_hint_latitude">Latitude</string>
-    <string name="edit_location_hint_longitude">Longitude</string>
-    <string name="edit_location_hint_country_code">Código de país</string>
-    <string name="edit_location_range_error">Valor fora da faixa</string>
     <string name="settings_search">Pesquisar</string>
     <string name="settings_temp_decimal">Mostrar temperatura somente com um decimal</string>
     <string name="settings_darkmode">Modo Escuro do Android 10+</string>
@@ -116,7 +105,6 @@
     <string name="dialog_StarOnGitHub">Gostou deste app? Dê uma estrela no GitHub ou compre um café para o desenvolvedor via PayPal.</string>
     <string name="settings_show_pressure">Mostrar pressão do ar</string>
     <string name="settings_GPS_manual">Somente atualização manual</string>
-    <string name="settings_register_summary">Você precisa de uma assinatura gratuita e OneCallAPI 3.0 com um limite de 1.000 chamadas (gratuitas) por dia.</string>
     <string name="rationale_background_location">Permita também o uso de GPS em pano de fondo no widget</string>
     <string name="error_no_gps">Por favor, ligue o GPS</string>
     <string name="slide3_heading">Open-Meteo</string>
