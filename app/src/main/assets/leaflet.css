@@ -638,3 +638,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 	margin-left: -12px;
 	border-right-color: #fff;
 	}
+.leaflet-tile-container img {
+  width: 257px !important;
+  height: 257px !important;
+}
