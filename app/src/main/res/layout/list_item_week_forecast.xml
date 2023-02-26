@@ -4,6 +4,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:gravity="center_horizontal"
     android:padding="10dp">
 
     <TextView
@@ -11,26 +12,29 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
-        android:layout_gravity="center"
         android:text="Monday:"
         android:textColor="@color/colorPrimaryDark"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+        <androidx.legacy.widget.Space
+            android:layout_width="20dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="-15dp"/>
         <ImageView
             android:id="@+id/week_forecast_weather"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/wmo_icon_00d"
-            android:layout_gravity="center" />
+            android:src="@mipmap/wmo_icon_00d" />
         <ImageView
             android:id="@+id/week_forecast_wind_icon"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:translationX="-15dp"
+            android:layout_marginEnd="-15dp"
             android:src="@drawable/ic_wind_orange"
             />
     </LinearLayout>
@@ -43,7 +47,6 @@
         android:id="@+id/week_forecast_temperature_max"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:layout_marginBottom="0dp"
         android:text="xy°C"
         android:textColor="@color/colorPrimaryDark"
@@ -53,7 +56,6 @@
         android:id="@+id/week_forecast_temperature_min"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:layout_marginBottom="3dp"
         android:text="xy°C"
         android:textColor="@color/colorPrimaryDark"
@@ -63,7 +65,6 @@
         android:id="@+id/week_forecast_precipitation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:layout_marginBottom="3dp"
         android:text="xy mm"
         android:textColor="@color/colorPrimaryDark"
@@ -73,7 +74,6 @@
         android:id="@+id/week_forecast_wind_speed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:layout_marginBottom="3dp"
         android:text="10 Bft"
         android:textColor="@color/colorPrimaryDark"
@@ -83,7 +83,6 @@
         android:id="@+id/week_forecast_uv_index"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:layout_marginBottom="3dp"
         android:text="uv xy"
         android:textColor="@color/colorPrimaryDark"

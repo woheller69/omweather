@@ -3,6 +3,7 @@
     android:id="@+id/activity_city_weather_details_holder"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
     android:padding="10dp">
 
@@ -10,27 +11,30 @@
         android:id="@+id/course_of_day_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:layout_marginBottom="5dp"
         android:text="14:42"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/colorPrimaryDark" />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+        <androidx.legacy.widget.Space
+            android:layout_width="20dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="-15dp"/>
         <ImageView
             android:id="@+id/course_of_day_weather"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/wmo_icon_00d"
-            android:layout_gravity="center" />
+            android:src="@mipmap/wmo_icon_00d" />
         <ImageView
             android:id="@+id/course_of_day_wind_icon"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:translationX="-15dp"
+            android:layout_marginEnd="-15dp"
             android:src="@drawable/ic_wind_orange"
             />
     </LinearLayout>
@@ -42,7 +46,6 @@
         android:id="@+id/course_of_day_temperature"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:layout_marginBottom="3dp"
         android:text="xy°C"
         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -52,7 +55,6 @@
         android:id="@+id/course_of_day_humidity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:layout_marginBottom="3dp"
         android:text="xy %"
         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -62,7 +64,6 @@
         android:id="@+id/course_of_day_pressure"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:layout_marginBottom="3dp"
         android:text="xy hpa"
         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -72,7 +73,6 @@
         android:id="@+id/course_of_day_precipitation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:layout_marginBottom="3dp"
         android:text="xy mm"
         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -82,7 +82,6 @@
         android:id="@+id/course_of_day_wind_speed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:layout_marginBottom="3dp"
         android:text="xy Bft"
         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -92,7 +91,6 @@
         android:id="@+id/course_of_day_wind_direction"
         android:layout_width="20sp"
         android:layout_height="20sp"
-        android:layout_gravity="center"
         android:layout_marginBottom="3dp"
         android:src="@drawable/ic_south_24px" />
 

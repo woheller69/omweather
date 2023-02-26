@@ -137,15 +137,15 @@ public final class StringFormatUtils {
 
     public static int colorWindSpeedWidget(float wind_speed) {
         if (wind_speed < 0.3) {
-            return R.drawable.transparent_no_margin;
+            return R.drawable.ic_wind_empty;
         } else if (wind_speed < 1.5) {
-            return R.drawable.transparent_no_margin;
+            return R.drawable.ic_wind_empty;
         } else if (wind_speed < 3.3) {
-            return R.drawable.transparent_no_margin;
+            return R.drawable.ic_wind_empty;
         } else if (wind_speed < 5.5) {
-            return R.drawable.transparent_no_margin;
+            return R.drawable.ic_wind_empty;
         } else if (wind_speed < 7.9) {
-            return R.drawable.transparent_no_margin;
+            return R.drawable.ic_wind_empty;
         } else if (wind_speed < 10.7) {
             return R.drawable.ic_wind_yellow;
         } else if (wind_speed < 13.8) {
