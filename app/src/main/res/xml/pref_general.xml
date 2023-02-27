@@ -15,7 +15,7 @@
             />
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/settings_title_forecastChoice">
+    <PreferenceCategory android:title="@string/settings_title_display_options">
 
         <SwitchPreference
             android:key="pref_rainviewer"
