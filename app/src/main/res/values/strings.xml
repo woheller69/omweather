@@ -117,4 +117,6 @@
     <string name="RainViewer">Rain Radar</string>
     <string name="action_rainviewer" translatable="false">Rain radar</string>
     <string name="nonFreeNet">Allow access to RainViewer.com which is not an open-source network.</string>
+    <string name="summary_reanalyze">Improve week icons by analyzing hourly forecasts between sunrise and sunset (experimental).</string>
+    <string name="settings_reanalyze">Week Icons</string>
 </resources>

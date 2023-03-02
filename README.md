@@ -8,7 +8,8 @@
 <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/05.png" width="150"/> <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/06.png" width="150"/>
 
 This application is derived from Privacy Friendly Weather (https://github.com/SecUSo/privacy-friendly-weather) a privacy friendly weather app.
-The original function has been modified to support the new open source open-meteo.com API.
+
+The original function has been modified to support the new open source API from Open-Meteo.com with free access for non-commercial use.
 In addition a rain radar functionality powered by RainViewer API (https://www.rainviewer.com/api.html) is available.
 
 If permission for GPS is given the widget will automatically update position on a regular base.

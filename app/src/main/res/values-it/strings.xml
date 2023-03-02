@@ -110,4 +110,6 @@
     <string name="slide3_heading">Open-Meteo</string>
     <string name="RainViewer">Radar Pioggia</string>
     <string name="nonFreeNet">Consenti l\'accesso a RainViewer.com che non è una rete open source.</string>
+    <string name="summary_reanalyze">Migliora le icone delle settimane analizzando le previsioni orarie tra l\'alba e il tramonto (sperimentale).</string>
+    <string name="settings_reanalyze">Icone della settimana</string>
 </resources>

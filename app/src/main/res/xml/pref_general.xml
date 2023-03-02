@@ -48,6 +48,12 @@
             android:defaultValue="true"
             />
 
+        <SwitchPreference
+            android:key="pref_weekIDs"
+            android:title="@string/settings_reanalyze"
+            android:summary="@string/summary_reanalyze"
+            android:defaultValue="false"
+            />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/settings_title_units">

@@ -3,6 +3,7 @@ package org.woheller69.weather.weather_api.open_meteo;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.widget.RemoteViews;
 import android.widget.Toast;
@@ -25,8 +26,13 @@ import org.woheller69.weather.widget.WeatherWidget;
 import org.woheller69.weather.widget.WeatherWidget5day;
 import static org.woheller69.weather.database.SQLiteHelper.getWidgetCityID;
 
+import androidx.preference.PreferenceManager;
+import org.woheller69.weather.weather_api.IApiToDatabaseConversion.WeatherCategories;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * This class processes the HTTP requests that are made to the Open-Meteo API requesting the
@@ -125,6 +131,16 @@ public class ProcessOMweatherAPIRequest implements IProcessHttpRequest {
                     return;
                 }
 
+            SharedPreferences prefManager = PreferenceManager.getDefaultSharedPreferences(context);
+            if (prefManager.getBoolean("pref_weekIDs", false)){
+                weekforecasts = reanalyzeWeekIDs(weekforecasts, hourlyforecasts);
+                dbHelper.deleteWeekForecastsByCityId(cityId);
+                for (WeekForecast weekForecast: weekforecasts){
+                    weekForecast.setCity_id(cityId);
+                    dbHelper.addWeekForecast(weekForecast);
+                }
+            }
+
             possiblyUpdateWidgets(cityId, weatherData, weekforecasts,hourlyforecasts);
 
             ViewUpdater.updateCurrentWeatherData(weatherData);
@@ -134,6 +150,52 @@ public class ProcessOMweatherAPIRequest implements IProcessHttpRequest {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Reanalyze weekforecasts and improve weather codes which are not representative for the day
+     * @param weekforecasts
+     * @param hourlyforecasts
+     * @return
+     */
+    private List<WeekForecast> reanalyzeWeekIDs(List<WeekForecast> weekforecasts, List<HourlyForecast> hourlyforecasts) {
+
+        Map<Integer,Integer> mappingTable = new HashMap<>();
+        mappingTable.put(WeatherCategories.OVERCAST_CLOUDS.getNumVal(),WeatherCategories.SCATTERED_CLOUDS.getNumVal());
+        mappingTable.put(WeatherCategories.MIST.getNumVal(),WeatherCategories.SCATTERED_CLOUDS.getNumVal());
+        mappingTable.put(WeatherCategories.DRIZZLE_RAIN.getNumVal(),WeatherCategories.LIGHT_SHOWER_RAIN.getNumVal());
+        mappingTable.put(WeatherCategories.FREEZING_DRIZZLE_RAIN.getNumVal(),WeatherCategories.LIGHT_SHOWER_RAIN.getNumVal());
+        mappingTable.put(WeatherCategories.LIGHT_RAIN.getNumVal(),WeatherCategories.LIGHT_SHOWER_RAIN.getNumVal());
+        mappingTable.put(WeatherCategories.LIGHT_FREEZING_RAIN.getNumVal(),WeatherCategories.LIGHT_SHOWER_RAIN.getNumVal());
+        mappingTable.put(WeatherCategories.MODERATE_RAIN.getNumVal(),WeatherCategories.SHOWER_RAIN.getNumVal());
+        mappingTable.put(WeatherCategories.HEAVY_RAIN.getNumVal(),WeatherCategories.SHOWER_RAIN.getNumVal());
+        mappingTable.put(WeatherCategories.FREEZING_RAIN.getNumVal(),WeatherCategories.SHOWER_RAIN.getNumVal());
+        mappingTable.put(WeatherCategories.LIGHT_SNOW.getNumVal(),WeatherCategories.LIGHT_SHOWER_SNOW.getNumVal());
+        mappingTable.put(WeatherCategories.MODERATE_SNOW.getNumVal(),WeatherCategories.SHOWER_SNOW.getNumVal());
+        mappingTable.put(WeatherCategories.HEAVY_SNOW.getNumVal(),WeatherCategories.SHOWER_SNOW.getNumVal());
+
+        Map<Integer,Integer> sunTable = new HashMap<>();
+        sunTable.put(WeatherCategories.CLEAR_SKY.getNumVal(), 0);
+        sunTable.put(WeatherCategories.FEW_CLOUDS.getNumVal(), 0);
+        sunTable.put(WeatherCategories.SCATTERED_CLOUDS.getNumVal(), 0);
+
+        for (WeekForecast weekForecast: weekforecasts){
+            Integer ID = weekForecast.getWeatherID();
+            if (mappingTable.containsKey(ID)){
+                int totalCount = 0;
+                int sunCount = 0;
+                long sunrise = weekForecast.getTimeSunrise()*1000L;
+                long sunset = weekForecast.getTimeSunset()*1000L;
+                for (HourlyForecast hourlyForecast: hourlyforecasts){
+                    if(hourlyForecast.getForecastTime() >= sunrise && hourlyForecast.getForecastTime() <= sunset){
+                        totalCount++;
+                        if(sunTable.containsKey(hourlyForecast.getWeatherID())) sunCount++;
+                    }
+                }
+                if (totalCount>0 && (float)sunCount/totalCount>0.2f)  weekForecast.setWeatherID(mappingTable.get(ID));
+            }
+        }
+        return weekforecasts;
     }
 
     /**

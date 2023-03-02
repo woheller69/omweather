@@ -113,5 +113,7 @@
     <string name="slide3_heading">Open-Meteo</string>
     <string name="RainViewer">Radar de pluie</string>
     <string name="nonFreeNet">Autorisez l\'accès à RainViewer.com qui n\'est pas un réseau open source.</string>
+    <string name="summary_reanalyze">Améliorez les icônes de la semaine en analysant les prévisions horaires entre le lever et le coucher du soleil (expérimental).</string>
+    <string name="settings_reanalyze">Icônes de la semaine</string>
 
 </resources>
