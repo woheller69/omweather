@@ -15,8 +15,6 @@ In addition a rain radar functionality powered by RainViewer API (https://www.ra
 If permission for GPS is given the widget will automatically update position on a regular base.
 
 
-<a href="https://github.com/woheller69/omweather/releases/download/B0.9/app-release.apk"><img src="https://custom-icon-badges.herokuapp.com/badge/-Download-blue?style=for-the-badge&logo=download&logoColor=white%20%27Download%27" height="60" ></a>
-
 [<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" height="75">](https://f-droid.org/de/packages/org.woheller69.omweather/)
 
 
