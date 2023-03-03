@@ -70,7 +70,7 @@ public class ProcessOMweatherAPIRequest implements IProcessHttpRequest {
     @Override
     public void processSuccessScenario(String response, int cityId) {
 
-        IDataExtractor extractor = new OMDataExtractor();
+        IDataExtractor extractor = new OMDataExtractor(context);
         try {
             JSONObject json = new JSONObject(response);
 

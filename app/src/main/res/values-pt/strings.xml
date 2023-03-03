@@ -112,4 +112,6 @@
     <string name="nonFreeNet">Permita o acesso ao RainViewer.com, que não é uma rede de código aberto.</string>
     <string name="summary_reanalyze">Melhore os ícones da semana analisando as previsões horárias entre o nascer e o pôr do sol (experimental).</string>
     <string name="settings_reanalyze">Ícones da semana</string>
+    <string name="settings_precipitation">Precipitação</string>
+    <string name="summary_precipitation">Use a quantidade de neve em vez da quantidade equivalente de água.</string>
 </resources>

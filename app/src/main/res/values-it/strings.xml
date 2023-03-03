@@ -112,4 +112,6 @@
     <string name="nonFreeNet">Consenti l\'accesso a RainViewer.com che non è una rete open source.</string>
     <string name="summary_reanalyze">Migliora le icone delle settimane analizzando le previsioni orarie tra l\'alba e il tramonto (sperimentale).</string>
     <string name="settings_reanalyze">Icone della settimana</string>
+    <string name="settings_precipitation">Precipitazione</string>
+    <string name="summary_precipitation">Usa la quantità di neve invece della quantità equivalente di acqua.</string>
 </resources>

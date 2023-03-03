@@ -113,7 +113,9 @@
     <string name="slide3_heading">Open-Meteo</string>
     <string name="RainViewer">Regenradar</string>
     <string name="nonFreeNet">Erlauben Sie den Zugriff auf RainViewer.com, das kein Open-Source-Netzwerk ist.</string>
-    <string name="summary_reanalyze">Verbessern Sie Wochensymbole, indem Sie stündliche Vorhersagen zwischen Sonnenaufgang und Sonnenuntergang analysieren (experimentell).</string>
+    <string name="summary_reanalyze">Verbessern der Wochensymbole durch Analyse der stündlichen Vorhersagen zwischen Sonnenaufgang und Sonnenuntergang (experimentell).</string>
     <string name="settings_reanalyze">Wochensymbole</string>
+    <string name="settings_precipitation">Niederschlag</string>
+    <string name="summary_precipitation">Schneemenge anstelle der entsprechenden Wassermenge verwenden.</string>
 
 </resources>

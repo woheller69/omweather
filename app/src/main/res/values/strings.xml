@@ -119,4 +119,6 @@
     <string name="nonFreeNet">Allow access to RainViewer.com which is not an open-source network.</string>
     <string name="summary_reanalyze">Improve week icons by analyzing hourly forecasts between sunrise and sunset (experimental).</string>
     <string name="settings_reanalyze">Week Icons</string>
+    <string name="settings_precipitation">Precipitation</string>
+    <string name="summary_precipitation">Use snow amount  instead of the equivalent amount of water.</string>
 </resources>

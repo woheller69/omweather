@@ -54,6 +54,13 @@
             android:summary="@string/summary_reanalyze"
             android:defaultValue="false"
             />
+
+        <SwitchPreference
+            android:key="pref_snow"
+            android:title="@string/settings_precipitation"
+            android:summary="@string/summary_precipitation"
+            android:defaultValue="false"
+            />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/settings_title_units">

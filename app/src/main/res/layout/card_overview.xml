@@ -16,7 +16,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
+        android:textColor="#fafafa"
         android:layout_marginTop="5dp"
         android:layout_marginStart="7dp"
         android:textSize="12dp"
@@ -59,7 +59,7 @@
             android:layout_marginEnd="10dp"
             android:paddingLeft="7dp"
             android:paddingRight="7dp"
-            android:textColor="@color/white"
+            android:textColor="#fafafa"
             android:textSize="18dp" />
 
     </RelativeLayout>
