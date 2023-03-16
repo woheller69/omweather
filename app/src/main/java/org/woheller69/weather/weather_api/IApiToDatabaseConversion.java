@@ -46,6 +46,17 @@ public abstract class IApiToDatabaseConversion {
             return numVal;
         }
 
+        public static WeatherCategories getWeatherCategory(int find)
+        {
+            WeatherCategories[] categories = WeatherCategories.values();
+            for(WeatherCategories category:categories)
+            {
+                if(category.getNumVal()==find)
+                    return category;
+            }
+            return ERROR;
+        }
+
     }
 
 

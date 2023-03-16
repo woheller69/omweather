@@ -119,4 +119,10 @@
     <string name="nonFreeNet">Allow access to RainViewer.com which is not an open-source network.</string>
     <string name="summary_reanalyze">Improve week icons by analyzing hourly forecasts between sunrise and sunset (experimental).</string>
     <string name="settings_reanalyze">Week Icons</string>
+    <string name="settings_broadcast_title">Broadcast</string>
+    <string name="settings_broadcast_toggle">Send weather data to another app.(like GadgetBridge)</string>
+    <string name="settings_send_action_title">Action</string>
+    <string name="settings_send_action_text">Name of intent action to be performed when sending data.</string>
+    <string name="settings_send_package_title">Package</string>
+    <string name="settings_send_package_text">Name of intent package to be targeted when sending data.</string>
 </resources>

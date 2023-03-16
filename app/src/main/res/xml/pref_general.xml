@@ -93,4 +93,24 @@
             android:title="@string/settings_update_interval" />
     </PreferenceCategory>
 
+    <PreferenceCategory android:title="@string/settings_broadcast_title">
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="sendToApp"
+            android:title="@string/settings_broadcast_toggle"/>
+            />
+
+        <EditTextPreference
+            android:defaultValue="de.kaffeemitkoffein.broadcast.WEATHERDATA"
+            android:key="sendAction"
+            android:summary="@string/settings_send_action_text"
+            android:title="@string/settings_send_action_title" />
+
+        <EditTextPreference
+            android:defaultValue="nodomain.freeyourgadget.gadgetbridge"
+            android:key="sendPackage"
+            android:summary="@string/settings_send_package_text"
+            android:title="@string/settings_send_package_title" />
+    </PreferenceCategory>
+
 </PreferenceScreen>

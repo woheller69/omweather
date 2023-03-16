@@ -19,6 +19,7 @@ import org.woheller69.weather.database.CurrentWeatherData;
 import org.woheller69.weather.database.HourlyForecast;
 import org.woheller69.weather.database.WeekForecast;
 import org.woheller69.weather.database.SQLiteHelper;
+import org.woheller69.weather.services.Broadcaster;
 import org.woheller69.weather.ui.updater.ViewUpdater;
 import org.woheller69.weather.weather_api.IDataExtractor;
 import org.woheller69.weather.weather_api.IProcessHttpRequest;
@@ -141,6 +142,7 @@ public class ProcessOMweatherAPIRequest implements IProcessHttpRequest {
                 }
             }
 
+            Broadcaster.possiblyUpdateOtherApp(context, weatherData, weekforecasts);
             possiblyUpdateWidgets(cityId, weatherData, weekforecasts,hourlyforecasts);
 
             ViewUpdater.updateCurrentWeatherData(weatherData);
