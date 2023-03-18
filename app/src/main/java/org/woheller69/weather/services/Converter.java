@@ -1,4 +1,4 @@
-package nodomain.freeyourgadget.gadgetbridge.model;
+package org.woheller69.weather.services;
 
 import org.woheller69.weather.weather_api.IApiToDatabaseConversion.WeatherCategories;
 
