@@ -1,10 +1,10 @@
-Mit omWeather kann das Wetter von Orten eingesehen werden.
+Wetter und Regenradar für jeden Ort - weltweit
 
 Die Wetterdaten werden über die freie API von Open-Meteo.com und RainViewer.com bereitgestellt.
 
 Features:
 - Aktuelles Wetter
-- Stündliches Wetter für 7 Tage
+- Stündliches Wetter für bis zu 16 Tage
 - Regenradar
 - Widget mit optionaler automatischer GPS-Positionsaktualisierung
 - Keine Werbung

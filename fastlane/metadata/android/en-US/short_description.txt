@@ -1,1 +1,1 @@
-omWeather lets you watch the weather for cities and locations you are interested in.
+Weather and rain radar for any location - worldwide

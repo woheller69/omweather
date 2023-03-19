@@ -1,1 +1,1 @@
-Mit omWeather kann das Wetter von Orten eingesehen werden.
+Wetter und Regenradar für jeden Ort - weltweit

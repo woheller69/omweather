@@ -3,11 +3,13 @@
 
 # omWeather
 
+Weather and rain radar for any location - worldwide
+
 <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/01.png" width="150"/><img src="fastlane/metadata/android/en-US/images/phoneScreenshots/02.png" width="150"/> <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/03.png" width="150"/> <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/04.png" width="150"/> <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/07.png" width="150"/>
 
 <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/05.png" width="150"/> <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/06.png" width="150"/>
 
-This application is derived from Privacy Friendly Weather (https://github.com/SecUSo/privacy-friendly-weather) a privacy friendly weather app.
+This application is derived from Privacy Friendly Weather (https://github.com/SecUSo/privacy-friendly-weather).
 
 The original function has been modified to support the new open source API from Open-Meteo.com with free access for non-commercial use.
 In addition a rain radar functionality powered by RainViewer API (https://www.rainviewer.com/api.html) is available.
@@ -54,4 +56,4 @@ If you know the solution to a bug please report it in the corresponding issue an
 | **Audio Analyzer** | **LavSeeker** | **TimeLapseCam** |
 | [<img src="https://github.com/woheller69/audio-analyzer-for-android/blob/master/fastlane/metadata/android/en-US/images/icon.png" width="50">](https://f-droid.org/packages/org.woheller69.audio_analyzer_for_android/) |[<img src="https://github.com/woheller69/lavatories/blob/master/fastlane/metadata/android/en-US/images/icon.png" width="50">](https://f-droid.org/packages/org.woheller69.lavatories/) | [<img src="https://github.com/woheller69/TimeLapseCamera/blob/master/fastlane/metadata/android/en-US/images/icon.png" width="50">](https://f-droid.org/packages/org.woheller69.TimeLapseCam/) |
 | **Arity** |  |  |
-| [<img src="https://github.com/woheller69/arity/blob/master/fastlane/metadata/android/en-US/images/icon.png" width="50">](https://f-droid.org/packages/org.woheller69.arity/) | | |
+| [<img src="https://github.com/woheller69/arity/blob/master/fastlane/metadata/android/en-US/images/icon.png" width="50">](https://f-droid.org/packages/org.woheller69.arity/) | [<img src="https://github.com/woheller69/omweather/blob/master/fastlane/metadata/android/en-US/images/icon.png" width="50">](https://f-droid.org/packages/org.woheller69.omweather/) | |
