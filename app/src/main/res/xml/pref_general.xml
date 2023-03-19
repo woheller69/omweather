@@ -101,7 +101,7 @@
             />
 
         <EditTextPreference
-            android:defaultValue="de.kaffeemitkoffein.broadcast.WEATHERDATA"
+            android:defaultValue="nodomain.freeyourgadget.gadgetbridge.ACTION_GENERIC_WEATHER"
             android:key="sendAction"
             android:summary="@string/settings_send_action_text"
             android:title="@string/settings_send_action_title" />
