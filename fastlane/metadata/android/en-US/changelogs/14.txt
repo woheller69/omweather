@@ -1,0 +1,1 @@
+Add option to show snow amount instead of water equivalent
