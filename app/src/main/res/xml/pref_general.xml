@@ -23,22 +23,13 @@
             android:summary="@string/nonFreeNet"
             android:defaultValue="false"
             />
-        <SwitchPreference
-            android:key="pref_DarkMode"
-            android:title="@string/settings_darkmode"
-            android:defaultValue="false"
-            />
 
-        <SwitchPreference
-            android:key="pref_TempDecimals"
-            android:title="@string/settings_temp_decimal"
-            android:defaultValue="true"
-            />
-
-        <SwitchPreference
-            android:key="pref_showPressure"
-            android:title="@string/settings_show_pressure"
-            android:defaultValue="false"
+        <SeekBarPreference
+            android:key="pref_number_days"
+            android:title="@string/settings_forecast_days"
+            android:max="16"
+            android:defaultValue="8"
+            app:showSeekBarValue="true"
             />
 
         <SwitchPreference
@@ -61,6 +52,25 @@
             android:summary="@string/summary_precipitation"
             android:defaultValue="false"
             />
+
+        <SwitchPreference
+            android:key="pref_TempDecimals"
+            android:title="@string/settings_temp_decimal"
+            android:defaultValue="true"
+            />
+
+        <SwitchPreference
+            android:key="pref_showPressure"
+            android:title="@string/settings_show_pressure"
+            android:defaultValue="false"
+            />
+
+        <SwitchPreference
+            android:key="pref_DarkMode"
+            android:title="@string/settings_darkmode"
+            android:defaultValue="false"
+            />
+
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/settings_title_units">

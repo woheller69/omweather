@@ -405,20 +405,23 @@ public class CityWeatherAdapter extends RecyclerView.Adapter<CityWeatherAdapter.
                 float temp_min=weekforecasts.get(i).getMinTemperature();
                 float precip=weekforecasts.get(i).getPrecipitation();
 
+                String dayString = context.getResources().getString(StringFormatUtils.getDayShort(day));
+                if (weekforecasts.size()>8) dayString=dayString.substring(0,1);  //use first character only if more than 8 days to avoid overlapping text
+
                 if ((i == 0) || (i == (weekforecasts.size()-1 ))) {  // 1 bar at begin and end for alignment with temperature line chart (first day starts at noon, last ends at noon)
-                    precipitationDataset.addBar(context.getResources().getString(StringFormatUtils.getDayShort(day)), precip);
+                    precipitationDataset.addBar(dayString, precip);
                     //x-labels for precipitation dataset must be there and cannot be empty even though they are made invisible below. Otherwise alignment gets destroyed!
-                    datasetmax.addPoint(context.getResources().getString(StringFormatUtils.getDayShort(day)), prefManager.convertTemperatureFromCelsius(temp_max));
-                    datasetmin.addPoint(context.getResources().getString(StringFormatUtils.getDayShort(day)), prefManager.convertTemperatureFromCelsius(temp_min));
+                    datasetmax.addPoint(dayString, prefManager.convertTemperatureFromCelsius(temp_max));
+                    datasetmin.addPoint(dayString, prefManager.convertTemperatureFromCelsius(temp_min));
 
 
                 } else { // 2 bars in the middle for alignment with temperature line chart
 
-                    precipitationDataset.addBar(context.getResources().getString(StringFormatUtils.getDayShort(day)), precip);
-                    precipitationDataset.addBar(context.getResources().getString(StringFormatUtils.getDayShort(day)), precip);
+                    precipitationDataset.addBar(dayString, precip);
+                    precipitationDataset.addBar(dayString, precip);
 
-                    datasetmax.addPoint(context.getResources().getString(StringFormatUtils.getDayShort(day)), prefManager.convertTemperatureFromCelsius(temp_max));
-                    datasetmin.addPoint(context.getResources().getString(StringFormatUtils.getDayShort(day)), prefManager.convertTemperatureFromCelsius(temp_min));
+                    datasetmax.addPoint(dayString, prefManager.convertTemperatureFromCelsius(temp_max));
+                    datasetmin.addPoint(dayString, prefManager.convertTemperatureFromCelsius(temp_min));
                 }
 
                 if (prefManager.convertTemperatureFromCelsius(temp_max)>tmax) tmax=prefManager.convertTemperatureFromCelsius(temp_max);

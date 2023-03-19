@@ -2,10 +2,8 @@ package org.woheller69.weather.activities;
 
 
 import android.Manifest;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -13,9 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
-import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceManager;
+import androidx.preference.SeekBarPreference;
 
 import org.woheller69.weather.R;
 
@@ -109,10 +107,29 @@ public class SettingsActivity extends NavigationActivity implements SharedPrefer
      * This fragment shows general preferences only. It is used when the
      * activity is showing a two-pane settings UI.
      */
-    public static class GeneralPreferenceFragment extends PreferenceFragmentCompat {
+    public static class GeneralPreferenceFragment extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener {
+
         @Override
             public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
                 setPreferencesFromResource(R.xml.pref_general, rootKey);
+        }
+        @Override
+        public void onResume() {
+            super.onResume();
+            getPreferenceManager().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
+        }
+
+        @Override
+        public void onPause() {
+            getPreferenceManager().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
+            super.onPause();
+        }
+        @Override
+        public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+            if (key.equals("pref_number_days")){
+                SeekBarPreference numberDays = findPreference("pref_number_days");
+                if (numberDays.getValue()<3) numberDays.setValue(3);
+            }
         }
     }
 }

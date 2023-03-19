@@ -114,4 +114,5 @@
     <string name="settings_reanalyze">Icone della settimana</string>
     <string name="settings_precipitation">Precipitazione</string>
     <string name="summary_precipitation">Usa la quantità di neve invece della quantità equivalente di acqua.</string>
+    <string name="settings_forecast_days">Numero di giorni di previsione</string>
 </resources>
