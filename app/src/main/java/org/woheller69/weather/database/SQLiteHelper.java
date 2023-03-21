@@ -324,21 +324,22 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     /**
      * Methods for TABLE_FORECAST
      */
-    public synchronized void addForecast(HourlyForecast hourlyForecast) {
+    public synchronized void addForecasts(List<HourlyForecast> hourlyForecasts) {
         SQLiteDatabase database = this.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(FORECAST_CITY_ID, hourlyForecast.getCity_id());
-        values.put(FORECAST_COLUMN_TIME_MEASUREMENT, hourlyForecast.getTimestamp());
-        values.put(FORECAST_COLUMN_FORECAST_FOR, hourlyForecast.getForecastTime());
-        values.put(FORECAST_COLUMN_WEATHER_ID, hourlyForecast.getWeatherID());
-        values.put(FORECAST_COLUMN_TEMPERATURE_CURRENT, hourlyForecast.getTemperature());
-        values.put(FORECAST_COLUMN_HUMIDITY, hourlyForecast.getHumidity());
-        values.put(FORECAST_COLUMN_PRESSURE, hourlyForecast.getPressure());
-        values.put(FORECAST_COLUMN_PRECIPITATION, hourlyForecast.getPrecipitation());
-        values.put(FORECAST_COLUMN_WIND_SPEED, hourlyForecast.getWindSpeed());
-        values.put(FORECAST_COLUMN_WIND_DIRECTION, hourlyForecast.getWindDirection());
-        database.insert(TABLE_HOURLY_FORECAST, null, values);
+        for (HourlyForecast hourlyForecast: hourlyForecasts) {
+            ContentValues values = new ContentValues();
+            values.put(FORECAST_CITY_ID, hourlyForecast.getCity_id());
+            values.put(FORECAST_COLUMN_TIME_MEASUREMENT, hourlyForecast.getTimestamp());
+            values.put(FORECAST_COLUMN_FORECAST_FOR, hourlyForecast.getForecastTime());
+            values.put(FORECAST_COLUMN_WEATHER_ID, hourlyForecast.getWeatherID());
+            values.put(FORECAST_COLUMN_TEMPERATURE_CURRENT, hourlyForecast.getTemperature());
+            values.put(FORECAST_COLUMN_HUMIDITY, hourlyForecast.getHumidity());
+            values.put(FORECAST_COLUMN_PRESSURE, hourlyForecast.getPressure());
+            values.put(FORECAST_COLUMN_PRECIPITATION, hourlyForecast.getPrecipitation());
+            values.put(FORECAST_COLUMN_WIND_SPEED, hourlyForecast.getWindSpeed());
+            values.put(FORECAST_COLUMN_WIND_DIRECTION, hourlyForecast.getWindDirection());
+            database.insert(TABLE_HOURLY_FORECAST, null, values);
+        }
         database.close();
     }
 
@@ -398,26 +399,27 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     /**
      * Methods for TABLE_WEEKFORECAST
      */
-    public synchronized void addWeekForecast(WeekForecast weekForecast) {
+    public synchronized void addWeekForecasts(List<WeekForecast> weekForecasts) {
         SQLiteDatabase database = this.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(WEEKFORECAST_CITY_ID, weekForecast.getCity_id());
-        values.put(WEEKFORECAST_COLUMN_TIME_MEASUREMENT, weekForecast.getTimestamp());
-        values.put(WEEKFORECAST_COLUMN_FORECAST_FOR, weekForecast.getForecastTime());
-        values.put(WEEKFORECAST_COLUMN_WEATHER_ID, weekForecast.getWeatherID());
-        values.put(WEEKFORECAST_COLUMN_TEMPERATURE_CURRENT, weekForecast.getTemperature());
-        values.put(WEEKFORECAST_COLUMN_TEMPERATURE_MIN, weekForecast.getMinTemperature());
-        values.put(WEEKFORECAST_COLUMN_TEMPERATURE_MAX, weekForecast.getMaxTemperature());
-        values.put(WEEKFORECAST_COLUMN_HUMIDITY, weekForecast.getHumidity());
-        values.put(WEEKFORECAST_COLUMN_PRESSURE, weekForecast.getPressure());
-        values.put(WEEKFORECAST_COLUMN_PRECIPITATION, weekForecast.getPrecipitation());
-        values.put(WEEKFORECAST_COLUMN_WIND_SPEED, weekForecast.getWind_speed());
-        values.put(WEEKFORECAST_COLUMN_WIND_DIRECTION, weekForecast.getWind_direction());
-        values.put(WEEKFORECAST_COLUMN_UV_INDEX, weekForecast.getUv_index());
-        values.put(WEEKFORECAST_COLUMN_TIME_SUNRISE,weekForecast.getTimeSunrise());
-        values.put(WEEKFORECAST_COLUMN_TIME_SUNSET,weekForecast.getTimeSunset());
-        database.insert(TABLE_WEEKFORECAST, null, values);
+        for (WeekForecast weekForecast: weekForecasts) {
+            ContentValues values = new ContentValues();
+            values.put(WEEKFORECAST_CITY_ID, weekForecast.getCity_id());
+            values.put(WEEKFORECAST_COLUMN_TIME_MEASUREMENT, weekForecast.getTimestamp());
+            values.put(WEEKFORECAST_COLUMN_FORECAST_FOR, weekForecast.getForecastTime());
+            values.put(WEEKFORECAST_COLUMN_WEATHER_ID, weekForecast.getWeatherID());
+            values.put(WEEKFORECAST_COLUMN_TEMPERATURE_CURRENT, weekForecast.getTemperature());
+            values.put(WEEKFORECAST_COLUMN_TEMPERATURE_MIN, weekForecast.getMinTemperature());
+            values.put(WEEKFORECAST_COLUMN_TEMPERATURE_MAX, weekForecast.getMaxTemperature());
+            values.put(WEEKFORECAST_COLUMN_HUMIDITY, weekForecast.getHumidity());
+            values.put(WEEKFORECAST_COLUMN_PRESSURE, weekForecast.getPressure());
+            values.put(WEEKFORECAST_COLUMN_PRECIPITATION, weekForecast.getPrecipitation());
+            values.put(WEEKFORECAST_COLUMN_WIND_SPEED, weekForecast.getWind_speed());
+            values.put(WEEKFORECAST_COLUMN_WIND_DIRECTION, weekForecast.getWind_direction());
+            values.put(WEEKFORECAST_COLUMN_UV_INDEX, weekForecast.getUv_index());
+            values.put(WEEKFORECAST_COLUMN_TIME_SUNRISE, weekForecast.getTimeSunrise());
+            values.put(WEEKFORECAST_COLUMN_TIME_SUNSET, weekForecast.getTimeSunset());
+            database.insert(TABLE_WEEKFORECAST, null, values);
+        }
         database.close();
     }
 
