@@ -29,6 +29,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "SQLITE.db";
 
+    private boolean withinTransaction = false;
+
     //Names of tables in the database
     private static final String TABLE_CITIES_TO_WATCH = "CITIES_TO_WATCH";
     private static final String TABLE_HOURLY_FORECAST = "FORECASTS";
@@ -202,7 +204,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         database.update(TABLE_CITIES_TO_WATCH, values, CITIES_TO_WATCH_ID + " = ?",
                 new String[]{String.valueOf(id)});
 
-        database.close();
+        if (!withinTransaction)
+            database.close();
         return id;
     }
 
@@ -287,7 +290,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
         database.update(TABLE_CITIES_TO_WATCH, values, CITIES_TO_WATCH_ID + " = ?",
                 new String[]{String.valueOf(cityToWatch.getId())});
-        database.close();
+        if (!withinTransaction)
+            database.close();
     }
 
     public synchronized void deleteCityToWatch(CityToWatch cityToWatch) {
@@ -301,7 +305,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         SQLiteDatabase database = this.getWritableDatabase();
         database.delete(TABLE_CITIES_TO_WATCH, CITIES_TO_WATCH_ID + " = ?",
                 new String[]{Integer.toString(cityToWatch.getId())});
-        database.close();
+        if (!withinTransaction)
+            database.close();
     }
 
     public synchronized int getWatchedCitiesCount() {
@@ -326,7 +331,6 @@ public class SQLiteHelper extends SQLiteOpenHelper {
      */
     public synchronized void addForecast(HourlyForecast hourlyForecast) {
         SQLiteDatabase database = this.getWritableDatabase();
-
         ContentValues values = new ContentValues();
         values.put(FORECAST_CITY_ID, hourlyForecast.getCity_id());
         values.put(FORECAST_COLUMN_TIME_MEASUREMENT, hourlyForecast.getTimestamp());
@@ -339,14 +343,16 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         values.put(FORECAST_COLUMN_WIND_SPEED, hourlyForecast.getWindSpeed());
         values.put(FORECAST_COLUMN_WIND_DIRECTION, hourlyForecast.getWindDirection());
         database.insert(TABLE_HOURLY_FORECAST, null, values);
-        database.close();
+        if (!withinTransaction)
+            database.close();
     }
 
     public synchronized void deleteForecastsByCityId(int cityId) {
         SQLiteDatabase database = this.getWritableDatabase();
         database.delete(TABLE_HOURLY_FORECAST, FORECAST_CITY_ID + " = ?",
                 new String[]{Integer.toString(cityId)});
-        database.close();
+        if (!withinTransaction)
+            database.close();
     }
 
 
@@ -418,14 +424,16 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         values.put(WEEKFORECAST_COLUMN_TIME_SUNRISE,weekForecast.getTimeSunrise());
         values.put(WEEKFORECAST_COLUMN_TIME_SUNSET,weekForecast.getTimeSunset());
         database.insert(TABLE_WEEKFORECAST, null, values);
-        database.close();
+        if (!withinTransaction)
+            database.close();
     }
 
     public synchronized void deleteWeekForecastsByCityId(int cityId) {
         SQLiteDatabase database = this.getWritableDatabase();
         database.delete(TABLE_WEEKFORECAST, WEEKFORECAST_CITY_ID + " = ?",
                 new String[]{Integer.toString(cityId)});
-        database.close();
+        if (!withinTransaction)
+            database.close();
     }
 
 
@@ -508,7 +516,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
 
         database.insert(TABLE_CURRENT_WEATHER, null, values);
-        database.close();
+        if (!withinTransaction)
+            database.close();
     }
 
 
@@ -584,14 +593,16 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         SQLiteDatabase database = this.getWritableDatabase();
         database.delete(TABLE_CURRENT_WEATHER, CURRENT_WEATHER_ID + " = ?",
                 new String[]{Integer.toString(currentWeather.getId())});
-        database.close();
+        if (!withinTransaction)
+            database.close();
     }
 
     public synchronized void deleteCurrentWeatherByCityId(int cityId) {
         SQLiteDatabase database = this.getWritableDatabase();
         database.delete(TABLE_CURRENT_WEATHER, CURRENT_WEATHER_CITY_ID + " = ?",
                 new String[]{Integer.toString(cityId)});
-        database.close();
+        if (!withinTransaction)
+            database.close();
     }
 
     public static int getWidgetCityID(Context context) {
@@ -610,4 +621,21 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         return cityID;
     }
 
+    /**
+     * Methods for mass transactions
+     */
+    public void beginTransaction() {
+        SQLiteDatabase database = this.getWritableDatabase();
+        database.beginTransaction();
+        withinTransaction = true;
+    }
+
+    public void endTransaction(Boolean successful) {
+        SQLiteDatabase database = this.getWritableDatabase();
+        if (successful)
+            database.setTransactionSuccessful();
+        database.endTransaction();
+        withinTransaction = false;
+        database.close();
+    }
 }

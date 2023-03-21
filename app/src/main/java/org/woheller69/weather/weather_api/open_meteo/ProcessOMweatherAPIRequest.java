@@ -73,6 +73,7 @@ public class ProcessOMweatherAPIRequest implements IProcessHttpRequest {
         IDataExtractor extractor = new OMDataExtractor(context);
         try {
             JSONObject json = new JSONObject(response);
+            dbHelper.beginTransaction();
 
             //Extract daily weather
             dbHelper.deleteWeekForecastsByCityId(cityId);
@@ -140,6 +141,7 @@ public class ProcessOMweatherAPIRequest implements IProcessHttpRequest {
                     dbHelper.addWeekForecast(weekForecast);
                 }
             }
+            dbHelper.endTransaction(true);
 
             possiblyUpdateWidgets(cityId, weatherData, weekforecasts,hourlyforecasts);
 
@@ -148,6 +150,7 @@ public class ProcessOMweatherAPIRequest implements IProcessHttpRequest {
             ViewUpdater.updateForecasts(hourlyforecasts);
 
         } catch (JSONException e) {
+            dbHelper.endTransaction(false);
             e.printStackTrace();
         }
     }
