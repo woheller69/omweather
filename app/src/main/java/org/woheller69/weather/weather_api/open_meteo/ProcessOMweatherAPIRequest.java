@@ -89,7 +89,6 @@ public class ProcessOMweatherAPIRequest implements IProcessHttpRequest {
                     Toast.makeText(context, ERROR_MSG, Toast.LENGTH_LONG).show();
                 return;
             }
-            dbHelper.addWeekForecasts(weekforecasts);
 
             //Extract current weather
                 String rain60min=context.getResources().getString(R.string.error_no_rain60min_data);
@@ -134,10 +133,6 @@ public class ProcessOMweatherAPIRequest implements IProcessHttpRequest {
             SharedPreferences prefManager = PreferenceManager.getDefaultSharedPreferences(context);
             if (prefManager.getBoolean("pref_weekIDs", false)){
                 weekforecasts = reanalyzeWeekIDs(weekforecasts, hourlyforecasts);
-                dbHelper.deleteWeekForecastsByCityId(cityId);
-                for (WeekForecast weekForecast: weekforecasts){
-                    weekForecast.setCity_id(cityId);
-                }
             }
             dbHelper.addWeekForecasts(weekforecasts);
 
