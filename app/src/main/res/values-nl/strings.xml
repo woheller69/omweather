@@ -44,7 +44,7 @@
     <string name="abbreviation_thursday">Do.</string>
     <string name="abbreviation_friday">Vr.</string>
     <string name="abbreviation_saturday">Za.</string>
-    <string name="abbreviation_sunday">Zijn.</string>
+    <string name="abbreviation_sunday">Zon.</string>
     <string name="dialog_add_label">Voer de locatie in om toe te voegen:</string>
     <string name="dialog_add_no_city_found">Er is geen locatie gevonden die overeenkomt met uw invoer. Het wordt aanbevolen om een ​​van de items uit de vervolgkeuzelijst te selecteren.</string>
     <string name="dialog_add_close_button">Dichtbij</string>
