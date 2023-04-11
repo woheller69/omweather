@@ -12,8 +12,8 @@ android {
         applicationId "org.woheller69.omweather"
         minSdkVersion 21
         targetSdkVersion 31
-        versionCode 14
-        versionName "1.4"
+        versionCode 15
+        versionName "1.5"
 
         buildConfigField "String", "BASE_URL", "\"https://api.open-meteo.com/v1/\""
         buildConfigField "String", "GITHUB_URL","\"https://github.com/woheller69/omweather/\""
@@ -37,7 +37,6 @@ dependencies {
     implementation 'com.android.volley:volley:1.2.1'
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
     implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'com.readystatesoftware.sqliteasset:sqliteassethelper:2.0.1'
     implementation "androidx.lifecycle:lifecycle-viewmodel:2.5.1" //needed due to duplicate class error
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1" //needed due to duplicate class error
 }

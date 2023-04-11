@@ -76,25 +76,25 @@ public class OMDataExtractor implements IDataExtractor {
             for (int i = 0; i < timeArray.length(); i++) {
                 WeekForecast weekForecast = new WeekForecast();
                 weekForecast.setTimestamp(System.currentTimeMillis() / 1000);
-                if (!timeArray.isNull(i)) weekForecast.setForecastTime((timeArray.getLong(i)+12*3600)*1000L);  //shift to midday
-                if (!weathercodeArray.isNull(i)) weekForecast.setWeatherID(conversion.convertWeatherCategory(weathercodeArray.getString(i)));
-                if (!tempMaxArray.isNull(i)) weekForecast.setMaxTemperature((float) tempMaxArray.getDouble(i));
-                if (!tempMinArray.isNull(i)) weekForecast.setMinTemperature((float) tempMinArray.getDouble(i));
-                if (!sunriseArray.isNull(i)) weekForecast.setTimeSunrise(sunriseArray.getLong(i));
-                if (!sunsetArray.isNull(i)) weekForecast.setTimeSunset(sunsetArray.getLong(i));
-                if (!uvIndexArray.isNull(i)) {
+                if (timeArray != null && !timeArray.isNull(i)) weekForecast.setForecastTime((timeArray.getLong(i)+12*3600)*1000L);  //shift to midday
+                if (weathercodeArray != null && !weathercodeArray.isNull(i)) weekForecast.setWeatherID(conversion.convertWeatherCategory(weathercodeArray.getString(i)));
+                if (tempMaxArray != null && !tempMaxArray.isNull(i)) weekForecast.setMaxTemperature((float) tempMaxArray.getDouble(i));
+                if (tempMinArray != null && !tempMinArray.isNull(i)) weekForecast.setMinTemperature((float) tempMinArray.getDouble(i));
+                if (sunriseArray != null && !sunriseArray.isNull(i)) weekForecast.setTimeSunrise(sunriseArray.getLong(i));
+                if (sunsetArray != null && !sunsetArray.isNull(i)) weekForecast.setTimeSunset(sunsetArray.getLong(i));
+                if (uvIndexArray != null && !uvIndexArray.isNull(i)) {
                     weekForecast.setUv_index((float) uvIndexArray.getDouble(i));
                 } else weekForecast.setUv_index(-1);
                 if (prefManager.getBoolean("pref_snow", false)) {
                     float precipitationAmount=0;
-                    if (!snowfallArray.isNull(i)) precipitationAmount += (float) snowfallArray.getDouble(i)*10;  //snowfall is reported in cm instead of mm
-                    if (!rainArray.isNull(i)) precipitationAmount += (float) rainArray.getDouble(i);
-                    if (!showersArray.isNull(i)) precipitationAmount += (float) showersArray.getDouble(i);
+                    if (snowfallArray != null && !snowfallArray.isNull(i)) precipitationAmount += (float) snowfallArray.getDouble(i)*10;  //snowfall is reported in cm instead of mm
+                    if (rainArray != null && !rainArray.isNull(i)) precipitationAmount += (float) rainArray.getDouble(i);
+                    if (showersArray != null &&!showersArray.isNull(i)) precipitationAmount += (float) showersArray.getDouble(i);
                     weekForecast.setPrecipitation(precipitationAmount);
                 } else {
-                    if (!precipitationArray.isNull(i)) weekForecast.setPrecipitation((float) precipitationArray.getDouble(i));
+                    if (precipitationArray != null && !precipitationArray.isNull(i)) weekForecast.setPrecipitation((float) precipitationArray.getDouble(i));
                 }
-                if (!windSpeedArray.isNull(i)) weekForecast.setWind_speed((float) windSpeedArray.getDouble(i));
+                if (windSpeedArray != null && !windSpeedArray.isNull(i)) weekForecast.setWind_speed((float) windSpeedArray.getDouble(i));
                 weekforecasts.add(weekForecast);
             }
             return weekforecasts;
@@ -130,24 +130,24 @@ public class OMDataExtractor implements IDataExtractor {
             for (int i = 0; i < timeArray.length(); i++) {
                 HourlyForecast hourlyForecast = new HourlyForecast();
                 hourlyForecast.setTimestamp(System.currentTimeMillis() / 1000);
-                if (!timeArray.isNull(i)) hourlyForecast.setForecastTime(timeArray.getLong(i)*1000L);
-                if (!weathercodeArray.isNull(i)) hourlyForecast.setWeatherID(conversion.convertWeatherCategory(weathercodeArray.getString(i)));
-                //if (!weathercodeArray.isNull(i)) hourlyForecast.setWeatherID(conversion.convertWeatherCategory(Integer.toString(i-24)));  //for icon test
-                if (!tempArray.isNull(i)) hourlyForecast.setTemperature((float) tempArray.getDouble(i));
-                if (!rhArray.isNull(i)) hourlyForecast.setHumidity((float) rhArray.getDouble(i));
-                //if (!rhArray.isNull(i)) hourlyForecast.setHumidity((float) (i-24));  //for icon test
-                if (!pressureArray.isNull(i)) hourlyForecast.setPressure((float) pressureArray.getDouble(i));
+                if (timeArray != null && !timeArray.isNull(i)) hourlyForecast.setForecastTime(timeArray.getLong(i)*1000L);
+                if (weathercodeArray != null && !weathercodeArray.isNull(i)) hourlyForecast.setWeatherID(conversion.convertWeatherCategory(weathercodeArray.getString(i)));
+                //if (weathercodeArray != null) hourlyForecast.setWeatherID(conversion.convertWeatherCategory(Integer.toString(i-24)));  //for icon test
+                if (tempArray != null && !tempArray.isNull(i)) hourlyForecast.setTemperature((float) tempArray.getDouble(i));
+                if (rhArray != null && !rhArray.isNull(i)) hourlyForecast.setHumidity((float) rhArray.getDouble(i));
+                //if (rhArray != null) hourlyForecast.setHumidity((float) (i-24));  //for icon test
+                if (pressureArray != null && !pressureArray.isNull(i)) hourlyForecast.setPressure((float) pressureArray.getDouble(i));
                 if (prefManager.getBoolean("pref_snow", false)) {
                     float precipitationAmount=0;
-                    if (!snowfallArray.isNull(i)) precipitationAmount += (float) snowfallArray.getDouble(i)*10;  //snowfall is reported in cm instead of mm
-                    if (!rainArray.isNull(i)) precipitationAmount += (float) rainArray.getDouble(i);
-                    if (!showersArray.isNull(i)) precipitationAmount += (float) showersArray.getDouble(i);
+                    if (snowfallArray != null && !snowfallArray.isNull(i)) precipitationAmount += (float) snowfallArray.getDouble(i)*10;  //snowfall is reported in cm instead of mm
+                    if (rainArray != null && !rainArray.isNull(i)) precipitationAmount += (float) rainArray.getDouble(i);
+                    if (showersArray != null && !showersArray.isNull(i)) precipitationAmount += (float) showersArray.getDouble(i);
                     hourlyForecast.setPrecipitation(precipitationAmount);
                 } else {
-                    if (!precipitationArray.isNull(i)) hourlyForecast.setPrecipitation((float) precipitationArray.getDouble(i));
+                    if (precipitationArray != null && !precipitationArray.isNull(i)) hourlyForecast.setPrecipitation((float) precipitationArray.getDouble(i));
                 }
-                if (!windSpeedArray.isNull(i)) hourlyForecast.setWindSpeed((float) windSpeedArray.getDouble(i));
-                if (!windDirArray.isNull(i)) hourlyForecast.setWindDirection((float) windDirArray.getDouble(i));
+                if (windSpeedArray != null && !windSpeedArray.isNull(i)) hourlyForecast.setWindSpeed((float) windSpeedArray.getDouble(i));
+                if (windDirArray != null && !windDirArray.isNull(i)) hourlyForecast.setWindDirection((float) windDirArray.getDouble(i));
                 hourlyForecasts.add(hourlyForecast);
             }
             return hourlyForecasts;

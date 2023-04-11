@@ -1,2 +1,4 @@
 Add option to set number of forecast days (3-16)
 Change default value to 8 days
+Speed up database
+Improved thunderstorm icons

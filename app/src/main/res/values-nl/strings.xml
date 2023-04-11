@@ -26,7 +26,7 @@
     <string name="about_permission_internet_description">Verbinding maken met het netwerk: deze toestemming is nodig omdat weergegevens worden opgehaald door verzoeken te doen aan servers op internet. Zonder deze toestemming kunnen geen weergegevens worden ontvangen. Optioneel: autorisatie voor GPS.</string>
     <string name="about">Over</string>
     <string name="about_license">Vergunning</string>
-    <string name="about_license_text">Deze applicatie is afgeleid van Privacy Friendly Weather, ontwikkeld door de onderzoeksgroep SECUSO. Broncode gelicentieerd onder GPLv3. De app maakt gebruik van pictogrammen van Google Material Design Icons die zijn gelicentieerd onder Apache-licentieversie 2.0, de Leaflet-bibliotheek die is gelicentieerd onder de 2-clausule BSD-licentie, de Leaflet.TileLayer.ColorFilter-plug-in die is gelicentieerd onder de MIT-licentie, Android SQLiteAssetHelper-bibliotheek (com.readystatesoftware.sqliteasset) die is gelicentieerd onder Apache-licentie versie 2.0, AutoSuggestTextViewAPICall die is gelicentieerd onder Apache-licentie versie 2.0 en WilliamChart-bibliotheek (com.db.chart) die is gelicentieerd onder Apache-licentie versie 2.0</string>
+    <string name="about_license_text">Deze applicatie is afgeleid van Privacy Friendly Weather, ontwikkeld door de onderzoeksgroep SECUSO. Broncode gelicentieerd onder GPLv3. De app maakt gebruik van pictogrammen van Google Material Design Icons die zijn gelicentieerd onder Apache-licentieversie 2.0, de Leaflet-bibliotheek die is gelicentieerd onder de 2-clausule BSD-licentie, de Leaflet.TileLayer.ColorFilter-plug-in die is gelicentieerd onder de MIT-licentie, AutoSuggestTextViewAPICall die is gelicentieerd onder Apache-licentie versie 2.0 en WilliamChart-bibliotheek (com.db.chart) die is gelicentieerd onder Apache-licentie versie 2.0</string>
     <string name="about_more_info">Meer informatie is te vinden op:</string>
     <string name="activity_settings_title">Instellingen</string>
     <string name="settings_title_units">Eenheden</string>
@@ -44,7 +44,7 @@
     <string name="abbreviation_thursday">Do.</string>
     <string name="abbreviation_friday">Vr.</string>
     <string name="abbreviation_saturday">Za.</string>
-    <string name="abbreviation_sunday">Zijn.</string>
+    <string name="abbreviation_sunday">Zon.</string>
     <string name="dialog_add_label">Voer de locatie in om toe te voegen:</string>
     <string name="dialog_add_no_city_found">Er is geen locatie gevonden die overeenkomt met uw invoer. Het wordt aanbevolen om een ​​van de items uit de vervolgkeuzelijst te selecteren.</string>
     <string name="dialog_add_close_button">Dichtbij</string>
