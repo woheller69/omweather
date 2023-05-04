@@ -42,7 +42,7 @@ public class CityWeatherAdapter extends RecyclerView.Adapter<CityWeatherAdapter.
 
     private int[] dataSetTypes;
     private List<HourlyForecast> courseDayList;
-    private float[][] forecastData;
+    private List<WeekForecast> weekForecastList;
 
     private Context context;
     private ViewGroup mParent;
@@ -75,6 +75,7 @@ public class CityWeatherAdapter extends RecyclerView.Adapter<CityWeatherAdapter.
 
     // function update 3-hour or 1-hour forecast list
     public void updateForecastData(List<HourlyForecast> hourlyForecasts) {
+        if (hourlyForecasts.isEmpty()) return;
 
         courseDayList = new ArrayList<>();
 
@@ -92,28 +93,7 @@ public class CityWeatherAdapter extends RecyclerView.Adapter<CityWeatherAdapter.
     public void updateWeekForecastData(List<WeekForecast> forecasts) {
         if (forecasts.isEmpty()) return;
 
-        int cityId = forecasts.get(0).getCity_id();
-
-        SQLiteHelper dbHelper = SQLiteHelper.getInstance(context.getApplicationContext());
-        int zonemilliseconds = dbHelper.getCurrentWeatherByCityId(cityId).getTimeZoneSeconds() * 1000;
-
-        //temp max 0, temp min 1, humidity 2, pressure 3, precipitation 4, wind 5, wind direction 6, uv_index 7, forecast time 8, weather ID 9, number of FCs for day 10
-
-        forecastData = new float[forecasts.size()][11];
-
-        for (int i=0;i<forecasts.size();i++){
-            forecastData[i][0]=forecasts.get(i).getMaxTemperature();
-            forecastData[i][1]=forecasts.get(i).getMinTemperature();
-            forecastData[i][2]=forecasts.get(i).getHumidity();
-            forecastData[i][3]=forecasts.get(i).getPressure();
-            forecastData[i][4]=forecasts.get(i).getPrecipitation();
-            forecastData[i][5]=forecasts.get(i).getWind_speed();
-            forecastData[i][6]=forecasts.get(i).getWind_direction();
-            forecastData[i][7]=forecasts.get(i).getUv_index();
-            forecastData[i][8]=forecasts.get(i).getForecastTime()+zonemilliseconds;
-            forecastData[i][9]=forecasts.get(i).getWeatherID();
-            forecastData[i][10]=1;
-        }
+        weekForecastList = forecasts;
 
         notifyDataSetChanged();
     }
@@ -298,7 +278,7 @@ public class CityWeatherAdapter extends RecyclerView.Adapter<CityWeatherAdapter.
             holder.recyclerView.setLayoutManager(layoutManager);
 
 
-            final WeekWeatherAdapter adapter = new WeekWeatherAdapter(context, forecastData,currentWeatherDataList.getCity_id());
+            final WeekWeatherAdapter adapter = new WeekWeatherAdapter(context, weekForecastList,currentWeatherDataList.getCity_id());
             holder.recyclerView.setAdapter(adapter);
             holder.recyclerView.setFocusable(false);
 
@@ -374,14 +354,9 @@ public class CityWeatherAdapter extends RecyclerView.Adapter<CityWeatherAdapter.
 
         } else if (viewHolder.getItemViewType() == CHART) {
             ChartViewHolder holder = (ChartViewHolder) viewHolder;
+            if (weekForecastList.isEmpty()) return;
 
-            SQLiteHelper database = SQLiteHelper.getInstance(context.getApplicationContext());
             AppPreferencesManager prefManager = new AppPreferencesManager(PreferenceManager.getDefaultSharedPreferences(this.context));
-            List<WeekForecast> weekforecasts = database.getWeekForecastsByCityId(currentWeatherDataList.getCity_id());
-
-            if (weekforecasts.isEmpty()) {
-                return;
-            }
 
             float tmin=1000;
             float tmax=-1000;
@@ -398,17 +373,17 @@ public class CityWeatherAdapter extends RecyclerView.Adapter<CityWeatherAdapter.
             c.setTimeZone(TimeZone.getTimeZone("GMT"));
             int zonemilliseconds = currentWeatherDataList.getTimeZoneSeconds()*1000;
 
-            for (int i=0 ; i< weekforecasts.size();i++) {
-                c.setTimeInMillis(weekforecasts.get(i).getForecastTime()+zonemilliseconds);
+            for (int i=0 ; i< weekForecastList.size();i++) {
+                c.setTimeInMillis(weekForecastList.get(i).getForecastTime()+zonemilliseconds);
                 int day = c.get(Calendar.DAY_OF_WEEK);
-                float temp_max=weekforecasts.get(i).getMaxTemperature();
-                float temp_min=weekforecasts.get(i).getMinTemperature();
-                float precip=weekforecasts.get(i).getPrecipitation();
+                float temp_max=weekForecastList.get(i).getMaxTemperature();
+                float temp_min=weekForecastList.get(i).getMinTemperature();
+                float precip=weekForecastList.get(i).getPrecipitation();
 
                 String dayString = context.getResources().getString(StringFormatUtils.getDayShort(day));
-                if (weekforecasts.size()>8) dayString=dayString.substring(0,1);  //use first character only if more than 8 days to avoid overlapping text
+                if (weekForecastList.size()>8) dayString=dayString.substring(0,1);  //use first character only if more than 8 days to avoid overlapping text
 
-                if ((i == 0) || (i == (weekforecasts.size()-1 ))) {  // 1 bar at begin and end for alignment with temperature line chart (first day starts at noon, last ends at noon)
+                if ((i == 0) || (i == (weekForecastList.size()-1 ))) {  // 1 bar at begin and end for alignment with temperature line chart (first day starts at noon, last ends at noon)
                     precipitationDataset.addBar(dayString, precip);
                     //x-labels for precipitation dataset must be there and cannot be empty even though they are made invisible below. Otherwise alignment gets destroyed!
                     datasetmax.addPoint(dayString, prefManager.convertTemperatureFromCelsius(temp_max));
@@ -434,7 +409,7 @@ public class CityWeatherAdapter extends RecyclerView.Adapter<CityWeatherAdapter.
             int mid = Math.round((tmin + tmax) / 2);
             int step = Math.max(1, (int) Math.ceil(Math.abs(tmax - tmin) / 4));  //step size for y-axis
 
-            for (int i=0 ; i< weekforecasts.size();i++) {
+            for (int i=0 ; i< weekForecastList.size();i++) {
                 xaxis.addPoint("",mid-2*step);   //create x-axis at position of min y-axis value
             }
 

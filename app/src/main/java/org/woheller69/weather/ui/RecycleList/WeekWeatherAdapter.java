@@ -3,9 +3,8 @@ package org.woheller69.weather.ui.RecycleList;
 import android.content.Context;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
-import androidx.preference.PreferenceManager;
+import org.woheller69.weather.database.WeekForecast;
 import androidx.recyclerview.widget.RecyclerView;
-import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +19,7 @@ import org.woheller69.weather.ui.UiResourceProvider;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.TimeZone;
 
 /**
@@ -29,16 +29,16 @@ import java.util.TimeZone;
 public class WeekWeatherAdapter extends RecyclerView.Adapter<WeekWeatherAdapter.WeekForecastViewHolder> {
 
     private Context context;
-    private float[][] forecastData;
+    private List<WeekForecast> weekForecastList;
     private int cityID;
     private Date courseOfDayHeaderDate;
 
-    WeekWeatherAdapter(Context context, float[][] forecastData, int cityID) {
+    WeekWeatherAdapter(Context context, List<WeekForecast> weekForecastList, int cityID) {
         this.context = context;
         this.cityID = cityID;
-        this.forecastData = forecastData;
-        if (forecastData!=null && forecastData.length!=0 && forecastData[0]!=null) {
-            this.courseOfDayHeaderDate = new Date((long) forecastData[0][8]);  //init with date of first weekday
+        this.weekForecastList = weekForecastList;
+        if (!weekForecastList.isEmpty()) {
+            this.courseOfDayHeaderDate = new Date(weekForecastList.get(0).getLocalForecastTime(context));  //init with date of first weekday
         } else this.courseOfDayHeaderDate = new Date();  //fallback if no data available
     }
 
@@ -66,15 +66,14 @@ public class WeekWeatherAdapter extends RecyclerView.Adapter<WeekWeatherAdapter.
 
     @Override
     public void onBindViewHolder(WeekForecastViewHolder holder, int position) {
-        float[] dayValues = forecastData[position];
-        if (dayValues.length!=11) return;  //Fixes app crash if forecastData not yet ready.
+        WeekForecast weekForecast = weekForecastList.get(position);
 
         SQLiteHelper dbHelper = SQLiteHelper.getInstance(context);
         CurrentWeatherData currentWeather = dbHelper.getCurrentWeatherByCityId(cityID);
 
         Calendar forecastTime = Calendar.getInstance();
         forecastTime.setTimeZone(TimeZone.getTimeZone("GMT"));
-        forecastTime.setTimeInMillis((long) dayValues[8]);
+        forecastTime.setTimeInMillis(weekForecast.getLocalForecastTime(context));
 
         boolean isDay;
 
@@ -88,31 +87,31 @@ public class WeekWeatherAdapter extends RecyclerView.Adapter<WeekWeatherAdapter.
             isDay = true;
         }
 
-        setIcon((int) dayValues[9], holder.weather, isDay);
-        holder.windicon.setImageResource(StringFormatUtils.colorWindSpeedWidget(dayValues[5]));
-        if (dayValues[4] == 0)
+        setIcon(weekForecast.getWeatherID(), holder.weather, isDay);
+        holder.windicon.setImageResource(StringFormatUtils.colorWindSpeedWidget(weekForecast.getWind_speed()));
+        if (weekForecast.getPrecipitation() == 0)
             holder.precipitation.setText("-");
         else
-            holder.precipitation.setText(StringFormatUtils.formatDecimal(dayValues[4], context.getString(R.string.units_mm)));
+            holder.precipitation.setText(StringFormatUtils.formatDecimal(weekForecast.getPrecipitation(), context.getString(R.string.units_mm)));
 
-        if (dayValues[7]==-1) {
+        if (weekForecast.getUv_index()==-1) {
             holder.uv_index.setVisibility(View.GONE);
         } else {
             holder.uv_index.setVisibility(View.VISIBLE);
-            holder.uv_index.setText(String.format("UV %s",StringFormatUtils.formatInt(Math.round(dayValues[7]))));
-            holder.uv_index.setBackground(StringFormatUtils.colorUVindex(context,Math.round(dayValues[7])));
+            holder.uv_index.setText(String.format("UV %s",StringFormatUtils.formatInt(Math.round(weekForecast.getUv_index()))));
+            holder.uv_index.setBackground(StringFormatUtils.colorUVindex(context,Math.round(weekForecast.getUv_index())));
         }
-        holder.wind_speed.setText(StringFormatUtils.formatWindSpeed(context, dayValues[5]));
-        holder.wind_speed.setBackground(StringFormatUtils.colorWindSpeed(context, dayValues[5]));
+        holder.wind_speed.setText(StringFormatUtils.formatWindSpeed(context, weekForecast.getWind_speed()));
+        holder.wind_speed.setBackground(StringFormatUtils.colorWindSpeed(context, weekForecast.getWind_speed()));
 
         Calendar c = Calendar.getInstance();
         c.setTimeZone(TimeZone.getTimeZone("GMT"));
-        c.setTimeInMillis((long) dayValues[8]);
+        c.setTimeInMillis(weekForecast.getLocalForecastTime(context));
         int day = c.get(Calendar.DAY_OF_WEEK);
 
         holder.day.setText(StringFormatUtils.getDayShort(day));
-        holder.temperature_max.setText(StringFormatUtils.formatTemperature(context,dayValues[0]));
-        holder.temperature_min.setText(StringFormatUtils.formatTemperature(context,dayValues[1]));
+        holder.temperature_max.setText(StringFormatUtils.formatTemperature(context,weekForecast.getMaxTemperature()));
+        holder.temperature_min.setText(StringFormatUtils.formatTemperature(context,weekForecast.getMinTemperature()));
 
         day=c.get(Calendar.DAY_OF_MONTH);
         c.setTimeInMillis(courseOfDayHeaderDate.getTime());
@@ -127,8 +126,8 @@ public class WeekWeatherAdapter extends RecyclerView.Adapter<WeekWeatherAdapter.
 
     @Override
     public int getItemCount() {
-    if (forecastData!=null)
-        return forecastData.length;
+    if (!weekForecastList.isEmpty())
+        return weekForecastList.size();
     else
         return 0;
     }

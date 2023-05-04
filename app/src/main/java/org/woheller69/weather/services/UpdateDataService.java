@@ -20,6 +20,11 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.URL;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 /**
  * This class provides the functionality to fetch forecast data for a given city as a background
@@ -54,7 +59,7 @@ public class UpdateDataService extends JobIntentService {
 
     @Override
     protected void onHandleWork(Intent intent) {
-        if (!isOnline()) {
+        if (!isOnline(2000)) {
             Handler h = new Handler(getApplicationContext().getMainLooper());
             h.post(new Runnable() {
                 @Override
@@ -116,14 +121,22 @@ public class UpdateDataService extends JobIntentService {
         }
     }
 
-    private boolean isOnline() {
+    private boolean isOnline(int timeOut) { //https://stackoverflow.com/questions/9570237/android-check-internet-connection
+        InetAddress inetAddress = null;
         try {
-            URL url = new URL(BuildConfig.BASE_URL);
-            InetAddress inetAddress = InetAddress.getByName(url.getHost());
-            return inetAddress.isReachable(2000);
-        } catch (IOException | IllegalArgumentException e) {
-            return false;
+            Future<InetAddress> future = Executors.newSingleThreadExecutor().submit(() -> {
+                try {
+                    URL url = new URL(BuildConfig.BASE_URL);
+                    return InetAddress.getByName(url.getHost());
+                } catch ( IOException e) {
+                    return null;
+                }
+            });
+            inetAddress = future.get(timeOut, TimeUnit.MILLISECONDS);
+            future.cancel(true);
+        } catch (InterruptedException | ExecutionException | TimeoutException e) {
         }
+        return inetAddress!=null && !inetAddress.toString().isEmpty();
     }
 
     private void handleUpdateForecastAction(Intent intent) {
