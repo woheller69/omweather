@@ -150,7 +150,8 @@ public class ForecastCityActivity extends NavigationActivity implements IUpdatea
 
     private void initResources() {
         viewPager2 = findViewById(R.id.viewPager2);
-        reduceViewpager2DragSensitivity(viewPager2,2);
+        viewPager2.setUserInputEnabled(false);
+        //reduceViewpager2DragSensitivity(viewPager2,2);
         tabLayout = findViewById(R.id.tab_layout);
         pagerAdapter = new WeatherPagerAdapter(this, getSupportFragmentManager(),getLifecycle());
         noCityText = findViewById(R.id.noCitySelectedText);
