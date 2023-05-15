@@ -1,0 +1,3 @@
+App icon modified
+Improved check if device is online
+Bugfixes

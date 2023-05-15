@@ -37,7 +37,7 @@ public class WeekWeatherAdapter extends RecyclerView.Adapter<WeekWeatherAdapter.
         this.context = context;
         this.cityID = cityID;
         this.weekForecastList = weekForecastList;
-        if (!weekForecastList.isEmpty()) {
+        if (weekForecastList!=null && !weekForecastList.isEmpty()) {
             this.courseOfDayHeaderDate = new Date(weekForecastList.get(0).getLocalForecastTime(context));  //init with date of first weekday
         } else this.courseOfDayHeaderDate = new Date();  //fallback if no data available
     }
@@ -126,7 +126,7 @@ public class WeekWeatherAdapter extends RecyclerView.Adapter<WeekWeatherAdapter.
 
     @Override
     public int getItemCount() {
-    if (!weekForecastList.isEmpty())
+    if (weekForecastList!=null && !weekForecastList.isEmpty())
         return weekForecastList.size();
     else
         return 0;
