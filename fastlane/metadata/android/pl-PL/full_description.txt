@@ -1,0 +1,14 @@
+Radar pogodowy i deszczowy dla dowolnej lokalizacji - na całym świecie
+
+Dane pogodowe są dostarczane za pośrednictwem bezpłatnego interfejsu API z Open-Meteo.com i RainViewer.com.
+
+Cechy:
+- Obecna pogoda
+- Prognozy godzinowe do 16 dni
+- Radar deszczowy
+- Widżet z opcjonalną automatyczną aktualizacją pozycji GPS
+- Żadnych reklam
+
+Minimalne uprawnienia:
+omWeather wymaga tylko minimalnej ilości uprawnień, a mianowicie tylko uprawnień INTERNETOWYCH. To uprawnienie jest niezbędne do wysyłania żądań HTTP do zdalnych serwerów w celu pobrania danych pogodowych.
+Opcjonalnie: autoryzacja dla GPS.
