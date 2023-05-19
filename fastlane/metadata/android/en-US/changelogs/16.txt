@@ -1,3 +1,4 @@
 App icon modified
+Polish translation
 Improved check if device is online
 Bugfixes
