@@ -38,7 +38,7 @@
     <string name="settings_celsius">Celcjusz</string>
     <string name="settings_fahrenheit">Fahrenheit</string>
     <string name="settings_summary_distance">Ustaw jednostkę, która ma być używana do wyświetlania odległości</string>
-    <string name="settings_title_distance">Dystanse</string>
+    <string name="settings_title_distance">Dystansu</string>
     <string name="settings_kilometers">Kilometery</string>
     <string name="settings_miles">Mile</string>
     <string name="abbreviation_monday">Pn.</string>
@@ -102,13 +102,13 @@
     <string name="settings_GPS_position">Zezwalaj na korzystanie z GPS</string>
     <string name="error_no_position">Brak pozycji</string>
     <string name="settings_time24h">24-h format</string>
-    <string name="summary_time24h">Zastąp ustawienie systemowe</string>
+    <string name="summary_time24h">Zastąp ustawienia systemowe</string>
     <string name="settings_wind">Użyj skali Beauforta</string>
     <string name="dialog_OK_button">OK</string>
     <string name="dialog_NO_button">Nie</string>
     <string name="dialog_Later_button">Może później</string>
     <string name="dialog_StarOnGitHub">Czy podoba Ci się ta aplikacja? Daj gwiazdkę na GitHub lub kup programistom kawę przez PayPal.</string>
-    <string name="settings_show_pressure">Pokaż ciśnienie powietrza</string>
+    <string name="settings_show_pressure">Pokaż ciśnienie atmosferyczne</string>
     <string name="action_position" translatable="false">Update Location</string>
     <string name="settings_GPS_manual">Tylko aktualizacja ręczna</string>
     <string name="rationale_background_location">Zezwól również na korzystanie z GPS w tle do użycia w widgecie</string>
@@ -116,10 +116,11 @@
     <string name="slide3_heading">Open-Meteo</string>
     <string name="RainViewer">Radar</string>
     <string name="action_rainviewer" translatable="false">Rain radar</string>
-    <string name="nonFreeNet">Zezwalaj na dostęp do RainViewer.com, która nie jest siecią typu open source.</string>
-    <string name="summary_reanalyze">IUlepsz ikony tygodnia, analizując prognozy godzinowe między wschodem a zachodem słońca (eksperymentalnie).</string>
+    <string name="nonFreeNet">Zezwalaj na dostęp do RainViewer.com, która nie jest witryną typu open source.</string>
+    <string name="summary_reanalyze">Ulepsz ikony tygodnia, analizując prognozy godzinowe między wschodem a zachodem słońca (eksperymentalnie).</string>
     <string name="settings_reanalyze">Ikony tygodnia</string>
     <string name="settings_precipitation">Opad atmosferyczny</string>
     <string name="summary_precipitation">Użyj ilości śniegu zamiast równoważnej ilości wody.</string>
     <string name="settings_forecast_days">Liczba dni prognozy</string>
 </resources>
+
