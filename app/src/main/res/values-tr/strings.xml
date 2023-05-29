@@ -107,19 +107,19 @@
     <string name="dialog_OK_button">Tamam</string>
     <string name="dialog_NO_button">Hayır</string>
     <string name="dialog_Later_button">Belki daha sonra</string>
-    <string name="dialog_StarOnGitHub">Do you like this app? Please give a star on GitHub or buy the developer a coffee via PayPal.</string>
-    <string name="settings_show_pressure">Show air pressure</string>
-    <string name="action_position" translatable="false">Update Location</string>
-    <string name="settings_GPS_manual">Manual update only</string>
-    <string name="rationale_background_location">Please also allow GPS usage in the background for use in the widget</string>
-    <string name="error_no_gps">Please turn on GPS</string>
+    <string name="dialog_StarOnGitHub">Bu uygulamayı beğendiniz mi? Lütfen GitHub'da bir yıldız verin veya geliştiriciye PayPal aracılığıyla bir kahve ısmarlayın.</string>
+    <string name="settings_show_pressure">Hava basıncını göster</string>
+    <string name="action_position" translatable="false">Konumu Güncelle</string>
+    <string name="settings_GPS_manual">Yalnızca elle güncelle</string>
+    <string name="rationale_background_location">Lütfen widget'ta kullanmak için arka planda GPS kullanımına da izin verin</string>
+    <string name="error_no_gps">Lütfen GPS'i açın</string>
     <string name="slide3_heading">Open-Meteo</string>
-    <string name="RainViewer">Rain Radar</string>
-    <string name="action_rainviewer" translatable="false">Rain radar</string>
-    <string name="nonFreeNet">Allow access to RainViewer.com which is not an open-source network.</string>
-    <string name="summary_reanalyze">Improve week icons by analyzing hourly forecasts between sunrise and sunset (experimental).</string>
-    <string name="settings_reanalyze">Week Icons</string>
-    <string name="settings_precipitation">Precipitation</string>
-    <string name="summary_precipitation">Use snow amount  instead of the equivalent amount of water.</string>
-    <string name="settings_forecast_days">Number of forecast days</string>
+    <string name="RainViewer">Yağmur Radarı</string>
+    <string name="action_rainviewer" translatable="false">Yağmur radarı</string>
+    <string name="nonFreeNet">Açık kaynaklı bir ağ olmayan RainViewer.com'a erişime izin verin.</string>
+    <string name="summary_reanalyze">Gün doğumu ve gün batımı (deneysel) arasındaki saatlik tahminleri analiz ederek hafta simgelerini iyileştirin.</string>
+    <string name="settings_reanalyze">Hafta Simgeleri</string>
+    <string name="settings_precipitation">Yağış</string>
+    <string name="summary_precipitation">Eşdeğer miktarda su yerine kar miktarını kullanın.</string>
+    <string name="settings_forecast_days">Hava durumu tahmini gün sayısı</string>
 </resources>
