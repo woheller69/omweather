@@ -26,21 +26,21 @@
     <string name="about">Hakkında</string>
     <string name="version_number" translatable="false">Versiyon</string>
     <string name="about_license">Lisans</string>
-    <string name="about_license_text">This application is derived from Privacy Friendly Weather, developed by the research group SECUSO. Sourcecode licensed under GPLv3. The app uses icons from Google Material Design Icons licensed under Apache License Version 2.0, the Leaflet library which is licensed under 2-clause BSD License, the Leaflet.TileLayer.ColorFilter plugin which is licensed under MIT License, AutoSuggestTextViewAPICall which is licensed under Apache License Version 2.0 and WilliamChart library (com.db.chart) which is licensed under Apache License Version 2.0</string>
-    <string name="about_more_info">More information can be found on:</string>
+    <string name="about_license_text">Bu uygulama, SECUSO araştırma grubu tarafından geliştirilen Gizlilik Dostu Hava Durumundan türetilmiştir. GPLv3 altında lisanslanan kaynak kodu. Uygulama, Apache Lisansı Sürüm 2.0 kapsamında lisanslanan Google Material Design Icons, 2 maddeli BSD Lisansı kapsamında lisanslanan Leaflet kitaplığı, MIT Lisansı kapsamında lisanslanan Leaflet.TileLayer.ColorFilter eklentisi, Apache Lisansı kapsamında lisanslanan AutoSuggestTextViewAPICall simgelerini kullanır. Apache Lisansı Sürüm 2.0 altında lisanslanan Sürüm 2.0 ve WilliamChart kitaplığı (com.db.chart)</string>
+    <string name="about_more_info">Daha fazla bilgi burada bulunabilir:</string>
     <string name="about_github" translatable="false"><a href="https://github.com/woheller69/omweather">Github-Repo</a></string>
     <string name="about_openmeteo" translatable="false"><a href="https://open-meteo.com">Open-Meteo \n(Attribution 4.0 International CC BY 4.0)</a></string>
     <string name="about_rainviewer" translatable="false"><a href="https://rainviewer.com">RainViewer</a></string>
-    <string name="activity_settings_title">Settings</string>
-    <string name="settings_title_units">Units</string>
-    <string name="settings_summary_temperature">Set the unit to use for displaying temperatures</string>
-    <string name="settings_title_temperature">Temperatures</string>
-    <string name="settings_celsius">Celsius</string>
-    <string name="settings_fahrenheit">Fahrenheit</string>
-    <string name="settings_summary_distance">Set the unit to use for displaying distances</string>
-    <string name="settings_title_distance">Distances</string>
-    <string name="settings_kilometers">Kilometers</string>
-    <string name="settings_miles">Miles</string>
+    <string name="activity_settings_title">Ayarlar</string>
+    <string name="settings_title_units">Birimler</string>
+    <string name="settings_summary_temperature">Sıcaklıkları görüntülemek için kullanılacak birimi ayarlayın</string>
+    <string name="settings_title_temperature">Sıcaklıklar</string>
+    <string name="settings_celsius">Santigrat</string>
+    <string name="settings_fahrenheit">Fahrenhayt</string>
+    <string name="settings_summary_distance">Mesafeleri görüntülemek için kullanılacak birimi ayarlayın</string>
+    <string name="settings_title_distance">Mesafeler</string>
+    <string name="settings_kilometers">Kilometre</string>
+    <string name="settings_miles">Mil</string>
     <string name="abbreviation_monday">Mo.</string>
     <string name="abbreviation_tuesday">Tu.</string>
     <string name="abbreviation_wednesday">We.</string>
