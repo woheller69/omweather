@@ -11,7 +11,7 @@
     <string name="okay">Tamam</string>
     <string name="slide1_heading">Hoşgeldiniz!</string>
     <string name="slide1_text">omWeather, konumlarınız için mevcut hava durumu ve tahminleri kontrol etmeye yarayan bir uygulamadır.</string>
-    <string name="slide2_heading" translatable="false">GitHub</string>
+    <string name="slide2_heading">GitHub</string>
     <string name="slide2_text">Bu uygulamanın kaynak kodu GitHub'da mevcuttur. Daha fazla açıklama için Hakkında sayfasına bakabilirsiniz.</string>
     <string name="card_details_heading">Şimdi</string>
     <string name="card_details_humidity">Nem:</string>
@@ -24,13 +24,13 @@
     <string name="about_privacy_heading">Gizlilik Bilgileri</string>
     <string name="about_permission_internet_description">Ağa Bağlanma: Bu izin gereklidir, çünkü hava durumu verileri İnternet'teki sunuculara istekte bulunularak alınır. Bu izin olmadan hiçbir hava durumu verisi alınamaz. İsteğe bağlı: GPS için yetkilendirme.</string>
     <string name="about">Hakkında</string>
-    <string name="version_number" translatable="false">Versiyon</string>
+    <string name="version_number">Versiyon</string>
     <string name="about_license">Lisans</string>
     <string name="about_license_text">Bu uygulama, SECUSO araştırma grubu tarafından geliştirilen Gizlilik Dostu Hava Durumundan türetilmiştir. GPLv3 altında lisanslanan kaynak kodu. Uygulama, Apache Lisansı Sürüm 2.0 kapsamında lisanslanan Google Material Design Icons, 2 maddeli BSD Lisansı kapsamında lisanslanan Leaflet kitaplığı, MIT Lisansı kapsamında lisanslanan Leaflet.TileLayer.ColorFilter eklentisi, Apache Lisansı kapsamında lisanslanan AutoSuggestTextViewAPICall simgelerini kullanır. Apache Lisansı Sürüm 2.0 altında lisanslanan Sürüm 2.0 ve WilliamChart kitaplığı (com.db.chart)</string>
     <string name="about_more_info">Daha fazla bilgi burada bulunabilir:</string>
-    <string name="about_github" translatable="false"><a href="https://github.com/woheller69/omweather">Github-Repo</a></string>
-    <string name="about_openmeteo" translatable="false"><a href="https://open-meteo.com">Open-Meteo \n(Attribution 4.0 International CC BY 4.0)</a></string>
-    <string name="about_rainviewer" translatable="false"><a href="https://rainviewer.com">RainViewer</a></string>
+    <string name="about_github"><a href="https://github.com/woheller69/omweather">GitHub-Repo</a></string>
+    <string name="about_openmeteo"><a href="https://open-meteo.com">Open-Meteo \n(Attribution 4.0 International CC BY 4.0)</a></string>
+    <string name="about_rainviewer"><a href="https://rainviewer.com">RainViewer</a></string>
     <string name="activity_settings_title">Ayarlar</string>
     <string name="settings_title_units">Birimler</string>
     <string name="settings_summary_temperature">Sıcaklıkları görüntülemek için kullanılacak birimi ayarlayın</string>
