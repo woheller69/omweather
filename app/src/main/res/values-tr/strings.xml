@@ -1,31 +1,31 @@
 <resources>
     <string name="app_name">omWeather</string>
-    <string name="activity_about">About</string>
-    <string name="activity_settings">Settings</string>
-    <string name="activity_weather">Weather</string>
-    <string name="activity_manage">Manage locations</string>
-    <string name="action_refresh">Refresh</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="next">Next</string>
-    <string name="okay">Okay</string>
-    <string name="slide1_heading">Welcome!</string>
-    <string name="slide1_text">omWeather is an App to check the current Weather and Forecasts for your Locations.</string>
-    <string name="slide2_heading" translatable="false">Github</string>
-    <string name="slide2_text">The sourcecode of this app is available at GitHub. For further explanations have a look at the About Page.</string>
-    <string name="card_details_heading">Now</string>
-    <string name="card_details_humidity">Humidity:</string>
-    <string name="card_details_pressure">Pressure:</string>
-    <string name="card_details_wind_speed">Wind:</string>
-    <string name="card_week_heading">Week</string>
-    <string name="card_day_heading">Course of the day</string>
-    <string name="card_error_heading">Error fetching weather data</string>
-    <string name="card_error_content">Please try to update!</string>
-    <string name="about_privacy_heading">Privacy Info</string>
-    <string name="about_permission_internet_description">Connecting to the Network: This permission is needed because weather data is retrieved by making requests to servers on the Internet. Without this permission, no weather data can be received. Optional: authorization for GPS.</string>
-    <string name="about">About</string>
-    <string name="version_number" translatable="false">Version</string>
-    <string name="about_license">License</string>
+    <string name="activity_about">Hakkında</string>
+    <string name="activity_settings">Ayarlar</string>
+    <string name="activity_weather">Hava durumu</string>
+    <string name="activity_manage">Konumları yönet</string>
+    <string name="action_refresh">Yenile</string>
+    <string name="navigation_drawer_open">Gezinme çekmecesini aç</string>
+    <string name="navigation_drawer_close">Gezinme çekmecesini kapat</string>
+    <string name="next">İleri</string>
+    <string name="okay">Tamam</string>
+    <string name="slide1_heading">Hoşgeldiniz!</string>
+    <string name="slide1_text">omWeather, konumlarınız için mevcut hava durumu ve tahminleri kontrol etmeye yarayan bir uygulamadır.</string>
+    <string name="slide2_heading" translatable="false">GitHub</string>
+    <string name="slide2_text">Bu uygulamanın kaynak kodu GitHub'da mevcuttur. Daha fazla açıklama için Hakkında sayfasına bakabilirsiniz.</string>
+    <string name="card_details_heading">Şimdi</string>
+    <string name="card_details_humidity">Nem:</string>
+    <string name="card_details_pressure">Basınç:</string>
+    <string name="card_details_wind_speed">Rüzgar:</string>
+    <string name="card_week_heading">Hafta</string>
+    <string name="card_day_heading">Günün seyri</string>
+    <string name="card_error_heading">Hava durumu verileri alınırken hata oluştu</string>
+    <string name="card_error_content">Lütfen güncellemeyi deneyin!</string>
+    <string name="about_privacy_heading">Gizlilik Bilgileri</string>
+    <string name="about_permission_internet_description">Ağa Bağlanma: Bu izin gereklidir, çünkü hava durumu verileri İnternet'teki sunuculara istekte bulunularak alınır. Bu izin olmadan hiçbir hava durumu verisi alınamaz. İsteğe bağlı: GPS için yetkilendirme.</string>
+    <string name="about">Hakkında</string>
+    <string name="version_number" translatable="false">Versiyon</string>
+    <string name="about_license">Lisans</string>
     <string name="about_license_text">This application is derived from Privacy Friendly Weather, developed by the research group SECUSO. Sourcecode licensed under GPLv3. The app uses icons from Google Material Design Icons licensed under Apache License Version 2.0, the Leaflet library which is licensed under 2-clause BSD License, the Leaflet.TileLayer.ColorFilter plugin which is licensed under MIT License, AutoSuggestTextViewAPICall which is licensed under Apache License Version 2.0 and WilliamChart library (com.db.chart) which is licensed under Apache License Version 2.0</string>
     <string name="about_more_info">More information can be found on:</string>
     <string name="about_github" translatable="false"><a href="https://github.com/woheller69/omweather">Github-Repo</a></string>
