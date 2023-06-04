@@ -18,13 +18,12 @@
     <string name="card_details_pressure">Ciśnienie:</string>
     <string name="card_details_wind_speed">Wiatr:</string>
     <string name="card_week_heading">Tydzień</string>
-    <string name="card_day_heading">Przebieg dnia</string>
     <string name="card_error_heading">Błąd pobierania danych o pogodzie</string>
     <string name="card_error_content">Spróbuj zaktualizować!</string>
     <string name="about_privacy_heading">Informacje o prywatności</string>
     <string name="about_permission_internet_description">Łączenie z siecią: To uprawnienie jest potrzebne, ponieważ dane pogodowe są pobierane poprzez wysyłanie żądań do serwerów w Internecie. Bez tego pozwolenia nie można odbierać żadnych danych pogodowych. Opcjonalnie: autoryzacja dla GPS.</string>
     <string name="about">Informacje</string>
-    <string name="version_number" translatable="false">Version</string>
+    <string name="version_number">Wersja</string>
     <string name="about_license">Licencja</string>
     <string name="about_license_text">Ta aplikacja wywodzi się z Privacy Friendly Weather, opracowanej przez grupę badawczą SECUSO. Kod źródłowy na licencji GPLv3. Aplikacja korzysta z ikon Google Material Design Icons na licencji Apache w wersji 2.0, biblioteki Leaflet na licencji 2-klauzulowej licencji BSD, wtyczki Leaflet.TileLayer.ColorFilter na licencji MIT, AutoSuggestTextViewAPICall na licencji Apache Wersja 2.0 i biblioteka WilliamChart (com.db.chart) na licencji Apache License Version 2.0</string>
     <string name="about_more_info">Więcej informacji można znaleźć na:</string>

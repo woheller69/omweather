@@ -18,13 +18,12 @@
     <string name="card_details_pressure">Pressure:</string>
     <string name="card_details_wind_speed">Wind:</string>
     <string name="card_week_heading">Week</string>
-    <string name="card_day_heading">Course of the day</string>
     <string name="card_error_heading">Error fetching weather data</string>
     <string name="card_error_content">Please try to update!</string>
     <string name="about_privacy_heading">Privacy Info</string>
     <string name="about_permission_internet_description">Connecting to the Network: This permission is needed because weather data is retrieved by making requests to servers on the Internet. Without this permission, no weather data can be received. Optional: authorization for GPS.</string>
     <string name="about">About</string>
-    <string name="version_number" translatable="false">Version</string>
+    <string name="version_number">Version</string>
     <string name="about_license">License</string>
     <string name="about_license_text">This application is derived from Privacy Friendly Weather, developed by the research group SECUSO. Sourcecode licensed under GPLv3. The app uses icons from Google Material Design Icons licensed under Apache License Version 2.0, the Leaflet library which is licensed under 2-clause BSD License, the Leaflet.TileLayer.ColorFilter plugin which is licensed under MIT License, AutoSuggestTextViewAPICall which is licensed under Apache License Version 2.0 and WilliamChart library (com.db.chart) which is licensed under Apache License Version 2.0</string>
     <string name="about_more_info">More information can be found on:</string>

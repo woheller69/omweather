@@ -14,6 +14,7 @@
     <string name="about_where_from">D\'où proviennent les informations météorologiques?</string>
     <string name="about_where_from_answer">Les informations météorologiques proviennent du</string>
     <string name="activity_about">À propos</string>
+    <string name="version_number">Version</string>
     <string name="activity_weather">Temps</string>
     <string name="activity_manage">Gérer les lieux</string>
     <string name="activity_settings">Paramètres</string>
@@ -23,7 +24,6 @@
     <string name="card_details_humidity">Humidité:</string>
     <string name="card_details_pressure">Pression:</string>
     <string name="card_details_wind_speed">Vent:</string>
-    <string name="card_day_heading">Cours de la journée</string>
     <string name="card_week_heading">La semaine</string>
     <string name="error_convert_to_json">Les données météorologiques reçues ne correspondaient pas au format attendu.</string>
     <string name="error_no_internet">L\'appareil n\'est pas connecté à Internet!</string>

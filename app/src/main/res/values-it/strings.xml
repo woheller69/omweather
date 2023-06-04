@@ -17,12 +17,12 @@
     <string name="card_details_pressure">Pressione:</string>
     <string name="card_details_wind_speed">Vento:</string>
     <string name="card_week_heading">Settimana</string>
-    <string name="card_day_heading">Corso della giornata</string>
     <string name="card_error_heading">Errore durante il recupero dei dati meteo</string>
     <string name="card_error_content">Per favore prova ad aggiornare!</string>
     <string name="about_privacy_heading">Informazioni sulla privacy</string>
     <string name="about_permission_internet_description">Connessione alla rete: questa autorizzazione è necessaria perché i dati meteorologici vengono recuperati effettuando richieste ai server su Internet. Senza questa autorizzazione, non è possibile ricevere dati meteorologici. Opzionale: autorizzazione per GPS.</string>
     <string name="about">About</string>
+    <string name="version_number">Versione</string>
     <string name="about_license">Licenza</string>
     <string name="about_license_text">Questa applicazione è derivata da Privacy Friendly Weather, sviluppata dal gruppo di ricerca SECUSO. Codice sorgente concesso in licenza con GPLv3. L\'app utilizza icone di Google Material Design Icons concesse in licenza con licenza Apache versione 2.0, la libreria Leaflet con licenza 2-clause BSD, il plug-in Leaflet.TileLayer.ColorFilter con licenza MIT, AutoSuggestTextViewAPICall con licenza Apache License Version 2.0 e libreria WilliamChart (com.db.chart) con licenza Apache License Version 2.0</string>
     <string name="about_more_info">Ulteriori informazioni possono essere trovate su:</string>

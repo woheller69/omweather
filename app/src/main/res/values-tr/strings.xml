@@ -11,17 +11,16 @@
     <string name="okay">Tamam</string>
     <string name="slide1_heading">Hoşgeldiniz!</string>
     <string name="slide1_text">omWeather, konumlarınız için mevcut hava durumu ve tahminleri kontrol etmeye yarayan bir uygulamadır.</string>
-    <string name="slide2_text">Bu uygulamanın kaynak kodu GitHub'da mevcuttur. Daha fazla açıklama için Hakkında sayfasına bakabilirsiniz.</string>
+    <string name="slide2_text">Bu uygulamanın kaynak kodu GitHub\'da mevcuttur. Daha fazla açıklama için Hakkında sayfasına bakabilirsiniz.</string>
     <string name="card_details_heading">Şimdi</string>
     <string name="card_details_humidity">Nem:</string>
     <string name="card_details_pressure">Basınç:</string>
     <string name="card_details_wind_speed">Rüzgar:</string>
     <string name="card_week_heading">Hafta</string>
-    <string name="card_day_heading">Günün seyri</string>
     <string name="card_error_heading">Hava durumu verileri alınırken hata oluştu</string>
     <string name="card_error_content">Lütfen güncellemeyi deneyin!</string>
     <string name="about_privacy_heading">Gizlilik Bilgileri</string>
-    <string name="about_permission_internet_description">Ağa Bağlanma: Bu izin gereklidir, çünkü hava durumu verileri İnternet'teki sunuculara istekte bulunularak alınır. Bu izin olmadan hiçbir hava durumu verisi alınamaz. İsteğe bağlı: GPS için yetkilendirme.</string>
+    <string name="about_permission_internet_description">Ağa Bağlanma: Bu izin gereklidir, çünkü hava durumu verileri İnternet\'teki sunuculara istekte bulunularak alınır. Bu izin olmadan hiçbir hava durumu verisi alınamaz. İsteğe bağlı: GPS için yetkilendirme.</string>
     <string name="about">Hakkında</string>
     <string name="version_number">Versiyon</string>
     <string name="about_license">Lisans</string>
@@ -69,7 +68,7 @@
     <string name="long_press_text">Sıralamak için basılı tutun ve sürükleyin.</string>
     <string name="swipe_to_delete">Silmek için kaydırın</string>
     <string name="settings_title_display_options">Görüntüleme seçenekleri</string>
-    <string name="infoProvider">Hava durumu bilgileri Open-Meteo.com'dan alınır \&amp; Rainviewer.com</string>
+    <string name="infoProvider">Hava durumu bilgileri Open-Meteo.com\'dan alınır \&amp; Rainviewer.com</string>
     <string name="monday">Pazartesi</string>
     <string name="tuesday">Salı</string>
     <string name="wednesday">Çarşamba</string>
@@ -94,7 +93,7 @@
     <string name="settings_temp_decimal">Sıcaklığı ondalık basamakla göster</string>
     <string name="settings_darkmode">Android 10+ Karanlık Modu</string>
     <string name="settings_position">Konum</string>
-    <string name="settings_GPS_summary">İlk TAB'da ve mevcut hava durumu widget'ında mevcut GPS konumunun kullanılmasına izin verin. Konum güncellemesi widget tarafından otomatik olarak tetiklenir.</string>
+    <string name="settings_GPS_summary">İlk TAB\'da ve mevcut hava durumu widget\'ında mevcut GPS konumunun kullanılmasına izin verin. Konum güncellemesi widget tarafından otomatik olarak tetiklenir.</string>
     <string name="settings_GPS_position">GPS kullanımına izin ver</string>
     <string name="error_no_position">Uygun konum yok</string>
     <string name="settings_time24h">24-saat formatı</string>
@@ -103,16 +102,16 @@
     <string name="dialog_OK_button">Tamam</string>
     <string name="dialog_NO_button">Hayır</string>
     <string name="dialog_Later_button">Belki daha sonra</string>
-    <string name="dialog_StarOnGitHub">Bu uygulamayı beğendiniz mi? Lütfen GitHub'da bir yıldız verin veya geliştiriciye PayPal aracılığıyla bir kahve ısmarlayın.</string>
+    <string name="dialog_StarOnGitHub">Bu uygulamayı beğendiniz mi? Lütfen GitHub\'da bir yıldız verin veya geliştiriciye PayPal aracılığıyla bir kahve ısmarlayın.</string>
     <string name="settings_show_pressure">Hava basıncını göster</string>
     <string name="action_position" translatable="false">Konumu Güncelle</string>
     <string name="settings_GPS_manual">Yalnızca elle güncelle</string>
-    <string name="rationale_background_location">Lütfen widget'ta kullanmak için arka planda GPS kullanımına da izin verin</string>
-    <string name="error_no_gps">Lütfen GPS'i açın</string>
+    <string name="rationale_background_location">Lütfen widget\'ta kullanmak için arka planda GPS kullanımına da izin verin</string>
+    <string name="error_no_gps">Lütfen GPS\'i açın</string>
     <string name="slide3_heading">Open-Meteo</string>
     <string name="RainViewer">Yağmur Radarı</string>
     <string name="action_rainviewer" translatable="false">Yağmur radarı</string>
-    <string name="nonFreeNet">Açık kaynaklı bir ağ olmayan RainViewer.com'a erişime izin verin.</string>
+    <string name="nonFreeNet">Açık kaynaklı bir ağ olmayan RainViewer.com\'a erişime izin verin.</string>
     <string name="summary_reanalyze">Gün doğumu ve gün batımı (deneysel) arasındaki saatlik tahminleri analiz ederek hafta simgelerini iyileştirin.</string>
     <string name="settings_reanalyze">Hafta Simgeleri</string>
     <string name="settings_precipitation">Yağış</string>

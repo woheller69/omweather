@@ -19,12 +19,12 @@
     <string name="card_details_pressure">Tryk:</string>
     <string name="card_details_wind_speed">Vind:</string>
     <string name="card_week_heading">Uge</string>
-    <string name="card_day_heading">Dagens forløb</string>
     <string name="card_error_heading">Fejl ved hentning af vejrdata</string>
     <string name="card_error_content">Prøv at opdatere!</string>
     <string name="about_privacy_heading">Privatlivsoplysninger</string>
     <string name="about_permission_internet_description">Tilslutning til netværket: Denne tilladelse er nødvendig, fordi vejrdata hentes ved at sende anmodninger til servere på internettet. Uden denne tilladelse kan der ikke modtages vejrdata. Valgfrit: autorisation til GPS.</string>
     <string name="about">Om</string>
+    <string name="version_number">Version</string>
     <string name="about_license">Licens</string>
     <string name="about_license_text">Denne applikation er afledt af Privacy Friendly Weather, udviklet af forskningsgruppen SECUSO. Kildekode licenseret under GPLv3. Appen bruger ikoner fra Google Material Design Icons licenseret under Apache License Version 2.0, Leaflet-biblioteket, som er licenseret under 2-klausul BSD-licens, Leaflet.TileLayer.ColorFilter-pluginet, som er licenseret under MIT-licens, AutoSuggestTextViewAPICall som er licenseret under Apache-licensversion 2.0 og WilliamChart-biblioteket (com.db.chart), som er licenseret under Apache Licens version 2.0.</string>
     <string name="about_more_info">Mere information kan findes på:</string>

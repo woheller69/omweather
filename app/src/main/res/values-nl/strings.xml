@@ -19,12 +19,12 @@
     <string name="card_details_pressure">Druk:</string>
     <string name="card_details_wind_speed">Wind:</string>
     <string name="card_week_heading">Week</string>
-    <string name="card_day_heading">Verloop van de dag</string>
     <string name="card_error_heading">Fout bij ophalen van weergegevens</string>
     <string name="card_error_content">Probeer te updaten!</string>
     <string name="about_privacy_heading">Privacy-informatie</string>
     <string name="about_permission_internet_description">Verbinding maken met het netwerk: deze toestemming is nodig omdat weergegevens worden opgehaald door verzoeken te doen aan servers op internet. Zonder deze toestemming kunnen geen weergegevens worden ontvangen. Optioneel: autorisatie voor GPS.</string>
     <string name="about">Over</string>
+    <string name="version_number">Versie</string>
     <string name="about_license">Vergunning</string>
     <string name="about_license_text">Deze applicatie is afgeleid van Privacy Friendly Weather, ontwikkeld door de onderzoeksgroep SECUSO. Broncode gelicentieerd onder GPLv3. De app maakt gebruik van pictogrammen van Google Material Design Icons die zijn gelicentieerd onder Apache-licentieversie 2.0, de Leaflet-bibliotheek die is gelicentieerd onder de 2-clausule BSD-licentie, de Leaflet.TileLayer.ColorFilter-plug-in die is gelicentieerd onder de MIT-licentie, AutoSuggestTextViewAPICall die is gelicentieerd onder Apache-licentie versie 2.0 en WilliamChart-bibliotheek (com.db.chart) die is gelicentieerd onder Apache-licentie versie 2.0</string>
     <string name="about_more_info">Meer informatie is te vinden op:</string>
