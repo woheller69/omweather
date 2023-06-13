@@ -129,7 +129,7 @@ public class CourseOfDayAdapter extends RecyclerView.Adapter<CourseOfDayAdapter.
             HeaderTime.setTimeInMillis(courseOfDayList.get(visiblePosition).getLocalForecastTime(context));
             int headerday = HeaderTime.get(Calendar.DAY_OF_WEEK);
             headerday = StringFormatUtils.getDayLong(headerday);
-            recyclerViewHeader.setText(context.getResources().getString(headerday));
+            recyclerViewHeader.setText(context.getResources().getString(headerday) + " (" + StringFormatUtils.formatDate(courseOfDayList.get(visiblePosition).getLocalForecastTime(context)) + ")");
 
             courseOfDayHeaderDate=HeaderTime.getTime();
 

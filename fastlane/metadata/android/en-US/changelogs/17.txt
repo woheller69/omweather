@@ -1,0 +1,2 @@
+Show date in course of day header
+Bugfixes

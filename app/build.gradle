@@ -4,16 +4,12 @@ android {
 
     compileSdkVersion 32
 
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
     defaultConfig {
         applicationId "org.woheller69.omweather"
         minSdkVersion 21
         targetSdkVersion 31
-        versionCode 16
-        versionName "1.6"
+        versionCode 17
+        versionName "1.7"
 
         buildConfigField "String", "BASE_URL", "\"https://api.open-meteo.com/v1/\""
         buildConfigField "String", "GITHUB_URL","\"https://github.com/woheller69/omweather/\""

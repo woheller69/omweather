@@ -354,7 +354,7 @@ public class CityWeatherAdapter extends RecyclerView.Adapter<CityWeatherAdapter.
 
         } else if (viewHolder.getItemViewType() == CHART) {
             ChartViewHolder holder = (ChartViewHolder) viewHolder;
-            if (weekForecastList.isEmpty()) return;
+            if (weekForecastList==null || weekForecastList.isEmpty()) return;
 
             AppPreferencesManager prefManager = new AppPreferencesManager(PreferenceManager.getDefaultSharedPreferences(this.context));
 
