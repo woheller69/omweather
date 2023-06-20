@@ -7,6 +7,7 @@
     <color name="colorListItem">#024265</color>
     <color name="backgroundHighlight">#5fa1d2</color>
     <color name="middlegrey">#A8A8A8</color>
+    <color name="lightgrey">#AAFFFFFF</color>
     <color name="white">#fafafa</color>
     <color name="red">#d01530</color>
     <color name="lightred">#fa7972</color>

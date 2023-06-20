@@ -1,0 +1,1 @@
+Slightly improved contrast in dark mode
