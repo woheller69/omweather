@@ -61,8 +61,12 @@ public class OMDataExtractor implements IDataExtractor {
             JSONObject jsonData = new JSONObject(data);
             JSONArray timeArray = jsonData.getJSONArray("time");
             JSONArray weathercodeArray = jsonData.has("weathercode") ? jsonData.getJSONArray("weathercode") : null;
-            JSONArray tempMaxArray = jsonData.has("temperature_2m_max") ? jsonData.getJSONArray("temperature_2m_max") : null;
-            JSONArray tempMinArray = jsonData.has("temperature_2m_min") ? jsonData.getJSONArray("temperature_2m_min") : null;
+            JSONArray tempMaxArray = null;
+            if (jsonData.has("temperature_2m_max")) tempMaxArray = jsonData.getJSONArray("temperature_2m_max");
+            if (jsonData.has("apparent_temperature_max")) tempMaxArray = jsonData.getJSONArray("apparent_temperature_max");
+            JSONArray tempMinArray = null;
+            if (jsonData.has("temperature_2m_min")) tempMinArray = jsonData.getJSONArray("temperature_2m_min");
+            if (jsonData.has("apparent_temperature_min")) tempMinArray = jsonData.getJSONArray("apparent_temperature_min");
             JSONArray sunriseArray = jsonData.has("sunrise") ? jsonData.getJSONArray("sunrise") : null;
             JSONArray sunsetArray = jsonData.has("sunset") ? jsonData.getJSONArray("sunset") : null;
             JSONArray uvIndexArray = jsonData.has("uv_index_max") ? jsonData.getJSONArray("uv_index_max") : null;
@@ -116,7 +120,9 @@ public class OMDataExtractor implements IDataExtractor {
             JSONObject jsonData = new JSONObject(data);
             JSONArray timeArray = jsonData.getJSONArray("time");
             JSONArray weathercodeArray = jsonData.has("weathercode") ? jsonData.getJSONArray("weathercode") : null;
-            JSONArray tempArray = jsonData.has("temperature_2m") ? jsonData.getJSONArray("temperature_2m") : null;
+            JSONArray tempArray = null;
+            if (jsonData.has("temperature_2m")) tempArray = jsonData.getJSONArray("temperature_2m");
+            if (jsonData.has("apparent_temperature")) tempArray = jsonData.getJSONArray("apparent_temperature");
             JSONArray rhArray = jsonData.has("relativehumidity_2m") ? jsonData.getJSONArray("relativehumidity_2m") : null;
             JSONArray pressureArray = jsonData.has("pressure_msl") ? jsonData.getJSONArray("pressure_msl") : null;
             JSONArray precipitationArray = jsonData.has("precipitation") ? jsonData.getJSONArray("precipitation") : null;

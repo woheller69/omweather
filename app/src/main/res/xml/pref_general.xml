@@ -60,6 +60,12 @@
             />
 
         <SwitchPreference
+            android:key="pref_apparentTemp"
+            android:title="@string/settings_apparent_temperature"
+            android:defaultValue="false"
+            />
+
+        <SwitchPreference
             android:key="pref_showPressure"
             android:title="@string/settings_show_pressure"
             android:defaultValue="false"

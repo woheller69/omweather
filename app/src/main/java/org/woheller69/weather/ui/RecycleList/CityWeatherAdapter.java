@@ -231,6 +231,16 @@ public class CityWeatherAdapter extends RecyclerView.Adapter<CityWeatherAdapter.
         if (viewHolder.getItemViewType() == OVERVIEW) {
             OverViewHolder holder = (OverViewHolder) viewHolder;
 
+            HourlyForecast nowCast = new HourlyForecast();
+            SQLiteHelper database = SQLiteHelper.getInstance(context.getApplicationContext());
+            List<HourlyForecast> hourlyForecasts = database.getForecastsByCityId(currentWeatherDataList.getCity_id());
+            for (HourlyForecast f : hourlyForecasts) {
+                if (Math.abs(f.getForecastTime() - System.currentTimeMillis()) <= 30 * 60 * 1000) {
+                    nowCast = f;
+                    break;
+                }
+            }
+
             //correct for timezone differences
             int zoneseconds = currentWeatherDataList.getTimeZoneSeconds();
             long riseTime = (currentWeatherDataList.getTimeSunrise() + zoneseconds) * 1000;
@@ -239,15 +249,15 @@ public class CityWeatherAdapter extends RecyclerView.Adapter<CityWeatherAdapter.
             else  {
                 holder.sun.setText("\u2600\u25b2 " + StringFormatUtils.formatTimeWithoutZone(context, riseTime) + " \u25bc " + StringFormatUtils.formatTimeWithoutZone(context, setTime));
             }
-            holder.windicon.setImageResource(StringFormatUtils.colorWindSpeedWidget(currentWeatherDataList.getWindSpeed()));
+            holder.windicon.setImageResource(StringFormatUtils.colorWindSpeedWidget(nowCast.getWindSpeed()));
             long time = currentWeatherDataList.getTimestamp();
             long updateTime = ((time + zoneseconds) * 1000);
 
             holder.updatetime.setText("("+StringFormatUtils.formatTimeWithoutZone(context, updateTime)+")");
 
-            setImage(currentWeatherDataList.getWeatherID(), holder.weather, isDay);
+            setImage(nowCast.getWeatherID(), holder.weather, isDay);
 
-            holder.temperature.setText(StringFormatUtils.formatTemperature(context, currentWeatherDataList.getTemperatureCurrent()));
+            holder.temperature.setText(StringFormatUtils.formatTemperature(context, nowCast.getTemperature()));
 
         } else if (viewHolder.getItemViewType() == DETAILS) {
 

@@ -118,5 +118,6 @@
     <string name="settings_precipitation">Niederschlag</string>
     <string name="summary_precipitation">Schneemenge anstelle der entsprechenden Wassermenge verwenden.</string>
     <string name="settings_forecast_days">Anzahl der prognostizierten Tage</string>
+    <string name="settings_apparent_temperature">Gefühlte Temperatur anzeigen</string>
 
 </resources>

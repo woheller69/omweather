@@ -16,6 +16,7 @@ import androidx.preference.PreferenceManager;
 import androidx.preference.SeekBarPreference;
 
 import org.woheller69.weather.R;
+import org.woheller69.weather.database.SQLiteHelper;
 
 import static java.lang.Boolean.TRUE;
 
@@ -100,6 +101,9 @@ public class SettingsActivity extends NavigationActivity implements SharedPrefer
 
                 }
             }
+        } else if (s.equals("pref_apparentTemp")) {
+            SQLiteHelper database = SQLiteHelper.getInstance(getApplicationContext().getApplicationContext());
+            database.deleteAllForecasts();
         }
     }
 

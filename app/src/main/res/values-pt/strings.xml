@@ -115,4 +115,5 @@
     <string name="settings_precipitation">Precipitação</string>
     <string name="summary_precipitation">Use a quantidade de neve em vez da quantidade equivalente de água.</string>
     <string name="settings_forecast_days">Número de dias de previsão</string>
+    <string name="settings_apparent_temperature">Mostrar temperatura do feltro</string>
 </resources>

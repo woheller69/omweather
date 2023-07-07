@@ -121,5 +121,6 @@
     <string name="settings_precipitation">Opad atmosferyczny</string>
     <string name="summary_precipitation">Użyj ilości śniegu zamiast równoważnej ilości wody.</string>
     <string name="settings_forecast_days">Liczba dni prognozy</string>
+    <string name="settings_apparent_temperature">Pokaż odczuwalną temperaturę</string>
 </resources>
 

@@ -118,5 +118,6 @@
     <string name="settings_precipitation">Précipitation</string>
     <string name="summary_precipitation">Utilisez la quantité de neige au lieu de la quantité équivalente d\'eau.</string>
     <string name="settings_forecast_days">Nombre de jours de prévision</string>
+    <string name="settings_apparent_temperature">Affiche la température ressentie</string>
 
 </resources>

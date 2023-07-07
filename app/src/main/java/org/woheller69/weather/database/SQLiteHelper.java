@@ -611,5 +611,11 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         }
         return cityID;
     }
-
+    public synchronized void deleteAllForecasts() {
+        SQLiteDatabase database = this.getWritableDatabase();
+        database.execSQL("delete from " + TABLE_HOURLY_FORECAST);
+        database.execSQL("delete from " + TABLE_WEEKFORECAST);
+        database.execSQL("delete from " + TABLE_CURRENT_WEATHER);
+        database.close();
+    }
 }
