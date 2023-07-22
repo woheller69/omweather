@@ -56,6 +56,11 @@ public final class StringFormatUtils {
         return formatDecimalTemperature(context, prefManager.convertTemperatureFromCelsius(temperature), prefManager.getTemperatureUnit());
     }
 
+    public static String formatPrecipitation(Context context, float precipitation) {
+        if (precipitation < 10.0f) return formatDecimal(precipitation, context.getString(R.string.units_mm)); //show decimal only below 10mm
+        else return formatInt(precipitation,context.getString(R.string.units_mm));
+    }
+
     public static String formatTimeWithoutZone(Context context, long time) {
         SharedPreferences sharedPreferences= PreferenceManager.getDefaultSharedPreferences(context);
         SimpleDateFormat df;

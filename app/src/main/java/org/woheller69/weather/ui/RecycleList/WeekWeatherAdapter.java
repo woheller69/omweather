@@ -92,7 +92,7 @@ public class WeekWeatherAdapter extends RecyclerView.Adapter<WeekWeatherAdapter.
         if (weekForecast.getPrecipitation() == 0)
             holder.precipitation.setText("-");
         else
-            holder.precipitation.setText(StringFormatUtils.formatDecimal(weekForecast.getPrecipitation(), context.getString(R.string.units_mm)));
+            holder.precipitation.setText(StringFormatUtils.formatPrecipitation(context, weekForecast.getPrecipitation()));
 
         if (weekForecast.getUv_index()==-1) {
             holder.uv_index.setVisibility(View.GONE);
