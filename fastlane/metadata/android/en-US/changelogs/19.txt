@@ -1,0 +1,4 @@
+Upgrade for Android 13 (SDK 33)
+Monochrome icon support
+Slightly improved contrast in dark mode
+New option: show "feels like" temperature

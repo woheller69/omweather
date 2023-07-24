@@ -2,14 +2,14 @@ apply plugin: 'com.android.application'
 
 android {
 
-    compileSdkVersion 32
+    compileSdkVersion 33
 
     defaultConfig {
         applicationId "org.woheller69.omweather"
         minSdkVersion 21
-        targetSdkVersion 31
-        versionCode 18
-        versionName "1.8"
+        targetSdkVersion 33
+        versionCode 19
+        versionName "1.9"
 
         buildConfigField "String", "BASE_URL", "\"https://api.open-meteo.com/v1/\""
         buildConfigField "String", "GITHUB_URL","\"https://github.com/woheller69/omweather/\""
