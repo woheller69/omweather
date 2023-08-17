@@ -29,6 +29,7 @@ In addition a rain radar functionality powered by RainViewer API (https://www.ra
 
 If permission for GPS is given the widget will automatically update position on a regular base.
 
+<img src="wmo_codes.png" width="450"/>
 
 [<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" height="75">](https://f-droid.org/de/packages/org.woheller69.omweather/)
 

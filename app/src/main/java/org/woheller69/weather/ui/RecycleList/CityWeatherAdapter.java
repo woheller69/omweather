@@ -2,7 +2,6 @@ package org.woheller69.weather.ui.RecycleList;
 
 import android.content.Context;
 import androidx.core.content.ContextCompat;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -332,22 +331,12 @@ public class CityWeatherAdapter extends RecyclerView.Adapter<CityWeatherAdapter.
                                         mCourseOfDay.getLayoutManager().scrollToPosition(i);
                                     }
 
-                                    highlightSelected(view);
                                 }
 
                             }
                         }
 
-                        private void highlightSelected(View view) {
-                            for (int j=0;j<courseDayList.size();j++){  //reset all items
-                                if (holder.recyclerView.getLayoutManager().getChildAt(j)!=null){
-                                    holder.recyclerView.getLayoutManager().getChildAt(j).setBackground(ResourcesCompat.getDrawable(context.getResources(),R.drawable.rounded_transparent,null));
-                                }
-                            }
-                            view.setBackground(ResourcesCompat.getDrawable(context.getResources(),R.drawable.rounded_highlight,null)); //highlight selected item
-                        }
-
-                        public void onLongItemClick(View view, int position) {
+                         public void onLongItemClick(View view, int position) {
 
                         }
                     })
