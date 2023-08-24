@@ -149,7 +149,7 @@ public class WeatherWidget extends AppWidgetProvider {
                         break;
                     }
                 }
-                if (nextWithoutPrecipitation!=null && (nextWithoutPrecipitation.getForecastTime()-System.currentTimeMillis()) <= 2* 60 * 60 * 1000)  {  //if rain stops within 2 hours show closed umbrella
+                if (nextWithoutPrecipitation!=null && (nextWithoutPrecipitation.getForecastTime()-System.currentTimeMillis()) <= 12* 60 * 60 * 1000)  {  //if rain stops within 12 hours show closed umbrella
                     views.setTextViewText(R.id.widget_precipitation_forecast,"🌂 "+StringFormatUtils.formatTimeWithoutZone(context, nextWithoutPrecipitation.getLocalForecastTime(context)-15*60*1000)); //forecast is for preceding 15min
                     views.setViewVisibility(R.id.widget_attribution,View.INVISIBLE);
                     views.setViewVisibility(R.id.widget_precipitation_forecast,View.VISIBLE);
@@ -162,7 +162,7 @@ public class WeatherWidget extends AppWidgetProvider {
                         break;
                     }
                 }
-                if (nextPrecipitation!=null && (nextPrecipitation.getForecastTime()-System.currentTimeMillis()) <= 2* 60 * 60 * 1000)  {  //if rain starts within 2 hours show umbrella
+                if (nextPrecipitation!=null && (nextPrecipitation.getForecastTime()-System.currentTimeMillis()) <= 12* 60 * 60 * 1000)  {  //if rain starts within 12 hours show umbrella
                     views.setTextViewText(R.id.widget_precipitation_forecast,"☔ "+StringFormatUtils.formatTimeWithoutZone(context, nextPrecipitation.getLocalForecastTime(context)-15*60*1000)); //forecast is for preceding 15min
                     views.setViewVisibility(R.id.widget_attribution,View.INVISIBLE);
                     views.setViewVisibility(R.id.widget_precipitation_forecast,View.VISIBLE);
