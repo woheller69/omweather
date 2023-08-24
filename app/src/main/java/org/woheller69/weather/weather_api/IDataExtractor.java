@@ -2,6 +2,7 @@ package org.woheller69.weather.weather_api;
 
 import org.woheller69.weather.database.CurrentWeatherData;
 import org.woheller69.weather.database.HourlyForecast;
+import org.woheller69.weather.database.QuarterHourlyForecast;
 import org.woheller69.weather.database.WeekForecast;
 import java.util.List;
 
@@ -32,6 +33,8 @@ public interface IDataExtractor {
      */
 
     List<HourlyForecast> extractHourlyForecast(String data);
+
+    List<QuarterHourlyForecast> extractQuarterHourlyForecast(String data);
 
     /**
      * @param data0, data1, data2, data3, data4 contain the information to retrieve the rain for a minute within the next 60min.

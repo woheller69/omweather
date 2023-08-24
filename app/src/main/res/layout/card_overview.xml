@@ -62,6 +62,21 @@
             android:textColor="#fafafa"
             android:textSize="18dp" />
 
+        <TextView
+            android:id="@+id/card_overview_precipitation_forecast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@id/card_overview_temperature"
+            android:textSize="18dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:background="@drawable/rounded_corner"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:paddingRight="7dp"
+            android:paddingLeft="7dp" />
+
     </RelativeLayout>
     <TextView
         android:id="@+id/card_overview_sunrise_sunset"

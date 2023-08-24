@@ -5,35 +5,28 @@ import android.content.Context;
 /**
  * This class is the database model for the forecasts table.
  */
-public class HourlyForecast {
+public class QuarterHourlyForecast {
 
-    public static final float NO_RAIN_VALUE = 0;
     private int id;
     private int city_id;
     private long timestamp;
     private long forecastFor;
     private int weatherID;
     private float temperature;
-    private float humidity;
-    private float pressure;
     private float windSpeed;
     private float windDirection;
     private float precipitation;
 
-
-    public HourlyForecast() {
+    public QuarterHourlyForecast() {
     }
 
-    public HourlyForecast(int id, int city_id, long timestamp, long forecastFor, int weatherID, float temperature, float humidity,
-                          float pressure, float windSpeed, float windDirection, float precipitation) {
+    public QuarterHourlyForecast(int id, int city_id, long timestamp, long forecastFor, int weatherID, float temperature, float windSpeed, float windDirection, float precipitation) {
         this.id = id;
         this.city_id = city_id;
         this.timestamp = timestamp;
         this.forecastFor = forecastFor;
         this.weatherID = weatherID;
         this.temperature = temperature;
-        this.humidity = humidity;
-        this.pressure = pressure;
         this.windSpeed = windSpeed;
         this.windDirection = windDirection;
         this.precipitation = precipitation;
@@ -138,34 +131,6 @@ public class HourlyForecast {
      */
     public void setTemperature(float temperature) {
         this.temperature = temperature;
-    }
-
-    /**
-     * @return Returns the humidity value in percent.
-     */
-    public float getHumidity() {
-        return humidity;
-    }
-
-    /**
-     * @param humidity The humidity value in percent to set.
-     */
-    public void setHumidity(float humidity) {
-        this.humidity = humidity;
-    }
-
-    /**
-     * @return Returns the air pressure value in hectopascal (hPa).
-     */
-    public float getPressure() {
-        return pressure;
-    }
-
-    /**
-     * @param pressure The air pressure value in hectopascal (hPa) to set.
-     */
-    public void setPressure(float pressure) {
-        this.pressure = pressure;
     }
 
     public float getPrecipitation() { return precipitation; }

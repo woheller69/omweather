@@ -20,7 +20,7 @@ import static androidx.core.app.JobIntentService.enqueueWork;
  */
 public class SQLiteHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     private Context context;
 
     private List<City> allCities = new ArrayList<>();
@@ -34,6 +34,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     private static final String TABLE_HOURLY_FORECAST = "FORECASTS";
     private static final String TABLE_WEEKFORECAST = "WEEKFORECASTS";
     private static final String TABLE_CURRENT_WEATHER = "CURRENT_WEATHER";
+    private static final String TABLE_QUARTERHOURLYFORECAST = "QUARTERHOURLYFORECASTS";
 
 
     //Names of columns in TABLE_CITIES_TO_WATCH
@@ -43,6 +44,17 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     private static final String CITIES_TO_WATCH_NAME = "city_name";
     private static final String CITIES_TO_WATCH_LONGITUDE = "longitude";
     private static final String CITIES_TO_WATCH_LATITUDE = "latitude";
+
+    //Names of columns in QUARTERHOURLYFORECAST
+    private static final String QUARTERHOURLYFORECAST_ID = "forecast_id";
+    private static final String QUARTERHOURLYFORECAST_CITY_ID = "city_id";
+    private static final String QUARTERHOURLYFORECAST_COLUMN_TIME_MEASUREMENT = "time_of_measurement";
+    private static final String QUARTERHOURLYFORECAST_COLUMN_FORECAST_FOR = "forecast_for";
+    private static final String QUARTERHOURLYFORECAST_COLUMN_WEATHER_ID = "weather_id";
+    private static final String QUARTERHOURLYFORECAST_COLUMN_TEMPERATURE_CURRENT = "temperature_current";
+    private static final String QUARTERHOURLYFORECAST_COLUMN_PRECIPITATION = "precipitation";
+    private static final String QUARTERHOURLYFORECAST_COLUMN_WIND_SPEED = "wind_speed";
+    private static final String QUARTERHOURLYFORECAST_COLUMN_WIND_DIRECTION = "wind_direction";
 
     //Names of columns in TABLE_FORECAST
     private static final String FORECAST_ID = "forecast_id";
@@ -113,6 +125,18 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             COLUMN_RAIN60MIN + " VARCHAR(25) NOT NULL) ;";
 
 
+    private static final String CREATE_TABLE_QUARTERHOURLYFORECASTS = "CREATE TABLE " + TABLE_QUARTERHOURLYFORECAST +
+            "(" +
+            QUARTERHOURLYFORECAST_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+            QUARTERHOURLYFORECAST_CITY_ID + " INTEGER," +
+            QUARTERHOURLYFORECAST_COLUMN_TIME_MEASUREMENT + " LONG NOT NULL," +
+            QUARTERHOURLYFORECAST_COLUMN_FORECAST_FOR + " VARCHAR(200) NOT NULL," +
+            QUARTERHOURLYFORECAST_COLUMN_WEATHER_ID + " INTEGER," +
+            QUARTERHOURLYFORECAST_COLUMN_TEMPERATURE_CURRENT + " REAL," +
+            QUARTERHOURLYFORECAST_COLUMN_PRECIPITATION + " REAL," +
+            QUARTERHOURLYFORECAST_COLUMN_WIND_SPEED + " REAL," +
+            QUARTERHOURLYFORECAST_COLUMN_WIND_DIRECTION + " REAL)";
+
     private static final String CREATE_TABLE_FORECASTS = "CREATE TABLE " + TABLE_HOURLY_FORECAST +
             "(" +
             FORECAST_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -174,10 +198,16 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_CURRENT_WEATHER);
         db.execSQL(CREATE_TABLE_FORECASTS);
         db.execSQL(CREATE_TABLE_WEEKFORECASTS);
+        db.execSQL(CREATE_TABLE_QUARTERHOURLYFORECASTS);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        switch(oldVersion) {
+            case 1:
+                db.execSQL(CREATE_TABLE_QUARTERHOURLYFORECASTS);
+                // we want both updates, so no break statement here...
+        }
     }
 
 
@@ -320,6 +350,90 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         return maxRank;
     }
 
+    /**
+     * Methods for TABLE_QUARTERHOURLYFORECAST
+     */
+
+    public synchronized boolean hasQuarterHourly(int cityId) {
+        SQLiteDatabase database = this.getWritableDatabase();
+        Cursor cursor = database.query(TABLE_QUARTERHOURLYFORECAST,
+                new String[]{QUARTERHOURLYFORECAST_CITY_ID}
+                , QUARTERHOURLYFORECAST_CITY_ID + "=?",
+                new String[]{String.valueOf(cityId)}, null, null, null, null);
+        boolean result = false;
+        if (cursor != null && cursor.moveToFirst()){
+            result = true;
+            cursor.close();
+        }
+        database.close();
+        return result;
+    }
+
+
+    public synchronized void addQuarterHourlyForecasts(List<QuarterHourlyForecast> quarterHourlyForecasts) {
+        SQLiteDatabase database = this.getWritableDatabase();
+        for (QuarterHourlyForecast quarterHourlyForecast: quarterHourlyForecasts) {
+            ContentValues values = new ContentValues();
+            values.put(QUARTERHOURLYFORECAST_CITY_ID, quarterHourlyForecast.getCity_id());
+            values.put(QUARTERHOURLYFORECAST_COLUMN_TIME_MEASUREMENT, quarterHourlyForecast.getTimestamp());
+            values.put(QUARTERHOURLYFORECAST_COLUMN_FORECAST_FOR, quarterHourlyForecast.getForecastTime());
+            values.put(QUARTERHOURLYFORECAST_COLUMN_WEATHER_ID, quarterHourlyForecast.getWeatherID());
+            values.put(QUARTERHOURLYFORECAST_COLUMN_TEMPERATURE_CURRENT, quarterHourlyForecast.getTemperature());
+            values.put(QUARTERHOURLYFORECAST_COLUMN_PRECIPITATION, quarterHourlyForecast.getPrecipitation());
+            values.put(QUARTERHOURLYFORECAST_COLUMN_WIND_SPEED, quarterHourlyForecast.getWindSpeed());
+            values.put(QUARTERHOURLYFORECAST_COLUMN_WIND_DIRECTION, quarterHourlyForecast.getWindDirection());
+            database.insert(TABLE_QUARTERHOURLYFORECAST, null, values);
+        }
+        database.close();
+    }
+
+    public synchronized void deleteQuarterHourlyForecastsByCityId(int cityId) {
+        SQLiteDatabase database = this.getWritableDatabase();
+        database.delete(TABLE_QUARTERHOURLYFORECAST, QUARTERHOURLYFORECAST_CITY_ID + " = ?",
+                new String[]{Integer.toString(cityId)});
+        database.close();
+    }
+
+
+    public synchronized List<QuarterHourlyForecast> getQuarterHourlyForecastsByCityId(int cityId) {
+        SQLiteDatabase database = this.getWritableDatabase();
+
+        Cursor cursor = database.query(TABLE_QUARTERHOURLYFORECAST,
+                new String[]{QUARTERHOURLYFORECAST_ID,
+                        QUARTERHOURLYFORECAST_CITY_ID,
+                        QUARTERHOURLYFORECAST_COLUMN_TIME_MEASUREMENT,
+                        QUARTERHOURLYFORECAST_COLUMN_FORECAST_FOR,
+                        QUARTERHOURLYFORECAST_COLUMN_WEATHER_ID,
+                        QUARTERHOURLYFORECAST_COLUMN_TEMPERATURE_CURRENT,
+                        QUARTERHOURLYFORECAST_COLUMN_PRECIPITATION,
+                        QUARTERHOURLYFORECAST_COLUMN_WIND_SPEED,
+                        QUARTERHOURLYFORECAST_COLUMN_WIND_DIRECTION}
+                , QUARTERHOURLYFORECAST_CITY_ID + "=?",
+                new String[]{String.valueOf(cityId)}, null, null, null, null);
+
+        List<QuarterHourlyForecast> list = new ArrayList<>();
+        QuarterHourlyForecast quarterHourlyForecast;
+
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                quarterHourlyForecast = new QuarterHourlyForecast();
+                quarterHourlyForecast.setId(Integer.parseInt(cursor.getString(0)));
+                quarterHourlyForecast.setCity_id(Integer.parseInt(cursor.getString(1)));
+                quarterHourlyForecast.setTimestamp(Long.parseLong(cursor.getString(2)));
+                quarterHourlyForecast.setForecastTime(Long.parseLong(cursor.getString(3)));
+                quarterHourlyForecast.setWeatherID(Integer.parseInt(cursor.getString(4)));
+                quarterHourlyForecast.setTemperature(Float.parseFloat(cursor.getString(5)));
+                quarterHourlyForecast.setPrecipitation(Float.parseFloat(cursor.getString(6)));
+                quarterHourlyForecast.setWindSpeed(Float.parseFloat(cursor.getString(7)));
+                quarterHourlyForecast.setWindDirection(Float.parseFloat(cursor.getString(8)));
+                list.add(quarterHourlyForecast);
+            } while (cursor.moveToNext());
+
+            cursor.close();
+        }
+        database.close();
+        return list;
+    }
 
     /**
      * Methods for TABLE_FORECAST
@@ -391,7 +505,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
             cursor.close();
         }
-
+        database.close();
         return list;
     }
 
@@ -483,7 +597,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
             cursor.close();
         }
-
+        database.close();
         return list;
     }
 
@@ -512,7 +626,6 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         database.insert(TABLE_CURRENT_WEATHER, null, values);
         database.close();
     }
-
 
 
     public synchronized CurrentWeatherData getCurrentWeatherByCityId(int cityId) {
@@ -556,7 +669,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
             cursor.close();
         }
-
+        database.close();
         return currentWeather;
     }
 
@@ -616,6 +729,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         database.execSQL("delete from " + TABLE_HOURLY_FORECAST);
         database.execSQL("delete from " + TABLE_WEEKFORECAST);
         database.execSQL("delete from " + TABLE_CURRENT_WEATHER);
+        database.execSQL("delete from " + TABLE_QUARTERHOURLYFORECAST);
         database.close();
     }
 }

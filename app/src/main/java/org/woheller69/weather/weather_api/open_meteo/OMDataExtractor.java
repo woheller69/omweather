@@ -10,6 +10,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.woheller69.weather.database.CurrentWeatherData;
 import org.woheller69.weather.database.HourlyForecast;
+import org.woheller69.weather.database.QuarterHourlyForecast;
 import org.woheller69.weather.database.WeekForecast;
 import org.woheller69.weather.weather_api.IApiToDatabaseConversion;
 import org.woheller69.weather.weather_api.IDataExtractor;
@@ -163,6 +164,52 @@ public class OMDataExtractor implements IDataExtractor {
         return null;
     }
 
+    /**
+     * @see IDataExtractor#extractQuarterHourlyForecast(String)
+     */
+    @Override
+    public List<QuarterHourlyForecast> extractQuarterHourlyForecast(String data) {
+        try {
+            SharedPreferences prefManager = PreferenceManager.getDefaultSharedPreferences(context);
+
+            List<QuarterHourlyForecast> quarterHourlyForecasts = new ArrayList<>();
+            JSONObject jsonData = new JSONObject(data);
+            JSONArray timeArray = jsonData.getJSONArray("time");
+            JSONArray weathercodeArray = jsonData.has("weathercode") ? jsonData.getJSONArray("weathercode") : null;
+            JSONArray tempArray = null;
+            if (jsonData.has("temperature_2m")) tempArray = jsonData.getJSONArray("temperature_2m");
+            if (jsonData.has("apparent_temperature")) tempArray = jsonData.getJSONArray("apparent_temperature");
+            JSONArray precipitationArray = jsonData.has("precipitation") ? jsonData.getJSONArray("precipitation") : null;
+            JSONArray windSpeedArray = jsonData.has("windspeed_10m") ? jsonData.getJSONArray("windspeed_10m") : null;
+            JSONArray snowfallArray = jsonData.has("snowfall") ? jsonData.getJSONArray("snowfall") : null;
+            JSONArray showersArray = jsonData.has("showers") ? jsonData.getJSONArray("showers") : null;
+            JSONArray rainArray = jsonData.has("rain") ? jsonData.getJSONArray("rain") : null;
+
+            IApiToDatabaseConversion conversion = new OMToDatabaseConversion();
+            for (int i = 0; i < timeArray.length(); i++) {
+                QuarterHourlyForecast quarterHourlyForecast = new QuarterHourlyForecast();
+                quarterHourlyForecast.setTimestamp(System.currentTimeMillis() / 1000);
+                if (timeArray != null && !timeArray.isNull(i)) quarterHourlyForecast.setForecastTime(timeArray.getLong(i)*1000L);
+                if (weathercodeArray != null && !weathercodeArray.isNull(i)) quarterHourlyForecast.setWeatherID(conversion.convertWeatherCategory(weathercodeArray.getString(i)));
+                if (tempArray != null && !tempArray.isNull(i)) quarterHourlyForecast.setTemperature((float) tempArray.getDouble(i));
+                if (prefManager.getBoolean("pref_snow", false)) {
+                    float precipitationAmount=0;
+                    if (snowfallArray != null && !snowfallArray.isNull(i)) precipitationAmount += (float) snowfallArray.getDouble(i)*10;  //snowfall is reported in cm instead of mm
+                    if (rainArray != null && !rainArray.isNull(i)) precipitationAmount += (float) rainArray.getDouble(i);
+                    if (showersArray != null && !showersArray.isNull(i)) precipitationAmount += (float) showersArray.getDouble(i);
+                    quarterHourlyForecast.setPrecipitation(precipitationAmount);
+                } else {
+                    if (precipitationArray != null && !precipitationArray.isNull(i)) quarterHourlyForecast.setPrecipitation((float) precipitationArray.getDouble(i));
+                }
+                if (windSpeedArray != null && !windSpeedArray.isNull(i)) quarterHourlyForecast.setWindSpeed((float) windSpeedArray.getDouble(i));
+                quarterHourlyForecasts.add(quarterHourlyForecast);
+            }
+            return quarterHourlyForecasts;
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     /**
      * @see IDataExtractor#extractRain60min(String, String, String, String, String)

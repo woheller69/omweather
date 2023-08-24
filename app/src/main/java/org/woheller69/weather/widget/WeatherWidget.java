@@ -30,6 +30,7 @@ import org.woheller69.weather.activities.ForecastCityActivity;
 import org.woheller69.weather.database.CityToWatch;
 import org.woheller69.weather.database.CurrentWeatherData;
 import org.woheller69.weather.database.HourlyForecast;
+import org.woheller69.weather.database.QuarterHourlyForecast;
 import org.woheller69.weather.database.SQLiteHelper;
 import org.woheller69.weather.database.WeekForecast;
 import org.woheller69.weather.services.UpdateDataService;
@@ -110,30 +111,75 @@ public class WeatherWidget extends AppWidgetProvider {
         long riseTime = (weatherData.getTimeSunrise() + zoneseconds) * 1000;
         long setTime = (weatherData.getTimeSunset() + zoneseconds) * 1000;
 
-        HourlyForecast nowCast = new HourlyForecast();
-        List<HourlyForecast> hourlyForecasts = dbHelper.getForecastsByCityId(weatherData.getCity_id());
-        for (HourlyForecast f : hourlyForecasts) {
-            if (Math.abs(f.getForecastTime() - System.currentTimeMillis()) <= 30 * 60 * 1000) {
-                nowCast = f;
-                break;
-            }
-        }
+        boolean isDay = weatherData.isDay(context);
 
+        if (!dbHelper.hasQuarterHourly(weatherData.getCity_id())){
+            HourlyForecast nowCast = new HourlyForecast();
+            List<HourlyForecast> hourlyForecasts = dbHelper.getForecastsByCityId(weatherData.getCity_id());
+            for (HourlyForecast f : hourlyForecasts) {
+                if (Math.abs(f.getForecastTime() - System.currentTimeMillis()) <= 30 * 60 * 1000) {
+                    nowCast = f;
+                    break;
+                }
+            }
+
+            views.setImageViewResource(R.id.widget_image_view, UiResourceProvider.getIconResourceForWeatherCategory(nowCast.getWeatherID(), isDay));
+            views.setTextViewText(R.id.widget_temperature, " "+StringFormatUtils.formatTemperature(context, nowCast.getTemperature())+" ");
+            views.setImageViewResource(R.id.widget_windicon,StringFormatUtils.colorWindSpeedWidget(nowCast.getWindSpeed()));
+            views.setViewVisibility(R.id.widget_attribution,View.VISIBLE);
+            views.setViewVisibility(R.id.widget_precipitation_forecast,View.INVISIBLE);
+        } else {
+            QuarterHourlyForecast next = new QuarterHourlyForecast();
+            List<QuarterHourlyForecast> quarterHourlyForecasts = dbHelper.getQuarterHourlyForecastsByCityId(weatherData.getCity_id());
+            for (QuarterHourlyForecast f : quarterHourlyForecasts) {
+                if (f.getForecastTime() > System.currentTimeMillis()) { //take first 15 min instant after now
+                    next = f;
+                    break;
+                }
+            }
+
+            views.setViewVisibility(R.id.widget_attribution,View.VISIBLE);
+            views.setViewVisibility(R.id.widget_precipitation_forecast,View.INVISIBLE);
+
+            if (next.getPrecipitation()>0){ //raining now
+                QuarterHourlyForecast nextWithoutPrecipitation = null;
+                for (QuarterHourlyForecast f : quarterHourlyForecasts) {
+                    if (f.getForecastTime() > System.currentTimeMillis() && f.getPrecipitation()==0) {
+                        nextWithoutPrecipitation = f;
+                        break;
+                    }
+                }
+                if (nextWithoutPrecipitation!=null && (nextWithoutPrecipitation.getForecastTime()-System.currentTimeMillis()) <= 2* 60 * 60 * 1000)  {  //if rain stops within 2 hours show closed umbrella
+                    views.setTextViewText(R.id.widget_precipitation_forecast,"🌂 "+StringFormatUtils.formatTimeWithoutZone(context, nextWithoutPrecipitation.getLocalForecastTime(context)-15*60*1000)); //forecast is for preceding 15min
+                    views.setViewVisibility(R.id.widget_attribution,View.INVISIBLE);
+                    views.setViewVisibility(R.id.widget_precipitation_forecast,View.VISIBLE);
+                }
+            } else {
+                QuarterHourlyForecast nextPrecipitation = null;
+                for (QuarterHourlyForecast f : quarterHourlyForecasts) {
+                    if (f.getForecastTime() > System.currentTimeMillis() && f.getPrecipitation()>0) {
+                        nextPrecipitation = f;
+                        break;
+                    }
+                }
+                if (nextPrecipitation!=null && (nextPrecipitation.getForecastTime()-System.currentTimeMillis()) <= 2* 60 * 60 * 1000)  {  //if rain starts within 2 hours show umbrella
+                    views.setTextViewText(R.id.widget_precipitation_forecast,"☔ "+StringFormatUtils.formatTimeWithoutZone(context, nextPrecipitation.getLocalForecastTime(context)-15*60*1000)); //forecast is for preceding 15min
+                    views.setViewVisibility(R.id.widget_attribution,View.INVISIBLE);
+                    views.setViewVisibility(R.id.widget_precipitation_forecast,View.VISIBLE);
+                }
+            }
+            views.setImageViewResource(R.id.widget_image_view, UiResourceProvider.getIconResourceForWeatherCategory(next.getWeatherID(), isDay));
+            views.setTextViewText(R.id.widget_temperature, " "+StringFormatUtils.formatTemperature(context, next.getTemperature())+" ");
+            views.setImageViewResource(R.id.widget_windicon,StringFormatUtils.colorWindSpeedWidget(next.getWindSpeed()));
+        }
 
         SharedPreferences prefManager = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
         if(prefManager.getBoolean("pref_GPS", true) && !prefManager.getBoolean("pref_GPS_manual", false)) views.setViewVisibility(R.id.location_on,View.VISIBLE); else views.setViewVisibility(R.id.location_on,View.GONE);
         views.setTextViewText(R.id.widget_updatetime, String.format("(%s)", StringFormatUtils.formatTimeWithoutZone(context, updateTime)));
-        views.setTextViewText(R.id.widget_temperature, " "+StringFormatUtils.formatTemperature(context, nowCast.getTemperature())+" ");
         views.setViewPadding(R.id.widget_temperature,1,1,1,1);
         views.setTextViewText(R.id.widget_max_Temp,StringFormatUtils.formatTemperature(context, weekforecasts.get(0).getMaxTemperature()));
         views.setTextViewText(R.id.widget_min_Temp,StringFormatUtils.formatTemperature(context, weekforecasts.get(0).getMinTemperature()));
-/*        String rain60 = weatherData.getRain60min();
-        if (rain60!=null && rain60.length()==12) {
-            rain60="0\u2009"+rain60.substring(0,6)+"\u200930\u2009"+rain60.substring(6)+"\u200960";
-        } else rain60=context.getResources().getString(R.string.error_no_rain60min_data);
-        views.setTextViewText(R.id.widget_rain60min,"☔  "+rain60);*/
         views.setTextViewText(R.id.widget_city_name, city.getCityName());
-        views.setImageViewResource(R.id.widget_windicon,StringFormatUtils.colorWindSpeedWidget(nowCast.getWindSpeed()));
 
         if (riseTime==zoneseconds*1000 || setTime==zoneseconds*1000) views.setTextViewText(R.id.widget_sunrise_sunset,"\u2600\u25b2 --:--" + " \u25bc --:--");
         else  {
@@ -148,9 +194,7 @@ public class WeatherWidget extends AppWidgetProvider {
             views.setInt(R.id.widget_UVindex,"setBackgroundResource",StringFormatUtils.widgetColorUVindex(context,Math.round(weekforecasts.get(0).getUv_index())));
         }
 
-        boolean isDay = weatherData.isDay(context);
 
-        views.setImageViewResource(R.id.widget_image_view, UiResourceProvider.getIconResourceForWeatherCategory(nowCast.getWeatherID(), isDay));
 
         for (int i=0;i<forecastIDs.length;i++){
             views.setImageViewBitmap(forecastIDs[i],null);

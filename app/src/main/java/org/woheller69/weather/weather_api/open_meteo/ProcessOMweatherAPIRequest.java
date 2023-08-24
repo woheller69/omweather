@@ -17,6 +17,7 @@ import org.woheller69.weather.activities.NavigationActivity;
 import org.woheller69.weather.database.CityToWatch;
 import org.woheller69.weather.database.CurrentWeatherData;
 import org.woheller69.weather.database.HourlyForecast;
+import org.woheller69.weather.database.QuarterHourlyForecast;
 import org.woheller69.weather.database.WeekForecast;
 import org.woheller69.weather.database.SQLiteHelper;
 import org.woheller69.weather.ui.updater.ViewUpdater;
@@ -136,14 +137,37 @@ public class ProcessOMweatherAPIRequest implements IProcessHttpRequest {
             }
             dbHelper.addWeekForecasts(weekforecasts);
 
-            possiblyUpdateWidgets(cityId, weatherData, weekforecasts,hourlyforecasts);
+
+            //Extract quarter-hourly weather
+            dbHelper.deleteQuarterHourlyForecastsByCityId(cityId);
+            if (json.has("minutely_15") && prefManager.getBoolean("pref_BetaTest",false)){  //not available for all places TODO: Remove Beta
+                List<QuarterHourlyForecast> quarterHourlyForecasts = new ArrayList<>();
+                quarterHourlyForecasts = extractor.extractQuarterHourlyForecast(json.getString("minutely_15"));
+
+                if (quarterHourlyForecasts!=null && !quarterHourlyForecasts.isEmpty()){
+                    for (QuarterHourlyForecast quarterHourlyForecast: quarterHourlyForecasts){
+                        quarterHourlyForecast.setCity_id(cityId);
+                    }
+
+                } else {
+                    final String ERROR_MSG = context.getResources().getString(R.string.error_convert_to_json);
+                    if (NavigationActivity.isVisible)
+                        Toast.makeText(context, ERROR_MSG, Toast.LENGTH_LONG).show();
+                    return;
+                }
+                dbHelper.addQuarterHourlyForecasts(quarterHourlyForecasts);
+            }
+
+            possiblyUpdateWidgets(cityId, weatherData, weekforecasts, hourlyforecasts);
 
             ViewUpdater.updateCurrentWeatherData(weatherData);
             ViewUpdater.updateWeekForecasts(weekforecasts);
             ViewUpdater.updateForecasts(hourlyforecasts);
 
         } catch (JSONException e) {
-            e.printStackTrace();
+            final String ERROR_MSG = context.getResources().getString(R.string.error_convert_to_json);
+            if (NavigationActivity.isVisible)
+                Toast.makeText(context, ERROR_MSG, Toast.LENGTH_LONG).show();
         }
     }
 

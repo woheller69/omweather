@@ -22,6 +22,7 @@ import com.db.chart.view.LineChartView;
 import org.woheller69.weather.R;
 import org.woheller69.weather.database.CurrentWeatherData;
 import org.woheller69.weather.database.HourlyForecast;
+import org.woheller69.weather.database.QuarterHourlyForecast;
 import org.woheller69.weather.database.SQLiteHelper;
 import org.woheller69.weather.database.WeekForecast;
 import org.woheller69.weather.preferences.AppPreferencesManager;
@@ -33,8 +34,6 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
-
-import org.woheller69.weather.weather_api.IApiToDatabaseConversion;
 
 public class CityWeatherAdapter extends RecyclerView.Adapter<CityWeatherAdapter.ViewHolder> {
     private static final String TAG = "Forecast_Adapter";
@@ -111,6 +110,7 @@ public class CityWeatherAdapter extends RecyclerView.Adapter<CityWeatherAdapter.
         ImageView windicon;
         TextView updatetime;
         TextView sun;
+        TextView precipforecast;
 
         OverViewHolder(View v) {
             super(v);
@@ -119,6 +119,7 @@ public class CityWeatherAdapter extends RecyclerView.Adapter<CityWeatherAdapter.
             this.sun=v.findViewById(R.id.card_overview_sunrise_sunset);
             this.windicon=v.findViewById(R.id.card_overview_windicon);
             this.updatetime=v.findViewById(R.id.card_overview_update_time);
+            this.precipforecast=v.findViewById(R.id.card_overview_precipitation_forecast);
         }
     }
 
@@ -229,16 +230,7 @@ public class CityWeatherAdapter extends RecyclerView.Adapter<CityWeatherAdapter.
 
         if (viewHolder.getItemViewType() == OVERVIEW) {
             OverViewHolder holder = (OverViewHolder) viewHolder;
-
-            HourlyForecast nowCast = new HourlyForecast();
             SQLiteHelper database = SQLiteHelper.getInstance(context.getApplicationContext());
-            List<HourlyForecast> hourlyForecasts = database.getForecastsByCityId(currentWeatherDataList.getCity_id());
-            for (HourlyForecast f : hourlyForecasts) {
-                if (Math.abs(f.getForecastTime() - System.currentTimeMillis()) <= 30 * 60 * 1000) {
-                    nowCast = f;
-                    break;
-                }
-            }
 
             //correct for timezone differences
             int zoneseconds = currentWeatherDataList.getTimeZoneSeconds();
@@ -248,17 +240,68 @@ public class CityWeatherAdapter extends RecyclerView.Adapter<CityWeatherAdapter.
             else  {
                 holder.sun.setText("\u2600\u25b2 " + StringFormatUtils.formatTimeWithoutZone(context, riseTime) + " \u25bc " + StringFormatUtils.formatTimeWithoutZone(context, setTime));
             }
-            holder.windicon.setImageResource(StringFormatUtils.colorWindSpeedWidget(nowCast.getWindSpeed()));
             long time = currentWeatherDataList.getTimestamp();
             long updateTime = ((time + zoneseconds) * 1000);
 
             holder.updatetime.setText("("+StringFormatUtils.formatTimeWithoutZone(context, updateTime)+")");
 
-            setImage(nowCast.getWeatherID(), holder.weather, isDay);
+            if (!database.hasQuarterHourly(currentWeatherDataList.getCity_id())){
+                holder.precipforecast.setVisibility(View.INVISIBLE);
+                HourlyForecast nowCast = new HourlyForecast();
+                List<HourlyForecast> hourlyForecasts = database.getForecastsByCityId(currentWeatherDataList.getCity_id());
+                for (HourlyForecast f : hourlyForecasts) {
+                    if (Math.abs(f.getForecastTime() - System.currentTimeMillis()) <= 30 * 60 * 1000) {
+                        nowCast = f;
+                        break;
+                    }
+                }
 
-            holder.temperature.setText(StringFormatUtils.formatTemperature(context, nowCast.getTemperature()));
+                holder.windicon.setImageResource(StringFormatUtils.colorWindSpeedWidget(nowCast.getWindSpeed()));
+                setImage(nowCast.getWeatherID(), holder.weather, isDay);
+                holder.temperature.setText(StringFormatUtils.formatTemperature(context, nowCast.getTemperature()));
+            } else {
+                QuarterHourlyForecast next = new QuarterHourlyForecast();
+                List<QuarterHourlyForecast> quarterHourlyForecasts = database.getQuarterHourlyForecastsByCityId(currentWeatherDataList.getCity_id());
+                for (QuarterHourlyForecast f : quarterHourlyForecasts) {
+                    if (f.getForecastTime() > System.currentTimeMillis()) { //take first 15 min instant after now
+                        next = f;
+                        break;
+                    }
+                }
 
-        } else if (viewHolder.getItemViewType() == DETAILS) {
+                holder.precipforecast.setVisibility(View.INVISIBLE);
+
+                if (next.getPrecipitation()>0){ //raining now
+                    QuarterHourlyForecast nextWithoutPrecipitation = null;
+                    for (QuarterHourlyForecast f : quarterHourlyForecasts) {
+                        if (f.getForecastTime() > System.currentTimeMillis() && f.getPrecipitation()==0) {
+                            nextWithoutPrecipitation = f;
+                            break;
+                        }
+                    }
+                    if (nextWithoutPrecipitation!=null && (nextWithoutPrecipitation.getForecastTime()-System.currentTimeMillis()) <= 12 * 60 * 60 * 1000)  {  //if rain stops within 12 hours show closed umbrella
+                        holder.precipforecast.setText("🌂 "+StringFormatUtils.formatTimeWithoutZone(context, nextWithoutPrecipitation.getLocalForecastTime(context)-15*60*1000)); //forecast is for preceding 15min
+                        holder.precipforecast.setVisibility(View.VISIBLE);
+                    }
+                } else {
+                    QuarterHourlyForecast nextPrecipitation = null;
+                    for (QuarterHourlyForecast f : quarterHourlyForecasts) {
+                        if (f.getForecastTime() > System.currentTimeMillis() && f.getPrecipitation()>0) {
+                            nextPrecipitation = f;
+                            break;
+                        }
+                    }
+                    if (nextPrecipitation!=null && (nextPrecipitation.getForecastTime()-System.currentTimeMillis()) <= 12 * 60 * 60 * 1000)  {  //if rain starts within 12 hours show umbrella
+                        holder.precipforecast.setText("☔ "+StringFormatUtils.formatTimeWithoutZone(context, nextPrecipitation.getLocalForecastTime(context)-15*60*1000)); //forecast is for preceding 15min
+                        holder.precipforecast.setVisibility(View.VISIBLE);
+                    }
+                }
+                holder.windicon.setImageResource(StringFormatUtils.colorWindSpeedWidget(next.getWindSpeed()));
+                setImage(next.getWeatherID(), holder.weather, isDay);
+                holder.temperature.setText(StringFormatUtils.formatTemperature(context, next.getTemperature()));
+            }
+
+        } else if (viewHolder.getItemViewType() == DETAILS) {  //not used at the moment
 
             DetailViewHolder holder = (DetailViewHolder) viewHolder;
 
