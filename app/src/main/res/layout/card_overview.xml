@@ -7,25 +7,25 @@
 
     <ImageView
         android:id="@+id/card_overview_weather_image"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:src="@drawable/wmo_image_00d" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#fafafa"
-        android:layout_marginTop="5dp"
-        android:layout_marginStart="7dp"
-        android:textSize="12dp"
-        android:text="Weather data by Open-Meteo.com" />
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#fafafa"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="7dp"
+            android:textSize="12dp"
+            android:text="Weather data by Open-Meteo.com" />
 
         <ImageView
             android:id="@+id/card_overview_windicon"
@@ -36,19 +36,39 @@
             android:layout_marginEnd="5dp"
             android:src="@drawable/ic_wind_orange"
             android:translationY="-20dp" />
-
-        <TextView
-            android:id="@+id/card_overview_temperature"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="10dp"
-            android:background="@drawable/rounded_corner"
-            android:paddingLeft="7dp"
-            android:paddingRight="7dp"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="45dp" />
+            android:orientation="vertical"
+            android:layout_centerVertical="true">
+
+            <TextView
+                android:id="@+id/card_overview_temperature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_gravity="end"
+                android:background="@drawable/rounded_corner"
+                android:paddingLeft="7dp"
+                android:paddingRight="7dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="45dp" />
+
+            <TextView
+                android:id="@+id/card_overview_precipitation_forecast"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:textSize="18dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:background="@drawable/rounded_corner"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:paddingRight="7dp"
+                android:paddingLeft="7dp" />
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/card_overview_update_time"
@@ -62,22 +82,8 @@
             android:textColor="#fafafa"
             android:textSize="18dp" />
 
-        <TextView
-            android:id="@+id/card_overview_precipitation_forecast"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_below="@id/card_overview_temperature"
-            android:textSize="18dp"
-            android:textColor="@color/colorPrimaryDark"
-            android:background="@drawable/rounded_corner"
-            android:layout_marginEnd="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:paddingRight="7dp"
-            android:paddingLeft="7dp" />
-
     </RelativeLayout>
+
     <TextView
         android:id="@+id/card_overview_sunrise_sunset"
         android:layout_width="wrap_content"
