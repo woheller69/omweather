@@ -27,7 +27,7 @@
             android:id="@+id/course_of_day_weather"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/wmo_icon_00d" />
+            android:src="@drawable/wmo_icon_00d" />
         <ImageView
             android:id="@+id/course_of_day_wind_icon"
             android:layout_width="20dp"

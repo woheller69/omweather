@@ -34,7 +34,7 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:scaleType="centerCrop"
-            android:src="@mipmap/wmo_icon_00d"
+            android:src="@drawable/wmo_icon_00d"
             android:layout_row="2"
             android:layout_gravity="center" />
         <ImageView
@@ -92,7 +92,7 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:scaleType="centerCrop"
-            android:src="@mipmap/wmo_icon_00d"
+            android:src="@drawable/wmo_icon_00d"
             android:layout_row="2"
             android:layout_gravity="center" />
 
@@ -152,7 +152,7 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:scaleType="centerCrop"
-            android:src="@mipmap/wmo_icon_00d"
+            android:src="@drawable/wmo_icon_00d"
             android:layout_row="2"
             android:layout_gravity="center" />
 
@@ -212,7 +212,7 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:scaleType="centerCrop"
-            android:src="@mipmap/wmo_icon_00d"
+            android:src="@drawable/wmo_icon_00d"
             android:layout_row="2"
             android:layout_gravity="center" />
 
@@ -272,7 +272,7 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:scaleType="centerCrop"
-            android:src="@mipmap/wmo_icon_00d"
+            android:src="@drawable/wmo_icon_00d"
             android:layout_row="2"
             android:layout_gravity="center" />
 
