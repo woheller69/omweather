@@ -62,7 +62,7 @@ public class AddLocationDialogOmGeocodingAPI extends DialogFragment {
     private Handler handler;
     private AutoSuggestAdapter autoSuggestAdapter;
     String url="https://geocoding-api.open-meteo.com/v1/search?name=";
-    String lang="default";
+    String lang="en";
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -79,18 +79,18 @@ public class AddLocationDialogOmGeocodingAPI extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
         Locale locale = ConfigurationCompat.getLocales(Resources.getSystem().getConfiguration()).get(0);
-        lang=locale.getLanguage();
+        if (locale != null) lang=locale.getLanguage();
 
-        LayoutInflater inflater = getActivity().getLayoutInflater();
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        LayoutInflater inflater = activity.getLayoutInflater();
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         View view = inflater.inflate(R.layout.dialog_add_location, null);
 
         rootView = view;
 
         builder.setView(view);
-        builder.setTitle(getActivity().getString(R.string.dialog_add_label));
+        builder.setTitle(activity.getString(R.string.dialog_add_label));
 
-        this.database = SQLiteHelper.getInstance(getActivity());
+        this.database = SQLiteHelper.getInstance(activity);
 
 
         final WebView webview= rootView.findViewById(R.id.webViewAddLocation);
@@ -115,7 +115,7 @@ public class AddLocationDialogOmGeocodingAPI extends DialogFragment {
                                             int position, long id) {
                         selectedCity=autoSuggestAdapter.getObject(position);
                         //Hide keyboard to have more space
-                        final InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                        final InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
                         imm.hideSoftInputFromWindow(rootView.getWindowToken(), 0);
                         //Show city on map
                         webview.loadUrl("file:///android_asset/map.html?lat=" + selectedCity.getLatitude() + "&lon=" + selectedCity.getLongitude());
@@ -159,7 +159,7 @@ public class AddLocationDialogOmGeocodingAPI extends DialogFragment {
             }
         });
 
-        builder.setPositiveButton(getActivity().getString(R.string.dialog_add_add_button), new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(activity.getString(R.string.dialog_add_add_button), new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -167,7 +167,7 @@ public class AddLocationDialogOmGeocodingAPI extends DialogFragment {
             }
         });
 
-        builder.setNegativeButton(getActivity().getString(R.string.dialog_add_close_button), null);
+        builder.setNegativeButton(activity.getString(R.string.dialog_add_close_button), null);
 
         return builder.create();
 

@@ -77,15 +77,14 @@ public class WeatherWidget extends AppWidgetProvider {
             Location locationGPS = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
             if (locationGPS != null) {
                 CityToWatch city;
-                double lat = Math.round(locationGPS.getLatitude()*100.0)/100.0;  //round 2 digits
-                double lon = Math.round(locationGPS.getLongitude()*100.0)/100.0; //round 2 digits
+                double lat = locationGPS.getLatitude();
+                double lon = locationGPS.getLongitude();
                 for (int i=0; i<cities.size();i++){
                     if (cities.get(i).getCityId()==cityID) {
                         city = cities.get(i);
                         city.setLatitude((float) lat);
                         city.setLongitude((float) lon);
                         city.setCityName(String.format(Locale.getDefault(),"%.2f° / %.2f°", lat, lon));
-                        //Toast.makeText(context.getApplicationContext(), String.format("%.2f / %.2f", lat, lon), Toast.LENGTH_SHORT).show();
                         db.updateCityToWatch(city);
 
                         break;
@@ -143,11 +142,13 @@ public class WeatherWidget extends AppWidgetProvider {
 
             if (next.getPrecipitation()>0){ //raining now
                 QuarterHourlyForecast nextWithoutPrecipitation = null;
+                int count=0;
                 for (QuarterHourlyForecast f : quarterHourlyForecasts) {
                     if (f.getForecastTime() > System.currentTimeMillis() && f.getPrecipitation()==0) {
-                        nextWithoutPrecipitation = f;
-                        break;
-                    }
+                        if (count == 0) nextWithoutPrecipitation = f;  //set when first event without precipitation is found
+                        count++;
+                        if (count >= 2) break;            //stop if 2 quarter-hours without precipitation
+                    } else count=0;                       //reset counter if quarter-hour with precipitation is found
                 }
                 if (nextWithoutPrecipitation!=null && (nextWithoutPrecipitation.getForecastTime()-System.currentTimeMillis()) <= 12* 60 * 60 * 1000)  {  //if rain stops within 12 hours show closed umbrella
                     views.setTextViewText(R.id.widget_precipitation_forecast,"🌂 "+StringFormatUtils.formatTimeWithoutZone(context, nextWithoutPrecipitation.getLocalForecastTime(context)-15*60*1000)); //forecast is for preceding 15min

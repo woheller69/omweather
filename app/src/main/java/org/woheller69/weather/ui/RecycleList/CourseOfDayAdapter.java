@@ -42,7 +42,7 @@ public class CourseOfDayAdapter extends RecyclerView.Adapter<CourseOfDayAdapter.
         this.courseOfDayList = courseOfDayList;
         this.recyclerViewHeader=recyclerViewHeader;
         this.recyclerView=recyclerView;
-        if (courseOfDayList.size()!=0 && courseOfDayList.get(0)!=null) {
+        if (courseOfDayList!=null &&courseOfDayList.size()!=0 && courseOfDayList.get(0)!=null) {
             this.courseOfDayHeaderDate = new Date(courseOfDayList.get(0).getLocalForecastTime(context));
         }else this.courseOfDayHeaderDate=new Date();  //fallback if no data available
     }
@@ -142,7 +142,8 @@ public class CourseOfDayAdapter extends RecyclerView.Adapter<CourseOfDayAdapter.
 
     @Override
     public int getItemCount() {
-        return courseOfDayList.size();
+        if (courseOfDayList==null) return 0;
+        else return courseOfDayList.size();
     }
 
     class CourseOfDayViewHolder extends RecyclerView.ViewHolder {

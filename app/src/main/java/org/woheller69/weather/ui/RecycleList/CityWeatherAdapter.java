@@ -273,11 +273,13 @@ public class CityWeatherAdapter extends RecyclerView.Adapter<CityWeatherAdapter.
 
                 if (next.getPrecipitation()>0){ //raining now
                     QuarterHourlyForecast nextWithoutPrecipitation = null;
+                    int count=0;
                     for (QuarterHourlyForecast f : quarterHourlyForecasts) {
                         if (f.getForecastTime() > System.currentTimeMillis() && f.getPrecipitation()==0) {
-                            nextWithoutPrecipitation = f;
-                            break;
-                        }
+                            if (count == 0) nextWithoutPrecipitation = f;  //set when first event without precipitation is found
+                            count++;
+                            if (count >= 2) break;            //stop if 2 quarter-hours without precipitation
+                        } else count=0;                       //reset counter if quarter-hour with precipitation is found
                     }
                     if (nextWithoutPrecipitation!=null && (nextWithoutPrecipitation.getForecastTime()-System.currentTimeMillis()) <= 12 * 60 * 60 * 1000)  {  //if rain stops within 12 hours show closed umbrella
                         holder.precipforecast.setText("🌂 "+StringFormatUtils.formatTimeWithoutZone(context, nextWithoutPrecipitation.getLocalForecastTime(context)-15*60*1000)); //forecast is for preceding 15min

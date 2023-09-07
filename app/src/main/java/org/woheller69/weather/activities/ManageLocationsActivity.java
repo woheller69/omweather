@@ -114,7 +114,6 @@ public class ManageLocationsActivity extends NavigationActivity {
                         AddLocationDialogOmGeocodingAPI addLocationDialog = new AddLocationDialogOmGeocodingAPI();
                         addLocationDialog.show(fragmentManager, "AddLocationDialog");
                         getSupportFragmentManager().executePendingTransactions();
-                        addLocationDialog.getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
                     }
                 });
             }
