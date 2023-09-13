@@ -77,7 +77,7 @@
     <string name="tuesday">Вівторок</string>
     <string name="wednesday">Середа</string>
     <string name="thursday">Четвер</string>
-    <string name="friday">П'ятниця</string>
+    <string name="friday">П\'ятниця</string>
     <string name="saturday">Субота</string>
     <string name="sunday">Неділя</string>
     <string name="chart">Діаграма</string>
@@ -109,7 +109,7 @@
     <string name="dialog_StarOnGitHub">Подобається застосунок? Поставте зірочку на Github або придбайте розробнику каву через PayPal.</string>
     <string name="settings_show_pressure">Відображати тиск повітря</string>
     <string name="action_position" translatable="false">Оновити місцезнаходження</string>
-    <string name="settings_GPS_manual">Лише ручне оновлення/string>
+    <string name="settings_GPS_manual">Лише ручне оновлення</string>
     <string name="rationale_background_location">Також дозвольте використання GPS у фоновому режимі для використання у віджеті</string>
     <string name="error_no_gps">Увімкніть GPS</string>
     <string name="slide3_heading">Open-Meteo</string>
