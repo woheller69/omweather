@@ -77,12 +77,6 @@
             android:defaultValue="false"
             />
 
-        <SwitchPreference
-            android:key="pref_BetaTest"
-            android:title="Beta testing"
-            android:defaultValue="false"
-            />
-
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/settings_title_units">

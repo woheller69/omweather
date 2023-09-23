@@ -1,0 +1,4 @@
+Show start/end of precipitation
+Improved vector icons
+Ukrainian translation
+Bugfixes

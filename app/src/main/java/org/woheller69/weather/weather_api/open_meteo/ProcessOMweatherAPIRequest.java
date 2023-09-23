@@ -140,7 +140,7 @@ public class ProcessOMweatherAPIRequest implements IProcessHttpRequest {
 
             //Extract quarter-hourly weather
             dbHelper.deleteQuarterHourlyForecastsByCityId(cityId);
-            if (json.has("minutely_15") && prefManager.getBoolean("pref_BetaTest",false)){  //not available for all places TODO: Remove Beta
+            if (json.has("minutely_15")){
                 List<QuarterHourlyForecast> quarterHourlyForecasts = new ArrayList<>();
                 quarterHourlyForecasts = extractor.extractQuarterHourlyForecast(json.getString("minutely_15"));
 
