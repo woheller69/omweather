@@ -10,7 +10,6 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.os.Message;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextUtils;
@@ -60,6 +59,8 @@ public class AddLocationDialogOmGeocodingAPI extends DialogFragment {
 
     private static final int TRIGGER_AUTO_COMPLETE = 100;
     private static final long AUTO_COMPLETE_DELAY = 300;
+    private static final int TRIGGER_HIDE_KEYBOARD = 200;
+    private static final long HIDE_KEYBOARD_DELAY = 3000;
     private Handler handler;
     private AutoSuggestAdapter autoSuggestAdapter;
     String url="https://geocoding-api.open-meteo.com/v1/search?name=";
@@ -139,8 +140,9 @@ public class AddLocationDialogOmGeocodingAPI extends DialogFragment {
             public void onTextChanged(CharSequence s, int start, int before,
                                       int count) {
                 handler.removeMessages(TRIGGER_AUTO_COMPLETE);
-                handler.sendEmptyMessageDelayed(TRIGGER_AUTO_COMPLETE,
-                        AUTO_COMPLETE_DELAY);
+                handler.sendEmptyMessageDelayed(TRIGGER_AUTO_COMPLETE, AUTO_COMPLETE_DELAY);
+                handler.removeMessages(TRIGGER_HIDE_KEYBOARD);
+                handler.sendEmptyMessageDelayed(TRIGGER_HIDE_KEYBOARD, HIDE_KEYBOARD_DELAY);
             }
 
             @Override
@@ -149,20 +151,21 @@ public class AddLocationDialogOmGeocodingAPI extends DialogFragment {
             }
         });
 
-        handler = new Handler(Looper.getMainLooper(), new Handler.Callback() {
-            @Override
-            public boolean handleMessage(Message msg) {
-                if (msg.what == TRIGGER_AUTO_COMPLETE) {
-                    if (!TextUtils.isEmpty(autoCompleteTextView.getText())) {
-                        try {
-                            makeApiCall(URLEncoder.encode(autoCompleteTextView.getText().toString(), StandardCharsets.UTF_8.name()));
-                        } catch (UnsupportedEncodingException e) {
-                            e.printStackTrace();
-                        }
+        handler = new Handler(Looper.getMainLooper(), msg -> {
+            if (msg.what == TRIGGER_AUTO_COMPLETE) {
+                if (!TextUtils.isEmpty(autoCompleteTextView.getText())) {
+                    try {
+                        makeApiCall(URLEncoder.encode(autoCompleteTextView.getText().toString(), StandardCharsets.UTF_8.name()));
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
                     }
                 }
-                return false;
+            } else if (msg.what == TRIGGER_HIDE_KEYBOARD) {
+                //Hide keyboard to show entries behind the keyboard
+                final InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(rootView.getWindowToken(), 0);
             }
+            return false;
         });
 
         builder.setPositiveButton(activity.getString(R.string.dialog_add_add_button), new DialogInterface.OnClickListener() {
