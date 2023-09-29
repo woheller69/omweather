@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageButton;
@@ -24,12 +25,13 @@ public class RainViewerActivity extends AppCompatActivity {
     private WebView webView;
     private ImageButton btnPrev, btnNext, btnStartStop;
 
+    private float latitude;
+    private float longitude;
+    private int timezoneseconds;
+
     @Override
     protected void onPause() {
         super.onPause();
-        webView.destroy();   //clear webView memory
-        finish();
-        // Another activity is taking focus (this activity is about to be "paused").
     }
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -37,9 +39,15 @@ public class RainViewerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rain_viewer);
-        float latitude = getIntent().getFloatExtra("latitude", -1);
-        float longitude = getIntent().getFloatExtra("longitude", -1);
-        int timezoneseconds = getIntent().getIntExtra("timezoneseconds",0);
+        if(savedInstanceState == null) {
+            latitude = getIntent().getFloatExtra("latitude", -1);
+            longitude = getIntent().getFloatExtra("longitude", -1);
+            timezoneseconds = getIntent().getIntExtra("timezoneseconds",0);
+        } else {
+            latitude = savedInstanceState.getFloat("latitude");
+            longitude = savedInstanceState.getFloat("longitude");
+            timezoneseconds = savedInstanceState.getInt("timezoneseconds");
+        }
 
         int nightmode=0;
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -57,6 +65,7 @@ public class RainViewerActivity extends AppCompatActivity {
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setUserAgentString(BuildConfig.APPLICATION_ID+"/"+BuildConfig.VERSION_NAME);
         webView.loadUrl("file:///android_asset/rainviewer.html?lat=" + latitude + "&lon=" + longitude + "&nightmode=" + nightmode + "&hour12=" + hour12 + "&tz="+timezoneseconds);
+        webView.addJavascriptInterface(new HybridInterface(), "NativeInterface");
 
         webView.setWebViewClient(new WebViewClient() {
             @Override
@@ -104,4 +113,22 @@ public class RainViewerActivity extends AppCompatActivity {
         onBackPressed();
         return true;
     }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putFloat("latitude", latitude);
+        outState.putFloat("longitude", longitude);
+        outState.putInt("timezoneseconds", timezoneseconds);
+    }
+
+    private class HybridInterface {
+        @JavascriptInterface
+        public void transferLatLon(float lat, float lon) {
+            latitude = lat;
+            longitude = lon;
+        }
+
+    }
+
 }

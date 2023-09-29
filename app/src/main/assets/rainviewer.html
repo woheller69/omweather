@@ -260,7 +260,9 @@ var marker = L.marker([getUrlParameter('lat'), getUrlParameter('lon')]).addTo(ma
         }
     }
     
-    
+    map.on("moveend", function () {
+        NativeInterface.transferLatLon(map.getCenter().lat, map.getCenter().lng);
+    });
 
 </script>
 
