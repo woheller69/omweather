@@ -88,6 +88,7 @@ public class AddLocationDialogOmGeocodingAPI extends DialogFragment {
     @Override
     public void onResume() {
         super.onResume();
+        handler.removeMessages(TRIGGER_HIDE_KEYBOARD);
         if(selectedCity != null && webview != null) webview.loadUrl("file:///android_asset/map.html?lat=" + selectedCity.getLatitude() + "&lon=" + selectedCity.getLongitude());
     }
 
@@ -135,6 +136,7 @@ public class AddLocationDialogOmGeocodingAPI extends DialogFragment {
                         //Hide keyboard to have more space
                         final InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
                         imm.hideSoftInputFromWindow(rootView.getWindowToken(), 0);
+                        handler.removeMessages(TRIGGER_HIDE_KEYBOARD);
                         //Show city on map
                         webview.loadUrl("file:///android_asset/map.html?lat=" + selectedCity.getLatitude() + "&lon=" + selectedCity.getLongitude());
                     }
