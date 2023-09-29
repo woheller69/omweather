@@ -22,6 +22,7 @@
             android:value="true" />
 
         <activity android:name="org.woheller69.weather.activities.RainViewerActivity"
+            android:theme="@style/AppTheme.NoActionBar"
             android:label="@string/RainViewer"/>
 
         <activity

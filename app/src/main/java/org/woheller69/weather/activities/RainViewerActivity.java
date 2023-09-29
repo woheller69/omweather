@@ -23,9 +23,6 @@ public class RainViewerActivity extends AppCompatActivity {
 
     private WebView webView;
     private ImageButton btnPrev, btnNext, btnStartStop;
-    private float latitude;
-    private float longitude;
-    private int timezoneseconds;
 
     @Override
     protected void onPause() {
@@ -37,15 +34,9 @@ public class RainViewerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rain_viewer);
-        if(savedInstanceState == null) {
-            latitude = getIntent().getFloatExtra("latitude", -1);
-            longitude = getIntent().getFloatExtra("longitude", -1);
-            timezoneseconds = getIntent().getIntExtra("timezoneseconds",0);
-        } else {
-            latitude = savedInstanceState.getFloat("latitude");
-            longitude = savedInstanceState.getFloat("longitude");
-            timezoneseconds = savedInstanceState.getInt("timezoneseconds");
-        }
+        float latitude = getIntent().getFloatExtra("latitude", -1);
+        float longitude = getIntent().getFloatExtra("longitude", -1);
+        int timezoneseconds = getIntent().getIntExtra("timezoneseconds",0);
 
         int nightmode=0;
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -96,20 +87,13 @@ public class RainViewerActivity extends AppCompatActivity {
             }
         });
 
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        if (getSupportActionBar() == null) {
+            setSupportActionBar(toolbar);
         }
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-    }
-
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putFloat("latitude", latitude);
-        outState.putFloat("longitude", longitude);
-        outState.putInt("timezoneseconds", timezoneseconds);
     }
 
     @Override
