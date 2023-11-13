@@ -4,6 +4,7 @@
     android:layout_gravity="top|center_horizontal"
     android:paddingStart="10dp"
     android:paddingEnd="10dp"
+    android:layoutDirection="ltr"
     android:id="@+id/widget_layout"
     android:previewImage="@drawable/weather_widget_preview">
 
@@ -28,7 +29,7 @@
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:src="@drawable/wmo_icon_86n"
-        android:translationX="-3dp" />
+        android:translationX="-4dp" />
 
     <ImageView
         android:id="@+id/widget_hour12"
@@ -36,7 +37,7 @@
         android:layout_height="24dp"
         android:layout_below="@id/widget_city_name"
         android:layout_toEndOf="@id/widget_hour11"
-        android:translationY="-5dp"
+        android:translationY="-7dp"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:src="@drawable/wmo_icon_86n" />
@@ -50,7 +51,7 @@
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:src="@drawable/wmo_icon_86n"
-        android:translationX="3dp" />
+        android:translationX="4dp" />
 
     <ImageView
         android:id="@+id/widget_hour10"
@@ -74,7 +75,7 @@
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:src="@drawable/wmo_icon_86n"
-        android:translationX="-5dp" />
+        android:translationX="-7dp" />
 
     <ImageView
         android:id="@+id/widget_hour8"
@@ -105,7 +106,7 @@
         android:layout_height="24dp"
         android:layout_below="@id/widget_hour2"
         android:layout_toEndOf="@id/widget_hour1"
-        android:translationX="5dp"
+        android:translationX="7dp"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:src="@drawable/wmo_icon_86n" />
@@ -130,7 +131,7 @@
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:src="@drawable/wmo_icon_86n"
-        android:translationX="-3dp" />
+        android:translationX="-4dp" />
 
     <ImageView
         android:id="@+id/widget_hour6"
@@ -138,7 +139,7 @@
         android:layout_height="24dp"
         android:layout_below="@id/widget_hour8"
         android:layout_toEndOf="@id/widget_hour7"
-        android:translationY="5dp"
+        android:translationY="7dp"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:src="@drawable/wmo_icon_86n" />
@@ -152,7 +153,7 @@
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:src="@drawable/wmo_icon_86n"
-        android:translationX="3dp" />
+        android:translationX="4dp" />
 
     <ImageView
         android:id="@+id/widget_image_view"
@@ -363,7 +364,7 @@
         android:layout_alignEnd="@id/widget_hour3"
         android:layout_marginTop="-5dp"
         android:layout_marginEnd="-5dp"
-        android:translationX="5dp"
+        android:translationX="7dp"
         android:scaleX="0.7"
         android:scaleY="0.7"
         android:src="@drawable/ic_wind_orange" />
@@ -392,7 +393,7 @@
         android:scaleX="0.7"
         android:scaleY="0.7"
         android:src="@drawable/ic_wind_orange"
-        android:translationX="3dp" />
+        android:translationX="4dp" />
 
     <ImageView
         android:id="@+id/widget_windicon_hour6"
@@ -402,7 +403,7 @@
         android:layout_alignEnd="@id/widget_hour6"
         android:layout_marginTop="-5dp"
         android:layout_marginEnd="-5dp"
-        android:translationY="5dp"
+        android:translationY="7dp"
         android:scaleX="0.7"
         android:scaleY="0.7"
         android:src="@drawable/ic_wind_orange" />
@@ -418,7 +419,7 @@
         android:scaleX="0.7"
         android:scaleY="0.7"
         android:src="@drawable/ic_wind_orange"
-        android:translationX="-3dp" />
+        android:translationX="-4dp" />
 
     <ImageView
         android:id="@+id/widget_windicon_hour8"
@@ -441,7 +442,7 @@
         android:layout_alignEnd="@id/widget_hour9"
         android:layout_marginTop="-5dp"
         android:layout_marginEnd="-5dp"
-        android:translationX="-5dp"
+        android:translationX="-7dp"
         android:scaleX="0.7"
         android:scaleY="0.7"
         android:src="@drawable/ic_wind_orange" />
@@ -470,7 +471,7 @@
         android:scaleX="0.7"
         android:scaleY="0.7"
         android:src="@drawable/ic_wind_orange"
-        android:translationX="-3dp" />
+        android:translationX="-4dp" />
 
     <ImageView
         android:id="@+id/widget_windicon_hour12"
@@ -480,7 +481,7 @@
         android:layout_alignEnd="@id/widget_hour12"
         android:layout_marginTop="-5dp"
         android:layout_marginEnd="-5dp"
-        android:translationY="-5dp"
+        android:translationY="-7dp"
         android:scaleX="0.7"
         android:scaleY="0.7"
         android:src="@drawable/ic_wind_orange" />
@@ -496,7 +497,7 @@
         android:scaleX="0.7"
         android:scaleY="0.7"
         android:src="@drawable/ic_wind_orange"
-        android:translationX="3dp" />
+        android:translationX="4dp" />
 
 </RelativeLayout>
 
