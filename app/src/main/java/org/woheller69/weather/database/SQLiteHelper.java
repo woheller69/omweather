@@ -20,7 +20,7 @@ import static androidx.core.app.JobIntentService.enqueueWork;
  */
 public class SQLiteHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
     private Context context;
 
     private List<City> allCities = new ArrayList<>();
@@ -86,6 +86,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     private static final String WEEKFORECAST_COLUMN_UV_INDEX = "uv_index";
     private static final String WEEKFORECAST_COLUMN_TIME_SUNRISE = "time_sunrise";
     private static final String WEEKFORECAST_COLUMN_TIME_SUNSET = "time_sunset";
+    private static final String WEEKFORECAST_COLUMN_SUNSHINE_HOURS = "sunshine_hours";
 
 
     //Names of columns in TABLE_CURRENT_WEATHER
@@ -168,7 +169,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             WEEKFORECAST_COLUMN_WIND_DIRECTION + " REAL," +
             WEEKFORECAST_COLUMN_UV_INDEX + " REAL," +
             WEEKFORECAST_COLUMN_TIME_SUNRISE + "  LONG NOT NULL," +
-            WEEKFORECAST_COLUMN_TIME_SUNSET + "  LONG NOT NULL)";
+            WEEKFORECAST_COLUMN_TIME_SUNSET + "  LONG NOT NULL," +
+            WEEKFORECAST_COLUMN_SUNSHINE_HOURS + " REAL)";
 
     private static final String CREATE_TABLE_CITIES_TO_WATCH = "CREATE TABLE " + TABLE_CITIES_TO_WATCH +
             "(" +
@@ -207,6 +209,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             case 1:
                 db.execSQL(CREATE_TABLE_QUARTERHOURLYFORECASTS);
                 // we want both updates, so no break statement here...
+            case 2:
+                db.execSQL("ALTER TABLE "+TABLE_WEEKFORECAST+" ADD COLUMN "+ WEEKFORECAST_COLUMN_SUNSHINE_HOURS +" REAL DEFAULT 0");
         }
     }
 
@@ -532,6 +536,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             values.put(WEEKFORECAST_COLUMN_UV_INDEX, weekForecast.getUv_index());
             values.put(WEEKFORECAST_COLUMN_TIME_SUNRISE, weekForecast.getTimeSunrise());
             values.put(WEEKFORECAST_COLUMN_TIME_SUNSET, weekForecast.getTimeSunset());
+            values.put(WEEKFORECAST_COLUMN_SUNSHINE_HOURS, weekForecast.getSunshineHours());
             database.insert(TABLE_WEEKFORECAST, null, values);
         }
         database.close();
@@ -566,7 +571,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
                         WEEKFORECAST_COLUMN_WIND_DIRECTION,
                         WEEKFORECAST_COLUMN_UV_INDEX,
                         WEEKFORECAST_COLUMN_TIME_SUNRISE,
-                        WEEKFORECAST_COLUMN_TIME_SUNSET}
+                        WEEKFORECAST_COLUMN_TIME_SUNSET,
+                        WEEKFORECAST_COLUMN_SUNSHINE_HOURS}
                 , WEEKFORECAST_CITY_ID + "=?",
                 new String[]{String.valueOf(cityId)}, null, null, null, null);
 
@@ -592,6 +598,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
                 weekForecast.setUv_index(Float.parseFloat(cursor.getString(13)));
                 weekForecast.setTimeSunrise(Long.parseLong(cursor.getString(14)));
                 weekForecast.setTimeSunset(Long.parseLong(cursor.getString(15)));
+                weekForecast.setSunshineHours(Float.parseFloat(cursor.getString(16)));
                 list.add(weekForecast);
             } while (cursor.moveToNext());
 

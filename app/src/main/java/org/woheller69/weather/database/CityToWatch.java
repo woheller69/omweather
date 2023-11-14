@@ -17,7 +17,7 @@ public class CityToWatch {
     public CityToWatch() {
     }
 
-    public CityToWatch(int rank, String countryCode, int id, int cityId, float lon, float lat, String cityName) {
+    public CityToWatch(int rank, int id, int cityId, float lon, float lat, String cityName) {
         this.rank = rank;
         this.lon = lon;
         this.lat = lat;

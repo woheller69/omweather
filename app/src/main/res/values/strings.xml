@@ -123,4 +123,5 @@
     <string name="settings_forecast_days">Number of forecast days</string>
     <string name="settings_apparent_temperature">Show \"feels like\" temperature</string>
     <string name="github" translatable="false">GitHub</string>
+    <string name="units_hours">h</string>
 </resources>

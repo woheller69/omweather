@@ -21,14 +21,6 @@ public class City {
     public City() {
     }
 
-    public City(int cityId, String cityName, String countryCode, float lon, float lat) {
-        this.cityId = cityId;
-        this.cityName = cityName;
-        this.countryCode = countryCode;
-        this.lon = lon;
-        this.lat = lat;
-    }
-
     public int getCityId() {
         return cityId;
     }

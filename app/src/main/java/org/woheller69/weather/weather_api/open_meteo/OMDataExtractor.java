@@ -76,6 +76,7 @@ public class OMDataExtractor implements IDataExtractor {
             JSONArray snowfallArray = jsonData.has("snowfall_sum") ? jsonData.getJSONArray("snowfall_sum") : null;
             JSONArray showersArray = jsonData.has("showers_sum") ? jsonData.getJSONArray("showers_sum") : null;
             JSONArray rainArray = jsonData.has("rain_sum") ? jsonData.getJSONArray("rain_sum") : null;
+            JSONArray sunshineDurationArray = jsonData.has("sunshine_duration") ? jsonData.getJSONArray("sunshine_duration") : null;
 
             IApiToDatabaseConversion conversion = new OMToDatabaseConversion();
             for (int i = 0; i < timeArray.length(); i++) {
@@ -87,6 +88,7 @@ public class OMDataExtractor implements IDataExtractor {
                 if (tempMinArray != null && !tempMinArray.isNull(i)) weekForecast.setMinTemperature((float) tempMinArray.getDouble(i));
                 if (sunriseArray != null && !sunriseArray.isNull(i)) weekForecast.setTimeSunrise(sunriseArray.getLong(i));
                 if (sunsetArray != null && !sunsetArray.isNull(i)) weekForecast.setTimeSunset(sunsetArray.getLong(i));
+                if (sunshineDurationArray != null && !sunshineDurationArray.isNull(i)) weekForecast.setSunshineHours((float) (sunshineDurationArray.getDouble(i)/3600));
                 if (uvIndexArray != null && !uvIndexArray.isNull(i)) {
                     weekForecast.setUv_index((float) uvIndexArray.getDouble(i));
                 } else weekForecast.setUv_index(-1);
@@ -210,48 +212,5 @@ public class OMDataExtractor implements IDataExtractor {
         }
         return null;
     }
-
-    /**
-     * @see IDataExtractor#extractRain60min(String, String, String, String, String)
-     */
-    @Override
-    public String extractRain60min(String data0,String data1, String data2, String data3, String data4) {
-        try {
-
-            String rain = "";
-            JSONObject jsonData0 = new JSONObject(data0);
-            JSONObject jsonData1 = new JSONObject(data1);
-            JSONObject jsonData2 = new JSONObject(data2);
-            JSONObject jsonData3 = new JSONObject(data3);
-            JSONObject jsonData4 = new JSONObject(data4);
-            double rain5min=jsonData0.getDouble("precipitation")+jsonData1.getDouble("precipitation")+jsonData2.getDouble("precipitation")+jsonData3.getDouble("precipitation")+jsonData4.getDouble("precipitation");
-            if (rain5min==0){
-                rain ="\u25a1";
-            } else if (rain5min<2.5){  // very light rain equals <0.5mm/h (2.5 = 5 x 0.5)
-                rain ="\u25a4";
-            }else if (rain5min<12.5){  //light rain equals <2.5mm/h (12.5 = 5 x 2.5)
-                rain ="\u25a6";
-            } else{
-                rain ="\u25a0";
-            }
-
-            return rain;
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-
-    /**
-     * @param data The data that contains the information to retrieve the ID of the city.
-     *             If data for a single city were requested, the response string can be
-     *             passed as an argument.
-     *             If data for multiple cities were requested, make sure to pass only one item
-     *             of the response list at a time!
-     * @return Returns the ID of the city or Integer#MIN_VALUE in case the data is not well-formed
-     * and the information could not be extracted.
-     */
-
 
 }

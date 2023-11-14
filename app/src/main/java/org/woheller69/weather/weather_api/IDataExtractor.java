@@ -36,10 +36,4 @@ public interface IDataExtractor {
 
     List<QuarterHourlyForecast> extractQuarterHourlyForecast(String data);
 
-    /**
-     * @param data0, data1, data2, data3, data4 contain the information to retrieve the rain for a minute within the next 60min.
-     * @return Returns a string with a rain drop in case of rain or a - in case of no rain
-     */
-    String extractRain60min(String data0,String data1, String data2, String data3, String data4);
-
 }

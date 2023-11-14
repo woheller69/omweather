@@ -118,4 +118,5 @@
     <string name="summary_precipitation">Eşdeğer miktarda su yerine kar miktarını kullanın.</string>
     <string name="settings_forecast_days">Hava durumu tahmini gün sayısı</string>
     <string name="settings_apparent_temperature">Hissedilen sıcaklığı göster</string>
+    <string name="units_hours">s</string>
 </resources>

@@ -258,7 +258,7 @@ public class ForecastCityActivity extends NavigationActivity implements IUpdatea
                 Toast.makeText(this,R.string.error_no_gps,Toast.LENGTH_LONG).show();
             } else {
                 if (db.getAllCitiesToWatch().isEmpty()) {
-                    CityToWatch newCity = new CityToWatch(db.getMaxRank() + 1, "--", -1, -1, 0, 0, "--°/--°");
+                    CityToWatch newCity = new CityToWatch(db.getMaxRank() + 1, -1, -1, 0, 0, "--°/--°");
                     cityId = (int) db.addCityToWatch(newCity);
                     initResources();
                     noCityText.setVisibility(View.GONE);

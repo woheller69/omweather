@@ -104,6 +104,8 @@ public class WeekWeatherAdapter extends RecyclerView.Adapter<WeekWeatherAdapter.
         holder.wind_speed.setText(StringFormatUtils.formatWindSpeed(context, weekForecast.getWind_speed()));
         holder.wind_speed.setBackground(StringFormatUtils.colorWindSpeed(context, weekForecast.getWind_speed()));
 
+        holder.sunshine_hours.setText("\ud83d\udd06\u200a"+Math.round(weekForecast.getSunshineHours())+"\u200a"+context.getString(R.string.units_hours));
+
         Calendar c = Calendar.getInstance();
         c.setTimeZone(TimeZone.getTimeZone("GMT"));
         c.setTimeInMillis(weekForecast.getLocalForecastTime(context));
@@ -141,6 +143,7 @@ public class WeekWeatherAdapter extends RecyclerView.Adapter<WeekWeatherAdapter.
         TextView wind_speed;
         TextView precipitation;
         TextView uv_index;
+        TextView sunshine_hours;
         ImageView windicon;
 
         WeekForecastViewHolder(View itemView) {
@@ -156,6 +159,7 @@ public class WeekWeatherAdapter extends RecyclerView.Adapter<WeekWeatherAdapter.
             precipitation = itemView.findViewById(R.id.week_forecast_precipitation);
             uv_index = itemView.findViewById(R.id.week_forecast_uv_index);
             windicon = itemView.findViewById(R.id.week_forecast_wind_icon);
+            sunshine_hours = itemView.findViewById(R.id.week_forecast_sunshine_hours);
         }
     }
 

@@ -24,27 +24,10 @@ public class WeekForecast {
     private float uv_index;
     private long timeSunrise;
     private long timeSunset;
+    private float sunshineHours;
 
     public WeekForecast() {
     }
-
-    public WeekForecast(int id, int city_id, long timestamp, long forecastFor, int weatherID, float temperature, float temperature_min, float temperature_max, float humidity, float pressure, float precipitation, float wind_speed, float wind_direction, float uv_index) {
-        this.id = id;
-        this.city_id = city_id;
-        this.timestamp = timestamp;
-        this.forecastFor = forecastFor;
-        this.weatherID = weatherID;
-        this.temperature = temperature;
-        this.temperature_min = temperature_min;
-        this.temperature_max = temperature_max;
-        this.humidity = humidity;
-        this.pressure = pressure;
-        this.precipitation=precipitation;
-        this.wind_speed=wind_speed;
-        this.wind_direction=wind_direction;
-        this.uv_index=uv_index;
-    }
-
 
     /**
      * @return Returns the ID of the record (which uniquely identifies the record).
@@ -203,4 +186,7 @@ public class WeekForecast {
         this.timeSunset = timeSunset;
     }
 
+    public float getSunshineHours() { return sunshineHours; }
+
+    public void setSunshineHours(float sunshineHours) { this.sunshineHours = sunshineHours; }
 }

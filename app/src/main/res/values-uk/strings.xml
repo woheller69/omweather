@@ -122,4 +122,5 @@
     <string name="summary_precipitation">Використовувати кількість снігу замість еквівалентної кількості води.</string>
     <string name="settings_forecast_days">Кількість прогнозованих днів</string>
     <string name="settings_apparent_temperature">Відображати \"відчувається як\" температуру</string>
+    <string name="units_hours">год</string>
 </resources>

@@ -116,4 +116,5 @@
     <string name="summary_precipitation">Usa la quantità di neve invece della quantità equivalente di acqua.</string>
     <string name="settings_forecast_days">Numero di giorni di previsione</string>
     <string name="settings_apparent_temperature">Mostra la temperatura percepita</string>
+    <string name="units_hours">h</string>
 </resources>
