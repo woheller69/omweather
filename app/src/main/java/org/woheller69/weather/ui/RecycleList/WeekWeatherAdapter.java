@@ -104,7 +104,7 @@ public class WeekWeatherAdapter extends RecyclerView.Adapter<WeekWeatherAdapter.
         holder.wind_speed.setText(StringFormatUtils.formatWindSpeed(context, weekForecast.getWind_speed()));
         holder.wind_speed.setBackground(StringFormatUtils.colorWindSpeed(context, weekForecast.getWind_speed()));
 
-        holder.sunshine_hours.setText("\ud83d\udd06\u200a"+Math.round(weekForecast.getSunshineHours())+"\u200a"+context.getString(R.string.units_hours));
+        holder.sunshine_hours.setText("\u2600\ufe0e\u200a"+Math.round(weekForecast.getSunshineHours())+"\u200a"+context.getString(R.string.units_hours));
 
         Calendar c = Calendar.getInstance();
         c.setTimeZone(TimeZone.getTimeZone("GMT"));
