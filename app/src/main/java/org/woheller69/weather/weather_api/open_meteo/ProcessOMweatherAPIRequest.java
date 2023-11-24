@@ -76,7 +76,6 @@ public class ProcessOMweatherAPIRequest implements IProcessHttpRequest {
             JSONObject json = new JSONObject(response);
 
             //Extract daily weather
-            dbHelper.deleteWeekForecastsByCityId(cityId);
             List<WeekForecast> weekforecasts = new ArrayList<>();
             weekforecasts = extractor.extractWeekForecast(json.getString("daily"));
 
@@ -99,6 +98,7 @@ public class ProcessOMweatherAPIRequest implements IProcessHttpRequest {
                     final String ERROR_MSG = context.getResources().getString(R.string.error_convert_to_json);
                     if (NavigationActivity.isVisible)
                         Toast.makeText(context, ERROR_MSG, Toast.LENGTH_LONG).show();
+                    return;
                 } else {
                     weatherData.setCity_id(cityId);
                     weatherData.setRain60min(rain60min);
@@ -115,7 +115,6 @@ public class ProcessOMweatherAPIRequest implements IProcessHttpRequest {
 
 
                 //Extract hourly weather
-                dbHelper.deleteForecastsByCityId(cityId);
                 List<HourlyForecast> hourlyforecasts = new ArrayList<>();
                 hourlyforecasts = extractor.extractHourlyForecast(json.getString("hourly"));
 
@@ -129,17 +128,16 @@ public class ProcessOMweatherAPIRequest implements IProcessHttpRequest {
                         Toast.makeText(context, ERROR_MSG, Toast.LENGTH_LONG).show();
                     return;
                 }
-            dbHelper.addForecasts(hourlyforecasts);
+            dbHelper.replaceForecasts(hourlyforecasts);
 
             SharedPreferences prefManager = PreferenceManager.getDefaultSharedPreferences(context);
             if (prefManager.getBoolean("pref_weekIDs", false)){
                 weekforecasts = reanalyzeWeekIDs(weekforecasts, hourlyforecasts);
             }
-            dbHelper.addWeekForecasts(weekforecasts);
+            dbHelper.replaceWeekForecasts(weekforecasts);
 
 
             //Extract quarter-hourly weather
-            dbHelper.deleteQuarterHourlyForecastsByCityId(cityId);
             if (json.has("minutely_15")){
                 List<QuarterHourlyForecast> quarterHourlyForecasts = new ArrayList<>();
                 quarterHourlyForecasts = extractor.extractQuarterHourlyForecast(json.getString("minutely_15"));
@@ -148,14 +146,13 @@ public class ProcessOMweatherAPIRequest implements IProcessHttpRequest {
                     for (QuarterHourlyForecast quarterHourlyForecast: quarterHourlyForecasts){
                         quarterHourlyForecast.setCity_id(cityId);
                     }
-
                 } else {
                     final String ERROR_MSG = context.getResources().getString(R.string.error_convert_to_json);
                     if (NavigationActivity.isVisible)
                         Toast.makeText(context, ERROR_MSG, Toast.LENGTH_LONG).show();
                     return;
                 }
-                dbHelper.addQuarterHourlyForecasts(quarterHourlyForecasts);
+                dbHelper.replaceQuarterHourlyForecasts(quarterHourlyForecasts);
             }
 
             possiblyUpdateWidgets(cityId, weatherData, weekforecasts, hourlyforecasts);

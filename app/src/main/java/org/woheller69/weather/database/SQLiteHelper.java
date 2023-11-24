@@ -330,6 +330,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         deleteCurrentWeatherByCityId(cityToWatch.getCityId());
         deleteForecastsByCityId(cityToWatch.getCityId());
         deleteWeekForecastsByCityId(cityToWatch.getCityId());
+        deleteQuarterHourlyForecastsByCityId(cityToWatch.getCityId());
 
         //Now remove city from CITIES_TO_WATCH
         SQLiteDatabase database = this.getWritableDatabase();
@@ -374,8 +375,10 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     }
 
 
-    public synchronized void addQuarterHourlyForecasts(List<QuarterHourlyForecast> quarterHourlyForecasts) {
+    public synchronized void replaceQuarterHourlyForecasts(List<QuarterHourlyForecast> quarterHourlyForecasts) {
         SQLiteDatabase database = this.getWritableDatabase();
+        database.delete(TABLE_QUARTERHOURLYFORECAST, QUARTERHOURLYFORECAST_CITY_ID + " = ?",
+                new String[]{Integer.toString(quarterHourlyForecasts.get(0).getCity_id())});
         for (QuarterHourlyForecast quarterHourlyForecast: quarterHourlyForecasts) {
             ContentValues values = new ContentValues();
             values.put(QUARTERHOURLYFORECAST_CITY_ID, quarterHourlyForecast.getCity_id());
@@ -442,8 +445,10 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     /**
      * Methods for TABLE_FORECAST
      */
-    public synchronized void addForecasts(List<HourlyForecast> hourlyForecasts) {
+    public synchronized void replaceForecasts(List<HourlyForecast> hourlyForecasts) {
         SQLiteDatabase database = this.getWritableDatabase();
+        database.delete(TABLE_HOURLY_FORECAST, FORECAST_CITY_ID + " = ?",
+                new String[]{Integer.toString(hourlyForecasts.get(0).getCity_id())});
         for (HourlyForecast hourlyForecast: hourlyForecasts) {
             ContentValues values = new ContentValues();
             values.put(FORECAST_CITY_ID, hourlyForecast.getCity_id());
@@ -517,8 +522,10 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     /**
      * Methods for TABLE_WEEKFORECAST
      */
-    public synchronized void addWeekForecasts(List<WeekForecast> weekForecasts) {
+    public synchronized void replaceWeekForecasts(List<WeekForecast> weekForecasts) {
         SQLiteDatabase database = this.getWritableDatabase();
+        database.delete(TABLE_WEEKFORECAST, WEEKFORECAST_CITY_ID + " = ?",
+                new String[]{Integer.toString(weekForecasts.get(0).getCity_id())});
         for (WeekForecast weekForecast: weekForecasts) {
             ContentValues values = new ContentValues();
             values.put(WEEKFORECAST_CITY_ID, weekForecast.getCity_id());

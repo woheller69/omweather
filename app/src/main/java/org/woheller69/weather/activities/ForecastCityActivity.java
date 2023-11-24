@@ -402,6 +402,7 @@ public class ForecastCityActivity extends NavigationActivity implements IUpdatea
                 db.deleteWeekForecastsByCityId(getWidgetCityID(context));
                 db.deleteCurrentWeatherByCityId(getWidgetCityID(context));
                 db.deleteForecastsByCityId(getWidgetCityID(context));
+                db.deleteQuarterHourlyForecastsByCityId(getWidgetCityID(context));
                 pagerAdapter.loadCities();
                 viewPager2.setAdapter(pagerAdapter);
                 tabLayout.getTabAt(0).setText(city.getCityName());

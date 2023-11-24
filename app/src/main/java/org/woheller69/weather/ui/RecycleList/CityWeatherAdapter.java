@@ -303,7 +303,9 @@ public class CityWeatherAdapter extends RecyclerView.Adapter<CityWeatherAdapter.
                 holder.temperature.setText(StringFormatUtils.formatTemperature(context, next.getTemperature()));
             }
 
-        } else if (viewHolder.getItemViewType() == DETAILS) {  //not used at the moment
+        } else if (viewHolder.getItemViewType() == DETAILS) {
+
+/*          This viewHolder is not used at the moment in omWeather
 
             DetailViewHolder holder = (DetailViewHolder) viewHolder;
 
@@ -324,7 +326,7 @@ public class CityWeatherAdapter extends RecyclerView.Adapter<CityWeatherAdapter.
                 holder.rain60min.setText(R.string.error_no_rain60min_data);
             }
             holder.rain60minLegend.setText("( "+context.getResources().getString(R.string.units_mm_h)+String.format(Locale.getDefault(),": □ %.1f ▤ <%.1f ▦ <%.1f ■ >=%.1f )",0.0,0.5,2.5,2.5));
-
+*/
         } else if (viewHolder.getItemViewType() == WEEK) {
 
             final WeekViewHolder holder = (WeekViewHolder) viewHolder;
