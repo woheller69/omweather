@@ -15,7 +15,7 @@ public class OMHttpRequestForWeatherAPI extends OMHttpRequest implements IHttpRe
     /**
      * Member variables.
      */
-    private Context context;
+    private final Context context;
 
     /**
      * @param context The context to use.

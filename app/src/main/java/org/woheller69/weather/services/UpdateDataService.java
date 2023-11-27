@@ -116,8 +116,8 @@ public class UpdateDataService extends JobIntentService {
 
         // Update if update forced or if a certain time has passed
         if (skipUpdateInterval || timestamp + updateInterval - systemTime <= 0) {
-            IHttpRequestForWeatherAPI forecastOneCallRequest = new OMHttpRequestForWeatherAPI(getApplicationContext());
-            forecastOneCallRequest.perform(lat,lon, cityId);
+            IHttpRequestForWeatherAPI omHttpRequestForWeatherAPI = new OMHttpRequestForWeatherAPI(getApplicationContext());
+            omHttpRequestForWeatherAPI.perform(lat,lon, cityId);
         }
     }
 
