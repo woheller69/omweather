@@ -1,0 +1,115 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="top|center_horizontal"
+    android:paddingStart="10dp"
+    android:paddingEnd="10dp"
+    android:layoutDirection="ltr"
+    android:id="@+id/widget_digital_clock_layout"
+    android:previewImage="@drawable/weather_widget_preview">
+
+    <ImageView
+        android:id="@+id/widget_background"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignBottom="@id/textClockDate"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/widget_background" />
+
+    <ImageView
+        android:id="@+id/widget_image_view"
+        android:layout_width="70dp"
+        android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="7dp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/wmo_icon_00d" />
+
+    <TextView
+        android:id="@+id/widget_UVindex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:translationX="-15dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/rounded_green"
+        android:paddingStart="2dp"
+        android:paddingEnd="2dp"
+        android:text="UV"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="12dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/widget_temperature"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/widget_temperature"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="5dp"
+        android:text="15°C"
+        android:textColor="@color/lightgrey"
+        android:textSize="24dp" />
+
+
+    <ImageView
+        android:id="@+id/widget_windicon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:translationX="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="5dp"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        android:src="@drawable/ic_wind_orange" />
+
+    <TextClock
+        android:id="@+id/textClockTime"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/widget_temperature"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="5dp"
+        android:text="14:53"
+        android:textColor="@color/lightgrey"
+        android:textSize="24dp" />
+
+    <TextClock
+        android:id="@+id/textClockDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/widget_image_view"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@id/textClockTime"
+        android:gravity="center"
+        android:paddingVertical="2dp"
+        android:format24Hour="MMMM dd, yyyy"
+        android:format12Hour="MMMM dd, yyyy"
+        android:textColor="@color/lightgrey"
+        android:text="April 27, 2023"
+        android:textSize="16sp"/>
+
+    <ImageView
+        android:id="@+id/location_on"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/transparent_no_margin"
+        android:paddingTop="4dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_location_on_white_24dp" />
+
+</RelativeLayout>
+
