@@ -87,13 +87,27 @@
         android:textColor="@color/lightgrey"
         android:textSize="24dp" />
 
+
+    <TextView
+        android:id="@+id/widget_precipitation_forecast"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/textClockDate"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="24dp"
+        android:letterSpacing="-0.05"
+        android:paddingVertical="2dp"
+        android:textColor="@color/lightgrey"
+        android:textSize="16dp" />
+
     <TextClock
         android:id="@+id/textClockDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/widget_image_view"
-        android:layout_alignParentStart="true"
+        android:layout_toEndOf="@id/widget_precipitation_forecast"
         android:layout_alignEnd="@id/textClockTime"
+        android:translationX="-12dp"
         android:gravity="center"
         android:paddingVertical="2dp"
         android:format24Hour="MMMM dd, yyyy"

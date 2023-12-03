@@ -126,6 +126,7 @@ public class WeatherWidget extends AppWidgetProvider {
             views.setTextViewText(R.id.widget_temperature, " "+StringFormatUtils.formatTemperature(context, nowCast.getTemperature())+" ");
             views.setImageViewResource(R.id.widget_windicon,StringFormatUtils.colorWindSpeedWidget(nowCast.getWindSpeed()));
             views.setViewVisibility(R.id.widget_attribution,View.VISIBLE);
+            views.setTextViewText(R.id.widget_precipitation_forecast,"");
             views.setViewVisibility(R.id.widget_precipitation_forecast,View.INVISIBLE);
         } else {
             QuarterHourlyForecast next = new QuarterHourlyForecast();
@@ -138,6 +139,7 @@ public class WeatherWidget extends AppWidgetProvider {
             }
 
             views.setViewVisibility(R.id.widget_attribution,View.VISIBLE);
+            views.setTextViewText(R.id.widget_precipitation_forecast,"");
             views.setViewVisibility(R.id.widget_precipitation_forecast,View.INVISIBLE);
 
             if (next.getPrecipitation()>0){ //raining now
