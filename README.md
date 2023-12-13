@@ -38,7 +38,7 @@ If permission for GPS is given the widget will automatically update position on 
 
 ## License
 
-This app - like the original app Privacy Friendly Weather - is licensed under the GPLv3.
+This app - like the original app Privacy Friendly Weather - is licensed under the GPLv3, \[copyright] woheller69.
 
 The app also uses:
 - The weather data service is provided by [Open-Meteo](https://open-meteo.com/), under <a href='http://creativecommons.org/licenses/by/4.0/'>Attribution 4.0 International (CC BY 4.0)</a>
