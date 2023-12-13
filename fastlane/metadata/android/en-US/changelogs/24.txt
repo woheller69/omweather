@@ -1,0 +1,2 @@
+New widget with clock and date
+Bugfixes
