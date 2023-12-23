@@ -57,8 +57,15 @@ public final class StringFormatUtils {
     }
 
     public static String formatPrecipitation(Context context, float precipitation) {
-        if (precipitation < 10.0f) return formatDecimal(precipitation, context.getString(R.string.units_mm)); //show decimal only below 10mm
-        else return formatInt(precipitation,context.getString(R.string.units_mm));
+        AppPreferencesManager prefManager = new AppPreferencesManager(PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext()));
+        if (prefManager.showMetricPrecipitation()) {
+            if (precipitation < 10.0f) return formatDecimal(precipitation, context.getString(R.string.units_mm)); //show decimal only below 10mm
+            else return formatInt(precipitation,context.getString(R.string.units_mm));
+        } else {
+            DecimalFormat inchFormatter = new DecimalFormat("0.00");
+            inchFormatter.setRoundingMode(RoundingMode.HALF_UP);
+            return String.format("%s\u200a%s", removeMinusIfZerosOnly(inchFormatter.format(precipitation / 25.4)), content.getString(R.string.units_in));
+        }
     }
 
     public static String formatTimeWithoutZone(Context context, long time) {

@@ -40,6 +40,10 @@
     <string name="settings_title_distance">Distances</string>
     <string name="settings_kilometers">Kilometers</string>
     <string name="settings_miles">Miles</string>
+    <string name="settings_title_precipitation_units">Precipitation Units</string>
+    <string name="settings_summary_precipitation_unit">Set the unit to use for displaying precipitation</string>
+    <string name="settings_precipitation_mm">Millimeters</string>
+    <string name="settings_precipitation_in">Inches</string>
     <string name="abbreviation_monday">Mo.</string>
     <string name="abbreviation_tuesday">Tu.</string>
     <string name="abbreviation_wednesday">We.</string>
@@ -83,10 +87,12 @@
     <string name="chart">Chart</string>
     <string name="units_rh">% rh</string>
     <string name="units_mm">mm</string>
+    <string name="units_in">in</string>
     <string name="units_km">km</string>
     <string name="units_hPa">hPa</string>
     <string name="units_Bft">Bft</string>
     <string name="units_mm_h">mm/h</string>
+    <string name="units_in_h">in/h</string>
     <string name="units_km_h">km/h</string>
     <string name="units_mph">mph</string>
     <string name="card_details_rain60min">☔ 60 min:</string>

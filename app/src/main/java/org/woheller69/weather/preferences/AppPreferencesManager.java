@@ -92,4 +92,9 @@ public class AppPreferencesManager {
         editor.putBoolean("askForStar", askForStar);
         editor.apply();
     }
+
+    public boolean showMetricPrecipitation() {
+        int prefValue = Integer.parseInt(preferences.getString("precipitationUnit", "1"));
+        return prefValue == 1;
+    }
 }

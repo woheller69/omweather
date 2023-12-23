@@ -98,6 +98,15 @@
             android:summary="@string/settings_summary_distance"
             android:title="@string/settings_title_distance" />
 
+        <ListPreference
+            app:useSimpleSummaryProvider="true"
+            android:defaultValue="1"
+            android:entries="@array/precipitationUnitsArray"
+            android:entryValues="@array/precipitationUnitsValues"
+            android:key="precipitationUnit"
+            android:summary="@string/settings_summary_precipitation_unit"
+            android:title="@string/settings_title_precipitation_units" />
+
         <SwitchPreference
             android:key="pref_WindFormat"
             android:title="@string/settings_wind"

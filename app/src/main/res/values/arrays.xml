@@ -19,6 +19,15 @@
         <item>2</item>
     </string-array>
 
+    <string-array name="precipitationUnitsArray">
+        <item>@string/settings_precipitation_mm</item>
+        <item>@string/settings_precipitation_in</item>
+    </string-array>
+    <string-array name="precipitationUnitsValues">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
     <string-array name="refreshIntervalArray">
         <item>@string/settings_interval_quarter</item>
         <item>@string/settings_interval_half</item>
