@@ -28,14 +28,10 @@
     <string name="about_more_info">Daha fazla bilgi burada bulunabilir:</string>
     <string name="activity_settings_title">Ayarlar</string>
     <string name="settings_title_units">Birimler</string>
-    <string name="settings_summary_temperature">Sıcaklıkları görüntülemek için kullanılacak birimi ayarlayın</string>
-    <string name="settings_title_temperature">Sıcaklıklar</string>
+    <string name="settings_title_temperature">Sıcaklık</string>
     <string name="settings_celsius">Santigrat</string>
     <string name="settings_fahrenheit">Fahrenhayt</string>
-    <string name="settings_summary_distance">Mesafeleri görüntülemek için kullanılacak birimi ayarlayın</string>
-    <string name="settings_title_distance">Mesafeler</string>
-    <string name="settings_kilometers">Kilometre</string>
-    <string name="settings_miles">Mil</string>
+    <string name="settings_title_speed">Rüzgar hızı</string>
     <string name="abbreviation_monday">Pzt.</string>
     <string name="abbreviation_tuesday">Sal.</string>
     <string name="abbreviation_wednesday">Çar.</string>
@@ -98,19 +94,16 @@
     <string name="error_no_position">Uygun konum yok</string>
     <string name="settings_time24h">24-saat formatı</string>
     <string name="summary_time24h">Sistem ayarını geçersiz kıl</string>
-    <string name="settings_wind">Beaufort ölçeğini kullan</string>
     <string name="dialog_OK_button">Tamam</string>
     <string name="dialog_NO_button">Hayır</string>
     <string name="dialog_Later_button">Belki daha sonra</string>
     <string name="dialog_StarOnGitHub">Bu uygulamayı beğendiniz mi? Lütfen GitHub\'da bir yıldız verin veya geliştiriciye PayPal aracılığıyla bir kahve ısmarlayın.</string>
     <string name="settings_show_pressure">Hava basıncını göster</string>
-    <string name="action_position" translatable="false">Konumu Güncelle</string>
     <string name="settings_GPS_manual">Yalnızca elle güncelle</string>
     <string name="rationale_background_location">Lütfen widget\'ta kullanmak için arka planda GPS kullanımına da izin verin</string>
     <string name="error_no_gps">Lütfen GPS\'i açın</string>
     <string name="slide3_heading">Open-Meteo</string>
     <string name="RainViewer">Yağmur Radarı</string>
-    <string name="action_rainviewer" translatable="false">Yağmur radarı</string>
     <string name="nonFreeNet">Açık kaynaklı bir ağ olmayan RainViewer.com\'a erişime izin verin.</string>
     <string name="summary_reanalyze">Gün doğumu ve gün batımı (deneysel) arasındaki saatlik tahminleri analiz ederek hafta simgelerini iyileştirin.</string>
     <string name="settings_reanalyze">Hafta Simgeleri</string>
@@ -119,4 +112,5 @@
     <string name="settings_forecast_days">Hava durumu tahmini gün sayısı</string>
     <string name="settings_apparent_temperature">Hissedilen sıcaklığı göster</string>
     <string name="units_hours">s</string>
+    <string name="settings_title_precipitation">Yağış</string>
 </resources>

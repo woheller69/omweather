@@ -57,8 +57,15 @@ public final class StringFormatUtils {
     }
 
     public static String formatPrecipitation(Context context, float precipitation) {
-        if (precipitation < 10.0f) return formatDecimal(precipitation, context.getString(R.string.units_mm)); //show decimal only below 10mm
-        else return formatInt(precipitation,context.getString(R.string.units_mm));
+        SharedPreferences sharedPreferences= PreferenceManager.getDefaultSharedPreferences(context);
+        if (sharedPreferences.getString("precipitationUnit", "1").equals("1")) {  // mm
+            if (precipitation < 10.0f) return formatDecimal(precipitation, context.getString(R.string.units_mm)); //show decimal only below 10mm
+            else return formatInt(precipitation,context.getString(R.string.units_mm));
+        } else {
+            DecimalFormat inchFormatter = new DecimalFormat("0.00");
+            inchFormatter.setRoundingMode(RoundingMode.HALF_UP);
+            return String.format("%s\u200a%s", removeMinusIfZerosOnly(inchFormatter.format(precipitation / 25.4)), context.getString(R.string.units_in));
+        }
     }
 
     public static String formatTimeWithoutZone(Context context, long time) {
@@ -82,7 +89,7 @@ public final class StringFormatUtils {
 
     public static String formatWindSpeed(Context context, float wind_speed) {
         SharedPreferences sharedPreferences= PreferenceManager.getDefaultSharedPreferences(context);
-        if (sharedPreferences.getBoolean("pref_WindFormat",true)==TRUE) {
+        if (sharedPreferences.getString("speedUnit", "3").equals("3")) {
             if (wind_speed < 0.3) {
                 return formatInt(0, context.getString(R.string.units_Bft)); // Calm
             } else if (wind_speed < 1.5) {
@@ -110,11 +117,10 @@ public final class StringFormatUtils {
             } else {
                 return formatInt(12, context.getString(R.string.units_Bft)); // Hurricane
             }
-        }else{
-            if (sharedPreferences.getString("distanceUnit", "0").equals("1")) {   //distanceUnit km
+        } else if (sharedPreferences.getString("speedUnit", "3").equals("1")) {
                 return formatInt((float) (wind_speed*3.6),context.getString(R.string.units_km_h));
-            }else return formatInt((float) (wind_speed*2.236),context.getString(R.string.units_mph));
-        }
+        } else return formatInt((float) (wind_speed*2.236),context.getString(R.string.units_mph));
+
     }
 
     public static Drawable colorWindSpeed(Context context, float wind_speed) {
@@ -191,35 +197,6 @@ public final class StringFormatUtils {
         }
     }
 
-    public static Integer widgetColorWindSpeed(Context context, float wind_speed) {
-        if (wind_speed < 0.3) {
-            return R.drawable.rounded_grey;
-        } else if (wind_speed < 1.5) {
-            return R.drawable.rounded_grey;
-        } else if (wind_speed < 3.3) {
-            return R.drawable.rounded_grey;
-        } else if (wind_speed < 5.5) {
-            return R.drawable.rounded_grey;
-        } else if (wind_speed < 7.9) {
-            return R.drawable.rounded_grey;
-        } else if (wind_speed < 10.7) {
-            return R.drawable.rounded_yellow;
-        } else if (wind_speed < 13.8) {
-            return R.drawable.rounded_yellow;
-        } else if (wind_speed < 17.1) {
-            return R.drawable.rounded_yellow;
-        } else if (wind_speed < 20.7) {
-            return R.drawable.rounded_orange;
-        } else if (wind_speed < 24.4) {
-            return R.drawable.rounded_orange;
-        } else if (wind_speed < 28.4) {
-            return R.drawable.rounded_lightred;
-        } else if (wind_speed < 32.6) {
-            return R.drawable.rounded_lightred;
-        } else {
-            return R.drawable.rounded_red;
-        }
-    }
 
     public static Integer widgetColorUVindex(Context context, int uvindex) {
         if (uvindex <=2) {

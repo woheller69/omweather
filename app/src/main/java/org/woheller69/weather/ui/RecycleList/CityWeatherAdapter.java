@@ -5,6 +5,7 @@ import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,7 +33,6 @@ import org.woheller69.weather.ui.UiResourceProvider;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Locale;
 import java.util.TimeZone;
 
 public class CityWeatherAdapter extends RecyclerView.Adapter<CityWeatherAdapter.ViewHolder> {
@@ -79,12 +79,12 @@ public class CityWeatherAdapter extends RecyclerView.Adapter<CityWeatherAdapter.
 
         long onehourago = System.currentTimeMillis() - (1 * 60 * 60 * 1000);
 
-            for (HourlyForecast f : hourlyForecasts) {
-                if (f.getForecastTime() >= onehourago) {
-                    courseDayList.add(f);
-                }
+        for (HourlyForecast f : hourlyForecasts) {
+            if (f.getForecastTime() >= onehourago) {
+                courseDayList.add(f);
             }
-            notifyDataSetChanged();
+        }
+        notifyDataSetChanged();
     }
 
     // function for week forecast list
@@ -383,7 +383,7 @@ public class CityWeatherAdapter extends RecyclerView.Adapter<CityWeatherAdapter.
                             }
                         }
 
-                         public void onLongItemClick(View view, int position) {
+                        public void onLongItemClick(View view, int position) {
 
                         }
                     })
@@ -403,6 +403,7 @@ public class CityWeatherAdapter extends RecyclerView.Adapter<CityWeatherAdapter.
             if (weekForecastList==null || weekForecastList.isEmpty()) return;
 
             AppPreferencesManager prefManager = new AppPreferencesManager(PreferenceManager.getDefaultSharedPreferences(this.context));
+            SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this.context);
 
             float tmin=1000;
             float tmax=-1000;
@@ -430,7 +431,7 @@ public class CityWeatherAdapter extends RecyclerView.Adapter<CityWeatherAdapter.
                 if (weekForecastList.size()>8) dayString=dayString.substring(0,1);  //use first character only if more than 8 days to avoid overlapping text
 
                 if ((i == 0) || (i == (weekForecastList.size()-1 ))) {  // 1 bar at begin and end for alignment with temperature line chart (first day starts at noon, last ends at noon)
-                    precipitationDataset.addBar(dayString, precip);
+                    precipitationDataset.addBar(dayString, prefManager.convertPrecipitationFromMM(precip));
                     //x-labels for precipitation dataset must be there and cannot be empty even though they are made invisible below. Otherwise alignment gets destroyed!
                     datasetmax.addPoint(dayString, prefManager.convertTemperatureFromCelsius(temp_max));
                     datasetmin.addPoint(dayString, prefManager.convertTemperatureFromCelsius(temp_min));
@@ -438,8 +439,8 @@ public class CityWeatherAdapter extends RecyclerView.Adapter<CityWeatherAdapter.
 
                 } else { // 2 bars in the middle for alignment with temperature line chart
 
-                    precipitationDataset.addBar(dayString, precip);
-                    precipitationDataset.addBar(dayString, precip);
+                    precipitationDataset.addBar(dayString, prefManager.convertPrecipitationFromMM(precip));
+                    precipitationDataset.addBar(dayString, prefManager.convertPrecipitationFromMM(precip));
 
                     datasetmax.addPoint(dayString, prefManager.convertTemperatureFromCelsius(temp_max));
                     datasetmin.addPoint(dayString, prefManager.convertTemperatureFromCelsius(temp_min));
@@ -447,7 +448,7 @@ public class CityWeatherAdapter extends RecyclerView.Adapter<CityWeatherAdapter.
 
                 if (prefManager.convertTemperatureFromCelsius(temp_max)>tmax) tmax=prefManager.convertTemperatureFromCelsius(temp_max);
                 if (prefManager.convertTemperatureFromCelsius(temp_min)<tmin) tmin=prefManager.convertTemperatureFromCelsius(temp_min);
-                if (precip>pmax) pmax=precip;
+                if (prefManager.convertPrecipitationFromMM(precip)>pmax) pmax=prefManager.convertPrecipitationFromMM(precip);
             }
 
             tmax++;  //add some space above and below
@@ -496,10 +497,11 @@ public class CityWeatherAdapter extends RecyclerView.Adapter<CityWeatherAdapter.
 
             holder.lineChartView.show();
 
-            step = (int) Math.ceil((Math.max(10,pmax*2))/4);
+            int stepnum = sp.getString("precipitationUnit","1").equals("1") ? 4 : 2;  //only 2 steps instead of 4 if inches is selected
+            step = (int) Math.ceil((Math.max(prefManager.convertPrecipitationFromMM(10),pmax*2))/stepnum);
             holder.barChartView.addData(precipitation);
             holder.barChartView.setBarSpacing(0);
-            holder.barChartView.setAxisBorderValues(0, step*4);  //scale down in case of high precipitation, limit to lower half of chart
+            holder.barChartView.setAxisBorderValues(0, step*stepnum);  //scale down in case of high precipitation, limit to lower half of chart
             holder.barChartView.setXAxis(false);
             holder.barChartView.setYAxis(false);
             holder.barChartView.setYLabels(AxisController.LabelPosition.NONE); //no labels for precipitation
@@ -520,7 +522,7 @@ public class CityWeatherAdapter extends RecyclerView.Adapter<CityWeatherAdapter.
 
             holder.barChartViewAxis.addData(precipitationAxis);
             holder.barChartViewAxis.setBarSpacing(0);
-            holder.barChartViewAxis.setAxisBorderValues(0, step*4);  //scale down in case of high precipitation, limit to lower half of chart
+            holder.barChartViewAxis.setAxisBorderValues(0, step*stepnum);  //scale down in case of high precipitation, limit to lower half of chart
             holder.barChartViewAxis.setStep(step);
             holder.barChartViewAxis.setXAxis(false);
             holder.barChartViewAxis.setYAxis(false);
@@ -532,7 +534,7 @@ public class CityWeatherAdapter extends RecyclerView.Adapter<CityWeatherAdapter.
             holder.barChartViewAxis.show();
 
             holder.temperatureunit.setText(" "+ prefManager.getTemperatureUnit() + " ");
-            holder.precipitationunit.setText(" " + context.getResources().getString(R.string.units_mm)+" ");
+            holder.precipitationunit.setText(" " + prefManager.getPrecipitationUnit(context) + " ");
         }
         //No update for error needed
     }

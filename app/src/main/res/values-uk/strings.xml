@@ -11,7 +11,6 @@
     <string name="okay">Добре</string>
     <string name="slide1_heading">Ласкаво просимо!</string>
     <string name="slide1_text">omWeather це застосунок для перевірки поточної погоди та прогнозу для вашого місцезнаходження</string>
-    <string name="slide2_heading" translatable="false">Github</string>
     <string name="slide2_text">Джерельний код цього застосунку доступний на Github. Для подальших пояснень, перейдіть на Сторінку інформації.</string>
     <string name="card_details_heading">Зараз</string>
     <string name="card_details_humidity">Вологість:</string>
@@ -27,19 +26,12 @@
     <string name="about_license">Ліцензія</string>
     <string name="about_license_text">Цей застосунок є похідною від застосунка Privacy Friendly Weather, розробленого дослідницькою групою SECUSO. Джерельний код під ліцензією GPLv3. Застосунок використовує Google Material Design Icons, ліцензований згідно з ліцензією Apache версії 2.0, бібліотеку листівок, ліцензовану згідно з ліцензією 2-Clause BSD, плагін Leaflet.TileLayer.ColorFilter, ліцензований згідно з ліцензією MIT, AutoSuggestTextViewAPICall, ліцензований згідно з ліцензією Apache версії 2.0, і Бібліотека WilliamChart (com.db.chart) під ліцензією Apache License Version 2.0</string>
     <string name="about_more_info">Більше інформації можна знайти на:</string>
-    <string name="about_github" translatable="false"><a href="https://github.com/woheller69/omweather">Github-Repo</a></string>
-    <string name="about_openmeteo" translatable="false"><a href="https://open-meteo.com">Open-Meteo \n(Attribution 4.0 International CC BY 4.0)</a></string>
-    <string name="about_rainviewer" translatable="false"><a href="https://rainviewer.com">RainViewer</a></string>
     <string name="activity_settings_title">Налаштування</string>
     <string name="settings_title_units">Одиниці</string>
-    <string name="settings_summary_temperature">Встановити одиницю відображення температури</string>
-    <string name="settings_title_temperature">Температури</string>
+    <string name="settings_title_temperature">Температура</string>
     <string name="settings_celsius">Цельсій</string>
     <string name="settings_fahrenheit">Фаренгейт</string>
-    <string name="settings_summary_distance">Встановити одиницю відображення відстаней</string>
-    <string name="settings_title_distance">Відстані</string>
-    <string name="settings_kilometers">Кілометри</string>
-    <string name="settings_miles">Милі</string>
+    <string name="settings_title_speed">Швидкість вітру</string>
     <string name="abbreviation_monday">Пн.</string>
     <string name="abbreviation_tuesday">Вт.</string>
     <string name="abbreviation_wednesday">Ср.</string>
@@ -102,19 +94,16 @@
     <string name="error_no_position">Позиція не доступна</string>
     <string name="settings_time24h">24-годинний формат</string>
     <string name="summary_time24h">Перевизначити налаштування системи</string>
-    <string name="settings_wind">Використовуйте шкалу Бофорта</string>
     <string name="dialog_OK_button">Добре</string>
     <string name="dialog_NO_button">Ні</string>
     <string name="dialog_Later_button">Можливо потіи</string>
     <string name="dialog_StarOnGitHub">Подобається застосунок? Поставте зірочку на Github або придбайте розробнику каву через PayPal.</string>
     <string name="settings_show_pressure">Відображати тиск повітря</string>
-    <string name="action_position" translatable="false">Оновити місцезнаходження</string>
     <string name="settings_GPS_manual">Лише ручне оновлення</string>
     <string name="rationale_background_location">Також дозвольте використання GPS у фоновому режимі для використання у віджеті</string>
     <string name="error_no_gps">Увімкніть GPS</string>
     <string name="slide3_heading">Open-Meteo</string>
     <string name="RainViewer">Rain Radar</string>
-    <string name="action_rainviewer" translatable="false">Rain radar</string>
     <string name="nonFreeNet">Дозвольте доступ до RainViewer.com, який не є мережею з відкритим кодом.</string>
     <string name="summary_reanalyze">Покращувати піктограми тижня, аналізуючи погодинні прогнози між сходом і заходом сонця (експериментально).</string>
     <string name="settings_reanalyze">Піктограми тижня</string>
@@ -123,4 +112,5 @@
     <string name="settings_forecast_days">Кількість прогнозованих днів</string>
     <string name="settings_apparent_temperature">Відображати \"відчувається як\" температуру</string>
     <string name="units_hours">год</string>
+    <string name="settings_title_precipitation">Опади</string>
 </resources>

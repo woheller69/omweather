@@ -28,14 +28,10 @@
     <string name="about_more_info">Ulteriori informazioni possono essere trovate su:</string>
     <string name="activity_settings_title">Impostazioni</string>
     <string name="settings_title_units">Unità</string>
-    <string name="settings_summary_temperature">Impostare l\'unità da utilizzare per la visualizzazione delle temperature</string>
-    <string name="settings_title_temperature">Temperature</string>
+    <string name="settings_title_temperature">Temperatura</string>
     <string name="settings_celsius">Celsius</string>
     <string name="settings_fahrenheit">Fahrenheit</string>
-    <string name="settings_summary_distance">Impostare l\'unità da utilizzare per la visualizzazione delle distanze</string>
-    <string name="settings_title_distance">Distanze</string>
-    <string name="settings_kilometers">Chilometri</string>
-    <string name="settings_miles">Miglia</string>
+    <string name="settings_title_speed">Velocità del vento</string>
     <string name="abbreviation_monday">Lun.</string>
     <string name="abbreviation_tuesday">Mar.</string>
     <string name="abbreviation_wednesday">Mer.</string>
@@ -98,7 +94,6 @@
     <string name="error_no_position">Posizione non disponibile</string>
     <string name="settings_time24h">Formato 24 ore</string>
     <string name="summary_time24h">Sovrascrivere le impostazioni di sistema</string>
-    <string name="settings_wind">Usa la scala Beaufort</string>
     <string name="dialog_OK_button">OK</string>
     <string name="dialog_NO_button">No</string>
     <string name="dialog_Later_button">Forse più tardi</string>
@@ -117,4 +112,5 @@
     <string name="settings_forecast_days">Numero di giorni di previsione</string>
     <string name="settings_apparent_temperature">Mostra la temperatura percepita</string>
     <string name="units_hours">h</string>
+    <string name="settings_title_precipitation">Precipitazione</string>
 </resources>

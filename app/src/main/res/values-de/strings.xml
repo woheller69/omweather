@@ -33,14 +33,10 @@
     <string name="dialog_add_no_city_found">Es wurde kein Ort gefunden, der der Eingabe entspricht. Es wird empfohlen, einen Eintrag aus dem Dropdown-Menu zu wählen.</string>
     <string name="navigation_drawer_close">Navigationsleiste schließen</string>
     <string name="settings_title_units">Maßeinheiten</string>
-    <string name="settings_title_temperature">Temperaturen</string>
-    <string name="settings_title_distance">Entfernungen</string>
+    <string name="settings_title_temperature">Temperatur</string>
+    <string name="settings_title_speed">Windgeschwindigkeit</string>
     <string name="settings_celsius">Celsius</string>
     <string name="settings_fahrenheit">Fahrenheit</string>
-    <string name="settings_kilometers">Kilometer</string>
-    <string name="settings_miles">Meilen</string>
-    <string name="settings_summary_distance">Die Einheit, die zur Anzeige von Entfernungen verwendet wird.</string>
-    <string name="settings_summary_temperature">Die Einheit, die zur Anzeige von Temperaturen verwendet wird.</string>
     <string name="settings_interval_summary">Setzen Sie das Interval der automatischen Updates</string>
     <string name="settings_intervals">Intervalle</string>
     <string name="settings_update_interval">Update Intervall</string>
@@ -94,7 +90,6 @@
     <string name="error_no_position">Keine Position verfügbar</string>
     <string name="settings_time24h">24-Stunden-Format</string>
     <string name="summary_time24h">Systemeinstellung überschreiben</string>
-    <string name="settings_wind">Beaufort-Skala benutzen</string>
     <string name="dialog_OK_button">OK</string>
     <string name="dialog_NO_button">Nein</string>
     <string name="dialog_Later_button">Vielleicht später</string>
@@ -120,5 +115,6 @@
     <string name="settings_forecast_days">Anzahl der prognostizierten Tage</string>
     <string name="settings_apparent_temperature">Gefühlte Temperatur anzeigen</string>
     <string name="units_hours">h</string>
+    <string name="settings_title_precipitation">Niederschlag</string>
 
 </resources>

@@ -58,6 +58,16 @@ public class AppPreferencesManager {
         }
     }
 
+    public float convertPrecipitationFromMM(float precipitation) {
+        // 1 = mm, 2 = inch
+        int prefValue = Integer.parseInt(preferences.getString("precipitationUnit", "1"));
+        if (prefValue == 1) {
+            return precipitation;
+        } else {
+            return (float) (precipitation / 25.4);
+        }
+    }
+
     /**
      * @return Returns "°C" in case Celsius is set and "°F" if Fahrenheit was selected.
      */
@@ -67,6 +77,15 @@ public class AppPreferencesManager {
             return "°C";
         } else {
             return "°F";
+        }
+    }
+
+    public String getPrecipitationUnit(Context context) {
+        int prefValue = Integer.parseInt(preferences.getString("precipitationUnit", "1"));
+        if (prefValue == 1) {
+            return context.getString(R.string.units_mm) ;
+        } else {
+            return context.getString(R.string.units_in);
         }
     }
 

@@ -35,14 +35,10 @@
     <string name="dialog_add_no_city_found">Aucun emplacement correspondant à ce que vous avez entré n\'a été trouvé. Il est recommandé de choisir une entrée dans le menu déroulant.</string>
     <string name="navigation_drawer_close">Fermer la barre de navigation</string>
     <string name="settings_title_units">Unités</string>
-    <string name="settings_title_temperature">Températures</string>
-    <string name="settings_title_distance">Distances</string>
+    <string name="settings_title_temperature">Température</string>
+    <string name="settings_title_speed">Vitesse du vent</string>
     <string name="settings_celsius">Celsius</string>
     <string name="settings_fahrenheit">Fahrenheit</string>
-    <string name="settings_kilometers">Kilomètre</string>
-    <string name="settings_miles">Miles</string>
-    <string name="settings_summary_distance">L\'unité utilisée pour afficher les distances.</string>
-    <string name="settings_summary_temperature">L\'unité utilisée pour afficher les températures.</string>
     <string name="settings_interval_summary">Définir l\'intervalle des mises à jour automatiques</string>
     <string name="settings_intervals">Intervalle</string>
     <string name="settings_update_interval">Intervalle de mise à jour</string>
@@ -94,7 +90,6 @@
     <string name="error_no_position">Position non disponible</string>
     <string name="settings_time24h">Format 24 heures</string>
     <string name="summary_time24h">Remplacer le réglage du système</string>
-    <string name="settings_wind">Utiliser l\'échelle de Beaufort</string>
     <string name="dialog_OK_button">D\'accord</string>
     <string name="dialog_NO_button">Non</string>
     <string name="dialog_Later_button">Peut-être plus tard</string>
@@ -120,5 +115,6 @@
     <string name="settings_forecast_days">Nombre de jours de prévision</string>
     <string name="settings_apparent_temperature">Affiche la température ressentie</string>
     <string name="units_hours">h</string>
+    <string name="settings_title_precipitation">Précipitation</string>
 
 </resources>

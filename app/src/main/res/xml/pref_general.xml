@@ -86,23 +86,24 @@
             android:entries="@array/temperatureUnitsArray"
             android:entryValues="@array/temperatureUnitsValues"
             android:key="temperatureUnit"
-            android:summary="@string/settings_summary_temperature"
             android:title="@string/settings_title_temperature" />
 
         <ListPreference
             app:useSimpleSummaryProvider="true"
-            android:defaultValue="1"
-            android:entries="@array/distanceUnitsArray"
-            android:entryValues="@array/distanceUnitsValues"
-            android:key="distanceUnit"
-            android:summary="@string/settings_summary_distance"
-            android:title="@string/settings_title_distance" />
+            android:defaultValue="3"
+            android:entries="@array/speedUnitsArray"
+            android:entryValues="@array/speedUnitsValues"
+            android:key="speedUnit"
+            android:title="@string/settings_title_speed" />
 
-        <SwitchPreference
-            android:key="pref_WindFormat"
-            android:title="@string/settings_wind"
-            android:defaultValue="true"
-            />
+        <ListPreference
+            app:useSimpleSummaryProvider="true"
+            android:defaultValue="1"
+            android:entries="@array/preciptiationUnitsArray"
+            android:entryValues="@array/precipitationUnitsValues"
+            android:key="precipitationUnit"
+            android:title="@string/settings_title_precipitation" />
+
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/settings_intervals">
@@ -112,7 +113,6 @@
             android:entries="@array/refreshIntervalArray"
             android:entryValues="@array/refreshIntervalValues"
             android:key="pref_updateInterval"
-            android:summary="@string/settings_interval_summary"
             android:title="@string/settings_update_interval" />
     </PreferenceCategory>
 

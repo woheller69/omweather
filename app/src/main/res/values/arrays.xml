@@ -10,11 +10,22 @@
         <item>2</item>
     </string-array>
 
-    <string-array name="distanceUnitsArray">
-        <item>@string/settings_kilometers</item>
-        <item>@string/settings_miles</item>
+    <string-array name="speedUnitsArray">
+        <item>@string/units_km_h</item>
+        <item>@string/units_mph</item>
+        <item>@string/units_Bft</item>
     </string-array>
-    <string-array name="distanceUnitsValues">
+    <string-array name="speedUnitsValues">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+    <string-array name="preciptiationUnitsArray">
+        <item>@string/units_mm</item>
+        <item>@string/units_in</item>
+    </string-array>
+    <string-array name="precipitationUnitsValues">
         <item>1</item>
         <item>2</item>
     </string-array>

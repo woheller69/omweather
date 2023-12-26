@@ -28,14 +28,10 @@
     <string name="about_more_info">Mais informações podem ser encontradas em:</string>
     <string name="activity_settings_title">Configurações</string>
     <string name="settings_title_units">Unidades</string>
-    <string name="settings_summary_temperature">Defina a unidade para usar ao mostrar temperaturas</string>
-    <string name="settings_title_temperature">Temperaturas</string>
+    <string name="settings_title_temperature">Temperatura</string>
     <string name="settings_celsius">Celsius</string>
     <string name="settings_fahrenheit">Fahrenheit</string>
-    <string name="settings_summary_distance">Defina a unidade para usar ao mostrar distâncias</string>
-    <string name="settings_title_distance">Distâncias</string>
-    <string name="settings_kilometers">Quilômetros</string>
-    <string name="settings_miles">Milhas</string>
+    <string name="settings_title_speed">Velocidade do vento</string>
     <string name="abbreviation_monday">Seg</string>
     <string name="abbreviation_tuesday">Ter</string>
     <string name="abbreviation_wednesday">Qua</string>
@@ -98,7 +94,6 @@
     <string name="error_no_position">Nenhuma posição disponível</string>
     <string name="settings_time24h">Formato de 24 horas</string>
     <string name="summary_time24h">Sobrescrever as configurações do sistema</string>
-    <string name="settings_wind">Usar a escala Beaufort</string>
     <string name="dialog_OK_button">OK</string>
     <string name="dialog_NO_button">Não</string>
     <string name="dialog_Later_button">Talvez mais tarde</string>
@@ -117,4 +112,5 @@
     <string name="settings_forecast_days">Número de dias de previsão</string>
     <string name="settings_apparent_temperature">Mostrar temperatura do feltro</string>
     <string name="units_hours">h</string>
+    <string name="settings_title_precipitation">Precipitação</string>
 </resources>

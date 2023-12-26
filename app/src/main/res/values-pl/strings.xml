@@ -11,7 +11,6 @@
     <string name="okay">Ok</string>
     <string name="slide1_heading">Witaj!</string>
     <string name="slide1_text">omWeather to aplikacja do sprawdzania aktualnej pogody i prognoz dla Twoich lokalizacji.</string>
-    <string name="slide2_heading" translatable="false">Github</string>
     <string name="slide2_text">Kod źródłowy tej aplikacji jest dostępny na GitHub. Więcej wyjaśnień można znaleźć na stronie Informacje.</string>
     <string name="card_details_heading">Teraz</string>
     <string name="card_details_humidity">Wilgotność:</string>
@@ -27,19 +26,12 @@
     <string name="about_license">Licencja</string>
     <string name="about_license_text">Ta aplikacja wywodzi się z Privacy Friendly Weather, opracowanej przez grupę badawczą SECUSO. Kod źródłowy na licencji GPLv3. Aplikacja korzysta z ikon Google Material Design Icons na licencji Apache w wersji 2.0, biblioteki Leaflet na licencji 2-klauzulowej licencji BSD, wtyczki Leaflet.TileLayer.ColorFilter na licencji MIT, AutoSuggestTextViewAPICall na licencji Apache Wersja 2.0 i biblioteka WilliamChart (com.db.chart) na licencji Apache License Version 2.0</string>
     <string name="about_more_info">Więcej informacji można znaleźć na:</string>
-    <string name="about_github" translatable="false"><a href="https://github.com/woheller69/omweather">Github-Repo</a></string>
-    <string name="about_openmeteo" translatable="false"><a href="https://open-meteo.com">Open-Meteo \n(Attribution 4.0 International CC BY 4.0)</a></string>
-    <string name="about_rainviewer" translatable="false"><a href="https://rainviewer.com">RainViewer</a></string>
     <string name="activity_settings_title">Ustawienia</string>
     <string name="settings_title_units">Jednostki</string>
-    <string name="settings_summary_temperature">Ustaw jednostkę, która ma być używana do wyświetlania temperatur</string>
-    <string name="settings_title_temperature">Temperatury</string>
+    <string name="settings_title_temperature">Temperatura</string>
     <string name="settings_celsius">Celcjusz</string>
     <string name="settings_fahrenheit">Fahrenheit</string>
-    <string name="settings_summary_distance">Ustaw jednostkę, która ma być używana do wyświetlania odległości</string>
-    <string name="settings_title_distance">Dystansu</string>
-    <string name="settings_kilometers">Kilometery</string>
-    <string name="settings_miles">Mile</string>
+    <string name="settings_title_speed">Prędkość wiatru</string>
     <string name="abbreviation_monday">Pn.</string>
     <string name="abbreviation_tuesday">Wt.</string>
     <string name="abbreviation_wednesday">Śr.</string>
@@ -102,19 +94,16 @@
     <string name="error_no_position">Brak pozycji</string>
     <string name="settings_time24h">24-h format</string>
     <string name="summary_time24h">Zastąp ustawienia systemowe</string>
-    <string name="settings_wind">Użyj skali Beauforta</string>
     <string name="dialog_OK_button">OK</string>
     <string name="dialog_NO_button">Nie</string>
     <string name="dialog_Later_button">Może później</string>
     <string name="dialog_StarOnGitHub">Czy podoba Ci się ta aplikacja? Daj gwiazdkę na GitHub lub kup programistom kawę przez PayPal.</string>
     <string name="settings_show_pressure">Pokaż ciśnienie atmosferyczne</string>
-    <string name="action_position" translatable="false">Update Location</string>
     <string name="settings_GPS_manual">Tylko aktualizacja ręczna</string>
     <string name="rationale_background_location">Zezwól również na korzystanie z GPS w tle do użycia w widgecie</string>
     <string name="error_no_gps">Proszę włączyć GPS</string>
     <string name="slide3_heading">Open-Meteo</string>
     <string name="RainViewer">Radar</string>
-    <string name="action_rainviewer" translatable="false">Rain radar</string>
     <string name="nonFreeNet">Zezwalaj na dostęp do RainViewer.com, która nie jest witryną typu open source.</string>
     <string name="summary_reanalyze">Ulepsz ikony tygodnia, analizując prognozy godzinowe między wschodem a zachodem słońca (eksperymentalnie).</string>
     <string name="settings_reanalyze">Ikony tygodnia</string>
@@ -123,5 +112,6 @@
     <string name="settings_forecast_days">Liczba dni prognozy</string>
     <string name="settings_apparent_temperature">Pokaż odczuwalną temperaturę</string>
     <string name="units_hours">h</string>
+    <string name="settings_title_precipitation">Opad atmosferyczny</string>
 </resources>
 

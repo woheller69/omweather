@@ -32,14 +32,10 @@
     <string name="about_rainviewer" translatable="false"><a href="https://rainviewer.com">RainViewer</a></string>
     <string name="activity_settings_title">Settings</string>
     <string name="settings_title_units">Units</string>
-    <string name="settings_summary_temperature">Set the unit to use for displaying temperatures</string>
-    <string name="settings_title_temperature">Temperatures</string>
+    <string name="settings_title_temperature">Temperature</string>
     <string name="settings_celsius">Celsius</string>
     <string name="settings_fahrenheit">Fahrenheit</string>
-    <string name="settings_summary_distance">Set the unit to use for displaying distances</string>
-    <string name="settings_title_distance">Distances</string>
-    <string name="settings_kilometers">Kilometers</string>
-    <string name="settings_miles">Miles</string>
+    <string name="settings_title_speed">Wind speed</string>
     <string name="abbreviation_monday">Mo.</string>
     <string name="abbreviation_tuesday">Tu.</string>
     <string name="abbreviation_wednesday">We.</string>
@@ -89,6 +85,7 @@
     <string name="units_mm_h">mm/h</string>
     <string name="units_km_h">km/h</string>
     <string name="units_mph">mph</string>
+    <string name="units_in" translatable="false">\u2033</string>
     <string name="card_details_rain60min">☔ 60 min:</string>
     <string name="error_no_rain60min_data">no data</string>
     <string name="dialog_edit_change_button">Modify</string>
@@ -102,7 +99,6 @@
     <string name="error_no_position">No position available</string>
     <string name="settings_time24h">24-hour format</string>
     <string name="summary_time24h">Override system setting</string>
-    <string name="settings_wind">Use Beaufort scale</string>
     <string name="dialog_OK_button">OK</string>
     <string name="dialog_NO_button">No</string>
     <string name="dialog_Later_button">Maybe later</string>
@@ -124,4 +120,5 @@
     <string name="settings_apparent_temperature">Show \"feels like\" temperature</string>
     <string name="github" translatable="false">GitHub</string>
     <string name="units_hours">h</string>
+    <string name="settings_title_precipitation">Precipitation</string>
 </resources>

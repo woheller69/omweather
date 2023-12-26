@@ -30,14 +30,10 @@
     <string name="about_more_info">Puede encontrar más información en:</string>
     <string name="activity_settings_title">Configuraciones</string>
     <string name="settings_title_units">Unidades</string>
-    <string name="settings_summary_temperature">Configure la unidad que se utilizará para mostrar temperaturas</string>
-    <string name="settings_title_temperature">Temperaturas</string>
+    <string name="settings_title_temperature">Temperatura</string>
     <string name="settings_celsius">Celsius</string>
     <string name="settings_fahrenheit">Fahrenheit</string>
-    <string name="settings_summary_distance">Configure la unidad que se utilizará para mostrar distancias</string>
-    <string name="settings_title_distance">Distancias</string>
-    <string name="settings_kilometers">Kilómetros</string>
-    <string name="settings_miles">Miles</string>
+    <string name="settings_title_speed">Velocidad del viento</string>
     <string name="abbreviation_monday">Lu</string>
     <string name="abbreviation_tuesday">Ma</string>
     <string name="abbreviation_wednesday">Mi</string>
@@ -93,7 +89,6 @@
     <string name="error_no_position">Posición no disponible </string>
     <string name="settings_time24h">Formato de 24 horas</string>
     <string name="summary_time24h">Anular la configuración del sistema</string>
-    <string name="settings_wind">Usar escala de Beaufort</string>
     <string name="dialog_OK_button">OK</string>
     <string name="dialog_NO_button">No</string>
     <string name="dialog_Later_button">Quizás mas tarde</string>
@@ -119,5 +114,6 @@
     <string name="settings_forecast_days">Número de días de pronóstico</string>
     <string name="settings_apparent_temperature">Visualización de la temperatura del fieltro</string>
     <string name="units_hours">h</string>
+    <string name="settings_title_precipitation">Precipitación</string>
 
 </resources>
