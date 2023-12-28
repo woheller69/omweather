@@ -1,0 +1,2 @@
+Improved setting for wind speed (please choose your preference again)
+Added option to use inches for precipitation
