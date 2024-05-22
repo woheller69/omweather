@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">omWeather</string>
     <string name="activity_about">Hakkında</string>
     <string name="activity_settings">Ayarlar</string>
     <string name="activity_weather">Hava durumu</string>
@@ -10,7 +9,7 @@
     <string name="next">İleri</string>
     <string name="okay">Tamam</string>
     <string name="slide1_heading">Hoşgeldiniz!</string>
-    <string name="slide1_text">omWeather, konumlarınız için mevcut hava durumu ve tahminleri kontrol etmeye yarayan bir uygulamadır.</string>
+    <string name="slide1_text">Cirrus, konumlarınız için mevcut hava durumu ve tahminleri kontrol etmeye yarayan bir uygulamadır.</string>
     <string name="slide2_text">Bu uygulamanın kaynak kodu GitHub\'da mevcuttur. Daha fazla açıklama için Hakkında sayfasına bakabilirsiniz.</string>
     <string name="card_details_heading">Şimdi</string>
     <string name="card_details_humidity">Nem:</string>
@@ -57,7 +56,7 @@
     <string name="settings_intervals">Aralıklar</string>
     <string name="settings_update_interval">Güncelleme aralığı</string>
     <string name="settings_interval_summary">Otomatik güncellemelerin aralığını ayarlayın</string>
-    <string name="about_privacy_answer">omWeather, hava durumu verilerini almak için yalnızca \"İnternet\" iznini kullanır. Ayrıca herhangi bir izleme mekanizması veya reklam içermez.</string>
+    <string name="about_privacy_answer">Cirrus, hava durumu verilerini almak için yalnızca \"İnternet\" iznini kullanır. Ayrıca herhangi bir izleme mekanizması veya reklam içermez.</string>
     <string name="about_where_from">Hava durumu bilgileri nereden geliyor?</string>
     <string name="about_where_from_answer">Hava durumu bilgileri şuradan alınır:</string>
     <string name="about_permissions">İzinler</string>

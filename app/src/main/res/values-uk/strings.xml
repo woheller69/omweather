@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">omWeather</string>
     <string name="activity_about">Про застосунок</string>
     <string name="activity_settings">Налаштування</string>
     <string name="activity_weather">Погода</string>
@@ -10,7 +9,7 @@
     <string name="next">Далі</string>
     <string name="okay">Добре</string>
     <string name="slide1_heading">Ласкаво просимо!</string>
-    <string name="slide1_text">omWeather це застосунок для перевірки поточної погоди та прогнозу для вашого місцезнаходження</string>
+    <string name="slide1_text">Cirrus це застосунок для перевірки поточної погоди та прогнозу для вашого місцезнаходження</string>
     <string name="slide2_text">Джерельний код цього застосунку доступний на Github. Для подальших пояснень, перейдіть на Сторінку інформації.</string>
     <string name="card_details_heading">Зараз</string>
     <string name="card_details_humidity">Вологість:</string>
@@ -57,7 +56,7 @@
     <string name="settings_intervals">Інтервали</string>
     <string name="settings_update_interval">Інтервал оновлення</string>
     <string name="settings_interval_summary">Встановити інтервал автоматичногих оновлень</string>
-    <string name="about_privacy_answer">omWeather використовує дозвіл \"Інтернет\" лише для отримання даних про погоду. Крім того, він не містить жодних механізмів відстеження чи реклами.</string>
+    <string name="about_privacy_answer">Cirrus використовує дозвіл \"Інтернет\" лише для отримання даних про погоду. Крім того, він не містить жодних механізмів відстеження чи реклами.</string>
     <string name="about_where_from">Звідки інформація про погоду?</string>
     <string name="about_where_from_answer">Інформація про погоду отримується з</string>
     <string name="about_permissions">Дозволи</string>

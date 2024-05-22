@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">omWeather</string>
     <string name="activity_about">Informazioni</string>
     <string name="activity_settings">Impostazioni</string>
     <string name="activity_weather">Meteo</string>
@@ -10,7 +9,7 @@
     <string name="next">Prossimo</string>
     <string name="okay">Okay</string>
     <string name="slide1_heading">Benvenuto!</string>
-    <string name="slide1_text">omWeather è un\'app per controllare il meteo e le previsioni correnti per le tue posizioni.</string>
+    <string name="slide1_text">Cirrus è un\'app per controllare il meteo e le previsioni correnti per le tue posizioni.</string>
     <string name="slide2_text">Il codice sorgente di questa app è disponibile su GitHub. Per ulteriori informazioni dai un\'occhiata alla pagina Informazioni.</string>
     <string name="card_details_heading">Ora</string>
     <string name="card_details_humidity">Umidità:</string>
@@ -57,7 +56,7 @@
     <string name="settings_intervals">Intervalli</string>
     <string name="settings_update_interval">Intervallo di aggiornamento</string>
     <string name="settings_interval_summary">Imposta l\'intervallo degli aggiornamenti automatici</string>
-    <string name="about_privacy_answer">omWeather utilizza solo l\'autorizzazione \"Internet\" per recuperare i dati meteorologici. Inoltre non include alcun meccanismo di tracciamento o pubblicità.</string>
+    <string name="about_privacy_answer">Cirrus utilizza solo l\'autorizzazione \"Internet\" per recuperare i dati meteorologici. Inoltre non include alcun meccanismo di tracciamento o pubblicità.</string>
     <string name="about_where_from">Da dove vengono le informazioni meteorologiche?</string>
     <string name="about_where_from_answer">Le informazioni meteorologiche vengono recuperate da</string>
     <string name="about_permissions">Permessi</string>

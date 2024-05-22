@@ -10,7 +10,7 @@ Features:
 - Keine Werbung
 
 Minimale Berechtigungen:
-omWeather benötigt nur ein Minimum an Berechtigungen, nämlich nur die INTERNET-Berechtigung. Diese ist nötig, um HTTP-Anfragen an entfernte Server zu stellen, um Wetterdaten zu erhalten.
+Cirrus benötigt nur ein Minimum an Berechtigungen, nämlich nur die INTERNET-Berechtigung. Diese ist nötig, um HTTP-Anfragen an entfernte Server zu stellen, um Wetterdaten zu erhalten.
 Optional: Berechtigung für GPS.
 
 

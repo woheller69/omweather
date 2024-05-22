@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">omWeather</string>
     <string name="activity_about">Sobre</string>
     <string name="activity_settings">Configurações</string>
     <string name="activity_weather">Tempo</string>
@@ -10,7 +9,7 @@
     <string name="next">Próximo</string>
     <string name="okay">OK</string>
     <string name="slide1_heading">Bem-vindo!</string>
-    <string name="slide1_text">omWeather é um App para a verificação das condições do Tempo e as Previsões para seus locais.</string>
+    <string name="slide1_text">Cirrus é um App para a verificação das condições do Tempo e as Previsões para seus locais.</string>
     <string name="slide2_text">O código-fonte deste app está disponível no Gitub. Para obter informações adicionais, veja a página Sobre.</string>
     <string name="card_details_heading">Agora</string>
     <string name="card_details_humidity">Umidade:</string>
@@ -57,7 +56,7 @@
     <string name="settings_intervals">Intervalos</string>
     <string name="settings_update_interval">Intervalos de atualização</string>
     <string name="settings_interval_summary">Defina o intervalo para atualizações automáticas</string>
-    <string name="about_privacy_answer">O omWeather somente usa a permissão \"Internet\" para recuperar dados do tempo. Além disso, ele não inclui quaisquer mecanismos de rastreamento e de anúncios.</string>
+    <string name="about_privacy_answer">O Cirrus somente usa a permissão \"Internet\" para recuperar dados do tempo. Além disso, ele não inclui quaisquer mecanismos de rastreamento e de anúncios.</string>
     <string name="about_where_from">De onde as informações do tempo vêm?</string>
     <string name="about_where_from_answer">As informações do tempo são recuperadas do</string>
     <string name="about_permissions">Permissões</string>

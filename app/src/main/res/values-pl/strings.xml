@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">omWeather</string>
     <string name="activity_about">Informacje</string>
     <string name="activity_settings">Ustawienia</string>
     <string name="activity_weather">Pogoda</string>
@@ -10,7 +9,7 @@
     <string name="next">Następny</string>
     <string name="okay">Ok</string>
     <string name="slide1_heading">Witaj!</string>
-    <string name="slide1_text">omWeather to aplikacja do sprawdzania aktualnej pogody i prognoz dla Twoich lokalizacji.</string>
+    <string name="slide1_text">Cirrus to aplikacja do sprawdzania aktualnej pogody i prognoz dla Twoich lokalizacji.</string>
     <string name="slide2_text">Kod źródłowy tej aplikacji jest dostępny na GitHub. Więcej wyjaśnień można znaleźć na stronie Informacje.</string>
     <string name="card_details_heading">Teraz</string>
     <string name="card_details_humidity">Wilgotność:</string>
@@ -57,7 +56,7 @@
     <string name="settings_intervals">Interwały</string>
     <string name="settings_update_interval">Interwał aktualizacji</string>
     <string name="settings_interval_summary">Ustaw interwał automatycznych aktualizacji</string>
-    <string name="about_privacy_answer">omWeather używa tylko uprawnień \"Internet\" do pobierania danych pogodowych. Ponadto nie zawiera żadnych mechanizmów śledzenia ani reklam.</string>
+    <string name="about_privacy_answer">Cirrus używa tylko uprawnień \"Internet\" do pobierania danych pogodowych. Ponadto nie zawiera żadnych mechanizmów śledzenia ani reklam.</string>
     <string name="about_where_from">Skąd pochodzą informacje o pogodzie?</string>
     <string name="about_where_from_answer">Informacje o pogodzie są pobierane z</string>
     <string name="about_permissions">Uprawnienia</string>

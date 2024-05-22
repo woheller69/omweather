@@ -10,5 +10,5 @@ Cechy:
 - Żadnych reklam
 
 Minimalne uprawnienia:
-omWeather wymaga tylko minimalnej ilości uprawnień, a mianowicie tylko uprawnień INTERNETOWYCH. To uprawnienie jest niezbędne do wysyłania żądań HTTP do zdalnych serwerów w celu pobrania danych pogodowych.
+Cirrus wymaga tylko minimalnej ilości uprawnień, a mianowicie tylko uprawnień INTERNETOWYCH. To uprawnienie jest niezbędne do wysyłania żądań HTTP do zdalnych serwerów w celu pobrania danych pogodowych.
 Opcjonalnie: autoryzacja dla GPS.

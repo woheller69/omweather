@@ -104,7 +104,6 @@ public class ForecastCityActivity extends NavigationActivity implements IUpdatea
         super.onCreate(savedInstanceState);
         context=this;
         setContentView(R.layout.activity_forecast_city);
-        overridePendingTransition(0, 0);
 
         initResources();
 

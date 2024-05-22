@@ -1,0 +1,3 @@
+Renamed to "Cirrus"
+Update for Android 14 (SDK 34)
+New icons for thunderstorm with hail

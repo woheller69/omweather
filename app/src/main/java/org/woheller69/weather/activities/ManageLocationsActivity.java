@@ -43,7 +43,6 @@ public class ManageLocationsActivity extends NavigationActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_locations);
-        overridePendingTransition(0, 0);
         context=this;
         database = SQLiteHelper.getInstance(getApplicationContext());
 

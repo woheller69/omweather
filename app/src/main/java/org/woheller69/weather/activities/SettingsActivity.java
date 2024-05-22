@@ -76,7 +76,6 @@ public class SettingsActivity extends NavigationActivity implements SharedPrefer
 
         setContentView(R.layout.activity_settings);
 
-        overridePendingTransition(0, 0);
     }
 
     @Override
