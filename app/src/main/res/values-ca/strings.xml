@@ -84,14 +84,14 @@
     <string name="settings_darkmode">Android 10+ mode fosc </string>
     <string name="settings_position">Posició</string>
     <string name="settings_GPS_summary">Permetre l\'ús de la posició GPS actual a la primera pestanya i al widget del temps actual. Permetre l'ús de la posició GPS actual a la primera pestanya i al widget del temps actual. L\'actualizació de la posició s\'activa automáticament a través del widget. </string>
-    <string name="settings_GPS_position">Permetre l'ús del GPS</string>
+    <string name="settings_GPS_position">Permetre l\'ús del GPS</string>
     <string name="error_no_position">Posició no disponible </string>
     <string name="settings_time24h">Format de 24 hores</string>
     <string name="summary_time24h">Anul·lar la configuració del sistema</string>
     <string name="dialog_OK_button">OK</string>
     <string name="dialog_NO_button">No</string>
     <string name="dialog_Later_button">Potser més endavant</string>
-    <string name="dialog_StarOnGitHub">T'agrada aquesta app? Marca una estralla al Github o comprali un cafè al desenvolupador a través de PayPal.</string>
+    <string name="dialog_StarOnGitHub">T\'agrada aquesta app? Marca una estralla al Github o comprali un cafè al desenvolupador a través de PayPal.</string>
     <string name="settings_show_pressure">Mostrar la pressió de l\'aire</string>
     <string name="settings_GPS_manual">Només actualizació manual</string>
     <string name="settings_interval_quarter">15 min</string>
