@@ -39,7 +39,7 @@
     <string name="abbreviation_saturday">Ds</string>
     <string name="abbreviation_sunday">Dg</string>
     <string name="dialog_add_label">Introdueixi la nova ubicació a afegir:</string>
-    <string name="dialog_add_no_city_found">No s\'ha trobat cap ubicació que coincideixi amb l'entrada introduida. Es recomana seleccionar algún element de la llista desplegable.</string>
+    <string name="dialog_add_no_city_found">No s\'ha trobat cap ubicació que coincideixi amb l\'entrada introduida. Es recomana seleccionar algún element de la llista desplegable.</string>
     <string name="dialog_add_close_button">Tancar</string>
     <string name="dialog_add_add_button">Afegir</string>
     <string name="error_convert_to_json">Les dades meteorològiques recuperades no estaven ben formades.</string>
@@ -75,13 +75,13 @@
     <string name="units_mph">mph</string>
     <string name="card_details_rain60min">☔ 60 min:</string>
     <string name="error_no_rain60min_data">sense dades</string>
-    <string name="dialog_edit_change_button">"Modificar "</string>
+    <string name="dialog_edit_change_button">Modificar</string>
     <string name="edit_location_hint_name">Nom</string>
     <string name="settings_search">Cercar </string>
     <string name="settings_temp_decimal">Mostra la temperatura amb un decimal</string>
     <string name="settings_darkmode">Android 10+ mode fosc </string>
     <string name="settings_position">Posició</string>
-    <string name="settings_GPS_summary">Permetre l\'ús de la posició GPS actual a la primera pestanya i al widget del temps actual. Permetre l'ús de la posició GPS actual a la primera pestanya i al widget del temps actual. L\'actualizació de la posició s\'activa automáticament a través del widget. </string>
+    <string name="settings_GPS_summary">Permetre l\'ús de la posició GPS actual a la primera pestanya i al widget del temps actual. Permetre l\'ús de la posició GPS actual a la primera pestanya i al widget del temps actual. L\'actualizació de la posició s\'activa automáticament a través del widget. </string>
     <string name="settings_GPS_position">Permetre l\'ús del GPS</string>
     <string name="error_no_position">Posició no disponible </string>
     <string name="settings_time24h">Format de 24 hores</string>
