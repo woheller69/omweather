@@ -1,0 +1,2 @@
+Animation of infrared layer
+Support for Catalan language
