@@ -118,7 +118,7 @@ apiRequest.onload = function (e) {
     apiData = JSON.parse(apiRequest.response);
 
     //Store infrared frame times
-    if (apiData.satellite && apiData.satellite.infrared) {
+    if (apiData && apiData.satellite && apiData.satellite.infrared) {
         infraredFrameTimes = apiData.satellite.infrared.map(frame => frame.time);
     }
 
