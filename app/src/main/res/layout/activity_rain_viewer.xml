@@ -35,9 +35,42 @@
             android:layout_height="wrap_content" />
 
     </LinearLayout>
-
-    <WebView
-        android:id="@+id/webView"
+    <TextView
+        android:id="@+id/timestamp"
         android:layout_width="match_parent"
-        android:layout_height="fill_parent" />
+        android:layout_height="wrap_content"
+        android:text="------"
+        android:textStyle="bold"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="-5dp"
+        android:paddingBottom="5dp"
+        android:background="@color/backgroundBlue"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <org.osmdroid.views.MapView android:id="@+id/map_preload"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:alpha="0" />
+
+        <org.osmdroid.views.MapView android:id="@+id/map"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"/>
+        <org.osmdroid.views.MapView android:id="@+id/map2"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:visibility="invisible"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:layout_marginStart="5dp"
+            android:layout_alignParentBottom="true"
+            android:textColor="@color/colorAccent"
+            android:text="(c) OpenStreetMap contributors &amp; RainViewer"/>
+    </RelativeLayout>
+
 </LinearLayout>

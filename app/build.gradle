@@ -35,4 +35,5 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation "androidx.lifecycle:lifecycle-viewmodel:2.5.1" //needed due to duplicate class error
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1" //needed due to duplicate class error
+    implementation 'org.osmdroid:osmdroid-android:6.1.18'
 }
