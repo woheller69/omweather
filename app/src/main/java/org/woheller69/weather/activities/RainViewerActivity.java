@@ -63,10 +63,6 @@ public class RainViewerActivity extends AppCompatActivity {
     private MapView mapView;
     private MapView mapView2;
     private MapView mapPreload;
-    private IMapController mapController;
-    private IMapController mapController2;
-    private IMapController mapPreloadController;
-    private ImageButton btnPrev, btnNext, btnStartStop;
     private TextView timeStamp;
     private int timezoneseconds;
     private int animationPosition = 0;
@@ -75,9 +71,6 @@ public class RainViewerActivity extends AppCompatActivity {
     private JSONArray radarFrames;
     private JSONArray infraredFrames;
     private String host;
-    private TilesOverlay oldRadarOverlay;
-    private TilesOverlay oldRadarOverlay2;
-    private TilesOverlay oldRadarPreloadOverlay;
     private ScheduledExecutorService scheduledExecutorService;
     private boolean crossfadeRunning = false;
     private List<TilesOverlayEntry> radarTilesOverlayEntries;
@@ -136,16 +129,13 @@ public class RainViewerActivity extends AppCompatActivity {
             mapView2.getOverlayManager().getTilesOverlay().setColorFilter(null);
         }
 
-        mapController = mapView.getController();
-        mapController.setZoom(8d);
-        mapController2 = mapView2.getController();
-        mapController2.setZoom(8d);
-        mapPreloadController = mapPreload.getController();
-        mapPreloadController.setZoom(8d);
+        mapView.getController().setZoom(8d);
+        mapView2.getController().setZoom(8d);
+        mapPreload.getController().setZoom(8d);
         GeoPoint startPoint = new GeoPoint(latitude, longitude);
-        mapController.setCenter(startPoint);
-        mapController2.setCenter(startPoint);
-        mapPreloadController.setCenter(startPoint);
+        mapView.getController().setCenter(startPoint);
+        mapView2.getController().setCenter(startPoint);
+        mapPreload.getController().setCenter(startPoint);
 
         Marker positionMarker = new Marker(mapView);
         positionMarker.setPosition(startPoint);
@@ -160,9 +150,9 @@ public class RainViewerActivity extends AppCompatActivity {
         positionMarker2.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
         mapView2.getOverlays().add(positionMarker2);
 
-        btnNext = findViewById(R.id.rainviewer_next);
-        btnPrev = findViewById(R.id.rainviewer_prev);
-        btnStartStop = findViewById(R.id.rainviewer_startstop);
+        ImageButton btnNext = findViewById(R.id.rainviewer_next);
+        ImageButton btnPrev = findViewById(R.id.rainviewer_prev);
+        ImageButton btnStartStop = findViewById(R.id.rainviewer_startstop);
 
         btnNext.setOnClickListener(v -> {
             if (scheduledExecutorService!=null && !scheduledExecutorService.isShutdown()) scheduledExecutorService.shutdownNow();
@@ -271,67 +261,21 @@ public class RainViewerActivity extends AppCompatActivity {
             final TilesOverlay newRadarOverlay = getNewRadarOverlay(position);
             IGeoPoint center;
             double zoom;
-            if (mapView.getVisibility()== View.VISIBLE){
+            if (mapView.getVisibility() == View.VISIBLE){
                 zoom = mapView.getZoomLevelDouble(); //take zoom from visible map
                 center = mapView.getMapCenter(); //take center from visible map
-                mapView2.getOverlays().add(newRadarOverlay);
-                if (oldRadarOverlay2 !=null) mapView2.getOverlays().remove(oldRadarOverlay2);
-                oldRadarOverlay2 = newRadarOverlay;
-                mapController2.setZoom(zoom);
-                mapController2.setCenter(center);
-                mapController2.animateTo(center);
+                replaceLayer(mapView2, newRadarOverlay, center, zoom);
             } else {
                 zoom = mapView2.getZoomLevelDouble(); //take zoom from visible map
                 center = mapView2.getMapCenter(); //take center from visible map
-                mapView.getOverlays().add(newRadarOverlay);
-                if (oldRadarOverlay !=null) mapView.getOverlays().remove(oldRadarOverlay);
-                oldRadarOverlay = newRadarOverlay;
-                mapController.setZoom(zoom);
-                mapController.setCenter(center);
-                mapController.animateTo(center);
+                replaceLayer(mapView, newRadarOverlay, center, zoom);
             }
-            int animationDuration = 200; //milliseconds
+
 
             if (mapView.getVisibility() == View.VISIBLE) {
-                mapView2.setAlpha(0f);
-                mapView2.setVisibility(View.VISIBLE);
-                mapView2.animate()
-                        .alpha(1f)
-                        .setDuration(animationDuration)
-                        .setInterpolator(new DecelerateInterpolator())
-                        .setListener(null);
-                crossfadeRunning = true;
-                mapView.animate()
-                        .alpha(0f)
-                        .setDuration(animationDuration)
-                        .setInterpolator(new AccelerateInterpolator())
-                        .setListener(new AnimatorListenerAdapter() {
-                            @Override
-                            public void onAnimationEnd(Animator animation) {
-                                mapView.setVisibility(View.INVISIBLE);
-                                crossfadeRunning = false;
-                            }
-                        });
+                crossFade(mapView2, mapView);
             } else {
-                mapView.setAlpha(0f);
-                mapView.setVisibility(View.VISIBLE);
-                mapView.animate()
-                        .alpha(1f)
-                        .setDuration(animationDuration)
-                        .setInterpolator(new DecelerateInterpolator())
-                        .setListener(null);
-                crossfadeRunning = true;
-                mapView2.animate()
-                        .alpha(0f)
-                        .setDuration(animationDuration)
-                        .setInterpolator(new AccelerateInterpolator())
-                        .setListener(new AnimatorListenerAdapter() {
-                            @Override
-                            public void onAnimationEnd(Animator animation) {
-                                mapView2.setVisibility(View.INVISIBLE);
-                                crossfadeRunning = false;
-                            }
-                        });
+                crossFade(mapView, mapView2);
             }
 
             long time = (Long.parseLong(radarFrames.getJSONObject(position).getString("time")) + timezoneseconds) * 1000L;
@@ -346,16 +290,42 @@ public class RainViewerActivity extends AppCompatActivity {
             //now preload next frame
             int preloadPosition = (position + preloadingDirection + radarFrames.length()) % radarFrames.length();
             final TilesOverlay newRadarPreloadOverlay = getNewRadarOverlay(preloadPosition);
-            mapPreload.getOverlays().add(newRadarPreloadOverlay);
-            if (oldRadarPreloadOverlay !=null) mapPreload.getOverlays().remove(oldRadarPreloadOverlay);
-            oldRadarPreloadOverlay = newRadarPreloadOverlay;
-            mapPreloadController.setZoom(zoom);
-            mapPreloadController.setCenter(center);
-            mapPreloadController.animateTo(center);
+            replaceLayer(mapPreload, newRadarPreloadOverlay, center, zoom);
 
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private void crossFade(MapView map, MapView map2) {
+        int animationDuration = 200; //milliseconds
+        map.setAlpha(0f);
+        map.setVisibility(View.VISIBLE);
+        map.animate()
+                .alpha(1f)
+                .setDuration(animationDuration)
+                .setInterpolator(new DecelerateInterpolator())
+                .setListener(null);
+        crossfadeRunning = true;
+        map2.animate()
+                .alpha(0f)
+                .setDuration(animationDuration)
+                .setInterpolator(new AccelerateInterpolator())
+                .setListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        map2.setVisibility(View.INVISIBLE);
+                        crossfadeRunning = false;
+                    }
+                });
+    }
+
+    private void replaceLayer(MapView map, TilesOverlay newRadarOverlay, IGeoPoint center, double zoom) {
+        map.getOverlays().clear();
+        map.getOverlays().add(newRadarOverlay);
+        map.getController().setZoom(zoom);
+        map.getController().setCenter(center);
+        map.getController().animateTo(center);
     }
 
     @NonNull
