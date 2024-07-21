@@ -37,7 +37,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.osmdroid.api.IMapController;
 import org.osmdroid.tileprovider.MapTileProviderBasic;
 import org.osmdroid.tileprovider.tilesource.ITileSource;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
@@ -74,6 +73,7 @@ public class RainViewerActivity extends AppCompatActivity {
     private ScheduledExecutorService scheduledExecutorService;
     private boolean crossfadeRunning = false;
     private List<TilesOverlayEntry> radarTilesOverlayEntries;
+    private List<TilesOverlayEntry> infraredTilesOverlayEntries;
 
     @Override
     protected void onPause() {
@@ -121,7 +121,6 @@ public class RainViewerActivity extends AppCompatActivity {
         mapView2.setTilesScaledToDpi(true);
 
         if (nightmode) {
-            //mapView.getOverlayManager().getTilesOverlay().setColorFilter(TilesOverlay.INVERT_COLORS);
             mapView.getOverlayManager().getTilesOverlay().setColorFilter(getNightMatrix());
             mapView2.getOverlayManager().getTilesOverlay().setColorFilter(getNightMatrix());
         } else {
@@ -169,6 +168,7 @@ public class RainViewerActivity extends AppCompatActivity {
         });
 
     radarTilesOverlayEntries = new ArrayList<>();
+    infraredTilesOverlayEntries = new ArrayList<>();
     }
 
     @Override
@@ -253,22 +253,23 @@ public class RainViewerActivity extends AppCompatActivity {
 
         //Todo: Add infrared frames
 
-        if (radarFrames == null || crossfadeRunning){
+        if (radarFrames == null || infraredFrames == null || crossfadeRunning){
             return;
         }
         try {
             position = (position + radarFrames.length()) % radarFrames.length();
             final TilesOverlay newRadarOverlay = getNewRadarOverlay(position);
+            final TilesOverlay newInfraredOverlay = getNewInfraredOverlay(position);
             IGeoPoint center;
             double zoom;
             if (mapView.getVisibility() == View.VISIBLE){
                 zoom = mapView.getZoomLevelDouble(); //take zoom from visible map
                 center = mapView.getMapCenter(); //take center from visible map
-                replaceLayer(mapView2, newRadarOverlay, center, zoom);
+                replaceLayer(mapView2, newRadarOverlay, newInfraredOverlay, center, zoom);
             } else {
                 zoom = mapView2.getZoomLevelDouble(); //take zoom from visible map
                 center = mapView2.getMapCenter(); //take center from visible map
-                replaceLayer(mapView, newRadarOverlay, center, zoom);
+                replaceLayer(mapView, newRadarOverlay, newInfraredOverlay, center, zoom);
             }
 
 
@@ -290,42 +291,109 @@ public class RainViewerActivity extends AppCompatActivity {
             //now preload next frame
             int preloadPosition = (position + preloadingDirection + radarFrames.length()) % radarFrames.length();
             final TilesOverlay newRadarPreloadOverlay = getNewRadarOverlay(preloadPosition);
-            replaceLayer(mapPreload, newRadarPreloadOverlay, center, zoom);
+            final TilesOverlay newInfraredPreloadOverlay = getNewInfraredOverlay(preloadPosition);
+            replaceLayer(mapPreload, newRadarPreloadOverlay, newInfraredPreloadOverlay, center, zoom);
 
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
     }
 
-    private void crossFade(MapView map, MapView map2) {
+    private void crossFade(MapView fromMap, MapView toMap) {
         int animationDuration = 200; //milliseconds
-        map.setAlpha(0f);
-        map.setVisibility(View.VISIBLE);
-        map.animate()
+        fromMap.setAlpha(0f);
+        fromMap.setVisibility(View.VISIBLE);
+        fromMap.animate()
                 .alpha(1f)
                 .setDuration(animationDuration)
                 .setInterpolator(new DecelerateInterpolator())
                 .setListener(null);
         crossfadeRunning = true;
-        map2.animate()
+        toMap.animate()
                 .alpha(0f)
                 .setDuration(animationDuration)
                 .setInterpolator(new AccelerateInterpolator())
                 .setListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationEnd(Animator animation) {
-                        map2.setVisibility(View.INVISIBLE);
+                        toMap.setVisibility(View.INVISIBLE);
                         crossfadeRunning = false;
                     }
                 });
     }
 
-    private void replaceLayer(MapView map, TilesOverlay newRadarOverlay, IGeoPoint center, double zoom) {
+    private void replaceLayer(MapView map, TilesOverlay newRadarOverlay, TilesOverlay newInfraredOverlay, IGeoPoint center, double zoom) {
         map.getOverlays().clear();
+        map.getOverlays().add(newInfraredOverlay);
         map.getOverlays().add(newRadarOverlay);
         map.getController().setZoom(zoom);
         map.getController().setCenter(center);
         map.getController().animateTo(center);
+    }
+
+    public JSONObject findClosestInfraredFrame(long radarTime) throws JSONException {
+        JSONObject closestFrame = null;
+        long closestTimeDiff = Long.MAX_VALUE;
+
+        for (int i = 0; i < infraredFrames.length(); i++) {
+            JSONObject frame = infraredFrames.getJSONObject(i);
+            long frameTime = frame.getLong("time");
+            long timeDiff = Math.abs(frameTime - radarTime);
+            if (timeDiff < closestTimeDiff) {
+                closestFrame = frame;
+                closestTimeDiff = timeDiff;
+            }
+        }
+        return closestFrame;
+    }
+
+    @NonNull
+    private TilesOverlay getNewInfraredOverlay(int position) throws JSONException {
+        long time = Long.parseLong(radarFrames.getJSONObject(position).getString("time"));
+
+        JSONObject infraredFrame = findClosestInfraredFrame(time);
+        for (TilesOverlayEntry entry : infraredTilesOverlayEntries) {
+            if (entry.getTime() == infraredFrame.getLong("time")){
+                final TilesOverlay newOverlay = entry.getTilesOverlay();
+                if (nightmode){
+                    ColorMatrix colorMatrix = new ColorMatrix(new float[]{
+                            -1, 0, 0, 0, 255,
+                            0, -1, 0, 0, 255,
+                            0, 0, -1, 0, 255,
+                            0, 0, 0, 0.4f, 0
+                    });
+                    newOverlay.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
+                } else {
+                    int transparency = 128; // 128 is 50% transparent
+                    PorterDuffColorFilter filter = new PorterDuffColorFilter(Color.argb(transparency, 255, 255, 255), PorterDuff.Mode.MULTIPLY);
+                    newOverlay.setColorFilter(filter);
+                }
+                return newOverlay;
+            }
+        }
+
+        final MapTileProviderBasic RainViewerTileProvider = new MapTileProviderBasic(this);
+        final ITileSource RainViewerTileSource = new XYTileSource("I"+ time, 1, 20, 256, "/0/0_0.png", new String[]{host+infraredFrame.getString("path")+"/256/"});
+        RainViewerTileProvider.setTileSource(RainViewerTileSource);
+        final TilesOverlay newOverlay = new TilesOverlay(RainViewerTileProvider, this);
+        newOverlay.setLoadingBackgroundColor(Color.TRANSPARENT);
+        TilesOverlayEntry newEntry = new TilesOverlayEntry(newOverlay,time);
+        infraredTilesOverlayEntries.add(newEntry);
+        if (nightmode) {
+            ColorMatrix colorMatrix = new ColorMatrix(new float[]{
+                    -1, 0, 0, 0, 255,
+                    0, -1, 0, 0, 255,
+                    0, 0, -1, 0, 255,
+                    0, 0, 0, 0.4f, 0
+            });
+
+            newOverlay.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
+        } else {
+            int transparency = 128; // 128 is 50% transparent
+            PorterDuffColorFilter filter = new PorterDuffColorFilter(Color.argb(transparency, 255, 255, 255), PorterDuff.Mode.MULTIPLY);
+            newOverlay.setColorFilter(filter);
+        }
+        return newOverlay;
     }
 
     @NonNull
@@ -339,67 +407,30 @@ public class RainViewerActivity extends AppCompatActivity {
         }
 
         final MapTileProviderBasic RainViewerTileProvider = new MapTileProviderBasic(this);
-        final ITileSource RainViewerTileSource = new XYTileSource(Long.toString(time), 1, 20, 256, "/2/1_1.png", new String[]{host+radarFrames.getJSONObject(position).getString("path")+"/256/"});
+        final ITileSource RainViewerTileSource = new XYTileSource("R"+ time, 1, 20, 256, "/2/1_1.png", new String[]{host+radarFrames.getJSONObject(position).getString("path")+"/256/"});
         RainViewerTileProvider.setTileSource(RainViewerTileSource);
-        final TilesOverlay newRadarOverlay = new TilesOverlay(RainViewerTileProvider, this);
-        newRadarOverlay.setLoadingBackgroundColor(Color.TRANSPARENT);
+        final TilesOverlay newOverlay = new TilesOverlay(RainViewerTileProvider, this);
+        newOverlay.setLoadingBackgroundColor(Color.TRANSPARENT);
         int transparency = 128; // 128 is 50% transparent
         PorterDuffColorFilter filter = new PorterDuffColorFilter(Color.argb(transparency, 255, 255, 255), PorterDuff.Mode.MULTIPLY);
-        newRadarOverlay.setColorFilter(filter);
-        TilesOverlayEntry newRadarEntry = new TilesOverlayEntry(newRadarOverlay,time);
-        radarTilesOverlayEntries.add(newRadarEntry);
-        return newRadarOverlay;
+        newOverlay.setColorFilter(filter);
+        TilesOverlayEntry newEntry = new TilesOverlayEntry(newOverlay,time);
+        radarTilesOverlayEntries.add(newEntry);
+        return newOverlay;
     }
 
     @NonNull
     private static ColorMatrixColorFilter getNightMatrix() {
-        ColorMatrix colorMatrix = new ColorMatrix();
-
-        // Step 1: Invert colors
-        ColorMatrix invertMatrix = new ColorMatrix(new float[]{
-                -1, 0, 0, 0, 255,
-                0, -1, 0, 0, 255,
-                0, 0, -1, 0, 255,
+        ColorMatrix colorMatrix = new ColorMatrix(new float[]{
+                 1.36f, -2.15f, -0.22f, 0, 255,
+                -0.64f, -0.14f, -0.22f, 0, 255,
+                -0.64f, -2.15f,  1.78f, 0, 255,
                 0, 0, 0, 1, 0
+
         });
-
-        // Step 2: Adjust saturation (200%)
-        ColorMatrix saturationMatrix = new ColorMatrix();
-        saturationMatrix.setSaturation(2.0f);
-
-        // Step 3: Adjust hue (185 degrees)
-        ColorMatrix hueMatrix = new ColorMatrix();
-        setHue(hueMatrix, 185);
-
-        // Concatenate all the matrices
-        colorMatrix.postConcat(invertMatrix);
-        colorMatrix.postConcat(saturationMatrix);
-        colorMatrix.postConcat(hueMatrix);
         return new ColorMatrixColorFilter(colorMatrix);
     }
 
-    private static void setHue(ColorMatrix cm, float value) {
-        value = cleanValue(value, 180f) / 180f * (float) Math.PI;
-        if (value == 0) {
-            return;
-        }
-        float cosVal = (float) Math.cos(value);
-        float sinVal = (float) Math.sin(value);
-        float lumR = 0.213f;
-        float lumG = 0.715f;
-        float lumB = 0.072f;
-        float[] mat = new float[]{
-                lumR + cosVal * (1 - lumR) + sinVal * (-lumR), lumG + cosVal * (-lumG) + sinVal * (-lumG), lumB + cosVal * (-lumB) + sinVal * (1 - lumB), 0, 0,
-                lumR + cosVal * (-lumR) + sinVal * 0.143f, lumG + cosVal * (1 - lumG) + sinVal * 0.140f, lumB + cosVal * (-lumB) + sinVal * (-0.283f), 0, 0,
-                lumR + cosVal * (-lumR) + sinVal * (-(1 - lumR)), lumG + cosVal * (-lumG) + sinVal * lumG, lumB + cosVal * (1 - lumB) + sinVal * lumB, 0, 0,
-                0, 0, 0, 1, 0
-        };
-        cm.postConcat(new ColorMatrix(mat));
-    }
-
-    private static float cleanValue(float p_val, float p_limit) {
-        return Math.min(p_limit, Math.max(-p_limit, p_val));
-    }
 }
 
 

@@ -66,11 +66,12 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="2dp"
-            android:layout_marginStart="5dp"
+            android:layout_marginBottom="1dp"
+            android:layout_marginStart="7dp"
             android:layout_alignParentBottom="true"
             android:textColor="@color/colorAccent"
-            android:text="(c) OpenStreetMap contributors &amp; RainViewer"/>
+            android:background="#aaffffff"
+            android:text="\u00a9 OpenStreetMap contributors &amp; RainViewer"/>
     </RelativeLayout>
 
 </LinearLayout>
