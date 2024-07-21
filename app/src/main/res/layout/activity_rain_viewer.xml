@@ -50,12 +50,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <org.osmdroid.views.MapView android:id="@+id/map_preload"
+        <org.osmdroid.views.MapView
+            android:id="@+id/map_preload"
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
             android:alpha="0" />
 
-        <org.osmdroid.views.MapView android:id="@+id/map"
+        <org.osmdroid.views.MapView
+            android:id="@+id/map"
             android:layout_width="match_parent"
             android:layout_height="fill_parent"/>
         <org.osmdroid.views.MapView android:id="@+id/map2"
@@ -64,14 +66,14 @@
             android:visibility="invisible"/>
 
         <TextView
+            android:id="@+id/license"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="1dp"
             android:layout_marginStart="7dp"
             android:layout_alignParentBottom="true"
             android:textColor="@color/colorAccent"
-            android:background="#aaffffff"
-            android:text="\u00a9 OpenStreetMap contributors &amp; RainViewer"/>
+            android:background="#aaffffff" />
     </RelativeLayout>
 
 </LinearLayout>

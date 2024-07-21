@@ -20,6 +20,8 @@ import org.osmdroid.config.Configuration;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
@@ -63,6 +65,7 @@ public class RainViewerActivity extends AppCompatActivity {
     private MapView mapView2;
     private MapView mapPreload;
     private TextView timeStamp;
+    private TextView licenseText;
     private int timezoneseconds;
     private int animationPosition = 0;
     private int lastPastFramePosition;
@@ -169,13 +172,17 @@ public class RainViewerActivity extends AppCompatActivity {
 
     radarTilesOverlayEntries = new ArrayList<>();
     infraredTilesOverlayEntries = new ArrayList<>();
+    licenseText = findViewById(R.id.license);
+    String text = "© <a href=\"https://www.openstreetmap.org/copyright/\">OpenStreetMap</a> contributors &amp; <a href=\"https://www.rainviewer.com/api.html\">RainViewer</a>";
+    licenseText.setText(Html.fromHtml(text));
+    licenseText.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        RequestQueue queue = Volley.newRequestQueue(this); // context is your app's context
+        RequestQueue queue = Volley.newRequestQueue(this);
 
         String url = "https://api.rainviewer.com/public/weather-maps.json";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
@@ -183,18 +190,12 @@ public class RainViewerActivity extends AppCompatActivity {
                     // Parse the JSON response
                     try {
                         if (response != null && response.has("host")) host = response.getString("host");
-                        //Store the infrared time frames
+                        //Store the infrared frames
                         if (response != null && response.has("satellite") && response.getJSONObject("satellite").has("infrared")) {
                             infraredFrames = response.getJSONObject("satellite").getJSONArray("infrared");
-                            List<String> infraredFrameTimes = new ArrayList<>();
-
-                            for (int i = 0; i < infraredFrames.length(); i++) {
-                                JSONObject frame = infraredFrames.getJSONObject(i);
-                                infraredFrameTimes.add(frame.getString("time"));
-                            }
                         }
 
-                        //Store the radar time frames
+                        //Store the radar frames and show current frame
                         if (response != null && response.has("radar") && response.getJSONObject("radar").has("past")){
                             radarFrames = response.getJSONObject("radar").getJSONArray("past");
                             lastPastFramePosition = radarFrames.length() - 1;
