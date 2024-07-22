@@ -77,6 +77,7 @@ public class RainViewerActivity extends AppCompatActivity {
     private boolean crossfadeRunning = false;
     private List<TilesOverlayEntry> radarTilesOverlayEntries;
     private List<TilesOverlayEntry> infraredTilesOverlayEntries;
+    private GeoPoint startPoint;
 
     @Override
     protected void onPause() {
@@ -134,23 +135,10 @@ public class RainViewerActivity extends AppCompatActivity {
         mapView.getController().setZoom(8d);
         mapView2.getController().setZoom(8d);
         mapPreload.getController().setZoom(8d);
-        GeoPoint startPoint = new GeoPoint(latitude, longitude);
+        startPoint = new GeoPoint(latitude, longitude);
         mapView.getController().setCenter(startPoint);
         mapView2.getController().setCenter(startPoint);
         mapPreload.getController().setCenter(startPoint);
-
-        Marker positionMarker = new Marker(mapView);
-        positionMarker.setPosition(startPoint);
-        positionMarker.setInfoWindow(null);
-        positionMarker.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_location_48dp));
-        positionMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
-        mapView.getOverlays().add(positionMarker);
-        Marker positionMarker2 = new Marker(mapView2);
-        positionMarker2.setPosition(startPoint);
-        positionMarker2.setInfoWindow(null);
-        positionMarker2.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_location_48dp));
-        positionMarker2.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
-        mapView2.getOverlays().add(positionMarker2);
 
         ImageButton btnNext = findViewById(R.id.rainviewer_next);
         ImageButton btnPrev = findViewById(R.id.rainviewer_prev);
@@ -327,6 +315,14 @@ public class RainViewerActivity extends AppCompatActivity {
         map.getOverlays().clear();
         map.getOverlays().add(newInfraredOverlay);
         map.getOverlays().add(newRadarOverlay);
+
+        Marker positionMarker = new Marker(map);
+        positionMarker.setPosition(startPoint);
+        positionMarker.setInfoWindow(null);
+        positionMarker.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_location_48dp));
+        positionMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
+        map.getOverlays().add(positionMarker);
+
         map.getController().setZoom(zoom);
         map.getController().setCenter(center);
         map.getController().animateTo(center);
@@ -350,11 +346,11 @@ public class RainViewerActivity extends AppCompatActivity {
 
     @NonNull
     private TilesOverlay getNewInfraredOverlay(int position) throws JSONException {
-        long time = Long.parseLong(radarFrames.getJSONObject(position).getString("time"));
-
-        JSONObject infraredFrame = findClosestInfraredFrame(time);
+        long radarTime = Long.parseLong(radarFrames.getJSONObject(position).getString("time"));
+        JSONObject infraredFrame = findClosestInfraredFrame(radarTime);
+        long time = infraredFrame.getLong("time");
         for (TilesOverlayEntry entry : infraredTilesOverlayEntries) {
-            if (entry.getTime() == infraredFrame.getLong("time")){
+            if (entry.getTime() == time){
                 final TilesOverlay newOverlay = entry.getTilesOverlay();
                 if (nightmode){
                     ColorMatrix colorMatrix = new ColorMatrix(new float[]{
