@@ -240,8 +240,6 @@ public class RainViewerActivity extends AppCompatActivity {
     public void showFrame(int position){
         int preloadingDirection = position - animationPosition > 0 ? 1 : -1;
 
-        //Todo: Add infrared frames
-
         if (radarFrames == null || infraredFrames == null || crossfadeRunning){
             return;
         }
@@ -263,9 +261,9 @@ public class RainViewerActivity extends AppCompatActivity {
 
 
             if (mapView.getVisibility() == View.VISIBLE) {
-                crossFade(mapView2, mapView);
-            } else {
                 crossFade(mapView, mapView2);
+            } else {
+                crossFade(mapView2, mapView);
             }
 
             long time = (Long.parseLong(radarFrames.getJSONObject(position).getString("time")) + timezoneseconds) * 1000L;
@@ -289,23 +287,26 @@ public class RainViewerActivity extends AppCompatActivity {
     }
 
     private void crossFade(MapView fromMap, MapView toMap) {
-        int animationDuration = 200; //milliseconds
-        fromMap.setAlpha(0f);
-        fromMap.setVisibility(View.VISIBLE);
-        fromMap.animate()
+        int animationDuration;
+        if (radarTilesOverlayEntries.size() <= 1) animationDuration = 1000;  //slowdown intro
+        else animationDuration = 200; //milliseconds
+        toMap.setAlpha(0f);
+        toMap.setVisibility(View.VISIBLE);
+        toMap.animate()
                 .alpha(1f)
                 .setDuration(animationDuration)
                 .setInterpolator(new DecelerateInterpolator())
                 .setListener(null);
         crossfadeRunning = true;
-        toMap.animate()
+        fromMap.animate()
                 .alpha(0f)
                 .setDuration(animationDuration)
                 .setInterpolator(new AccelerateInterpolator())
                 .setListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationEnd(Animator animation) {
-                        toMap.setVisibility(View.INVISIBLE);
+                        fromMap.setVisibility(View.INVISIBLE);
+                        toMap.getController().animateTo(toMap.getMapCenter());  //another refresh, sometimes overlays do not fully load
                         crossfadeRunning = false;
                     }
                 });

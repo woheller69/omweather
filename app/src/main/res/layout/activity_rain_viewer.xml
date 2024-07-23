@@ -59,7 +59,8 @@
         <org.osmdroid.views.MapView
             android:id="@+id/map"
             android:layout_width="match_parent"
-            android:layout_height="fill_parent"/>
+            android:layout_height="fill_parent"
+            android:alpha="0.1" />
         <org.osmdroid.views.MapView android:id="@+id/map2"
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
@@ -73,7 +74,8 @@
             android:paddingHorizontal="7dp"
             android:layout_alignParentBottom="true"
             android:textColor="@color/colorAccent"
-            android:background="#aaffffff" />
+            android:alpha="0.65"
+            android:background="@color/white" />
     </RelativeLayout>
 
 </LinearLayout>
