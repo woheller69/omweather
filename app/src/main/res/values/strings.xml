@@ -25,7 +25,7 @@
     <string name="about">About</string>
     <string name="version_number">Version</string>
     <string name="about_license">License</string>
-    <string name="about_license_text">This application is derived from Privacy Friendly Weather, developed by the research group SECUSO. Sourcecode licensed under GPLv3. The app uses icons from Google Material Design Icons licensed under Apache License Version 2.0, the Leaflet library which is licensed under 2-clause BSD License, the Leaflet.TileLayer.ColorFilter plugin which is licensed under MIT License, AutoSuggestTextViewAPICall which is licensed under Apache License Version 2.0 and WilliamChart library (com.db.chart) which is licensed under Apache License Version 2.0</string>
+    <string name="about_license_text" translatable="false">SECUSO Privacy Friendly Weather (GPLv3)\nGoogle Material Design Icons (Apache-2.0)\nLeaflet (2-clause BSD License)\nOsmdroid (Apache-2.0)\nAutoSuggestTextViewAPICall (Apache-2.0)\nWilliamChart (Apache-2.0)\nAndroid Volley (Apache-2.0)\nAndroid Material Components (Apache-2.0)\nAndroidX (Apache-2.0)</string>
     <string name="about_more_info">More information can be found on:</string>
     <string name="about_github" translatable="false"><a href="https://github.com/woheller69/omweather">Github-Repo</a></string>
     <string name="about_openmeteo" translatable="false"><a href="https://open-meteo.com">Open-Meteo \n(Attribution 4.0 International CC BY 4.0)</a></string>
@@ -121,4 +121,5 @@
     <string name="github" translatable="false">GitHub</string>
     <string name="units_hours">h</string>
     <string name="settings_title_precipitation">Precipitation</string>
+    <string name="about_license_intro">This app is licensed under GPLv3. It uses code from:</string>
 </resources>

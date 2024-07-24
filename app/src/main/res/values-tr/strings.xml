@@ -23,7 +23,6 @@
     <string name="about">Hakkında</string>
     <string name="version_number">Versiyon</string>
     <string name="about_license">Lisans</string>
-    <string name="about_license_text">Bu uygulama, SECUSO araştırma grubu tarafından geliştirilen Gizlilik Dostu Hava Durumundan türetilmiştir. GPLv3 altında lisanslanan kaynak kodu. Uygulama, Apache Lisansı Sürüm 2.0 kapsamında lisanslanan Google Material Design Icons, 2 maddeli BSD Lisansı kapsamında lisanslanan Leaflet kitaplığı, MIT Lisansı kapsamında lisanslanan Leaflet.TileLayer.ColorFilter eklentisi, Apache Lisansı kapsamında lisanslanan AutoSuggestTextViewAPICall simgelerini kullanır. Apache Lisansı Sürüm 2.0 altında lisanslanan Sürüm 2.0 ve WilliamChart kitaplığı (com.db.chart)</string>
     <string name="about_more_info">Daha fazla bilgi burada bulunabilir:</string>
     <string name="activity_settings_title">Ayarlar</string>
     <string name="settings_title_units">Birimler</string>
@@ -112,4 +111,5 @@
     <string name="settings_apparent_temperature">Hissedilen sıcaklığı göster</string>
     <string name="units_hours">s</string>
     <string name="settings_title_precipitation">Yağış</string>
+    <string name="about_license_intro">Bu uygulama GPLv3 kapsamında lisanslıdır. Şu kaynaktan gelen kodu kullanır:</string>
 </resources>

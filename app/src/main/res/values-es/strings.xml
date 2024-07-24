@@ -25,7 +25,6 @@
     <string name="about">Acerca de</string>
     <string name="version_number">Versión</string>
     <string name="about_license">Licencia</string>
-    <string name="about_license_text">Esta aplicación se deriva de Privacy Friendly Weather, desarrollado por el grupo de investigación SECUSO. Código fuente con licencia GPLv3. La aplicación utiliza íconos de Google Material Design Icons con licencia Apache License Versión 2.0, la biblioteca Leaflet que está licenciada bajo la licencia BSD de 2 cláusulas, el complemento Leaflet.TileLayer.ColorFilter que tiene licencia MIT, AutoSuggestTextViewAPICall que tiene licencia de Apache License Versión 2.0 y la biblioteca WilliamChart (com.db.chart) que tiene licencia de Apache License Version 2.0</string>
     <string name="about_more_info">Puede encontrar más información en:</string>
     <string name="activity_settings_title">Configuraciones</string>
     <string name="settings_title_units">Unidades</string>
@@ -114,5 +113,6 @@
     <string name="settings_apparent_temperature">Visualización de la temperatura del fieltro</string>
     <string name="units_hours">h</string>
     <string name="settings_title_precipitation">Precipitación</string>
+    <string name="about_license_intro">Esta aplicación tiene licencia GPLv3. Utiliza código de:</string>
 
 </resources>

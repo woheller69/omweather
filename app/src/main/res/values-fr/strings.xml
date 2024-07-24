@@ -6,7 +6,6 @@
     <string name="about_privacy_heading">Informations sur la confidentialité</string>
     <string name="about_more_info">Plus d\'informations peuvent être trouvées sur:</string>
     <string name="about_permission_internet_description">Accès à tous les réseaux: Cette autorisation "est nécessaire pour envoyer des requêtes météo à des serveurs situés sur Internet. Sans cette autorisation, aucune donnée météo ne peut être obtenue. En option: autorisation pour GPS.</string>
-    <string name="about_license_text">Cette application est dérivée de Privacy Friendly Weather, développé par le groupe de recherche SECUSO. Code source sous licence GPLv3. L\'application utilise des icônes de Google Material Design Icons, sous licence Apache License Version 2.0, la bibliothèque Leaflet, sous licence BSD à 2 clauses, le plug-in Leaflet.TileLayer.ColorFilter, sous licence MIT, AutoSuggestTextViewAPICall, sous licence Apache License Version 2.0 et WilliamChart Library (com.db.chart), sous licence Apache License Version 2.0</string>
     <string name="about_license">Licence</string>
     <string name="about_permissions">Autorisations</string>
     <string name="about_privacy_answer">Cirrus n\'a besoin que d\'accéder à Internet. Aucune donnée personnelle n\'est collectée et aucune publicité n\'est affichée.</string>
@@ -115,5 +114,6 @@
     <string name="settings_apparent_temperature">Affiche la température ressentie</string>
     <string name="units_hours">h</string>
     <string name="settings_title_precipitation">Précipitation</string>
+    <string name="about_license_intro">Cette application est sous licence GPLv3. Il utilise le code de :</string>
 
 </resources>

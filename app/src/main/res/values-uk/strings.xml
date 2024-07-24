@@ -23,7 +23,6 @@
     <string name="about">Про застосунок</string>
     <string name="version_number">Версія</string>
     <string name="about_license">Ліцензія</string>
-    <string name="about_license_text">Цей застосунок є похідною від застосунка Privacy Friendly Weather, розробленого дослідницькою групою SECUSO. Джерельний код під ліцензією GPLv3. Застосунок використовує Google Material Design Icons, ліцензований згідно з ліцензією Apache версії 2.0, бібліотеку листівок, ліцензовану згідно з ліцензією 2-Clause BSD, плагін Leaflet.TileLayer.ColorFilter, ліцензований згідно з ліцензією MIT, AutoSuggestTextViewAPICall, ліцензований згідно з ліцензією Apache версії 2.0, і Бібліотека WilliamChart (com.db.chart) під ліцензією Apache License Version 2.0</string>
     <string name="about_more_info">Більше інформації можна знайти на:</string>
     <string name="activity_settings_title">Налаштування</string>
     <string name="settings_title_units">Одиниці</string>
@@ -112,4 +111,5 @@
     <string name="settings_apparent_temperature">Відображати \"відчувається як\" температуру</string>
     <string name="units_hours">год</string>
     <string name="settings_title_precipitation">Опади</string>
+    <string name="about_license_intro">Ця програма ліцензована згідно з GPLv3. Він використовує код із:</string>
 </resources>
