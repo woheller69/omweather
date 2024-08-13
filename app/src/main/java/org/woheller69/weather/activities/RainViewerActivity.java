@@ -39,6 +39,9 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.osmdroid.events.MapListener;
+import org.osmdroid.events.ScrollEvent;
+import org.osmdroid.events.ZoomEvent;
 import org.osmdroid.tileprovider.MapTileProviderBasic;
 import org.osmdroid.tileprovider.tilesource.ITileSource;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
@@ -133,7 +136,29 @@ public class RainViewerActivity extends AppCompatActivity {
         }
 
         mapView.getController().setZoom(8d);
+        mapView.addMapListener(new MapListener() {
+            @Override
+            public boolean onScroll(ScrollEvent event) {return false;}
+
+            @Override
+            public boolean onZoom(ZoomEvent event) {
+                Handler handler = new Handler(Looper.getMainLooper());
+                handler.postDelayed(() -> mapView.getController().animateTo(mapView.getMapCenter()),200);  //Refresh after 200ms
+                return false;
+            }
+        });
         mapView2.getController().setZoom(8d);
+        mapView2.addMapListener(new MapListener() {
+            @Override
+            public boolean onScroll(ScrollEvent event) {return false;}
+
+            @Override
+            public boolean onZoom(ZoomEvent event) {
+                Handler handler = new Handler(Looper.getMainLooper());
+                handler.postDelayed(() -> mapView2.getController().animateTo(mapView2.getMapCenter()),200);  //Refresh after 200ms
+                return false;
+            }
+        });
         mapPreload.getController().setZoom(8d);
         startPoint = new GeoPoint(latitude, longitude);
         mapView.getController().setCenter(startPoint);
@@ -355,16 +380,20 @@ public class RainViewerActivity extends AppCompatActivity {
                 final TilesOverlay newOverlay = entry.getTilesOverlay();
                 if (nightmode){
                     ColorMatrix colorMatrix = new ColorMatrix(new float[]{
-                            -1, 0, 0, 0, 255,
-                            0, -1, 0, 0, 255,
-                            0, 0, -1, 0, 255,
-                            0, 0, 0, 0.4f, 0
+                            1, 0, 0, 0, 255,
+                            0, 1, 0, 0, 255,
+                            0, 0, 1, 0, 255,
+                            0, 0, 0, 0.2f, 0
                     });
                     newOverlay.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
                 } else {
-                    int transparency = 128; // 128 is 50% transparent
-                    PorterDuffColorFilter filter = new PorterDuffColorFilter(Color.argb(transparency, 255, 255, 255), PorterDuff.Mode.MULTIPLY);
-                    newOverlay.setColorFilter(filter);
+                    ColorMatrix colorMatrix = new ColorMatrix(new float[]{
+                            -1, 0, 0, 0, 255,
+                            0, -1, 0, 0, 255,
+                            0, 0, -1, 0, 255,
+                            0, 0, 0, 0.3f, 0
+                    });
+                    newOverlay.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
                 }
                 return newOverlay;
             }
