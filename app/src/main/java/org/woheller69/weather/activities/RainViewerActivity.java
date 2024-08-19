@@ -116,6 +116,7 @@ public class RainViewerActivity extends AppCompatActivity {
         mapPreload.setTilesScaledToDpi(true);
 
         Configuration.getInstance().load(this, PreferenceManager.getDefaultSharedPreferences(this));
+        Configuration.getInstance().setUserAgentValue(getPackageName());
 
         mapView.setMultiTouchControls(true);
         mapView.getZoomController().setVisibility(CustomZoomButtonsController.Visibility.ALWAYS);
@@ -143,7 +144,7 @@ public class RainViewerActivity extends AppCompatActivity {
             @Override
             public boolean onZoom(ZoomEvent event) {
                 Handler handler = new Handler(Looper.getMainLooper());
-                handler.postDelayed(() -> mapView.getController().animateTo(mapView.getMapCenter()),200);  //Refresh after 200ms
+                handler.postDelayed(() -> refreshMap(mapView),200);  //Refresh after 200ms
                 return false;
             }
         });
@@ -155,7 +156,7 @@ public class RainViewerActivity extends AppCompatActivity {
             @Override
             public boolean onZoom(ZoomEvent event) {
                 Handler handler = new Handler(Looper.getMainLooper());
-                handler.postDelayed(() -> mapView2.getController().animateTo(mapView2.getMapCenter()),200);  //Refresh after 200ms
+                handler.postDelayed(() -> refreshMap(mapView2),200);  //Refresh after 200ms
                 return false;
             }
         });
@@ -313,7 +314,7 @@ public class RainViewerActivity extends AppCompatActivity {
 
     private void crossFade(MapView fromMap, MapView toMap) {
         int animationDuration;
-        if (radarTilesOverlayEntries.size() <= 1) animationDuration = 1000;  //slowdown intro
+        if (radarTilesOverlayEntries.size() <= 1) animationDuration = 2000;  //slowdown intro
         else animationDuration = 200; //milliseconds
         toMap.setAlpha(0f);
         toMap.setVisibility(View.VISIBLE);
@@ -331,10 +332,14 @@ public class RainViewerActivity extends AppCompatActivity {
                     @Override
                     public void onAnimationEnd(Animator animation) {
                         fromMap.setVisibility(View.INVISIBLE);
-                        toMap.getController().animateTo(toMap.getMapCenter());  //another refresh, sometimes overlays do not fully load
+                        refreshMap(toMap);  //another refresh, sometimes overlays do not fully load
                         crossfadeRunning = false;
                     }
                 });
+    }
+
+    private static void refreshMap(MapView map) {
+        map.getController().animateTo(map.getMapCenter());
     }
 
     private void replaceLayer(MapView map, TilesOverlay newRadarOverlay, TilesOverlay newInfraredOverlay, IGeoPoint center, double zoom) {
