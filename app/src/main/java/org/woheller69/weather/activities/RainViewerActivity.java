@@ -85,6 +85,7 @@ public class RainViewerActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+        if (scheduledExecutorService!=null && !scheduledExecutorService.isShutdown()) scheduledExecutorService.shutdownNow();
     }
 
     @Override
