@@ -112,4 +112,6 @@
     <string name="units_hours">год</string>
     <string name="settings_title_precipitation">Опади</string>
     <string name="about_license_intro">Ця програма ліцензована згідно з GPLv3. Він використовує код із:</string>
+    <string name="units_m_s">m/s</string>
+    <string name="units_kn">kn</string>
 </resources>

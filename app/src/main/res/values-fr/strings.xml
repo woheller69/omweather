@@ -115,5 +115,7 @@
     <string name="units_hours">h</string>
     <string name="settings_title_precipitation">Précipitation</string>
     <string name="about_license_intro">Cette application est sous licence GPLv3. Il utilise le code de :</string>
+    <string name="units_m_s">m/s</string>
+    <string name="units_kn">kn</string>
 
 </resources>

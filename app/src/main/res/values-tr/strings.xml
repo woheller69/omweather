@@ -112,4 +112,6 @@
     <string name="units_hours">s</string>
     <string name="settings_title_precipitation">Yağış</string>
     <string name="about_license_intro">Bu uygulama GPLv3 kapsamında lisanslıdır. Şu kaynaktan gelen kodu kullanır:</string>
+    <string name="units_m_s">m/s</string>
+    <string name="units_kn">kn</string>
 </resources>

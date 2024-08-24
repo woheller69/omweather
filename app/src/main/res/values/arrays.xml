@@ -14,11 +14,15 @@
         <item>@string/units_km_h</item>
         <item>@string/units_mph</item>
         <item>@string/units_Bft</item>
+        <item>@string/units_m_s</item>
+        <item>@string/units_kn</item>
     </string-array>
     <string-array name="speedUnitsValues">
         <item>1</item>
         <item>2</item>
         <item>3</item>
+        <item>4</item>
+        <item>5</item>
     </string-array>
 
     <string-array name="preciptiationUnitsArray">
