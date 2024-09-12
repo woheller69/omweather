@@ -114,5 +114,6 @@
     <string name="about_license_intro">Aquesta aplicació té llicència GPLv3. Utilitza codi de:</string>
     <string name="units_m_s">m/s</string>
     <string name="units_kn">kn</string>
+    <string name="settings_widget_transparency">Widget transparency</string>
 
 </resources>

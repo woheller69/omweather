@@ -76,6 +76,12 @@
             android:title="@string/settings_darkmode"
             android:defaultValue="false"
             />
+        <SeekBarPreference
+            android:key="pref_WidgetTransparency"
+            android:title="@string/settings_widget_transparency"
+            android:defaultValue="0"
+            android:max="100"
+            />
 
     </PreferenceCategory>
 

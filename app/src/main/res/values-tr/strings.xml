@@ -114,4 +114,5 @@
     <string name="about_license_intro">Bu uygulama GPLv3 kapsamında lisanslıdır. Şu kaynaktan gelen kodu kullanır:</string>
     <string name="units_m_s">m/s</string>
     <string name="units_kn">kn</string>
+    <string name="settings_widget_transparency">Widget transparency</string>
 </resources>

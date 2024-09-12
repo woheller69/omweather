@@ -183,6 +183,7 @@ public class WeatherWidget extends AppWidgetProvider {
         views.setTextViewText(R.id.widget_max_Temp,StringFormatUtils.formatTemperature(context, weekforecasts.get(0).getMaxTemperature()));
         views.setTextViewText(R.id.widget_min_Temp,StringFormatUtils.formatTemperature(context, weekforecasts.get(0).getMinTemperature()));
         views.setTextViewText(R.id.widget_city_name, city.getCityName());
+        views.setFloat(R.id.widget_background,"setAlpha", (100.0f - prefManager.getInt("pref_WidgetTransparency", 0)) /100.0f);
 
         if (riseTime==zoneseconds*1000 || setTime==zoneseconds*1000) views.setTextViewText(R.id.widget_sunrise_sunset,"\u2600\u25b2 --:--" + " \u25bc --:--");
         else  {

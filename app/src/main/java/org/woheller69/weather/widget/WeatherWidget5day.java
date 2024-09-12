@@ -7,6 +7,7 @@ import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.widget.RemoteViews;
@@ -30,6 +31,8 @@ import java.util.TimeZone;
 import static androidx.core.app.JobIntentService.enqueueWork;
 import static org.woheller69.weather.services.UpdateDataService.SKIP_UPDATE_INTERVAL;
 
+import androidx.preference.PreferenceManager;
+
 public class WeatherWidget5day extends AppWidgetProvider {
 
     public void updateAppWidget(Context context, final int appWidgetId) {
@@ -49,7 +52,8 @@ public class WeatherWidget5day extends AppWidgetProvider {
 
 
     public static void updateView(Context context, AppWidgetManager appWidgetManager, RemoteViews views, int appWidgetId, CityToWatch city, List<WeekForecast> weekforecasts) {
-
+        SharedPreferences prefManager = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
+        views.setFloat(R.id.widget_background,"setAlpha", (100.0f - prefManager.getInt("pref_WidgetTransparency", 0)) /100.0f);
         int cityId=getWidgetCityID(context);
         SQLiteHelper database = SQLiteHelper.getInstance(context.getApplicationContext());
         int zonemilliseconds = database.getCurrentWeatherByCityId(cityId).getTimeZoneSeconds()*1000;

@@ -175,7 +175,7 @@
         android:layout_marginBottom="5dp"
         android:paddingTop="4dp"
         android:text="CityName"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/lightgrey"
         android:textSize="18dp"
         android:textStyle="bold" />
 
@@ -189,7 +189,7 @@
         android:layout_marginEnd="8dp"
         android:paddingBottom="6dp"
         android:text="Weather data by Open-Meteo.com"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/lightgrey"
         android:textSize="15dp" />
 
     <TextView
