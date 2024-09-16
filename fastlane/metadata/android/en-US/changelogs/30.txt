@@ -1,0 +1,4 @@
+New setting for widget transparency
+m/s and kn as additional wind speed units
+Slovak translation
+Bugfix
