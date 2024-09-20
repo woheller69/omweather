@@ -53,7 +53,7 @@ public class WeatherWidget5day extends AppWidgetProvider {
 
     public static void updateView(Context context, AppWidgetManager appWidgetManager, RemoteViews views, int appWidgetId, CityToWatch city, List<WeekForecast> weekforecasts) {
         SharedPreferences prefManager = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
-        views.setFloat(R.id.widget_background,"setAlpha", (100.0f - prefManager.getInt("pref_WidgetTransparency", 0)) /100.0f);
+        views.setInt(R.id.widget_background,"setAlpha",  (int) ((100.0f - prefManager.getInt("pref_WidgetTransparency", 0)) * 255 / 100.0f));
         int cityId=getWidgetCityID(context);
         SQLiteHelper database = SQLiteHelper.getInstance(context.getApplicationContext());
         int zonemilliseconds = database.getCurrentWeatherByCityId(cityId).getTimeZoneSeconds()*1000;

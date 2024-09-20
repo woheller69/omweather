@@ -1,0 +1,1 @@
+Fix widgets for older devices

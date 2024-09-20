@@ -99,7 +99,7 @@ public class WeatherDigitalClockWidget extends AppWidgetProvider {
         SQLiteHelper dbHelper = SQLiteHelper.getInstance(context);
 
         SharedPreferences prefManager = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
-        views.setFloat(R.id.widget_background,"setAlpha", (100.0f - prefManager.getInt("pref_WidgetTransparency", 0)) /100.0f);
+        views.setInt(R.id.widget_background,"setAlpha",  (int) ((100.0f - prefManager.getInt("pref_WidgetTransparency", 0)) * 255 / 100.0f));
         if (prefManager.getBoolean("pref_TimeFormat", true)==TRUE)
             views.setCharSequence(R.id.textClockTime,"setFormat12Hour","HH:mm");
         else
