@@ -1,1 +1,2 @@
 Fix widgets for older devices
+Fix wind speed in knots

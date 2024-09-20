@@ -126,7 +126,7 @@ public final class StringFormatUtils {
             case "4":
                 return formatInt((float) (wind_speed), context.getString(R.string.units_m_s));
             case "5":
-                return formatInt((float) (wind_speed * 0.51444), context.getString(R.string.units_kn));
+                return formatInt((float) (wind_speed * 1.94384), context.getString(R.string.units_kn));
             default:
                 return formatInt((float) (wind_speed * 2.236), context.getString(R.string.units_mph));
         }
