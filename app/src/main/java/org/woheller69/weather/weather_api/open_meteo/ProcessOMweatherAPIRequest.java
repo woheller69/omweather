@@ -30,6 +30,7 @@ import static org.woheller69.weather.database.SQLiteHelper.getWidgetCityID;
 
 import androidx.preference.PreferenceManager;
 import org.woheller69.weather.weather_api.IApiToDatabaseConversion.WeatherCategories;
+import org.woheller69.weather.widget.WeatherWidgetAllInOne;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -252,6 +253,25 @@ public class ProcessOMweatherAPIRequest implements IProcessHttpRequest {
             }
         }
 
+        //search for all-in-one widgets with same city ID
+        int widgetAllInOneCityID=getWidgetCityID(context);
+
+        int[] widgetAllInOneIDs = AppWidgetManager.getInstance(context).getAppWidgetIds(new ComponentName(context, WeatherWidgetAllInOne.class));
+
+        for (int widgetID : widgetAllInOneIDs) {
+            //check if city ID is same
+            if (cityID == widgetAllInOneCityID) {
+                //perform update for the widget
+
+                RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.weather_widget_all_in_one);
+                AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+
+                CityToWatch city=dbHelper.getCityToWatch(cityID);
+
+                WeatherWidgetAllInOne.updateView(context, appWidgetManager, views, widgetID, city, currentWeather,weekforecasts,hourlyforecasts);
+                appWidgetManager.updateAppWidget(widgetID, views);
+            }
+        }
 
         //search for digital clock widgets with same city ID
         int widgetDigitalClockCityID=getWidgetCityID(context);

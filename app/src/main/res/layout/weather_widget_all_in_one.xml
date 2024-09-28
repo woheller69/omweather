@@ -1,0 +1,778 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="top|center_horizontal"
+    android:paddingStart="10dp"
+    android:paddingEnd="10dp"
+    android:layoutDirection="ltr"
+    android:id="@+id/widget_layout"
+    android:previewImage="@drawable/weather_widget_preview">
+
+    <ImageView
+        android:id="@+id/widget_background"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@id/widget_update"
+        android:layout_alignBottom="@id/widget_attribution"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/widget_background" />
+
+
+    <ImageView
+        android:id="@+id/widget_hour11"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_below="@id/widget_city_name"
+        android:layout_toEndOf="@id/widget_hour10"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/wmo_icon_86n"
+        android:translationX="-4dp" />
+
+    <ImageView
+        android:id="@+id/widget_hour12"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_below="@id/widget_city_name"
+        android:layout_toEndOf="@id/widget_hour11"
+        android:translationY="-7dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/wmo_icon_86n" />
+
+    <ImageView
+        android:id="@+id/widget_hour1"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_below="@id/widget_city_name"
+        android:layout_toEndOf="@id/widget_hour12"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/wmo_icon_86n"
+        android:translationX="4dp" />
+
+    <ImageView
+        android:id="@+id/widget_hour10"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_below="@id/widget_hour11"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="15dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/wmo_icon_86n"
+        android:translationY="-3dp" />
+
+    <ImageView
+        android:id="@+id/widget_hour9"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_below="@id/widget_hour10"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="15dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/wmo_icon_86n"
+        android:translationX="-7dp" />
+
+    <ImageView
+        android:id="@+id/widget_hour8"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_below="@id/widget_hour9"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="15dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/wmo_icon_86n"
+        android:translationY="3dp" />
+
+    <ImageView
+        android:id="@+id/widget_hour2"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_below="@id/widget_hour1"
+        android:layout_toEndOf="@id/widget_hour1"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/wmo_icon_86n"
+        android:translationY="-3dp" />
+
+    <ImageView
+        android:id="@+id/widget_hour3"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_below="@id/widget_hour2"
+        android:layout_toEndOf="@id/widget_hour1"
+        android:translationX="7dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/wmo_icon_86n" />
+
+    <ImageView
+        android:id="@+id/widget_hour4"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_below="@id/widget_hour3"
+        android:layout_toEndOf="@id/widget_hour1"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/wmo_icon_86n"
+        android:translationY="3dp" />
+
+    <ImageView
+        android:id="@+id/widget_hour7"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_below="@id/widget_hour8"
+        android:layout_toEndOf="@id/widget_hour8"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/wmo_icon_86n"
+        android:translationX="-4dp" />
+
+    <ImageView
+        android:id="@+id/widget_hour6"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_below="@id/widget_hour8"
+        android:layout_toEndOf="@id/widget_hour7"
+        android:translationY="7dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/wmo_icon_86n" />
+
+    <ImageView
+        android:id="@+id/widget_hour5"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_below="@id/widget_hour8"
+        android:layout_toEndOf="@id/widget_hour6"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/wmo_icon_86n"
+        android:translationX="4dp" />
+
+    <ImageView
+        android:id="@+id/widget_image_view"
+        android:layout_width="70dp"
+        android:layout_height="24dp"
+        android:layout_above="@id/widget_hour6"
+        android:layout_below="@id/widget_hour12"
+        android:layout_toStartOf="@id/widget_hour3"
+        android:layout_toEndOf="@id/widget_hour9"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/wmo_icon_00d" />
+
+    <TextView
+        android:id="@+id/widget_city_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginBottom="5dp"
+        android:paddingTop="4dp"
+        android:text="CityName"
+        android:textColor="@color/lightgrey"
+        android:textSize="18dp"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:id="@+id/widget_UVindex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@id/widget_image_view"
+        android:layout_alignTop="@id/widget_image_view"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="2dp"
+        android:background="@drawable/rounded_green"
+        android:paddingStart="2dp"
+        android:paddingEnd="2dp"
+        android:text="UV"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="14dp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/widget_update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/transparent_no_margin"
+        android:paddingStart="10dp"
+        android:paddingTop="4dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_refresh_24px"
+        android:translationX="-12dp" />
+
+    <ImageView
+        android:id="@+id/location_on"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toStartOf="@id/widget_update"
+        android:background="@drawable/transparent_no_margin"
+        android:paddingTop="4dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_location_on_white_24dp" />
+
+    <TextView
+        android:id="@+id/widget_updatetime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/widget_update"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="-2dp"
+        android:text="(19:15)"
+        android:textColor="#FFFFFF"
+        android:textSize="14dp"
+        android:translationX="-12dp" />
+
+
+    <TextView
+        android:id="@+id/widget_temperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/widget_updatetime"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp"
+        android:background="@drawable/rounded_grey"
+        android:paddingLeft="7dp"
+        android:paddingTop="0dp"
+        android:paddingRight="7dp"
+        android:paddingBottom="1dp"
+        android:text="-273,15°C"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="28dp"
+        android:textStyle="bold"
+        android:translationX="-12dp" />
+
+    <TextView
+        android:id="@+id/widget_sunrise_sunset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/widget_temperature"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp"
+        android:background="@drawable/rounded_grey"
+        android:letterSpacing="-0.05"
+        android:paddingLeft="7dp"
+        android:paddingTop="1dp"
+        android:paddingRight="7dp"
+        android:paddingBottom="1dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="15dp"
+        android:translationX="-12dp" />
+    <TextView
+        android:id="@+id/widget_precipitation_forecast"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/widget_sunrise_sunset"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="3dp"
+        android:background="@drawable/rounded_grey"
+        android:letterSpacing="-0.05"
+        android:paddingLeft="7dp"
+        android:paddingTop="1dp"
+        android:paddingRight="7dp"
+        android:paddingBottom="1dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="15dp"
+        android:translationX="-12dp" />
+
+    <ImageView
+        android:id="@+id/widget_windicon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/widget_image_view"
+        android:layout_alignEnd="@id/widget_image_view"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        android:src="@drawable/ic_wind_orange" />
+
+    <ImageView
+        android:id="@+id/widget_windicon_hour2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/widget_hour2"
+        android:layout_alignEnd="@id/widget_hour2"
+        android:layout_marginTop="-5dp"
+        android:layout_marginEnd="-5dp"
+        android:scaleX="0.7"
+        android:scaleY="0.7"
+        android:src="@drawable/ic_wind_orange"
+        android:translationY="-3dp" />
+
+    <ImageView
+        android:id="@+id/widget_windicon_hour3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/widget_hour3"
+        android:layout_alignEnd="@id/widget_hour3"
+        android:layout_marginTop="-5dp"
+        android:layout_marginEnd="-5dp"
+        android:translationX="7dp"
+        android:scaleX="0.7"
+        android:scaleY="0.7"
+        android:src="@drawable/ic_wind_orange" />
+
+    <ImageView
+        android:id="@+id/widget_windicon_hour4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/widget_hour4"
+        android:layout_alignEnd="@id/widget_hour4"
+        android:layout_marginTop="-5dp"
+        android:layout_marginEnd="-5dp"
+        android:scaleX="0.7"
+        android:scaleY="0.7"
+        android:src="@drawable/ic_wind_orange"
+        android:translationY="3dp" />
+
+    <ImageView
+        android:id="@+id/widget_windicon_hour5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/widget_hour5"
+        android:layout_alignEnd="@id/widget_hour5"
+        android:layout_marginTop="-5dp"
+        android:layout_marginEnd="-5dp"
+        android:scaleX="0.7"
+        android:scaleY="0.7"
+        android:src="@drawable/ic_wind_orange"
+        android:translationX="4dp" />
+
+    <ImageView
+        android:id="@+id/widget_windicon_hour6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/widget_hour6"
+        android:layout_alignEnd="@id/widget_hour6"
+        android:layout_marginTop="-5dp"
+        android:layout_marginEnd="-5dp"
+        android:translationY="7dp"
+        android:scaleX="0.7"
+        android:scaleY="0.7"
+        android:src="@drawable/ic_wind_orange" />
+
+    <ImageView
+        android:id="@+id/widget_windicon_hour7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/widget_hour7"
+        android:layout_alignEnd="@id/widget_hour7"
+        android:layout_marginTop="-5dp"
+        android:layout_marginEnd="-5dp"
+        android:scaleX="0.7"
+        android:scaleY="0.7"
+        android:src="@drawable/ic_wind_orange"
+        android:translationX="-4dp" />
+
+    <ImageView
+        android:id="@+id/widget_windicon_hour8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/widget_hour8"
+        android:layout_alignEnd="@id/widget_hour8"
+        android:layout_marginTop="-5dp"
+        android:layout_marginEnd="-5dp"
+        android:scaleX="0.7"
+        android:scaleY="0.7"
+        android:src="@drawable/ic_wind_orange"
+        android:translationY="3dp" />
+
+    <ImageView
+        android:id="@+id/widget_windicon_hour9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/widget_hour9"
+        android:layout_alignEnd="@id/widget_hour9"
+        android:layout_marginTop="-5dp"
+        android:layout_marginEnd="-5dp"
+        android:translationX="-7dp"
+        android:scaleX="0.7"
+        android:scaleY="0.7"
+        android:src="@drawable/ic_wind_orange" />
+
+    <ImageView
+        android:id="@+id/widget_windicon_hour10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/widget_hour10"
+        android:layout_alignEnd="@id/widget_hour10"
+        android:layout_marginTop="-5dp"
+        android:layout_marginEnd="-5dp"
+        android:scaleX="0.7"
+        android:scaleY="0.7"
+        android:src="@drawable/ic_wind_orange"
+        android:translationY="-3dp" />
+
+    <ImageView
+        android:id="@+id/widget_windicon_hour11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/widget_hour11"
+        android:layout_alignEnd="@id/widget_hour11"
+        android:layout_marginTop="-5dp"
+        android:layout_marginEnd="-5dp"
+        android:scaleX="0.7"
+        android:scaleY="0.7"
+        android:src="@drawable/ic_wind_orange"
+        android:translationX="-4dp" />
+
+    <ImageView
+        android:id="@+id/widget_windicon_hour12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/widget_hour12"
+        android:layout_alignEnd="@id/widget_hour12"
+        android:layout_marginTop="-5dp"
+        android:layout_marginEnd="-5dp"
+        android:translationY="-7dp"
+        android:scaleX="0.7"
+        android:scaleY="0.7"
+        android:src="@drawable/ic_wind_orange" />
+
+    <ImageView
+        android:id="@+id/widget_windicon_hour1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/widget_hour1"
+        android:layout_alignEnd="@id/widget_hour1"
+        android:layout_marginTop="-5dp"
+        android:layout_marginEnd="-5dp"
+        android:scaleX="0.7"
+        android:scaleY="0.7"
+        android:src="@drawable/ic_wind_orange"
+        android:translationX="4dp" />
+
+
+    <LinearLayout
+        android:id="@+id/layout_5day"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|center_horizontal"
+        android:orientation="horizontal"
+        android:paddingBottom="4dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="-5dp"
+        android:layout_below="@id/widget_hour6">
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/widget_5day_day1"
+                android:layout_width="wrap_content"
+                android:text="Day"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:layout_row="1"
+                android:layout_gravity="center"
+                android:textColor="@color/lightgrey" />
+
+            <ImageView
+                android:id="@+id/widget_5day_image1"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/wmo_icon_00d"
+                android:layout_row="2"
+                android:layout_gravity="center" />
+            <ImageView
+                android:id="@+id/widget_5day_wind1"
+                android:layout_width="12dp"
+                android:layout_height="wrap_content"
+                android:scaleType="fitCenter"
+                android:layout_row="2"
+                android:layout_marginLeft="35dp"
+                android:layout_gravity="top|center" />
+            <TextView
+                android:id="@+id/widget_5day_temp_max1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="-1dp"
+                android:layout_row="3"
+                android:text="42,0°C"
+                android:textSize="16dp"
+                android:textColor="@color/red" />
+
+            <TextView
+                android:id="@+id/widget_5day_temp_min1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="4"
+                android:layout_gravity="center"
+                android:layout_marginTop="-3dp"
+                android:text="42,0°C"
+                android:textColor="@color/midblue"
+                android:textSize="16dp" />
+
+        </GridLayout>
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/widget_5day_day2"
+                android:layout_width="wrap_content"
+                android:text="Day"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:layout_row="1"
+                android:layout_gravity="center"
+                android:textColor="@color/lightgrey" />
+
+            <ImageView
+                android:id="@+id/widget_5day_image2"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/wmo_icon_00d"
+                android:layout_row="2"
+                android:layout_gravity="center" />
+
+            <ImageView
+                android:id="@+id/widget_5day_wind2"
+                android:layout_width="12dp"
+                android:layout_height="wrap_content"
+                android:scaleType="fitCenter"
+                android:layout_row="2"
+                android:layout_marginLeft="35dp"
+                android:layout_gravity="top|center" />
+
+            <TextView
+                android:id="@+id/widget_5day_temp_max2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="-1dp"
+                android:layout_row="3"
+                android:text="42,0°C"
+                android:textSize="16dp"
+                android:textColor="@color/red" />
+
+            <TextView
+                android:id="@+id/widget_5day_temp_min2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="4"
+                android:layout_gravity="center"
+                android:layout_marginTop="-3dp"
+                android:text="42,0°C"
+                android:textColor="@color/midblue"
+                android:textSize="16dp" />
+
+        </GridLayout>
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/widget_5day_day3"
+                android:layout_width="wrap_content"
+                android:text="Day"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:layout_row="1"
+                android:layout_gravity="center"
+                android:textColor="@color/lightgrey" />
+
+            <ImageView
+                android:id="@+id/widget_5day_image3"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/wmo_icon_00d"
+                android:layout_row="2"
+                android:layout_gravity="center" />
+
+            <ImageView
+                android:id="@+id/widget_5day_wind3"
+                android:layout_width="12dp"
+                android:layout_height="wrap_content"
+                android:scaleType="fitCenter"
+                android:layout_row="2"
+                android:layout_marginLeft="35dp"
+                android:layout_gravity="top|center" />
+
+            <TextView
+                android:id="@+id/widget_5day_temp_max3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="-1dp"
+                android:layout_row="3"
+                android:text="42,0°C"
+                android:textSize="16dp"
+                android:textColor="@color/red" />
+
+            <TextView
+                android:id="@+id/widget_5day_temp_min3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="4"
+                android:layout_gravity="center"
+                android:layout_marginTop="-3dp"
+                android:text="42,0°C"
+                android:textColor="@color/midblue"
+                android:textSize="16dp" />
+
+        </GridLayout>
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/widget_5day_day4"
+                android:layout_width="wrap_content"
+                android:text="Day"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:layout_row="1"
+                android:layout_gravity="center"
+                android:textColor="@color/lightgrey" />
+
+            <ImageView
+                android:id="@+id/widget_5day_image4"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/wmo_icon_00d"
+                android:layout_row="2"
+                android:layout_gravity="center" />
+
+            <ImageView
+                android:id="@+id/widget_5day_wind4"
+                android:layout_width="12dp"
+                android:layout_height="wrap_content"
+                android:scaleType="fitCenter"
+                android:layout_row="2"
+                android:layout_marginLeft="35dp"
+                android:layout_gravity="top|center" />
+
+            <TextView
+                android:id="@+id/widget_5day_temp_max4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="-1dp"
+                android:layout_row="3"
+                android:text="42,0°C"
+                android:textSize="16dp"
+                android:textColor="@color/red" />
+
+            <TextView
+                android:id="@+id/widget_5day_temp_min4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="4"
+                android:layout_gravity="center"
+                android:layout_marginTop="-3dp"
+                android:text="42,0°C"
+                android:textColor="@color/midblue"
+                android:textSize="16dp" />
+
+        </GridLayout>
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/widget_5day_day5"
+                android:layout_width="wrap_content"
+                android:text="Day"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:layout_row="1"
+                android:layout_gravity="center"
+                android:textColor="@color/lightgrey" />
+
+            <ImageView
+                android:id="@+id/widget_5day_image5"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/wmo_icon_00d"
+                android:layout_row="2"
+                android:layout_gravity="center" />
+
+            <ImageView
+                android:id="@+id/widget_5day_wind5"
+                android:layout_width="12dp"
+                android:layout_height="wrap_content"
+                android:scaleType="fitCenter"
+                android:layout_row="2"
+                android:layout_marginLeft="35dp"
+                android:layout_gravity="top|center" />
+
+            <TextView
+                android:id="@+id/widget_5day_temp_max5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="-1dp"
+                android:layout_row="3"
+                android:text="42,0°C"
+                android:textSize="16dp"
+                android:textColor="@color/red" />
+
+            <TextView
+                android:id="@+id/widget_5day_temp_min5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="4"
+                android:layout_gravity="center"
+                android:layout_marginTop="-3dp"
+                android:text="42,0°C"
+                android:textColor="@color/midblue"
+                android:textSize="16dp" />
+
+        </GridLayout>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/widget_attribution"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout_5day"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="8dp"
+        android:paddingBottom="3dp"
+        android:text="Weather data by Open-Meteo.com"
+        android:textColor="@color/lightgrey"
+        android:textSize="15dp" />
+</RelativeLayout>
+
