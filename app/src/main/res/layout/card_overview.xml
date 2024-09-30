@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
-        android:src="@drawable/wmo_image_00d" />
+        android:src="@drawable/wmo_image_error" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -35,7 +35,6 @@
             android:layout_centerInParent="true"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
-            android:src="@drawable/ic_wind_orange"
             android:translationY="-20dp" />
         <LinearLayout
             android:layout_width="match_parent"
@@ -45,6 +44,7 @@
 
             <TextView
                 android:id="@+id/card_overview_temperature"
+                android:visibility="invisible"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
@@ -57,6 +57,7 @@
 
             <TextView
                 android:id="@+id/card_overview_precipitation_forecast"
+                android:visibility="invisible"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
@@ -87,6 +88,7 @@
 
     <TextView
         android:id="@+id/card_overview_sunrise_sunset"
+        android:visibility="invisible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|right"
