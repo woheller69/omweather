@@ -1,0 +1,2 @@
+New all-in-one widget
+Minor bugfix

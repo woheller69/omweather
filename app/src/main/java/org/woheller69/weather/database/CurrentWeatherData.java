@@ -114,18 +114,30 @@ public class CurrentWeatherData {
     }
 
     public boolean isDay(Context context){
-        Calendar timeStamp = Calendar.getInstance();
-        timeStamp.setTimeZone(TimeZone.getTimeZone("GMT"));
-        timeStamp.setTimeInMillis((timestamp+timeZoneSeconds)*1000);
+        Calendar currentTime = Calendar.getInstance();
+        currentTime.setTimeZone(TimeZone.getTimeZone("GMT"));
+        currentTime.setTimeInMillis(System.currentTimeMillis() + timeZoneSeconds* 1000L);
         SQLiteHelper dbHelper = SQLiteHelper.getInstance(context);
         if (timeSunrise==0 || timeSunset==0){
             if ((dbHelper.getCityToWatch(city_id).getLatitude())>0){  //northern hemisphere
-                return timeStamp.get(Calendar.DAY_OF_YEAR) >= 80 && timeStamp.get(Calendar.DAY_OF_YEAR) <= 265;  //from March 21 to September 22 (incl)
+                return currentTime.get(Calendar.DAY_OF_YEAR) >= 80 && currentTime.get(Calendar.DAY_OF_YEAR) <= 265;  //from March 21 to September 22 (incl)
             }else{ //southern hemisphere
-                return timeStamp.get(Calendar.DAY_OF_YEAR) < 80 || timeStamp.get(Calendar.DAY_OF_YEAR) > 265;
+                return currentTime.get(Calendar.DAY_OF_YEAR) < 80 || currentTime.get(Calendar.DAY_OF_YEAR) > 265;
             }
-        }else {
-            return timestamp > timeSunrise && timestamp < timeSunset;
+        } else {
+            Calendar sunSetTime = Calendar.getInstance();
+            sunSetTime.setTimeZone(TimeZone.getTimeZone("GMT"));
+            sunSetTime.setTimeInMillis(timeSunset * 1000 + timeZoneSeconds * 1000L);
+            sunSetTime.set(Calendar.DAY_OF_YEAR, currentTime.get(Calendar.DAY_OF_YEAR));
+            sunSetTime.set(Calendar.YEAR, currentTime.get(Calendar.YEAR));
+
+            Calendar sunRiseTime = Calendar.getInstance();
+            sunRiseTime.setTimeZone(TimeZone.getTimeZone("GMT"));
+            sunRiseTime.setTimeInMillis(timeSunrise * 1000 + timeZoneSeconds * 1000L);
+            sunRiseTime.set(Calendar.DAY_OF_YEAR, currentTime.get(Calendar.DAY_OF_YEAR));
+            sunRiseTime.set(Calendar.YEAR, currentTime.get(Calendar.YEAR));
+
+            return currentTime.after(sunRiseTime) && currentTime.before(sunSetTime);
         }
     }
 

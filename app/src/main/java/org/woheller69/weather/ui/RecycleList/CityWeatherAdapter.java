@@ -236,8 +236,7 @@ public class CityWeatherAdapter extends RecyclerView.Adapter<CityWeatherAdapter.
             int zoneseconds = currentWeatherDataList.getTimeZoneSeconds();
             long riseTime = (currentWeatherDataList.getTimeSunrise() + zoneseconds) * 1000;
             long setTime = (currentWeatherDataList.getTimeSunset() + zoneseconds) * 1000;
-            long time = currentWeatherDataList.getTimestamp();
-            long updateTime = ((time + zoneseconds) * 1000);
+            long updateTime = ((currentWeatherDataList.getTimestamp() + zoneseconds) * 1000);
 
             holder.updatetime.setText("("+StringFormatUtils.formatTimeWithoutZone(context, updateTime)+")");
 
@@ -252,7 +251,7 @@ public class CityWeatherAdapter extends RecyclerView.Adapter<CityWeatherAdapter.
                     }
                 }
                 if (nowCast!=null) {
-                    if (riseTime==zoneseconds*1000 || setTime==zoneseconds*1000) holder.sun.setText("\u2600\u25b2 --:--" + " \u25bc --:--" );
+                    if (riseTime == zoneseconds * 1000L || setTime == zoneseconds * 1000L) holder.sun.setText("\u2600\u25b2 --:--" + " \u25bc --:--" );
                     else  {
                         holder.sun.setText("\u2600\u25b2 " + StringFormatUtils.formatTimeWithoutZone(context, riseTime) + " \u25bc " + StringFormatUtils.formatTimeWithoutZone(context, setTime));
                     }
@@ -274,7 +273,7 @@ public class CityWeatherAdapter extends RecyclerView.Adapter<CityWeatherAdapter.
 
                 holder.precipforecast.setVisibility(View.INVISIBLE);
                 if (next != null){
-                    if (riseTime==zoneseconds*1000 || setTime==zoneseconds*1000) holder.sun.setText("\u2600\u25b2 --:--" + " \u25bc --:--" );
+                    if (riseTime==zoneseconds * 1000L || setTime==zoneseconds * 1000L) holder.sun.setText("\u2600\u25b2 --:--" + " \u25bc --:--" );
                     else  {
                         holder.sun.setText("\u2600\u25b2 " + StringFormatUtils.formatTimeWithoutZone(context, riseTime) + " \u25bc " + StringFormatUtils.formatTimeWithoutZone(context, setTime));
                     }
