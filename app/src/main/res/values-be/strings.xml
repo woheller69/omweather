@@ -1,0 +1,128 @@
+<resources>
+    <string name="app_name" translatable="false">Cirrus</string>
+    <string name="activity_about">Аб</string>
+    <string name="activity_settings">Налады</string>
+    <string name="activity_weather">Надвор\'е</string>
+    <string name="activity_manage">Кіраванне месцамі</string>
+    <string name="action_refresh">Абнавіць</string>
+    <string name="navigation_drawer_open">Адкрыць панэль навігацыі</string>
+    <string name="navigation_drawer_close">Зачыніць панэль навігацыі</string>
+    <string name="next">Наступны</string>
+    <string name="okay">Ок</string>
+    <string name="slide1_heading">Прывітанне!</string>
+    <string name="slide1_text">Cirrus - гэта прылада для праверкі бягучага надвор\'я і прагнозаў для вашых месцаў.</string>
+    <string name="slide2_heading" translatable="false">Github</string>
+    <string name="slide2_text">Зыходны код гэтага прыкладання даступны на GitHub. Для атрымання дадатковых тлумачэнняў зазірніце на старонку Аб.</string>
+    <string name="card_details_heading">Зараз</string>
+    <string name="card_details_humidity">Вільготнасць:</string>
+    <string name="card_details_pressure">Ціск:</string>
+    <string name="card_details_wind_speed">Вецер:</string>
+    <string name="card_week_heading">Тыдзень</string>
+    <string name="card_error_heading">Памылка атрымання даных аб надвор\'і</string>
+    <string name="card_error_content">Паспрабуйце абнавіць!</string>
+    <string name="about_privacy_heading">Інфармацыя аб прыватнасці</string>
+    <string name="about_permission_internet_description">Падключэнне да сеткі: гэты дазвол неабходны, таму што даныя пра надвор\'е здабываюцца шляхам запытаў на серверы ў Інтэрнэце. Без гэтага дазволу немагчыма атрымаць даныя пра надвор'е. Дадаткова: аўтарызацыя для GPS.</string>
+    <string name="about">Аб</string>
+    <string name="version_number">Версія</string>
+    <string name="about_license">Ліцэнзія</string>
+    <string name="about_license_text" translatable="false">SECUSO Privacy Friendly Weather (GPLv3)\nЗначкі Google Material Design (Apache-2.0)\nУлётка (ліцэнзія BSD з 2 пунктамі)\nOsmdroid (Apache-2.0)\nAutoSuggestTextViewAPICall (Apache-2.0)\nWilliamChart (Apache-2.0)\nAndroid Volley (Apache-2.0)\nМатэрыяльныя кампаненты Android (Apache-2.0)\nAndroidX (Apache-2.0)</string>
+    <string name="about_more_info">Дадатковую інфармацыю можна знайсці на:</string>
+    <string name="about_github" translatable="false"><a href="https://github.com/woheller69/omweather">Github-Repo</a></string>
+    <string name="about_openmeteo" translatable="false"><a href="https://open-meteo.com">Open-Meteo \n(Attribution 4.0 International CC BY 4.0)</a></string>
+    <string name="about_rainviewer" translatable="false"><a href="https://rainviewer.com">RainViewer</a></string>
+    <string name="activity_settings_title">Налады</string>
+    <string name="settings_title_units">Адзінкі</string>
+    <string name="settings_title_temperature">Тэмпература</string>
+    <string name="settings_celsius">па Цэльсію</string>
+    <string name="settings_fahrenheit">па Фарэнгейту</string>
+    <string name="settings_title_speed">Хуткасць ветру</string>
+    <string name="abbreviation_monday">Пн.</string>
+    <string name="abbreviation_tuesday">Аў.</string>
+    <string name="abbreviation_wednesday">Ср.</string>
+    <string name="abbreviation_thursday">Чц.</string>
+    <string name="abbreviation_friday">Пт.</string>
+    <string name="abbreviation_saturday">Сб.</string>
+    <string name="abbreviation_sunday">Нд.</string>
+    <string name="dialog_add_label">Увядзіце месца для дадання:</string>
+    <string name="dialog_add_no_city_found">Не знойдзена месца, якое б адпавядала вашаму ўводу. Рэкамендуецца выбраць адзін з пунктаў з выпадальнага спісу.</string>
+    <string name="dialog_add_close_button">Зачыніць</string>
+    <string name="dialog_add_add_button">Дадаць</string>
+    <string name="error_convert_to_json">Атрыманыя даныя пра надвор\'е былі няправільна сфарміраваны.</string>
+    <string name="error_no_internet">Ваша прылада не падключана да Інтэрнэту</string>
+    <string name="error_fetch_forecast">Памылка пры абнаўленні прагнозу, паспрабуйце яшчэ раз!</string>
+    <string name="error_no_city_selected">Горад не выбраны. Каб выбраць горад, перайдзіце ў \"Кіраванне месцамі\".</string>
+    <string name="settings_interval_quarter">15 хв</string>
+    <string name="settings_interval_half">30 хв</string>
+    <string name="settings_interval_one">1 гадз</string>
+    <string name="settings_interval_two">2 гадз</string>
+    <string name="settings_interval_six">6 гадз</string>
+    <string name="settings_interval_twelve">12 гадз</string>
+    <string name="settings_interval_twentyfour">24 гадз</string>
+    <string name="settings_intervals">Інтэрвалы</string>
+    <string name="settings_update_interval">Інтэрвал абнаўлення</string>
+    <string name="settings_interval_summary">Усталюйце інтэрвал аўтаматычнага абнаўлення</string>
+    <string name="about_privacy_answer">Cirrus выкарыстоўвае толькі дазвол \"Інтэрнэт\" для атрымання даных аб надвор\'і. Акрамя таго, ён не ўключае ніякіх механізмаў адсочвання або рэкламы.</string>
+    <string name="about_where_from">Адкуль бярэцца інфармацыя пра надвор\'е?</string>
+    <string name="about_where_from_answer">Інфармацыя пра надвор\'е атрымліваецца з</string>
+    <string name="about_permissions">Дазволы</string>
+    <string name="long_press_text">Утрымлівайце і перацягвайце для сартаванняt.</string>
+    <string name="swipe_to_delete">Правядзіце пальцам, каб выдаліць</string>
+    <string name="settings_title_display_options">Параметры адлюстравання</string>
+    <string name="infoProvider">Інфармацыя пра надвор\'е атрымліваецца з Open-Meteo.com \&amp; Rainviewer.com</string>
+    <string name="monday">Панядзелак</string>
+    <string name="tuesday">Аўторак</string>
+    <string name="wednesday">Серада</string>
+    <string name="thursday">Чацвер</string>
+    <string name="friday">Пятніца</string>
+    <string name="saturday">Субота</string>
+    <string name="sunday">Надзеля</string>
+    <string name="chart">Дыяграма</string>
+    <string name="units_rh">% rh</string>
+    <string name="units_mm">мм</string>
+    <string name="units_km">км</string>
+    <string name="units_hPa">кПа</string>
+    <string name="units_Bft">Bft</string>
+    <string name="units_mm_h">мм/гадз</string>
+    <string name="units_km_h">км/гадз</string>
+    <string name="units_mph">міль/гадз</string>
+    <string name="units_in" translatable="false">\u2033</string>
+    <string name="card_details_rain60min">☔ 60 хв:</string>
+    <string name="error_no_rain60min_data">няма дадзенных</string>
+    <string name="dialog_edit_change_button">Мадыфікаваць</string>
+    <string name="edit_location_hint_name">Імя</string>
+    <string name="settings_search">Пошук</string>
+    <string name="settings_temp_decimal">Паказаць тэмпературу з адным дзесятковым знакам</string>
+    <string name="settings_darkmode">Цёмны рэжым Android 10+</string>
+    <string name="settings_position">Пазіцыя</string>
+    <string name="settings_GPS_summary">Дазволіць выкарыстанне бягучай пазіцыі GPS у першай укладцы і ў віджэце бягучага надвор\'я. Абнаўленне пазіцыі аўтаматычна запускаецца віджэтам.</string>
+    <string name="settings_GPS_position">Дазволіць выкарыстанне GPS</string>
+    <string name="error_no_position">Няма даступнай пазіцыі</string>
+    <string name="settings_time24h">24-гадзінны фармат</string>
+    <string name="summary_time24h">Перавызначэнне сістэмных налад</string>
+    <string name="dialog_OK_button">ОК</string>
+    <string name="dialog_NO_button">Не</string>
+    <string name="dialog_Later_button">Можа, пазней</string>
+    <string name="dialog_StarOnGitHub"> Вам падабаецца гэта дадатак? Калі ласка, пастаўце зорку на GitHub або купіце распрацоўніку кавы праз PayPal.</string>
+    <string name="settings_show_pressure">Паказаць ціск паветра</string>
+    <string name="action_position" translatable="false">Абнавіць месцазнаходжанне</string>
+    <string name="settings_GPS_manual">Абнаўленне толькі ўручную</string>
+    <string name="rationale_background_location">Таксама дазвольце выкарыстанне GPS у фонавым рэжыме для выкарыстання ў віджэце</string>
+    <string name="error_no_gps">Калі ласка, уключыце GPS</string>
+    <string name="slide3_heading">Адчыніць-Mетэа</string>
+    <string name="RainViewer">Радар дажджу</string>
+    <string name="action_rainviewer" translatable="false">Rain radar</string>
+    <string name="nonFreeNet">Дазволіць доступ да RainViewer.com, які не з\'яўляецца сеткай з адкрытым зыходным кодам.</string>
+    <string name="summary_reanalyze">Палепшыце значкі тыдня, аналізуючы пагадзінныя прагнозы паміж усходам і заходам сонца (эксперыментальна).</string>
+    <string name="settings_reanalyze">Значкі тыдня</string>
+    <string name="settings_precipitation">Ападкі</string>
+    <string name="summary_precipitation">Выкарыстоўвайце колькасць снегу замест эквівалентнай колькасці вады.</string>
+    <string name="settings_forecast_days">Колькасць прагнозных дзён</string>
+    <string name="settings_apparent_temperature">Паказваць тэмпературу \"па адчуваннях\".</string>
+    <string name="github" translatable="false">GitHub</string>
+    <string name="units_hours">гадз</string>
+    <string name="settings_title_precipitation">Ападкі</string>
+    <string name="about_license_intro">Гэта дадатак мае ліцэнзію GPLv3. Ён выкарыстоўвае код з:</string>
+    <string name="units_m_s">м/с</string>
+    <string name="units_kn">kn</string>
+    <string name="settings_widget_transparency">Празрыстасць віджэту</string>
+</resources>
