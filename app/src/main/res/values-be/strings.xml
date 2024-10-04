@@ -63,7 +63,7 @@
     <string name="settings_interval_summary">Усталюйце інтэрвал аўтаматычнага абнаўлення</string>
     <string name="about_privacy_answer">Cirrus выкарыстоўвае толькі дазвол \"Інтэрнэт\" для атрымання даных аб надвор\'і. Акрамя таго, ён не ўключае ніякіх механізмаў адсочвання або рэкламы.</string>
     <string name="about_where_from">Адкуль бярэцца інфармацыя пра надвор\'е?</string>
-    <string name="about_where_from_answer">Інфармацыя пра надвор\'е атрымліваецца з</string>
+    <string name="about_where_from_answer">Інфармацыя пра надвор \'е атрымліваецца з</string>
     <string name="about_permissions">Дазволы</string>
     <string name="long_press_text">Утрымлівайце і перацягвайце для сартаванняt.</string>
     <string name="swipe_to_delete">Правядзіце пальцам, каб выдаліць</string>
