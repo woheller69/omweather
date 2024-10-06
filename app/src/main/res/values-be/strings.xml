@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name" translatable="false">Cirrus</string>
     <string name="activity_about">Аб</string>
     <string name="activity_settings">Налады</string>
     <string name="activity_weather">Надвор\'е</string>
@@ -11,7 +10,6 @@
     <string name="okay">Ок</string>
     <string name="slide1_heading">Прывітанне!</string>
     <string name="slide1_text">Cirrus - гэта прылада для праверкі бягучага надвор\'я і прагнозаў для вашых месцаў.</string>
-    <string name="slide2_heading" translatable="false">Github</string>
     <string name="slide2_text">Зыходны код гэтага прыкладання даступны на GitHub. Для атрымання дадатковых тлумачэнняў зазірніце на старонку Аб.</string>
     <string name="card_details_heading">Зараз</string>
     <string name="card_details_humidity">Вільготнасць:</string>
@@ -25,11 +23,7 @@
     <string name="about">Аб</string>
     <string name="version_number">Версія</string>
     <string name="about_license">Ліцэнзія</string>
-    <string name="about_license_text" translatable="false">SECUSO Privacy Friendly Weather (GPLv3)\nЗначкі Google Material Design (Apache-2.0)\nУлётка (ліцэнзія BSD з 2 пунктамі)\nOsmdroid (Apache-2.0)\nAutoSuggestTextViewAPICall (Apache-2.0)\nWilliamChart (Apache-2.0)\nAndroid Volley (Apache-2.0)\nМатэрыяльныя кампаненты Android (Apache-2.0)\nAndroidX (Apache-2.0)</string>
     <string name="about_more_info">Дадатковую інфармацыю можна знайсці на:</string>
-    <string name="about_github" translatable="false"><a href="https://github.com/woheller69/omweather">Github-Repo</a></string>
-    <string name="about_openmeteo" translatable="false"><a href="https://open-meteo.com">Open-Meteo \n(Attribution 4.0 International CC BY 4.0)</a></string>
-    <string name="about_rainviewer" translatable="false"><a href="https://rainviewer.com">RainViewer</a></string>
     <string name="activity_settings_title">Налады</string>
     <string name="settings_title_units">Адзінкі</string>
     <string name="settings_title_temperature">Тэмпература</string>
@@ -85,7 +79,6 @@
     <string name="units_mm_h">мм/гадз</string>
     <string name="units_km_h">км/гадз</string>
     <string name="units_mph">міль/гадз</string>
-    <string name="units_in" translatable="false">\u2033</string>
     <string name="card_details_rain60min">☔ 60 хв:</string>
     <string name="error_no_rain60min_data">няма дадзенных</string>
     <string name="dialog_edit_change_button">Мадыфікаваць</string>
@@ -104,13 +97,11 @@
     <string name="dialog_Later_button">Можа, пазней</string>
     <string name="dialog_StarOnGitHub"> Вам падабаецца гэта дадатак? Калі ласка, пастаўце зорку на GitHub або купіце распрацоўніку кавы праз PayPal.</string>
     <string name="settings_show_pressure">Паказаць ціск паветра</string>
-    <string name="action_position" translatable="false">Абнавіць месцазнаходжанне</string>
     <string name="settings_GPS_manual">Абнаўленне толькі ўручную</string>
     <string name="rationale_background_location">Таксама дазвольце выкарыстанне GPS у фонавым рэжыме для выкарыстання ў віджэце</string>
     <string name="error_no_gps">Калі ласка, уключыце GPS</string>
     <string name="slide3_heading">Адчыніць-Mетэа</string>
     <string name="RainViewer">Радар дажджу</string>
-    <string name="action_rainviewer" translatable="false">Rain radar</string>
     <string name="nonFreeNet">Дазволіць доступ да RainViewer.com, які не з\'яўляецца сеткай з адкрытым зыходным кодам.</string>
     <string name="summary_reanalyze">Палепшыце значкі тыдня, аналізуючы пагадзінныя прагнозы паміж усходам і заходам сонца (эксперыментальна).</string>
     <string name="settings_reanalyze">Значкі тыдня</string>
@@ -118,7 +109,6 @@
     <string name="summary_precipitation">Выкарыстоўвайце колькасць снегу замест эквівалентнай колькасці вады.</string>
     <string name="settings_forecast_days">Колькасць прагнозных дзён</string>
     <string name="settings_apparent_temperature">Паказваць тэмпературу \"па адчуваннях\".</string>
-    <string name="github" translatable="false">GitHub</string>
     <string name="units_hours">гадз</string>
     <string name="settings_title_precipitation">Ападкі</string>
     <string name="about_license_intro">Гэта дадатак мае ліцэнзію GPLv3. Ён выкарыстоўвае код з:</string>
