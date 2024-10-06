@@ -19,7 +19,7 @@
     <string name="card_error_heading">Памылка атрымання даных аб надвор\'і</string>
     <string name="card_error_content">Паспрабуйце абнавіць!</string>
     <string name="about_privacy_heading">Інфармацыя аб прыватнасці</string>
-    <string name="about_permission_internet_description">Падключэнне да сеткі: гэты дазвол неабходны, таму што даныя пра надвор\'е здабываюцца шляхам запытаў на серверы ў Інтэрнэце. Без гэтага дазволу немагчыма атрымаць даныя пра надвор'е. Дадаткова: аўтарызацыя для GPS.</string>
+    <string name="about_permission_internet_description">Падключэнне да сеткі: гэты дазвол неабходны, таму што даныя пра надвор\'е здабываюцца шляхам запытаў на серверы ў Інтэрнэце. Без гэтага дазволу немагчыма атрымаць даныя пра надвор\'е. Дадаткова: аўтарызацыя для GPS.</string>
     <string name="about">Аб</string>
     <string name="version_number">Версія</string>
     <string name="about_license">Ліцэнзія</string>
