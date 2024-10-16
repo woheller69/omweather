@@ -401,7 +401,7 @@ public class WeatherWidgetAllInOne extends AppWidgetProvider {
 
         for (int widgetID : widgetIDs) {
 
-                RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.weather_widget);
+                RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.weather_widget_all_in_one);
                 AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
 
                 CityToWatch city=dbHelper.getCityToWatch(widgetCityID);
