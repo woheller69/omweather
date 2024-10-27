@@ -1,0 +1,101 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="top|center_horizontal"
+    android:paddingStart="10dp"
+    android:paddingEnd="10dp"
+    android:layoutDirection="ltr"
+    android:id="@+id/widget_layout"
+    android:previewImage="@drawable/radar_widget_preview">
+
+    <ImageView
+        android:id="@+id/widget_background"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@id/widget_update"
+        android:layout_alignBottom="@id/widget_radar_view"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/widget_background" />
+
+    <ImageView
+        android:id="@+id/widget_radar_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:padding="5dp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/rounded_grey" />
+
+    <TextView
+        android:id="@+id/widget_radar_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/lightgrey"
+        android:layout_alignBottom="@id/widget_radar_view"
+        android:paddingBottom="10dp"
+        android:text="-- m"
+        android:textSize="20dp" />
+
+
+    <ImageView
+        android:id="@+id/widget_center_marker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:paddingBottom="48dp"
+        android:src="@drawable/ic_location_48dp_lightgrey" />
+
+
+    <TextView
+        android:id="@+id/widget_city_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginBottom="5dp"
+        android:paddingTop="4dp"
+        android:text="CityName"
+        android:textColor="@color/lightgrey"
+        android:textSize="18dp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/widget_update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/transparent_no_margin"
+        android:paddingStart="10dp"
+        android:paddingTop="4dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_refresh_24px"
+        android:translationX="-12dp" />
+
+    <ImageView
+        android:id="@+id/location_on"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toStartOf="@id/widget_update"
+        android:background="@drawable/transparent_no_margin"
+        android:paddingTop="4dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_location_on_white_24dp" />
+
+    <TextView
+        android:id="@+id/widget_updatetime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/widget_update"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="-2dp"
+        android:text="(19:15)"
+        android:textColor="#FFFFFF"
+        android:textSize="14dp"
+        android:translationX="-12dp" />
+
+
+</RelativeLayout>
+

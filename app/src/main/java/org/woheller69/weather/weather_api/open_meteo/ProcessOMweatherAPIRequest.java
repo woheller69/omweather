@@ -23,6 +23,7 @@ import org.woheller69.weather.database.SQLiteHelper;
 import org.woheller69.weather.ui.updater.ViewUpdater;
 import org.woheller69.weather.weather_api.IDataExtractor;
 import org.woheller69.weather.weather_api.IProcessHttpRequest;
+import org.woheller69.weather.widget.RadarWidget;
 import org.woheller69.weather.widget.WeatherDigitalClockWidget;
 import org.woheller69.weather.widget.WeatherWidget;
 import org.woheller69.weather.widget.WeatherWidget5day;
@@ -308,6 +309,25 @@ public class ProcessOMweatherAPIRequest implements IProcessHttpRequest {
                 CityToWatch city=dbHelper.getCityToWatch(cityID);
 
                 WeatherWidget5day.updateView(context, appWidgetManager, views, widgetID, city, weekforecasts);
+                appWidgetManager.updateAppWidget(widgetID, views);
+            }
+        }
+
+        //search for 5day widgets with same city ID
+        int radarWidgetCityID= getWidgetCityID(context);
+        int[] radarWidgetIDs = AppWidgetManager.getInstance(context).getAppWidgetIds(new ComponentName(context, RadarWidget.class));
+
+        for (int widgetID : radarWidgetIDs) {
+            //check if city ID is same
+            if (cityID == radarWidgetCityID) {
+                //perform update for the widget
+
+                RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.radar_widget);
+                AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+
+                CityToWatch city=dbHelper.getCityToWatch(cityID);
+
+                RadarWidget.updateView(context, appWidgetManager, views, widgetID, city, currentWeather);
                 appWidgetManager.updateAppWidget(widgetID, views);
             }
         }

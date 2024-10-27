@@ -119,6 +119,17 @@
                 android:resource="@xml/weather_widget_all_in_one_info" />
         </receiver>
 
+        <receiver android:name="org.woheller69.weather.widget.RadarWidget"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/radar_widget_info" />
+        </receiver>
+
     </application>
 
 </manifest>
