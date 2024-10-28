@@ -17,6 +17,8 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.icu.util.LocaleData;
+import android.icu.util.ULocale;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -169,11 +171,19 @@ public class RadarWidget extends AppWidgetProvider {
                                         paint.setColor(ContextCompat.getColor(context, R.color.lightgrey));
                                         paint.setTextSize(16);
 
-                                        int widthTotalDistance = (int) (2 * 3.14 * 6378 * Math.abs(Math.cos(city.getLatitude()/180*3.14)) / (Math.pow(2, zoom) * 256) *256);
+                                        int widthTotalDistance = (int) (2 * 3.14 * 6378 * Math.abs(Math.cos(city.getLatitude() / 180 * 3.14)) / (Math.pow(2, zoom) * 256) * 256); ;
+                                        String distanceUnit = context.getString(R.string.units_km);;
+                                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                                            if (LocaleData.getMeasurementSystem(ULocale.forLocale(Locale.getDefault())) != LocaleData.MeasurementSystem.SI){
+                                                distanceUnit = context.getString(R.string.units_mi);
+                                                widthTotalDistance = (int) (2 * 3.14 * 6378 * 0.6214 * Math.abs(Math.cos(city.getLatitude() / 180 * 3.14)) / (Math.pow(2, zoom) * 256) * 256);
+                                            }
+                                        }
+
                                         int widthDistanceMarker = getClosestMarker(widthTotalDistance / 10);
 
                                         int length = widthDistanceMarker * 256 / widthTotalDistance;
-                                        canvas.drawText(widthDistanceMarker + " km", 10 + length + 10, 240 + 4, paint); // draw the text
+                                        canvas.drawText(widthDistanceMarker + " " + distanceUnit, 10 + length + 10, 240 + 4, paint); // draw the text
                                         canvas.drawLine(10,240,10 + length,240,paint);
 
                                         views.setImageViewBitmap(R.id.widget_radar_view, textBitmap);
