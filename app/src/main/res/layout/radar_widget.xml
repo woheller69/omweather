@@ -28,16 +28,6 @@
         android:adjustViewBounds="true"
         android:src="@drawable/rounded_grey" />
 
-    <ImageView
-        android:id="@+id/widget_center_marker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:paddingBottom="48dp"
-        android:src="@drawable/ic_location_48dp_lightgrey" />
-
-
     <TextView
         android:id="@+id/widget_city_name"
         android:layout_width="wrap_content"

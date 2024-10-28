@@ -169,7 +169,7 @@ public class RadarWidget extends AppWidgetProvider {
                                         canvas.drawBitmap(response1, 0, 0, null); // draw the original image
                                         Paint paint = new Paint();
                                         paint.setColor(ContextCompat.getColor(context, R.color.lightgrey));
-                                        paint.setTextSize(16);
+                                        paint.setTextSize(14);
 
                                         int widthTotalDistance = (int) (2 * 3.14 * 6378 * Math.abs(Math.cos(city.getLatitude() / 180 * 3.14)) / (Math.pow(2, zoom) * 256) * 256); ;
                                         String distanceUnit = context.getString(R.string.units_km);;
@@ -181,10 +181,18 @@ public class RadarWidget extends AppWidgetProvider {
                                         }
 
                                         int widthDistanceMarker = getClosestMarker(widthTotalDistance / 10);
+                                        int widthDistanceMarkerPixel = widthDistanceMarker * 256 / widthTotalDistance;
+                                        canvas.drawText(widthDistanceMarker + " " + distanceUnit, 10 + widthDistanceMarkerPixel + 10, 240 + 4, paint); // draw the text
+                                        paint.setStyle(Paint.Style.STROKE);
+                                        canvas.drawLine(10,240,10 + widthDistanceMarkerPixel,240,paint);
 
-                                        int length = widthDistanceMarker * 256 / widthTotalDistance;
-                                        canvas.drawText(widthDistanceMarker + " " + distanceUnit, 10 + length + 10, 240 + 4, paint); // draw the text
-                                        canvas.drawLine(10,240,10 + length,240,paint);
+                                        canvas.drawCircle(128, 128, widthDistanceMarkerPixel, paint);
+                                        canvas.drawCircle(128, 128, 2 * widthDistanceMarkerPixel, paint);
+                                        canvas.drawCircle(128, 128, 3 * widthDistanceMarkerPixel, paint);
+                                        canvas.drawCircle(128, 128, 4 * widthDistanceMarkerPixel, paint);
+                                        canvas.drawCircle(128, 128, 5 * widthDistanceMarkerPixel, paint);
+                                        paint.setStyle(Paint.Style.FILL);
+                                        canvas.drawCircle(128, 128, 2, paint);
 
                                         views.setImageViewBitmap(R.id.widget_radar_view, textBitmap);
 
