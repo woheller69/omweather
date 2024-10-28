@@ -28,18 +28,6 @@
         android:adjustViewBounds="true"
         android:src="@drawable/rounded_grey" />
 
-    <TextView
-        android:id="@+id/widget_radar_size"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:textColor="@color/lightgrey"
-        android:layout_alignBottom="@id/widget_radar_view"
-        android:paddingBottom="10dp"
-        android:text="-- m"
-        android:textSize="20dp" />
-
-
     <ImageView
         android:id="@+id/widget_center_marker"
         android:layout_width="wrap_content"

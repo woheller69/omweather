@@ -15,6 +15,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -28,6 +30,7 @@ import android.widget.RemoteViews;
 import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
 import com.android.volley.Request;
@@ -42,19 +45,11 @@ import org.woheller69.weather.R;
 import org.woheller69.weather.activities.ForecastCityActivity;
 import org.woheller69.weather.database.CityToWatch;
 import org.woheller69.weather.database.CurrentWeatherData;
-import org.woheller69.weather.database.HourlyForecast;
-import org.woheller69.weather.database.QuarterHourlyForecast;
 import org.woheller69.weather.database.SQLiteHelper;
-import org.woheller69.weather.database.WeekForecast;
 import org.woheller69.weather.services.UpdateDataService;
 import org.woheller69.weather.ui.Help.StringFormatUtils;
-import org.woheller69.weather.ui.UiResourceProvider;
-
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
-import java.util.TimeZone;
 
 public class RadarWidget extends AppWidgetProvider {
     private static LocationListener locationListenerGPS;
@@ -165,10 +160,23 @@ public class RadarWidget extends AppWidgetProvider {
                             // Download the image
                             ImageRequest imageRequest = new ImageRequest(radarUrl,
                                     response1 -> {
-                                        // Set the image in the ImageView
-                                        views.setImageViewBitmap(R.id.widget_radar_view, response1);
-                                        int distance = (int) (2 * 3.14 * 6378 * Math.abs(Math.cos(city.getLatitude()/180*3.14)) / (Math.pow(2, zoom) * 256) *256);
-                                        views.setTextViewText(R.id.widget_radar_size, distance + " km");
+
+                                        // Create a new bitmap with the text
+                                        Bitmap textBitmap = Bitmap.createBitmap(response1.getWidth(), response1.getHeight(), response1.getConfig());
+                                        Canvas canvas = new Canvas(textBitmap);
+                                        canvas.drawBitmap(response1, 0, 0, null); // draw the original image
+                                        Paint paint = new Paint();
+                                        paint.setColor(ContextCompat.getColor(context, R.color.lightgrey));
+                                        paint.setTextSize(16);
+
+                                        int widthTotalDistance = (int) (2 * 3.14 * 6378 * Math.abs(Math.cos(city.getLatitude()/180*3.14)) / (Math.pow(2, zoom) * 256) *256);
+                                        int widthDistanceMarker = getClosestMarker(widthTotalDistance / 10);
+
+                                        int length = widthDistanceMarker * 256 / widthTotalDistance;
+                                        canvas.drawText(widthDistanceMarker + " km", 10 + length + 10, 240 + 4, paint); // draw the text
+                                        canvas.drawLine(10,240,10 + length,240,paint);
+
+                                        views.setImageViewBitmap(R.id.widget_radar_view, textBitmap);
 
                                         appWidgetManager.updateAppWidget(appWidgetId, views);
                                     },
@@ -193,6 +201,20 @@ public class RadarWidget extends AppWidgetProvider {
 
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
+    }
+
+    private static int getClosestMarker(int value) {
+        int[] markers = {1, 2, 3, 5, 10, 20, 30, 50, 100};
+        int closest = markers[0];
+        int minDiff = Math.abs(value - closest);
+        for (int i = 1; i < markers.length; i++) {
+            int diff = Math.abs(value - markers[i]);
+            if (diff < minDiff) {
+                minDiff = diff;
+                closest = markers[i];
+            }
+        }
+        return closest;
     }
 
     @Override
