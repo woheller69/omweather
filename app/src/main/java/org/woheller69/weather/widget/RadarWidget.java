@@ -44,7 +44,7 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.woheller69.weather.R;
-import org.woheller69.weather.activities.ForecastCityActivity;
+import org.woheller69.weather.activities.RainViewerActivity;
 import org.woheller69.weather.database.CityToWatch;
 import org.woheller69.weather.database.CurrentWeatherData;
 import org.woheller69.weather.database.SQLiteHelper;
@@ -106,11 +106,9 @@ public class RadarWidget extends AppWidgetProvider {
     public static void updateView(Context context, AppWidgetManager appWidgetManager, RemoteViews views, int appWidgetId, CityToWatch city, CurrentWeatherData weatherData) {
         long time = weatherData.getTimestamp();
         int zoneseconds = weatherData.getTimeZoneSeconds();
-        long updateTime = (time + zoneseconds) * 1000;
 
         SharedPreferences prefManager = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
         if(prefManager.getBoolean("pref_GPS", true) && !prefManager.getBoolean("pref_GPS_manual", false)) views.setViewVisibility(R.id.location_on,View.VISIBLE); else views.setViewVisibility(R.id.location_on,View.GONE);
-        views.setTextViewText(R.id.widget_updatetime, String.format("(%s)", StringFormatUtils.formatTimeWithoutZone(context, updateTime)));
         views.setTextViewText(R.id.widget_city_name, city.getCityName());
         views.setInt(R.id.widget_background,"setAlpha", (int) ((100.0f - prefManager.getInt("pref_WidgetTransparency", 0)) * 255 / 100.0f));
 
@@ -130,8 +128,11 @@ public class RadarWidget extends AppWidgetProvider {
 
         views.setOnClickPendingIntent(R.id.widget_update, pendingUpdate);
 
-        Intent intent2 = new Intent(context, ForecastCityActivity.class);
-        intent2.putExtra("cityId", getWidgetCityID(context));
+        Intent intent2 = new Intent(context, RainViewerActivity.class);
+        intent2.putExtra("latitude", city.getLatitude());
+        intent2.putExtra("longitude", city.getLongitude());
+        intent2.putExtra("timezoneseconds", zoneseconds);
+
         PendingIntent pendingIntent;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             pendingIntent = PendingIntent.getActivity(context, appWidgetId, intent2, PendingIntent.FLAG_UPDATE_CURRENT|PendingIntent.FLAG_IMMUTABLE);
@@ -157,7 +158,8 @@ public class RadarWidget extends AppWidgetProvider {
                         if (response != null && response.has("radar") && response.getJSONObject("radar").has("past")){
                             radarFrames = response.getJSONObject("radar").getJSONArray("past");
                             lastPastFramePosition = radarFrames.length() - 1;
-                            String radarUrl = host+radarFrames.getJSONObject(lastPastFramePosition).getString("path")+"/256/" + zoom +"/"+ city.getLatitude() +"/" + city.getLongitude() + "/2/1_1.png";
+                            String radarUrl = host + radarFrames.getJSONObject(lastPastFramePosition).getString("path")+"/256/" + zoom +"/"+ city.getLatitude() +"/" + city.getLongitude() + "/2/1_1.png";
+                            long radarTime = (Long.parseLong(radarFrames.getJSONObject(lastPastFramePosition).getString("time")) + zoneseconds) * 1000L;
 
                             // Download the image
                             ImageRequest imageRequest = new ImageRequest(radarUrl,
@@ -169,7 +171,7 @@ public class RadarWidget extends AppWidgetProvider {
                                         canvas.drawBitmap(response1, 0, 0, null); // draw the original image
                                         Paint paint = new Paint();
                                         paint.setColor(ContextCompat.getColor(context, R.color.lightgrey));
-                                        paint.setTextSize(14);
+                                        paint.setTextSize(16);
 
                                         int widthTotalDistance = (int) (2 * 3.14 * 6378 * Math.abs(Math.cos(city.getLatitude() / 180 * 3.14)) / (Math.pow(2, zoom) * 256) * 256); ;
                                         String distanceUnit = context.getString(R.string.units_km);;
@@ -182,9 +184,16 @@ public class RadarWidget extends AppWidgetProvider {
 
                                         int widthDistanceMarker = getClosestMarker(widthTotalDistance / 10);
                                         int widthDistanceMarkerPixel = widthDistanceMarker * 256 / widthTotalDistance;
-                                        canvas.drawText(widthDistanceMarker + " " + distanceUnit, 10 + widthDistanceMarkerPixel + 10, 240 + 4, paint); // draw the text
+
+                                        paint.setStyle(Paint.Style.FILL);
+                                        paint.setTextAlign(Paint.Align.LEFT);
+                                        canvas.drawText(widthDistanceMarker + " " + distanceUnit, 10 + widthDistanceMarkerPixel + 10, 240 + 5, paint); // draw the text
+
+                                        paint.setTextAlign(Paint.Align.RIGHT);
+                                        canvas.drawText(StringFormatUtils.formatTimeWithoutZone(context, radarTime), 240, 240 + 5, paint);
+
                                         paint.setStyle(Paint.Style.STROKE);
-                                        canvas.drawLine(10,240,10 + widthDistanceMarkerPixel,240,paint);
+                                        canvas.drawLine(10, 240, 10 + widthDistanceMarkerPixel, 240, paint);
 
                                         canvas.drawCircle(128, 128, widthDistanceMarkerPixel, paint);
                                         canvas.drawCircle(128, 128, 2 * widthDistanceMarkerPixel, paint);

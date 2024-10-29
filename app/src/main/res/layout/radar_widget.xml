@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignEnd="@id/widget_update"
-        android:layout_alignBottom="@id/widget_radar_view"
+        android:layout_alignBottom="@id/widget_attribution"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
@@ -63,17 +63,17 @@
         android:src="@drawable/ic_location_on_white_24dp" />
 
     <TextView
-        android:id="@+id/widget_updatetime"
+        android:id="@+id/widget_attribution"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/widget_update"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="-2dp"
-        android:text="(19:15)"
-        android:textColor="#FFFFFF"
-        android:textSize="14dp"
-        android:translationX="-12dp" />
-
+        android:layout_below="@id/widget_radar_view"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="8dp"
+        android:paddingBottom="3dp"
+        android:text="Radar data by RainViewer.com"
+        android:textColor="@color/lightgrey"
+        android:textSize="15dp" />
 
 </RelativeLayout>
 
