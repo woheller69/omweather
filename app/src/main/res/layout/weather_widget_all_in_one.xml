@@ -701,65 +701,14 @@
 
         </GridLayout>
 
-        <GridLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:orientation="vertical"
-            android:layout_weight="1">
-
-            <TextView
-                android:id="@+id/widget_5day_day5"
-                android:layout_width="wrap_content"
-                android:text="Day"
-                android:layout_height="wrap_content"
-                android:textSize="15dp"
-                android:textStyle="bold"
-                android:layout_row="1"
-                android:layout_gravity="center"
-                android:textColor="@color/lightgrey" />
-
-            <ImageView
-                android:id="@+id/widget_5day_image5"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/wmo_icon_00d"
-                android:layout_row="2"
-                android:layout_gravity="center" />
-
-            <ImageView
-                android:id="@+id/widget_5day_wind5"
-                android:layout_width="12dp"
-                android:layout_height="wrap_content"
-                android:scaleType="fitCenter"
-                android:layout_row="2"
-                android:layout_marginLeft="35dp"
-                android:layout_gravity="top|center" />
-
-            <TextView
-                android:id="@+id/widget_5day_temp_max5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="-1dp"
-                android:layout_row="3"
-                android:text="42,0°C"
-                android:textSize="16dp"
-                android:textColor="@color/red" />
-
-            <TextView
-                android:id="@+id/widget_5day_temp_min5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_row="4"
-                android:layout_gravity="center"
-                android:layout_marginTop="-3dp"
-                android:text="42,0°C"
-                android:textColor="@color/midblue"
-                android:textSize="16dp" />
-
-        </GridLayout>
+        <ImageView
+            android:id="@+id/widget_radar_view"
+            android:layout_marginStart="20dp"
+            android:layout_width="95dp"
+            android:layout_height="95dp"
+            android:translationX="-12dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop" />
     </LinearLayout>
     <TextView
         android:id="@+id/widget_attribution"

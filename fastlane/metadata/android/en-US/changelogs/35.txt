@@ -1,0 +1,4 @@
+Radar image added to all-in-one widget
+Removed setting for interval
+New option for grid layout
+Improved translations

@@ -14,6 +14,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.icu.util.LocaleData;
+import android.icu.util.ULocale;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -22,12 +29,22 @@ import android.os.Bundle;
 import android.os.PowerManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RemoteViews;
 import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.ImageRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.woheller69.weather.R;
 import org.woheller69.weather.activities.ForecastCityActivity;
 import org.woheller69.weather.database.CityToWatch;
@@ -272,32 +289,26 @@ public class WeatherWidgetAllInOne extends AppWidgetProvider {
         views.setImageViewResource(R.id.widget_5day_image2, UiResourceProvider.getIconResourceForWeatherCategory(forecastData[1], isDayArray[1]));
         views.setImageViewResource(R.id.widget_5day_image3, UiResourceProvider.getIconResourceForWeatherCategory(forecastData[2], isDayArray[2]));
         views.setImageViewResource(R.id.widget_5day_image4, UiResourceProvider.getIconResourceForWeatherCategory(forecastData[3], isDayArray[3]));
-        views.setImageViewResource(R.id.widget_5day_image5, UiResourceProvider.getIconResourceForWeatherCategory(forecastData[4], isDayArray[4]));
 
         views.setTextViewText(R.id.widget_5day_day1,weekday[0]);
         views.setTextViewText(R.id.widget_5day_day2,weekday[1]);
         views.setTextViewText(R.id.widget_5day_day3,weekday[2]);
         views.setTextViewText(R.id.widget_5day_day4,weekday[3]);
-        views.setTextViewText(R.id.widget_5day_day5,weekday[4]);
 
         views.setTextViewText(R.id.widget_5day_temp_max1, StringFormatUtils.formatTemperature(context,weekforecasts.get(0).getMaxTemperature()));
         views.setTextViewText(R.id.widget_5day_temp_max2, StringFormatUtils.formatTemperature(context,weekforecasts.get(1).getMaxTemperature()));
         views.setTextViewText(R.id.widget_5day_temp_max3, StringFormatUtils.formatTemperature(context,weekforecasts.get(2).getMaxTemperature()));
         views.setTextViewText(R.id.widget_5day_temp_max4, StringFormatUtils.formatTemperature(context,weekforecasts.get(3).getMaxTemperature()));
-        views.setTextViewText(R.id.widget_5day_temp_max5, StringFormatUtils.formatTemperature(context,weekforecasts.get(4).getMaxTemperature()));
 
         views.setTextViewText(R.id.widget_5day_temp_min1, StringFormatUtils.formatTemperature(context,weekforecasts.get(0).getMinTemperature()));
         views.setTextViewText(R.id.widget_5day_temp_min2, StringFormatUtils.formatTemperature(context,weekforecasts.get(1).getMinTemperature()));
         views.setTextViewText(R.id.widget_5day_temp_min3, StringFormatUtils.formatTemperature(context,weekforecasts.get(2).getMinTemperature()));
         views.setTextViewText(R.id.widget_5day_temp_min4, StringFormatUtils.formatTemperature(context,weekforecasts.get(3).getMinTemperature()));
-        views.setTextViewText(R.id.widget_5day_temp_min5, StringFormatUtils.formatTemperature(context,weekforecasts.get(4).getMinTemperature()));
 
         views.setImageViewResource(R.id.widget_5day_wind1,StringFormatUtils.colorWindSpeedWidget(weekforecasts.get(0).getWind_speed()));
         views.setImageViewResource(R.id.widget_5day_wind2,StringFormatUtils.colorWindSpeedWidget(weekforecasts.get(1).getWind_speed()));
         views.setImageViewResource(R.id.widget_5day_wind3,StringFormatUtils.colorWindSpeedWidget(weekforecasts.get(2).getWind_speed()));
         views.setImageViewResource(R.id.widget_5day_wind4,StringFormatUtils.colorWindSpeedWidget(weekforecasts.get(3).getWind_speed()));
-        views.setImageViewResource(R.id.widget_5day_wind5,StringFormatUtils.colorWindSpeedWidget(weekforecasts.get(4).getWind_speed()));
-
 
         Intent intentUpdate = new Intent(context, WeatherWidgetAllInOne.class);
         intentUpdate.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
@@ -323,6 +334,100 @@ public class WeatherWidgetAllInOne extends AppWidgetProvider {
             pendingIntent = PendingIntent.getActivity(context, appWidgetId, intent2, PendingIntent.FLAG_UPDATE_CURRENT);
         }
         views.setOnClickPendingIntent(R.id.widget_layout, pendingIntent);
+
+        RequestQueue queue = Volley.newRequestQueue(context);
+
+        String url = "https://api.rainviewer.com/public/weather-maps.json";
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                response -> {
+                    // Parse the JSON response
+                    String host = "";
+                    JSONArray radarFrames;
+                    int lastPastFramePosition;
+                    int zoom = 10;
+                    try {
+                        if (response != null && response.has("host")) host = response.getString("host");
+
+                        //Store the radar frames and show current frame
+                        if (response != null && response.has("radar") && response.getJSONObject("radar").has("past")){
+                            radarFrames = response.getJSONObject("radar").getJSONArray("past");
+                            lastPastFramePosition = radarFrames.length() - 1;
+                            String radarUrl = host + radarFrames.getJSONObject(lastPastFramePosition).getString("path")+"/256/" + zoom +"/"+ city.getLatitude() +"/" + city.getLongitude() + "/2/1_1.png";
+                            long radarTime = (Long.parseLong(radarFrames.getJSONObject(lastPastFramePosition).getString("time")) + zoneseconds) * 1000L;
+
+                            // Download the image
+                            ImageRequest imageRequest = new ImageRequest(radarUrl,
+                                    response1 -> {
+
+                                        // Create a new bitmap with the text
+                                        Bitmap textBitmap = Bitmap.createBitmap(response1.getWidth(), response1.getHeight(), response1.getConfig());
+                                        Canvas canvas = new Canvas(textBitmap);
+                                        canvas.drawBitmap(response1, 0, 0, null); // draw the original image
+
+
+                                        Paint paint = new Paint();
+                                        paint.setColor(ContextCompat.getColor(context, R.color.lightgrey));
+                                        paint.setTextSize(30);
+                                        paint.setStrokeWidth(3.0f);
+
+                                        int widthTotalDistance = (int) (2 * 3.14 * 6378 * Math.abs(Math.cos(city.getLatitude() / 180 * 3.14)) / (Math.pow(2, zoom) * 256) * 256); ;
+                                        String distanceUnit = context.getString(R.string.units_km);;
+                                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                                            if (LocaleData.getMeasurementSystem(ULocale.forLocale(Locale.getDefault())) != LocaleData.MeasurementSystem.SI){
+                                                distanceUnit = context.getString(R.string.units_mi);
+                                                widthTotalDistance = (int) (2 * 3.14 * 6378 * 0.6214 * Math.abs(Math.cos(city.getLatitude() / 180 * 3.14)) / (Math.pow(2, zoom) * 256) * 256);
+                                            }
+                                        }
+
+                                        int widthDistanceMarker = getClosestMarker(widthTotalDistance / 10);
+                                        int widthDistanceMarkerPixel = widthDistanceMarker * 256 / widthTotalDistance;
+
+                                        paint.setStyle(Paint.Style.FILL);
+                                        paint.setTextAlign(Paint.Align.LEFT);
+                                        canvas.drawText(widthDistanceMarker + " " + distanceUnit, 5 + widthDistanceMarkerPixel + 5, 235 + 8, paint); // draw the text
+
+                                        paint.setTextAlign(Paint.Align.RIGHT);
+                                        canvas.drawText(StringFormatUtils.formatTimeWithoutZone(context, radarTime), 250, 235 + 8, paint);
+
+                                        paint.setStyle(Paint.Style.STROKE);
+                                        canvas.drawLine(5, 235, 5 + widthDistanceMarkerPixel, 235, paint);
+
+                                        canvas.drawCircle(128, 128, widthDistanceMarkerPixel, paint);
+                                        canvas.drawCircle(128, 128, 2 * widthDistanceMarkerPixel, paint);
+                                        canvas.drawCircle(128, 128, 3 * widthDistanceMarkerPixel, paint);
+                                        canvas.drawCircle(128, 128, 4 * widthDistanceMarkerPixel, paint);
+                                        canvas.drawCircle(128, 128, 5 * widthDistanceMarkerPixel, paint);
+                                        paint.setStyle(Paint.Style.FILL);
+                                        canvas.drawCircle(128, 128, 2, paint);
+
+                                        //Round off corners
+                                        Paint clearPaint = new Paint();
+                                        clearPaint.setStyle(Paint.Style.STROKE);
+                                        clearPaint.setStrokeWidth(20.0f);
+                                        clearPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+                                        canvas.drawRoundRect(-10, -10,265, 265, 30, 30, clearPaint);
+
+                                        views.setImageViewBitmap(R.id.widget_radar_view, textBitmap);
+
+                                        appWidgetManager.updateAppWidget(appWidgetId, views);
+                                    },
+                                    0, 0, ImageView.ScaleType.CENTER_CROP, Bitmap.Config.RGB_565,
+                                    error1 -> {
+                                        // Handle the error
+                                    });
+                            queue.add(imageRequest);
+
+                        }
+
+                    } catch (JSONException e) {
+                        throw new RuntimeException(e);
+                    }
+                },
+                error -> {
+                    // Handle the error
+                });
+
+        queue.add(request);
 
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
@@ -429,6 +534,20 @@ public class WeatherWidgetAllInOne extends AppWidgetProvider {
             if(prefManager.getBoolean("pref_GPS", true) && !prefManager.getBoolean("pref_GPS_manual", false)) updateLocation(context, cityID,true);
         }
         super.onReceive(context,intent);
+    }
+
+    private static int getClosestMarker(int value) {
+        int[] markers = {1, 2, 3, 5, 10, 20, 30, 50, 100};
+        int closest = markers[0];
+        int minDiff = Math.abs(value - closest);
+        for (int i = 1; i < markers.length; i++) {
+            int diff = Math.abs(value - markers[i]);
+            if (diff < minDiff) {
+                minDiff = diff;
+                closest = markers[i];
+            }
+        }
+        return closest;
     }
 }
 

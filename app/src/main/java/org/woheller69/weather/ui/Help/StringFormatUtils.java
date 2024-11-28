@@ -44,7 +44,7 @@ public final class StringFormatUtils {
 
     public static String formatDecimalTemperature(Context context, float decimal, String appendix) {
         SharedPreferences sharedPreferences= PreferenceManager.getDefaultSharedPreferences(context);
-        if(sharedPreferences.getBoolean("pref_TempDecimals", true)==TRUE){
+        if(sharedPreferences.getBoolean("pref_TempDecimals", false)){
             return String.format("%s\u200a%s", formatDecimal(decimal), appendix);
         }else{
             return String.format("%s\u200a%s", formatInt(decimal), appendix);

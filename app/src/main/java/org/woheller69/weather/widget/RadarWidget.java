@@ -17,6 +17,8 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.icu.util.LocaleData;
 import android.icu.util.ULocale;
 import android.location.Location;
@@ -202,6 +204,13 @@ public class RadarWidget extends AppWidgetProvider {
                                         canvas.drawCircle(128, 128, 5 * widthDistanceMarkerPixel, paint);
                                         paint.setStyle(Paint.Style.FILL);
                                         canvas.drawCircle(128, 128, 2, paint);
+
+                                        //Round off corners
+                                        Paint clearPaint = new Paint();
+                                        clearPaint.setStyle(Paint.Style.STROKE);
+                                        clearPaint.setStrokeWidth(20.0f);
+                                        clearPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+                                        canvas.drawRoundRect(-10, -10,265, 265, 30, 30, clearPaint);
 
                                         views.setImageViewBitmap(R.id.widget_radar_view, textBitmap);
 

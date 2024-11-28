@@ -62,7 +62,7 @@
         <SwitchPreference
             android:key="pref_TempDecimals"
             android:title="@string/settings_temp_decimal"
-            android:defaultValue="true"
+            android:defaultValue="false"
             />
 
         <SwitchPreference
