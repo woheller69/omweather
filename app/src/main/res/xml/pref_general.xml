@@ -8,6 +8,7 @@
             android:summary="@string/settings_GPS_summary"
             android:defaultValue="false"
             />
+
         <SwitchPreference
             android:key="pref_GPS_manual"
             android:title="@string/settings_GPS_manual"
@@ -16,6 +17,11 @@
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/settings_title_display_options">
+        <SwitchPreference
+            android:key="pref_gridlayout"
+            android:title="@string/GridLayout"
+            android:defaultValue="false"
+            />
 
         <SwitchPreference
             android:key="pref_rainviewer"
@@ -110,16 +116,6 @@
             android:key="precipitationUnit"
             android:title="@string/settings_title_precipitation" />
 
-    </PreferenceCategory>
-
-    <PreferenceCategory android:title="@string/settings_intervals">
-        <ListPreference
-            app:useSimpleSummaryProvider="true"
-            android:defaultValue="1"
-            android:entries="@array/refreshIntervalArray"
-            android:entryValues="@array/refreshIntervalValues"
-            android:key="pref_updateInterval"
-            android:title="@string/settings_update_interval" />
     </PreferenceCategory>
 
 </PreferenceScreen>

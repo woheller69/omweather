@@ -118,8 +118,8 @@ public class ForecastCityActivity extends NavigationActivity implements IUpdatea
 
                 long timestamp = currentWeather.getTimestamp();
                 long systemTime = System.currentTimeMillis() / 1000;
-                long updateInterval = (long) (Float.parseFloat(prefManager.getString("pref_updateInterval", "2")) * 60 * 60);
-
+                //long updateInterval = (long) (Float.parseFloat(prefManager.getString("pref_updateInterval", "2")) * 60 * 60);
+                long updateInterval = (long) (0.25 * 60 * 60);
                 if (timestamp + updateInterval - systemTime <= 0) {
                     if (pagerAdapter.getCityIDForPos(position)!=getWidgetCityID(context)||locationListenerGPS==null) { //do not update first TAB while location is updating
                         WeatherPagerAdapter.refreshSingleData(getApplicationContext(),true, pagerAdapter.getCityIDForPos(position));

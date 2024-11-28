@@ -37,8 +37,8 @@
     <string name="abbreviation_friday">Ven.</string>
     <string name="abbreviation_saturday">Sab.</string>
     <string name="abbreviation_sunday">Dom.</string>
-    <string name="dialog_add_label">Inserisci la posizione da aggiungere:</string>
-    <string name="dialog_add_no_city_found">Non è stata trovata alcuna posizione che corrisponde al tuo input. Si consiglia di selezionare uno degli elementi dall\'elenco a discesa.  </string>
+    <string name="dialog_add_label">Inserisci una città da aggiungere:</string>
+    <string name="dialog_add_no_city_found">Non è stata trovata alcuna città corrispondente. Si consiglia di selezionare uno degli elementi dall\'elenco a discesa.  </string>
     <string name="dialog_add_close_button">Chiudi</string>
     <string name="dialog_add_add_button">Aggiungi</string>
     <string name="error_convert_to_json">I dati meteorologici recuperati non erano ben formati. </string>
@@ -116,4 +116,5 @@
     <string name="units_kn">kn</string>
     <string name="settings_widget_transparency">Trasparenza del widget</string>
     <string name="units_mi">mi</string>
+    <string name="GridLayout">2 colonne</string>
 </resources>

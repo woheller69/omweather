@@ -119,5 +119,6 @@
     <string name="units_kn">kn</string>
     <string name="settings_widget_transparency">Transparence des widgets</string>
     <string name="units_mi">mi</string>
+    <string name="GridLayout">2 colonnes</string>
 
 </resources>

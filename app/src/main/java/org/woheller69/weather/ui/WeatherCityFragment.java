@@ -9,11 +9,13 @@ import static org.woheller69.weather.ui.RecycleList.CityWeatherAdapter.WEEK;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
@@ -119,11 +121,8 @@ public class WeatherCityFragment extends Fragment implements IUpdateableCityUI {
     }
 
     public RecyclerView.LayoutManager getLayoutManager(Context context) {
-        int widthPixels = context.getResources().getDisplayMetrics().widthPixels;
-        float density = context.getResources().getDisplayMetrics().density;
-        float width = widthPixels / density;
-
-        if (width > MINGRIDWIDTH) {
+        SharedPreferences prefManager = PreferenceManager.getDefaultSharedPreferences(context);
+        if (prefManager.getBoolean("pref_gridlayout", false)){
             return new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         } else {
             return new LinearLayoutManager(context);
