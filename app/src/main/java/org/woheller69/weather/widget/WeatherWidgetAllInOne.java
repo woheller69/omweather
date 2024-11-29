@@ -384,19 +384,20 @@ public class WeatherWidgetAllInOne extends AppWidgetProvider {
 
                                         paint.setStyle(Paint.Style.FILL);
                                         paint.setTextAlign(Paint.Align.LEFT);
-                                        canvas.drawText(widthDistanceMarker + " " + distanceUnit, 5 + widthDistanceMarkerPixel + 5, 235 + 8, paint); // draw the text
+                                        canvas.drawText(widthDistanceMarker + " " + distanceUnit, 7 + widthDistanceMarkerPixel + 5, 238 + 8, paint); // draw the text
 
                                         paint.setTextAlign(Paint.Align.RIGHT);
-                                        canvas.drawText(StringFormatUtils.formatTimeWithoutZone(context, radarTime), 250, 235 + 8, paint);
+                                        canvas.drawText(StringFormatUtils.formatTimeWithoutZone(context, radarTime), 248, 238 + 8, paint);
 
                                         paint.setStyle(Paint.Style.STROKE);
-                                        canvas.drawLine(5, 235, 5 + widthDistanceMarkerPixel, 235, paint);
+                                        canvas.drawLine(7, 238, 7 + widthDistanceMarkerPixel, 238, paint);
 
-                                        canvas.drawCircle(128, 128, widthDistanceMarkerPixel, paint);
-                                        canvas.drawCircle(128, 128, 2 * widthDistanceMarkerPixel, paint);
-                                        canvas.drawCircle(128, 128, 3 * widthDistanceMarkerPixel, paint);
-                                        canvas.drawCircle(128, 128, 4 * widthDistanceMarkerPixel, paint);
-                                        canvas.drawCircle(128, 128, 5 * widthDistanceMarkerPixel, paint);
+                                        int maxI = 100 / widthDistanceMarkerPixel;
+                                        for (int i = 1; i <= maxI; i++) {
+                                            int radius = i * widthDistanceMarkerPixel;
+                                            canvas.drawCircle(128, 128, radius, paint);
+                                        }
+
                                         paint.setStyle(Paint.Style.FILL);
                                         canvas.drawCircle(128, 128, 2, paint);
 

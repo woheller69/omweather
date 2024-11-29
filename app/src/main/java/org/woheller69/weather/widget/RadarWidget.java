@@ -197,11 +197,12 @@ public class RadarWidget extends AppWidgetProvider {
                                         paint.setStyle(Paint.Style.STROKE);
                                         canvas.drawLine(10, 240, 10 + widthDistanceMarkerPixel, 240, paint);
 
-                                        canvas.drawCircle(128, 128, widthDistanceMarkerPixel, paint);
-                                        canvas.drawCircle(128, 128, 2 * widthDistanceMarkerPixel, paint);
-                                        canvas.drawCircle(128, 128, 3 * widthDistanceMarkerPixel, paint);
-                                        canvas.drawCircle(128, 128, 4 * widthDistanceMarkerPixel, paint);
-                                        canvas.drawCircle(128, 128, 5 * widthDistanceMarkerPixel, paint);
+                                        int maxI = 100 / widthDistanceMarkerPixel;
+                                        for (int i = 1; i <= maxI; i++) {
+                                            int radius = i * widthDistanceMarkerPixel;
+                                            canvas.drawCircle(128, 128, radius, paint);
+                                        }
+
                                         paint.setStyle(Paint.Style.FILL);
                                         canvas.drawCircle(128, 128, 2, paint);
 
