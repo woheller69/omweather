@@ -459,7 +459,8 @@
         android:layout_gravity="top|center_horizontal"
         android:orientation="horizontal"
         android:paddingBottom="4dp"
-        android:layout_marginTop="5dp"
+        android:paddingTop="5dp"
+        android:clipToPadding="false"
         android:layout_marginBottom="-5dp"
         android:layout_below="@id/widget_hour6">
 
@@ -704,9 +705,10 @@
         <ImageView
             android:id="@+id/widget_radar_view"
             android:layout_marginStart="20dp"
-            android:layout_width="95dp"
-            android:layout_height="95dp"
+            android:layout_width="93dp"
+            android:layout_height="93dp"
             android:translationX="-12dp"
+            android:translationY="-3dp"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop" />
     </LinearLayout>
