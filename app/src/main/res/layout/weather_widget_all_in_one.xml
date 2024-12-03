@@ -708,7 +708,7 @@
             android:layout_width="93dp"
             android:layout_height="93dp"
             android:translationX="-12dp"
-            android:translationY="-3dp"
+            android:translationY="-2dp"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop" />
     </LinearLayout>
