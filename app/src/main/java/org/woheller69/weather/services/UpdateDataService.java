@@ -32,8 +32,6 @@ import java.util.concurrent.TimeoutException;
  */
 public class UpdateDataService extends JobIntentService {
 
-    public static final String UPDATE_FORECAST_ACTION = "org.woheller69.weather.services.UpdateDataService.UPDATE_FORECAST_ACTION";
-    public static final String UPDATE_ALL_ACTION = "org.woheller69.weather.services.UpdateDataService.UPDATE_ALL_ACTION";
     public static final String UPDATE_SINGLE_ACTION = "org.woheller69.weather.services.UpdateDataService.UPDATE_SINGLE_ACTION";
 
     public static final String CITY_ID = "cityId";
@@ -61,48 +59,25 @@ public class UpdateDataService extends JobIntentService {
     protected void onHandleWork(Intent intent) {
         if (!isOnline(2000)) {
             Handler h = new Handler(getApplicationContext().getMainLooper());
-            h.post(new Runnable() {
-                @Override
-                public void run() {
-                    if (NavigationActivity.isVisible) Toast.makeText(getApplicationContext(), getResources().getString(R.string.error_no_internet), Toast.LENGTH_LONG).show();
-                }
+            h.post(() -> {
+                if (NavigationActivity.isVisible) Toast.makeText(getApplicationContext(), getResources().getString(R.string.error_no_internet), Toast.LENGTH_LONG).show();
             });
             return;
         }
 
         if (intent != null) {
-            if (UPDATE_ALL_ACTION.equals(intent.getAction())) handleUpdateAll(intent);
-            else if (UPDATE_FORECAST_ACTION.equals(intent.getAction()))
-                handleUpdateForecastAction(intent);
-            else if (UPDATE_SINGLE_ACTION.equals(intent.getAction())) handleUpdateSingle(intent);
-        }
-    }
-
-
-    /**
-     * Be careful, with using this. It can cause many calls to the API, because it wants to update everything if the update interval allows it.
-     *
-     * @param intent contains necessary parameters for the service work
-     */
-    private void handleUpdateAll(Intent intent) {
-         List<CityToWatch> cities = dbHelper.getAllCitiesToWatch();
-        for (CityToWatch c : cities) {
-            handleUpdateForecastAction(intent, c.getCityId(),c.getLatitude(),c.getLongitude());
+            if (UPDATE_SINGLE_ACTION.equals(intent.getAction())) handleUpdateSingle(intent);
         }
     }
 
     private void handleUpdateSingle(Intent intent) {
         int cityId = intent.getIntExtra("cityId",-1);
         CityToWatch city = dbHelper.getCityToWatch(cityId);
-        handleUpdateForecastAction(intent, cityId, city.getLatitude(), city.getLongitude());
-    }
-
-    private void handleUpdateForecastAction(Intent intent, int cityId, float lat, float lon) {
         boolean skipUpdateInterval = intent.getBooleanExtra(SKIP_UPDATE_INTERVAL, false);
 
         long timestamp = 0;
         long systemTime = System.currentTimeMillis() / 1000;
-        //long updateInterval = (long) (Float.parseFloat(prefManager.getString("pref_updateInterval", "2")) * 60 * 60);
+
         long updateInterval = (long) (0.25 * 60 * 60);
 
         List<HourlyForecast> hourlyForecasts = dbHelper.getForecastsByCityId(cityId);
@@ -118,7 +93,7 @@ public class UpdateDataService extends JobIntentService {
         // Update if update forced or if a certain time has passed
         if (skipUpdateInterval || timestamp + updateInterval - systemTime <= 0) {
             IHttpRequestForWeatherAPI omHttpRequestForWeatherAPI = new OMHttpRequestForWeatherAPI(getApplicationContext());
-            omHttpRequestForWeatherAPI.perform(lat,lon, cityId);
+            omHttpRequestForWeatherAPI.perform(city.getLatitude(),city.getLongitude(), cityId);
         }
     }
 
@@ -140,20 +115,4 @@ public class UpdateDataService extends JobIntentService {
         return inetAddress!=null && !inetAddress.toString().isEmpty();
     }
 
-    private void handleUpdateForecastAction(Intent intent) {
-        int cityId = intent.getIntExtra(CITY_ID, -1);
-        float lat =0;
-        float lon =0;
-        //get lat lon for cityID
-        List<CityToWatch> citiesToWatch = dbHelper.getAllCitiesToWatch();
-        for (int i = 0; i < citiesToWatch.size(); i++) {
-            CityToWatch city = citiesToWatch.get(i);
-            if (city.getCityId() == cityId) {
-                lat = city.getLatitude();
-                lon = city.getLongitude();
-                break;
-            }
-        }
-        handleUpdateForecastAction(intent, cityId, lat, lon);
-    }
 }
