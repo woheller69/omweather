@@ -166,7 +166,6 @@ public class WeatherWidget5day extends AppWidgetProvider {
             CityToWatch city=dbHelper.getCityToWatch(widgetCityID);
 
             WeatherWidget5day.updateView(context, appWidgetManager, views, widgetID, city, weekforecasts);
-            appWidgetManager.updateAppWidget(widgetID, views);
 
         }
      }

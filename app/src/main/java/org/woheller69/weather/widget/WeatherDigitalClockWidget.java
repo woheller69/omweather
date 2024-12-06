@@ -269,8 +269,7 @@ public class WeatherDigitalClockWidget extends AppWidgetProvider {
 
                 CityToWatch city=dbHelper.getCityToWatch(widgetCityID);
 
-                WeatherDigitalClockWidget.updateView(context, appWidgetManager, views, widgetID, city, currentWeather,weekforecasts);
-                appWidgetManager.updateAppWidget(widgetID, views);
+                WeatherDigitalClockWidget.updateView(context, appWidgetManager, views, widgetID, city, currentWeather, weekforecasts);
 
         }
      }

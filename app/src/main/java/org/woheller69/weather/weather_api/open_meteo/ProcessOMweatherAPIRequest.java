@@ -250,7 +250,6 @@ public class ProcessOMweatherAPIRequest implements IProcessHttpRequest {
                 CityToWatch city=dbHelper.getCityToWatch(cityID);
 
                 WeatherWidget.updateView(context, appWidgetManager, views, widgetID, city, currentWeather,weekforecasts,hourlyforecasts);
-                appWidgetManager.updateAppWidget(widgetID, views);
             }
         }
 
@@ -263,14 +262,7 @@ public class ProcessOMweatherAPIRequest implements IProcessHttpRequest {
             //check if city ID is same
             if (cityID == widgetAllInOneCityID) {
                 //perform update for the widget
-
-                RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.weather_widget_all_in_one);
-                AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-
-                CityToWatch city=dbHelper.getCityToWatch(cityID);
-
-                WeatherWidgetAllInOne.updateView(context, appWidgetManager, views, widgetID, city, currentWeather,weekforecasts,hourlyforecasts);
-                appWidgetManager.updateAppWidget(widgetID, views);
+                WeatherWidgetAllInOne.updateView(context, widgetID);
             }
         }
 
@@ -290,7 +282,6 @@ public class ProcessOMweatherAPIRequest implements IProcessHttpRequest {
                 CityToWatch city=dbHelper.getCityToWatch(cityID);
 
                 WeatherDigitalClockWidget.updateView(context, appWidgetManager, views, widgetID, city, currentWeather, weekforecasts);
-                appWidgetManager.updateAppWidget(widgetID, views);
             }
         }
 
@@ -309,7 +300,6 @@ public class ProcessOMweatherAPIRequest implements IProcessHttpRequest {
                 CityToWatch city=dbHelper.getCityToWatch(cityID);
 
                 WeatherWidget5day.updateView(context, appWidgetManager, views, widgetID, city, weekforecasts);
-                appWidgetManager.updateAppWidget(widgetID, views);
             }
         }
 
@@ -321,14 +311,7 @@ public class ProcessOMweatherAPIRequest implements IProcessHttpRequest {
             //check if city ID is same
             if (cityID == radarWidgetCityID) {
                 //perform update for the widget
-
-                RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.radar_widget);
-                AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-
-                CityToWatch city=dbHelper.getCityToWatch(cityID);
-
-                RadarWidget.updateView(context, appWidgetManager, views, widgetID, city, currentWeather);
-                appWidgetManager.updateAppWidget(widgetID, views);
+                RadarWidget.updateView(context, widgetID);
             }
         }
 

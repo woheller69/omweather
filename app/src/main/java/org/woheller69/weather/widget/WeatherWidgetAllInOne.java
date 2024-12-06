@@ -15,12 +15,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.icu.util.LocaleData;
-import android.icu.util.ULocale;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -29,22 +23,12 @@ import android.os.Bundle;
 import android.os.PowerManager;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.RemoteViews;
 import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.ImageRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
-
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.woheller69.weather.R;
 import org.woheller69.weather.activities.ForecastCityActivity;
 import org.woheller69.weather.database.CityToWatch;
@@ -66,6 +50,9 @@ import java.util.TimeZone;
 public class WeatherWidgetAllInOne extends AppWidgetProvider {
     private static LocationListener locationListenerGPS;
     private LocationManager locationManager;
+    public static Bitmap radarBitmap;
+    public static long radarTimeGMT;
+    public static int radarZoom;
 
     public void updateAppWidget(Context context, final int appWidgetId) {
         SharedPreferences prefManager = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
@@ -112,10 +99,17 @@ public class WeatherWidgetAllInOne extends AppWidgetProvider {
         }
     }
 
+    public static void updateView(Context context, int appWidgetId) {
 
+        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.weather_widget_all_in_one);
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
 
-    public static void updateView(Context context, AppWidgetManager appWidgetManager, RemoteViews views, int appWidgetId, CityToWatch city, CurrentWeatherData weatherData, List<WeekForecast> weekforecasts, List<HourlyForecast> hourlyforecasts) {
+        int cityID = getWidgetCityID(context);
         SQLiteHelper dbHelper = SQLiteHelper.getInstance(context);
+        CityToWatch city=dbHelper.getCityToWatch(cityID);
+        CurrentWeatherData weatherData = dbHelper.getCurrentWeatherByCityId(cityID);
+        List<WeekForecast> weekforecasts = dbHelper.getWeekForecastsByCityId(cityID);
+        List<HourlyForecast> hourlyforecasts = dbHelper.getForecastsByCityId(cityID);
         long time = weatherData.getTimestamp();
         int zoneseconds = weatherData.getTimeZoneSeconds();
         int [] forecastIDs = {R.id.widget_hour12,R.id.widget_hour1, R.id.widget_hour2,R.id.widget_hour3,R.id.widget_hour4,R.id.widget_hour5,R.id.widget_hour6,R.id.widget_hour7, R.id.widget_hour8,R.id.widget_hour9,R.id.widget_hour10,R.id.widget_hour11};
@@ -208,7 +202,6 @@ public class WeatherWidgetAllInOne extends AppWidgetProvider {
             views.setTextViewText(R.id.widget_UVindex,"UV");
             views.setInt(R.id.widget_UVindex,"setBackgroundResource",StringFormatUtils.widgetColorUVindex(context,Math.round(weekforecasts.get(0).getUv_index())));
         }
-
 
 
         for (int i=0;i<forecastIDs.length;i++){
@@ -335,103 +328,16 @@ public class WeatherWidgetAllInOne extends AppWidgetProvider {
         }
         views.setOnClickPendingIntent(R.id.widget_layout, pendingIntent);
 
-        RequestQueue queue = Volley.newRequestQueue(context);
-
-        String url = "https://api.rainviewer.com/public/weather-maps.json";
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
-                response -> {
-                    // Parse the JSON response
-                    String host = "";
-                    JSONArray radarFrames;
-                    int lastPastFramePosition;
-                    int zoom = 10;
-                    try {
-                        if (response != null && response.has("host")) host = response.getString("host");
-
-                        //Store the radar frames and show current frame
-                        if (response != null && response.has("radar") && response.getJSONObject("radar").has("past")){
-                            radarFrames = response.getJSONObject("radar").getJSONArray("past");
-                            lastPastFramePosition = radarFrames.length() - 1;
-                            String radarUrl = host + radarFrames.getJSONObject(lastPastFramePosition).getString("path")+"/256/" + zoom +"/"+ city.getLatitude() +"/" + city.getLongitude() + "/2/1_1.png";
-                            long radarTime = (Long.parseLong(radarFrames.getJSONObject(lastPastFramePosition).getString("time")) + zoneseconds) * 1000L;
-
-                            // Download the image
-                            ImageRequest imageRequest = new ImageRequest(radarUrl,
-                                    response1 -> {
-
-                                        // Create a new bitmap with the text
-                                        Bitmap textBitmap = Bitmap.createBitmap(response1.getWidth(), response1.getHeight(), response1.getConfig());
-                                        Canvas canvas = new Canvas(textBitmap);
-                                        canvas.drawBitmap(response1, 0, 0, null); // draw the original image
-
-
-                                        Paint paint = new Paint();
-                                        paint.setColor(ContextCompat.getColor(context, R.color.lightgrey));
-                                        paint.setTextSize(30);
-                                        paint.setStrokeWidth(3.0f);
-
-                                        int widthTotalDistance = (int) (2 * 3.14 * 6378 * Math.abs(Math.cos(city.getLatitude() / 180 * 3.14)) / (Math.pow(2, zoom) * 256) * 256); ;
-                                        String distanceUnit = context.getString(R.string.units_km);;
-                                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                                            if (LocaleData.getMeasurementSystem(ULocale.forLocale(Locale.getDefault())) != LocaleData.MeasurementSystem.SI){
-                                                distanceUnit = context.getString(R.string.units_mi);
-                                                widthTotalDistance = (int) (2 * 3.14 * 6378 * 0.6214 * Math.abs(Math.cos(city.getLatitude() / 180 * 3.14)) / (Math.pow(2, zoom) * 256) * 256);
-                                            }
-                                        }
-
-                                        int widthDistanceMarker = getClosestMarker(widthTotalDistance / 10);
-                                        int widthDistanceMarkerPixel = widthDistanceMarker * 256 / widthTotalDistance;
-
-                                        paint.setStyle(Paint.Style.FILL);
-                                        paint.setTextAlign(Paint.Align.LEFT);
-                                        canvas.drawText(widthDistanceMarker + " " + distanceUnit, 7 + widthDistanceMarkerPixel + 5, 238 + 8, paint); // draw the text
-
-                                        paint.setTextAlign(Paint.Align.RIGHT);
-                                        canvas.drawText(StringFormatUtils.formatTimeWithoutZone(context, radarTime), 248, 238 + 8, paint);
-
-                                        paint.setStyle(Paint.Style.STROKE);
-                                        canvas.drawLine(7, 238, 7 + widthDistanceMarkerPixel, 238, paint);
-
-                                        int maxI = 100 / widthDistanceMarkerPixel;
-                                        for (int i = 1; i <= maxI; i++) {
-                                            int radius = i * widthDistanceMarkerPixel;
-                                            canvas.drawCircle(128, 128, radius, paint);
-                                        }
-
-                                        paint.setStyle(Paint.Style.FILL);
-                                        canvas.drawCircle(128, 128, 2, paint);
-
-                                        //Round off corners
-                                        Paint clearPaint = new Paint();
-                                        clearPaint.setStyle(Paint.Style.STROKE);
-                                        clearPaint.setStrokeWidth(20.0f);
-                                        clearPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-                                        canvas.drawRoundRect(-10, -10,265, 265, 30, 30, clearPaint);
-
-                                        views.setImageViewBitmap(R.id.widget_radar_view, textBitmap);
-
-                                        appWidgetManager.updateAppWidget(appWidgetId, views);
-                                    },
-                                    0, 0, ImageView.ScaleType.CENTER_CROP, Bitmap.Config.RGB_565,
-                                    error1 -> {
-                                        // Handle the error
-                                    });
-                            queue.add(imageRequest);
-
-                        }
-
-                    } catch (JSONException e) {
-                        throw new RuntimeException(e);
-                    }
-                },
-                error -> {
-                    // Handle the error
-                });
-
-        queue.add(request);
-
+        if (radarBitmap != null) views.setImageViewBitmap(R.id.widget_radar_view, UpdateDataService.prepareAllInOneWidget(context, city, radarZoom, radarTimeGMT + zoneseconds *1000L, radarBitmap));
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
+
+        // Now update radar
+        Intent intent3 = new Intent(context, UpdateDataService.class);
+        intent3.setAction(UpdateDataService.UPDATE_RADAR);
+        intent3.putExtra("cityId", getWidgetCityID(context));
+        enqueueWork(context, UpdateDataService.class, 0, intent3);
+
     }
 
     @Override
@@ -495,26 +401,10 @@ public class WeatherWidgetAllInOne extends AppWidgetProvider {
     @Override
     public void onEnabled(Context context) {
         // Enter relevant functionality for when the first widget is created
-        SQLiteHelper dbHelper = SQLiteHelper.getInstance(context);
-
-        int widgetCityID=getWidgetCityID(context);
-
-        CurrentWeatherData currentWeather=dbHelper.getCurrentWeatherByCityId(widgetCityID);
-        List<WeekForecast> weekforecasts=dbHelper.getWeekForecastsByCityId(widgetCityID);
-        List<HourlyForecast> hourlyforecasts=dbHelper.getForecastsByCityId(widgetCityID);
-
         int[] widgetIDs = AppWidgetManager.getInstance(context).getAppWidgetIds(new ComponentName(context, WeatherWidgetAllInOne.class));
 
         for (int widgetID : widgetIDs) {
-
-                RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.weather_widget_all_in_one);
-                AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-
-                CityToWatch city=dbHelper.getCityToWatch(widgetCityID);
-
-                WeatherWidgetAllInOne.updateView(context, appWidgetManager, views, widgetID, city, currentWeather,weekforecasts, hourlyforecasts);
-                appWidgetManager.updateAppWidget(widgetID, views);
-
+                WeatherWidgetAllInOne.updateView(context, widgetID);
         }
      }
 
@@ -537,18 +427,5 @@ public class WeatherWidgetAllInOne extends AppWidgetProvider {
         super.onReceive(context,intent);
     }
 
-    private static int getClosestMarker(int value) {
-        int[] markers = {1, 2, 3, 5, 10, 20, 30, 50, 100};
-        int closest = markers[0];
-        int minDiff = Math.abs(value - closest);
-        for (int i = 1; i < markers.length; i++) {
-            int diff = Math.abs(value - markers[i]);
-            if (diff < minDiff) {
-                minDiff = diff;
-                closest = markers[i];
-            }
-        }
-        return closest;
-    }
 }
 
