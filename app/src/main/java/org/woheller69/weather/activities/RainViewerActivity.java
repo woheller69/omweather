@@ -145,7 +145,7 @@ public class RainViewerActivity extends AppCompatActivity {
             @Override
             public boolean onZoom(ZoomEvent event) {
                 Handler handler = new Handler(Looper.getMainLooper());
-                handler.postDelayed(() -> refreshMap(mapView),200);  //Refresh after 200ms
+                handler.postDelayed(() -> refreshMap(mapView),200);  //Refresh after 200ms, maybe no longer needed
                 return false;
             }
         });
@@ -157,7 +157,7 @@ public class RainViewerActivity extends AppCompatActivity {
             @Override
             public boolean onZoom(ZoomEvent event) {
                 Handler handler = new Handler(Looper.getMainLooper());
-                handler.postDelayed(() -> refreshMap(mapView2),200);  //Refresh after 200ms
+                handler.postDelayed(() -> refreshMap(mapView2),200);  //Refresh after 200ms, maybe no longer needed
                 return false;
             }
         });
@@ -340,7 +340,7 @@ public class RainViewerActivity extends AppCompatActivity {
     }
 
     private static void refreshMap(MapView map) {
-        map.getController().animateTo(map.getMapCenter());
+        map.getController().animateTo(map.getMapCenter());  //maybe no longer needed
     }
 
     private void replaceLayer(MapView map, TilesOverlay newRadarOverlay, TilesOverlay newInfraredOverlay, IGeoPoint center, double zoom) {
@@ -357,7 +357,7 @@ public class RainViewerActivity extends AppCompatActivity {
 
         map.getController().setZoom(zoom);
         map.getController().setCenter(center);
-        map.getController().animateTo(center);
+        map.getController().animateTo(center); //maybe no longer needed
     }
 
     public JSONObject findClosestInfraredFrame(long radarTime) throws JSONException {
@@ -405,10 +405,12 @@ public class RainViewerActivity extends AppCompatActivity {
             }
         }
 
-        final MapTileProviderBasic RainViewerTileProvider = new MapTileProviderBasic(this);
+        final MapTileProviderBasic rainViewerTileProvider = new MapTileProviderBasic(this);
         final ITileSource RainViewerTileSource = new XYTileSource("I"+ time, 1, 20, 256, "/0/0_0.png", new String[]{host+infraredFrame.getString("path")+"/256/"});
-        RainViewerTileProvider.setTileSource(RainViewerTileSource);
-        final TilesOverlay newOverlay = new TilesOverlay(RainViewerTileProvider, this);
+        rainViewerTileProvider.setTileSource(RainViewerTileSource);
+        rainViewerTileProvider.getTileRequestCompleteHandlers().add(mapView.getTileRequestCompleteHandler());
+        rainViewerTileProvider.getTileRequestCompleteHandlers().add(mapView2.getTileRequestCompleteHandler());
+        final TilesOverlay newOverlay = new TilesOverlay(rainViewerTileProvider, this);
         newOverlay.setLoadingBackgroundColor(Color.TRANSPARENT);
         TilesOverlayEntry newEntry = new TilesOverlayEntry(newOverlay,time);
         infraredTilesOverlayEntries.add(newEntry);
@@ -439,10 +441,12 @@ public class RainViewerActivity extends AppCompatActivity {
             }
         }
 
-        final MapTileProviderBasic RainViewerTileProvider = new MapTileProviderBasic(this);
+        final MapTileProviderBasic rainViewerTileProvider = new MapTileProviderBasic(this);
         final ITileSource RainViewerTileSource = new XYTileSource("R"+ time, 1, 20, 256, "/2/1_1.png", new String[]{host+radarFrames.getJSONObject(position).getString("path")+"/256/"});
-        RainViewerTileProvider.setTileSource(RainViewerTileSource);
-        final TilesOverlay newOverlay = new TilesOverlay(RainViewerTileProvider, this);
+        rainViewerTileProvider.setTileSource(RainViewerTileSource);
+        rainViewerTileProvider.getTileRequestCompleteHandlers().add(mapView.getTileRequestCompleteHandler());
+        rainViewerTileProvider.getTileRequestCompleteHandlers().add(mapView2.getTileRequestCompleteHandler());
+        final TilesOverlay newOverlay = new TilesOverlay(rainViewerTileProvider, this);
         newOverlay.setLoadingBackgroundColor(Color.TRANSPARENT);
         int transparency = 128; // 128 is 50% transparent
         PorterDuffColorFilter filter = new PorterDuffColorFilter(Color.argb(transparency, 255, 255, 255), PorterDuff.Mode.MULTIPLY);
