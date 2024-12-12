@@ -1,5 +1,8 @@
 package org.woheller69.weather.services;
 
+import static com.android.volley.toolbox.ImageRequest.DEFAULT_IMAGE_BACKOFF_MULT;
+import static com.android.volley.toolbox.ImageRequest.DEFAULT_IMAGE_MAX_RETRIES;
+
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
@@ -23,6 +26,7 @@ import android.widget.ImageView;
 import android.widget.RemoteViews;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageRequest;
@@ -108,7 +112,8 @@ public class UpdateDataService extends JobIntentService {
         int cityId = intent.getIntExtra("cityId",-1);
         CityToWatch city = dbHelper.getCityToWatch(cityId);
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
-
+        //Alternative without getting the .json would be to use "latest" as timestamp, https://tilecache.rainviewer.com/v2/radar/latest/256...
+        //but then we do not have the timestamp of the image. Calculating it is difficult around the moment when the radar changes, e.g. at 10:10:30 it might be the radar from 10:00 or from 10:10
         String url = "https://api.rainviewer.com/public/weather-maps.json";
         Log.d("DownloadRadarTimes", "Start");
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
@@ -163,6 +168,11 @@ public class UpdateDataService extends JobIntentService {
                                         // Handle the error
                                         Log.d("DownloadRadarTile", error1.toString());
                                     });
+                            imageRequest.setRetryPolicy(
+                                    new DefaultRetryPolicy(
+                                            3000,   //default is 1000
+                                            DEFAULT_IMAGE_MAX_RETRIES,
+                                            DEFAULT_IMAGE_BACKOFF_MULT));
                             queue.add(imageRequest);
 
                         }
