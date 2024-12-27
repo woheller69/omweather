@@ -2,6 +2,13 @@ apply plugin: 'com.android.application'
 
 android {
 
+    dependenciesInfo {
+        // Disable including dependency metadata when building APKs
+        includeInApk = false
+        // Disable including dependency metadata when building Android App Bundles
+        includeInBundle = false
+    }
+
     compileSdk 34
 
     defaultConfig {
