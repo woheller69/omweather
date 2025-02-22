@@ -461,7 +461,7 @@ public class CityWeatherAdapter extends RecyclerView.Adapter<CityWeatherAdapter.
                 if (prefManager.convertPrecipitationFromMM(precip)>pmax) pmax=prefManager.convertPrecipitationFromMM(precip);
             }
 
-            boolean showFreezing = tmin < 0;
+            boolean showFreezing = (tmin < 0) && !sp.getBoolean("pref_apparentTemp",false);
 
             tmax++;  //add some space above and below
             tmin--;
@@ -490,7 +490,7 @@ public class CityWeatherAdapter extends RecyclerView.Adapter<CityWeatherAdapter.
 
             datasetfreeze.setColor(ContextCompat.getColor(context,R.color.lightgrey));
             datasetfreeze.setDashed(new float[]{10f, 10f});
-            datasetfreeze.setThickness(6);
+            datasetfreeze.setThickness(4);
             datasetfreeze.setSmooth(true);
 
             xaxis.setThickness(3);
