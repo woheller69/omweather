@@ -421,6 +421,7 @@ public class CityWeatherAdapter extends RecyclerView.Adapter<CityWeatherAdapter.
 
             LineSet datasetmax = new LineSet();
             LineSet datasetmin = new LineSet();
+            LineSet datasetfreeze = new LineSet();
             LineSet xaxis = new LineSet(); //create own x-axis as the x-axis of the chart crosses the y-axis numbers. Does not look good
 
             BarSet precipitationDataset = new BarSet();
@@ -444,8 +445,7 @@ public class CityWeatherAdapter extends RecyclerView.Adapter<CityWeatherAdapter.
                     //x-labels for precipitation dataset must be there and cannot be empty even though they are made invisible below. Otherwise alignment gets destroyed!
                     datasetmax.addPoint(dayString, prefManager.convertTemperatureFromCelsius(temp_max));
                     datasetmin.addPoint(dayString, prefManager.convertTemperatureFromCelsius(temp_min));
-
-
+                    datasetfreeze.addPoint(dayString, prefManager.convertTemperatureFromCelsius(0));
                 } else { // 2 bars in the middle for alignment with temperature line chart
 
                     precipitationDataset.addBar(dayString, prefManager.convertPrecipitationFromMM(precip));
@@ -453,12 +453,15 @@ public class CityWeatherAdapter extends RecyclerView.Adapter<CityWeatherAdapter.
 
                     datasetmax.addPoint(dayString, prefManager.convertTemperatureFromCelsius(temp_max));
                     datasetmin.addPoint(dayString, prefManager.convertTemperatureFromCelsius(temp_min));
+                    datasetfreeze.addPoint(dayString, prefManager.convertTemperatureFromCelsius(0));
                 }
 
                 if (prefManager.convertTemperatureFromCelsius(temp_max)>tmax) tmax=prefManager.convertTemperatureFromCelsius(temp_max);
                 if (prefManager.convertTemperatureFromCelsius(temp_min)<tmin) tmin=prefManager.convertTemperatureFromCelsius(temp_min);
                 if (prefManager.convertPrecipitationFromMM(precip)>pmax) pmax=prefManager.convertPrecipitationFromMM(precip);
             }
+
+            boolean showFreezing = tmin < 0;
 
             tmax++;  //add some space above and below
             tmin--;
@@ -472,6 +475,7 @@ public class CityWeatherAdapter extends RecyclerView.Adapter<CityWeatherAdapter.
             ArrayList<ChartSet> temperature = new ArrayList<>();
             temperature.add(datasetmax);
             temperature.add(datasetmin);
+            if (showFreezing) temperature.add(datasetfreeze);
             temperature.add(xaxis);
 
             datasetmax.setColor(ContextCompat.getColor(context,R.color.red));
@@ -483,6 +487,11 @@ public class CityWeatherAdapter extends RecyclerView.Adapter<CityWeatherAdapter.
             datasetmin.setThickness(6);
             datasetmin.setSmooth(true);
             datasetmin.setFill(ContextCompat.getColor(context,R.color.backgroundBlue)); //fill with background, so only range between curves is visible
+
+            datasetfreeze.setColor(ContextCompat.getColor(context,R.color.lightgrey));
+            datasetfreeze.setDashed(new float[]{10f, 10f});
+            datasetfreeze.setThickness(6);
+            datasetfreeze.setSmooth(true);
 
             xaxis.setThickness(3);
             xaxis.setColor(ContextCompat.getColor(context,R.color.colorPrimaryDark));
