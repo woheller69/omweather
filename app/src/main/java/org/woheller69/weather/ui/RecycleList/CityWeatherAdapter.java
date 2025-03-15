@@ -490,7 +490,7 @@ public class CityWeatherAdapter extends RecyclerView.Adapter<CityWeatherAdapter.
 
             datasetfreeze.setColor(ContextCompat.getColor(context,R.color.lightgrey));
             datasetfreeze.setDashed(new float[]{10f, 10f});
-            datasetfreeze.setThickness(4);
+            datasetfreeze.setThickness(3);
             datasetfreeze.setSmooth(true);
 
             xaxis.setThickness(3);

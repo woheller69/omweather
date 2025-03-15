@@ -1,0 +1,2 @@
+Horizontal line for freezing on chart
+Grey out rainviewer tiles while loading

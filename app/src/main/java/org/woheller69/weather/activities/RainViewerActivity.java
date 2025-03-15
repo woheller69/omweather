@@ -411,7 +411,7 @@ public class RainViewerActivity extends AppCompatActivity {
         rainViewerTileProvider.getTileRequestCompleteHandlers().add(mapView.getTileRequestCompleteHandler());
         rainViewerTileProvider.getTileRequestCompleteHandlers().add(mapView2.getTileRequestCompleteHandler());
         final TilesOverlay newOverlay = new TilesOverlay(rainViewerTileProvider, this);
-        newOverlay.setLoadingBackgroundColor(Color.TRANSPARENT);
+        newOverlay.setLoadingBackgroundColor(R.color.middlegrey);
         TilesOverlayEntry newEntry = new TilesOverlayEntry(newOverlay,time);
         infraredTilesOverlayEntries.add(newEntry);
         if (nightmode) {
@@ -447,7 +447,7 @@ public class RainViewerActivity extends AppCompatActivity {
         rainViewerTileProvider.getTileRequestCompleteHandlers().add(mapView.getTileRequestCompleteHandler());
         rainViewerTileProvider.getTileRequestCompleteHandlers().add(mapView2.getTileRequestCompleteHandler());
         final TilesOverlay newOverlay = new TilesOverlay(rainViewerTileProvider, this);
-        newOverlay.setLoadingBackgroundColor(Color.TRANSPARENT);
+        newOverlay.setLoadingBackgroundColor(R.color.middlegrey);
         int transparency = 128; // 128 is 50% transparent
         PorterDuffColorFilter filter = new PorterDuffColorFilter(Color.argb(transparency, 255, 255, 255), PorterDuff.Mode.MULTIPLY);
         newOverlay.setColorFilter(filter);
