@@ -8,7 +8,7 @@
     <string name="navigation_drawer_open">Открыть боковую панель</string>
     <string name="navigation_drawer_close">Закрыть боковую панель</string>
     <string name="next">Дальше</string>
-    <string name="okay">Хорошо</string>
+    <string name="okay">Да</string>
     <string name="slide1_heading">Добро пожаловать!</string>
     <string name="slide1_text">Cirrus - программа прогноза погоды в ваших местах</string>
     <string name="slide2_text">Исходный код доступен на Github. Подробности в разделе \"О программе\"</string>
@@ -56,7 +56,7 @@
     <string name="settings_intervals">Периодичность</string>
     <string name="settings_update_interval">Периодичность обновления</string>
     <string name="settings_interval_summary">Выбор интервала автоматическоиъ обновлений</string>
-    <string name="about_privacy_answer">Cirrus использует разрешение \"Интернет\" только для получения данных о погоде. Никаких механизмов отслеживания или рекламы отсутствуют.</string>
+    <string name="about_privacy_answer">Cirrus использует разрешение \"Интернет\" только для получения данных о погоде. В нём нет механизмов отслеживания и рекламы.</string>
     <string name="about_where_from">Откуда информация о погоде?</string>
     <string name="about_where_from_answer">Погодные данные поступают из</string>
     <string name="about_permissions">Разрешения</string>
@@ -103,7 +103,7 @@
     <string name="error_no_gps">Пожалуйста, включите GPS</string>
     <string name="slide3_heading">Open-Meteo</string>
     <string name="RainViewer">Радар погоды</string>
-    <string name="nonFreeNet">Разрешить доступ к RainViewer.com, которая не является сетью с открытым исходным кодом.</string>
+    <string name="nonFreeNet">Разрешить доступ к RainViewer.com, не являющимся сетью с открытым исходным кодом.</string>
     <string name="summary_reanalyze">Улучшать недельные значки, анализируя почасовые прогнозы между восходом и заходом солнца (экспериментально).</string>
     <string name="settings_reanalyze">Недельные значки</string>
     <string name="settings_precipitation">Осадки</string>
