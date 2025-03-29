@@ -76,7 +76,7 @@
     <string name="units_mm">мм</string>
     <string name="units_km">км</string>
     <string name="units_hPa">гПа</string>
-    <string name="units_Bft">Бфт</string>
+    <string name="units_Bft">Бф</string>
     <string name="units_mm_h">мм/ч</string>
     <string name="units_km_h">км/ч</string>
     <string name="units_mph">миль/ч</string>
