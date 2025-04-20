@@ -3,7 +3,9 @@ package org.woheller69.weather.activities;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 
@@ -12,7 +14,6 @@ import androidx.preference.PreferenceManager;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.navigation.NavigationView.OnNavigationItemSelectedListener;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.core.app.TaskStackBuilder;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -20,11 +21,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.os.Looper;
+import android.view.Menu;
 import android.view.MenuItem;
 
 
 import org.woheller69.weather.BuildConfig;
 import org.woheller69.weather.R;
+import org.woheller69.weather.database.SQLiteHelper;
 import org.woheller69.weather.preferences.AppPreferencesManager;
 
 import static java.lang.Boolean.TRUE;
@@ -165,6 +168,12 @@ public class NavigationActivity extends AppCompatActivity implements OnNavigatio
         }else if(itemId==R.id.nav_settings) {
             intent = new Intent(this, SettingsActivity.class);
             startActivity(intent);
+        }else if(itemId==R.id.nav_backuprestore) {
+            SQLiteHelper dbhelper = SQLiteHelper.getInstance(this);  //create a database if it does not yet exist
+            SQLiteDatabase database = dbhelper.getWritableDatabase();
+            database.close();
+            intent = new Intent(this, BackupRestoreActivity.class);
+            startActivity(intent);
         }else if (itemId==R.id.star_on_github){
             startActivity(new Intent(Intent.ACTION_VIEW,
                     Uri.parse(BuildConfig.GITHUB_URL)));
@@ -189,6 +198,13 @@ public class NavigationActivity extends AppCompatActivity implements OnNavigatio
         toggle.syncState();
 
         mNavigationView = findViewById(R.id.nav_view);
+
+        Menu menu = mNavigationView.getMenu();
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+            // Remove the menu item if SDK is less than 26
+            menu.removeItem(R.id.nav_backuprestore);
+        }
+
         mNavigationView.setNavigationItemSelectedListener(this);
 
         selectNavigationItem(getNavigationDrawerID());

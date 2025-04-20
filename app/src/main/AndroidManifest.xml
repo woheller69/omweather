@@ -9,9 +9,12 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <!-- For requesting background location access on Android 10 (API level 29+)-->
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
+        android:requestLegacyExternalStorage="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
@@ -66,6 +69,18 @@
                 android:value="org.woheller69.weather.activities.ForecastCityActivity" />
 
         </activity>
+
+
+        <activity
+            android:name="org.woheller69.weather.activities.BackupRestoreActivity"
+            android:label="@string/activity_backuprestore"
+            android:parentActivityName="org.woheller69.weather.activities.ForecastCityActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.woheller69.weather.activities.ForecastCityActivity" />
+        </activity>
+
         <activity
             android:name="org.woheller69.weather.firststart.TutorialActivity"
             android:theme="@style/AppTheme.NoActionBar" />

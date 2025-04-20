@@ -117,4 +117,11 @@
     <string name="settings_widget_transparency">Widget transparency</string>
     <string name="units_mi">mi</string>
     <string name="GridLayout">2 sütun</string>
+    <string name="activity_backuprestore">Yedekle/Geri Yükle</string>
+    <string name="backup_database">Yedekleme veritabanı</string>
+    <string name="restore_database">Geri Yükleme veritabanı</string>
+    <string name="permission_required">İzİn gerekli</string>
+    <string name="permission_message">%s harici depolama alanına erişmesi gerekiyor. Lütfen izni kabul edin ve tekrar deneyin.</string>
+    <string name="toast_delete">Lütfen dosyayı silin ve tekrar deneyin</string>
+    <string name="restore_database_message">Belgeler klasöründen Verileri Geri Yükleyin. Eğer gerekirse \'Belgeler\' klasörünü açın ve Cirrus.zip dosyasını seçin!</string>
 </resources>

@@ -1,6 +1,9 @@
 apply plugin: 'com.android.application'
 
 android {
+    lintOptions {
+        disable 'MissingTranslation'
+    }
 
     dependenciesInfo {
         // Disable including dependency metadata when building APKs
@@ -43,4 +46,5 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel:2.5.1" //needed due to duplicate class error
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1" //needed due to duplicate class error
     implementation 'org.osmdroid:osmdroid-android:6.1.18'
+    implementation 'net.lingala.zip4j:zip4j:2.9.1'
 }

@@ -120,5 +120,11 @@
     <string name="settings_widget_transparency">Widget-Transparenz</string>
     <string name="units_mi">mi</string>
     <string name="GridLayout">2 Spalten</string>
-
+    <string name="activity_backuprestore">Sichern/Wiederherstellen</string>
+    <string name="backup_database">Datenbank sichern</string>
+    <string name="restore_database">Datenbank wiederherstellen</string>
+    <string name="permission_required">Berechtigung erforderlich</string>
+    <string name="permission_message">%s benötigt Zugriff auf den externen Speicher. Bitte die Berechtigung erteilen und erneut versuchen.</string>
+    <string name="toast_delete">Bitte die Datei zuerst löschen und erneut versuchen.</string>
+    <string name="restore_database_message">Daten aus dem Dokumentenordner wiederherstellen. Falls nötig, Ordner \'Documents\' öffnen und Cirrus.zip auswählen!</string>
 </resources>

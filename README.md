@@ -59,7 +59,8 @@ The app also uses:
 - AutoSuggestTextViewAPICall (https://github.com/Truiton/AutoSuggestTextViewAPICall) which is licensed under <a href='https://github.com/Truiton/AutoSuggestTextViewAPICall/blob/master/LICENSE'>Apache License Version 2.0</a>
 - Map data from OpenStreetMap, licensed under the Open Data Commons Open Database License (ODbL) by the OpenStreetMap Foundation (OSMF) (https://www.openstreetmap.org/copyright)
 - Osmdroid (https://github.com/osmdroid/osmdroid) licensed under <a href='http://www.apache.org/licenses/LICENSE-2.0'>Apache License Version 2.0</a>
-- 
+- Zip4j (https://github.com/srikanth-lingala/zip4j) which is licensed under Apache License Version 2.0
+
 ## Contributing
 
 If you find a bug, please open an issue in the Github repository, assuming one does not already exist.
