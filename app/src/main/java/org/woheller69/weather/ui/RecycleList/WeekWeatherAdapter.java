@@ -152,9 +152,7 @@ public class WeekWeatherAdapter extends RecyclerView.Adapter<WeekWeatherAdapter.
             day = itemView.findViewById(R.id.week_forecast_day);
             weather = itemView.findViewById(R.id.week_forecast_weather);
             temperature_max = itemView.findViewById(R.id.week_forecast_temperature_max);
-            temperature_max.setTextColor(ContextCompat.getColor(context,R.color.red));
             temperature_min = itemView.findViewById(R.id.week_forecast_temperature_min);
-            temperature_min.setTextColor(ContextCompat.getColor(context,R.color.midblue));
             wind_speed = itemView.findViewById(R.id.week_forecast_wind_speed);
             precipitation = itemView.findViewById(R.id.week_forecast_precipitation);
             uv_index = itemView.findViewById(R.id.week_forecast_uv_index);

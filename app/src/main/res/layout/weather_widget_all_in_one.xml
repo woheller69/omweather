@@ -507,7 +507,7 @@
                 android:layout_row="3"
                 android:text="42,0°C"
                 android:textSize="16dp"
-                android:textColor="@color/red" />
+                android:textColor="@color/lightgrey" />
 
             <TextView
                 android:id="@+id/widget_5day_temp_min1"
@@ -517,7 +517,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="-3dp"
                 android:text="42,0°C"
-                android:textColor="@color/midblue"
+                android:textColor="@color/lightgrey"
                 android:textSize="16dp" />
 
         </GridLayout>
@@ -567,7 +567,7 @@
                 android:layout_row="3"
                 android:text="42,0°C"
                 android:textSize="16dp"
-                android:textColor="@color/red" />
+                android:textColor="@color/lightgrey" />
 
             <TextView
                 android:id="@+id/widget_5day_temp_min2"
@@ -577,7 +577,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="-3dp"
                 android:text="42,0°C"
-                android:textColor="@color/midblue"
+                android:textColor="@color/lightgrey"
                 android:textSize="16dp" />
 
         </GridLayout>
@@ -627,7 +627,7 @@
                 android:layout_row="3"
                 android:text="42,0°C"
                 android:textSize="16dp"
-                android:textColor="@color/red" />
+                android:textColor="@color/lightgrey" />
 
             <TextView
                 android:id="@+id/widget_5day_temp_min3"
@@ -637,7 +637,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="-3dp"
                 android:text="42,0°C"
-                android:textColor="@color/midblue"
+                android:textColor="@color/lightgrey"
                 android:textSize="16dp" />
 
         </GridLayout>
@@ -687,7 +687,7 @@
                 android:layout_row="3"
                 android:text="42,0°C"
                 android:textSize="16dp"
-                android:textColor="@color/red" />
+                android:textColor="@color/lightgrey" />
 
             <TextView
                 android:id="@+id/widget_5day_temp_min4"
@@ -697,7 +697,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="-3dp"
                 android:text="42,0°C"
-                android:textColor="@color/midblue"
+                android:textColor="@color/lightgrey"
                 android:textSize="16dp" />
 
         </GridLayout>

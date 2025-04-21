@@ -48,7 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="0dp"
         android:text="xy°C"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/red"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
@@ -57,7 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="3dp"
         android:text="xy°C"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/midblue"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
@@ -82,6 +82,7 @@
         android:id="@+id/week_forecast_uv_index"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
         android:layout_marginBottom="3dp"
         android:text="uv xy"
         android:textColor="@color/colorPrimaryDark"

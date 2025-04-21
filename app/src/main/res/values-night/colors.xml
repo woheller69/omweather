@@ -9,7 +9,7 @@
     <color name="lightgrey">#BBFFFFFF</color>
     <color name="backgroundHighlight">#2A2A2A</color>
     <color name="white">#303030</color>
-    <color name="red">#d01530</color>
+    <color name="red">#e01530</color>
     <color name="lightred">#fa7972</color>
     <color name="violet">#779461c9</color>
     <color name="yellow">#f8f49f</color>
@@ -17,7 +17,7 @@
     <color name="green">#c3f5b2</color>
     <color name="blue">#0274b2</color>
     <color name="lightblue">#1382d4</color>
-    <color name="midblue">#1b5cd9</color>
+    <color name="midblue">#1b1cf0</color>
     <color name="backgroundBlue">#080808</color>
     <color name="widgetBackground">#DD181818</color>
 </resources>

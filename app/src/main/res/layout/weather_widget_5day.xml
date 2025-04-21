@@ -70,7 +70,7 @@
                 android:textStyle="bold"
                 android:layout_row="3"
                 android:layout_gravity="center"
-                android:textColor="@color/red" />
+                android:textColor="@color/lightgrey" />
 
             <TextView
                 android:id="@+id/widget_5day_temp_min1"
@@ -81,7 +81,7 @@
                 android:textStyle="bold"
                 android:layout_row="4"
                 android:layout_gravity="center"
-                android:textColor="@color/midblue" />
+                android:textColor="@color/lightgrey" />
 
         </GridLayout>
 
@@ -130,7 +130,7 @@
                 android:textStyle="bold"
                 android:layout_row="3"
                 android:layout_gravity="center"
-                android:textColor="@color/red" />
+                android:textColor="@color/lightgrey" />
 
             <TextView
                 android:id="@+id/widget_5day_temp_min2"
@@ -141,7 +141,7 @@
                 android:textStyle="bold"
                 android:layout_row="4"
                 android:layout_gravity="center"
-                android:textColor="@color/midblue" />
+                android:textColor="@color/lightgrey" />
 
         </GridLayout>
 
@@ -190,7 +190,7 @@
                 android:textStyle="bold"
                 android:layout_row="3"
                 android:layout_gravity="center"
-                android:textColor="@color/red" />
+                android:textColor="@color/lightgrey" />
 
             <TextView
                 android:id="@+id/widget_5day_temp_min3"
@@ -201,7 +201,7 @@
                 android:textStyle="bold"
                 android:layout_row="4"
                 android:layout_gravity="center"
-                android:textColor="@color/midblue" />
+                android:textColor="@color/lightgrey" />
 
         </GridLayout>
 
@@ -250,7 +250,7 @@
                 android:textStyle="bold"
                 android:layout_row="3"
                 android:layout_gravity="center"
-                android:textColor="@color/red" />
+                android:textColor="@color/lightgrey" />
 
             <TextView
                 android:id="@+id/widget_5day_temp_min4"
@@ -261,7 +261,7 @@
                 android:textStyle="bold"
                 android:layout_row="4"
                 android:layout_gravity="center"
-                android:textColor="@color/midblue" />
+                android:textColor="@color/lightgrey" />
 
         </GridLayout>
 
@@ -310,7 +310,7 @@
                 android:textStyle="bold"
                 android:layout_row="3"
                 android:layout_gravity="center"
-                android:textColor="@color/red" />
+                android:textColor="@color/lightgrey" />
 
             <TextView
                 android:id="@+id/widget_5day_temp_min5"
@@ -321,7 +321,7 @@
                 android:textStyle="bold"
                 android:layout_row="4"
                 android:layout_gravity="center"
-                android:textColor="@color/midblue" />
+                android:textColor="@color/lightgrey" />
 
         </GridLayout>
     </LinearLayout>
