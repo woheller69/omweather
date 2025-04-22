@@ -479,12 +479,12 @@ public class CityWeatherAdapter extends RecyclerView.Adapter<CityWeatherAdapter.
             temperature.add(xaxis);
 
             datasetmax.setColor(ContextCompat.getColor(context,R.color.red));
-            datasetmax.setThickness(6);
+            datasetmax.setThickness(4);
             datasetmax.setSmooth(true);
             datasetmax.setFill(ContextCompat.getColor(context,R.color.middlegrey));
 
-            datasetmin.setColor(ContextCompat.getColor(context,R.color.lightblue));
-            datasetmin.setThickness(6);
+            datasetmin.setColor(ContextCompat.getColor(context,R.color.blue));
+            datasetmin.setThickness(4);
             datasetmin.setSmooth(true);
             datasetmin.setFill(ContextCompat.getColor(context,R.color.backgroundBlue)); //fill with background, so only range between curves is visible
 
@@ -500,7 +500,7 @@ public class CityWeatherAdapter extends RecyclerView.Adapter<CityWeatherAdapter.
             precipitation.add(precipitationDataset);
 
             precipitationDataset.setColor(ContextCompat.getColor(context,R.color.blue));
-            precipitationDataset.setAlpha(0.8f);  // make precipitation bars transparent
+            precipitationDataset.setAlpha(0.4f);  // make precipitation bars transparent
 
             holder.lineChartView.addData(temperature);
             holder.lineChartView.setAxisBorderValues( mid-2*step, mid+2*step);

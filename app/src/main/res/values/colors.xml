@@ -5,7 +5,7 @@
     <color name="colorPrimaryDark">#024265</color>
     <color name="colorAccent">#0274b2</color>
     <color name="colorListItem">#024265</color>
-    <color name="backgroundHighlight">#5fa1d2</color>
+    <color name="backgroundHighlight">#6fa1d2</color>
     <color name="middlegrey">#A8A8A8</color>
     <color name="lightgrey">#AAFFFFFF</color>
     <color name="white">#fafafa</color>
@@ -15,10 +15,7 @@
     <color name="yellow">#f8f49f</color>
     <color name="orange">#fec58e</color>
     <color name="green">#c3f5b2</color>
-    <color name="blue">#0274b2</color>
-    <color name="lightblue">#1382d4</color>
-    <color name="midblue">#1b1cf0</color>
-    <color name="backgroundBlue">#6fb1e2</color>
-    <color name="widgetBackground">#DD6fb1e2</color>
+    <color name="blue">#1b4cf0</color>
+    <color name="backgroundBlue">#7fb1e2</color>
 </resources>
 

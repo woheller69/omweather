@@ -15,10 +15,7 @@
     <color name="yellow">#f8f49f</color>
     <color name="orange">#fec58e</color>
     <color name="green">#c3f5b2</color>
-    <color name="blue">#0274b2</color>
-    <color name="lightblue">#1382d4</color>
-    <color name="midblue">#1b1cf0</color>
+    <color name="blue">#1b4cf0</color>
     <color name="backgroundBlue">#080808</color>
-    <color name="widgetBackground">#DD181818</color>
 </resources>
 
