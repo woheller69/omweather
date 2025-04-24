@@ -78,6 +78,12 @@
             />
 
         <SwitchPreference
+            android:key="pref_showHourlyUvIndex"
+            android:title="@string/settings_show_hourly_uv_index"
+            android:defaultValue="false"
+            />
+
+        <SwitchPreference
             android:key="pref_DarkMode"
             android:title="@string/settings_darkmode"
             android:defaultValue="false"
