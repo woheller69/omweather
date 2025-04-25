@@ -117,5 +117,6 @@
     <string name="settings_widget_transparency">Widget transparency</string>
     <string name="units_mi">mi</string>
     <string name="GridLayout">2 kolumny</string>
+    <string name="settings_show_hourly_uv_index">Show hourly UV index</string>
 </resources>
 

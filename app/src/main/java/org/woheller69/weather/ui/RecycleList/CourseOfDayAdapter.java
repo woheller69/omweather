@@ -103,8 +103,12 @@ public class CourseOfDayAdapter extends RecyclerView.Adapter<CourseOfDayAdapter.
 
         SharedPreferences prefManager = PreferenceManager.getDefaultSharedPreferences(context);
         if (prefManager.getBoolean("pref_showPressure", false)){
-            holder.pressure.setText(StringFormatUtils.formatInt(courseOfDayList.get(position).getPressure(),context.getString(R.string.units_hPa)));
-            holder.pressure.setVisibility(View.VISIBLE);
+            if (courseOfDayList.get(position).getPressure() == -1) {
+                holder.pressure.setVisibility(View.GONE);
+            } else {
+                holder.pressure.setText(StringFormatUtils.formatInt(courseOfDayList.get(position).getPressure(),context.getString(R.string.units_hPa)));
+                holder.pressure.setVisibility(View.VISIBLE);
+            }
         } else holder.pressure.setVisibility(View.GONE);
 
         if (prefManager.getBoolean("pref_showHourlyUvIndex", false)) {

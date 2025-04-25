@@ -124,4 +124,5 @@
     <string name="permission_message">%s deve accedere allo spazio di archiviazione esterno. Accetta i permessi e riprova.</string>
     <string name="toast_delete">Cancella il file e riprova</string>
     <string name="restore_database_message">Ripristina i dati dalla cartella Documenti. Apri la cartella \'Documenti\' e seleziona Cirrus.zip se rchiesto!</string>
+    <string name="settings_show_hourly_uv_index">Mostra indice UV orario</string>
 </resources>

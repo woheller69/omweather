@@ -124,4 +124,5 @@
     <string name="permission_message">%s harici depolama alanına erişmesi gerekiyor. Lütfen izni kabul edin ve tekrar deneyin.</string>
     <string name="toast_delete">Lütfen dosyayı silin ve tekrar deneyin</string>
     <string name="restore_database_message">Belgeler klasöründen Verileri Geri Yükleyin. Eğer gerekirse \'Belgeler\' klasörünü açın ve Cirrus.zip dosyasını seçin!</string>
+    <string name="settings_show_hourly_uv_index">Show hourly UV index</string>
 </resources>

@@ -15,11 +15,11 @@ public class HourlyForecast {
     private int weatherID;
     private float temperature;
     private float humidity;
-    private float pressure;
+    private float pressure = -1;
     private float windSpeed;
     private float windDirection;
     private float precipitation;
-    private float uvIndex;
+    private float uvIndex = -1;
 
 
     public HourlyForecast() {

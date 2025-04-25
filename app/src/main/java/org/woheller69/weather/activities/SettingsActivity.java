@@ -100,7 +100,7 @@ public class SettingsActivity extends NavigationActivity implements SharedPrefer
 
                 }
             }
-        } else if (s.equals("pref_apparentTemp")) {
+        } else if (s.equals("pref_apparentTemp") || s.equals("pref_showPressure") || s.equals("pref_showHourlyUvIndex") || s.equals("pref_snow")) {
             SQLiteHelper database = SQLiteHelper.getInstance(getApplicationContext().getApplicationContext());
             database.deleteAllForecasts();
         }
