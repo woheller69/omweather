@@ -1,15 +1,16 @@
 package org.woheller69.weather.ui.RecycleList;
 
 import android.content.Context;
-import androidx.preference.PreferenceManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.preference.PreferenceManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import org.woheller69.weather.R;
 import org.woheller69.weather.database.CurrentWeatherData;
@@ -106,6 +107,18 @@ public class CourseOfDayAdapter extends RecyclerView.Adapter<CourseOfDayAdapter.
             holder.pressure.setVisibility(View.VISIBLE);
         } else holder.pressure.setVisibility(View.GONE);
 
+        if (prefManager.getBoolean("pref_showHourlyUvIndex", false)) {
+            if (courseOfDayList.get(position).getUvIndex() == -1) {
+                holder.uv_index.setVisibility(View.GONE);
+            } else {
+                holder.uv_index.setVisibility(View.VISIBLE);
+                holder.uv_index.setText(String.format("UV %s", StringFormatUtils.formatInt(Math.round(courseOfDayList.get(position).getUvIndex()))));
+                holder.uv_index.setBackground(StringFormatUtils.colorUVindex(context, Math.round(courseOfDayList.get(position).getUvIndex())));
+            }
+        } else {
+            holder.uv_index.setVisibility(View.GONE);
+        }
+        
         holder.temperature.setText(StringFormatUtils.formatTemperature(context, courseOfDayList.get(position).getTemperature()));
         holder.wind_speed.setText(StringFormatUtils.formatWindSpeed(context, courseOfDayList.get(position).getWindSpeed()));
         holder.wind_speed.setBackground(StringFormatUtils.colorWindSpeed(context, courseOfDayList.get(position).getWindSpeed()));
@@ -156,6 +169,7 @@ public class CourseOfDayAdapter extends RecyclerView.Adapter<CourseOfDayAdapter.
         TextView wind_speed;
         ImageView wind_direction;
         ImageView windicon;
+        TextView uv_index;
 
         CourseOfDayViewHolder(View itemView) {
             super(itemView);
@@ -169,6 +183,7 @@ public class CourseOfDayAdapter extends RecyclerView.Adapter<CourseOfDayAdapter.
             wind_speed = itemView.findViewById(R.id.course_of_day_wind_speed);
             wind_direction = itemView.findViewById(R.id.course_of_day_wind_direction);
             windicon = itemView.findViewById(R.id.course_of_day_wind_icon);
+            uv_index = itemView.findViewById(R.id.course_of_day_uv_index);
 
         }
     }

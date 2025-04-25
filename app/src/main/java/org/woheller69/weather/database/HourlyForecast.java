@@ -19,6 +19,7 @@ public class HourlyForecast {
     private float windSpeed;
     private float windDirection;
     private float precipitation;
+    private float uvIndex;
 
 
     public HourlyForecast() {
@@ -156,4 +157,12 @@ public class HourlyForecast {
     public float getPrecipitation() { return precipitation; }
 
     public void setPrecipitation(float precipitation) { this.precipitation = precipitation; }
+
+    public float getUvIndex() {
+        return uvIndex;
+    }
+
+    public void setUvIndex(float uvIndex) {
+        this.uvIndex = uvIndex;
+    }
 }

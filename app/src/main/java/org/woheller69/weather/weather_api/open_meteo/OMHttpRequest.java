@@ -25,7 +25,7 @@ public class OMHttpRequest {
 
         if (sharedPreferences.getBoolean("pref_snow", false)){
             return String.format(
-                    "%sforecast?latitude=%s&longitude=%s&forecast_days=%s&hourly=%s,relative_humidity_2m,rain,showers,snowfall,weather_code,pressure_msl,wind_speed_10m,wind_direction_10m&minutely_15=%s,rain,showers,snowfall,weather_code,wind_speed_10m&forecast_minutely_15=60&daily=weather_code,%s,%s,sunrise,sunset,uv_index_max,rain_sum,showers_sum,snowfall_sum,wind_speed_10m_max,sunshine_duration&current_weather=true&wind_speed_unit=ms&timeformat=unixtime&timezone=auto",
+                    "%sforecast?latitude=%s&longitude=%s&forecast_days=%s&hourly=%s,uv_index,relative_humidity_2m,rain,showers,snowfall,weather_code,pressure_msl,wind_speed_10m,wind_direction_10m&minutely_15=%s,rain,showers,snowfall,weather_code,wind_speed_10m&forecast_minutely_15=60&daily=weather_code,%s,%s,sunrise,sunset,uv_index_max,rain_sum,showers_sum,snowfall_sum,wind_speed_10m_max,sunshine_duration&current_weather=true&wind_speed_unit=ms&timeformat=unixtime&timezone=auto",
                     BuildConfig.BASE_URL,
                     lat,
                     lon,
@@ -37,7 +37,7 @@ public class OMHttpRequest {
             );
         } else {
             return String.format(
-                    "%sforecast?latitude=%s&longitude=%s&forecast_days=%s&hourly=%s,relative_humidity_2m,precipitation,weather_code,pressure_msl,wind_speed_10m,wind_direction_10m&minutely_15=%s,precipitation,weather_code,wind_speed_10m&forecast_minutely_15=60&daily=weather_code,%s,%s,sunrise,sunset,uv_index_max,precipitation_sum,wind_speed_10m_max,sunshine_duration&current_weather=true&wind_speed_unit=ms&timeformat=unixtime&timezone=auto",
+                    "%sforecast?latitude=%s&longitude=%s&forecast_days=%s&hourly=%s,uv_index,relative_humidity_2m,precipitation,weather_code,pressure_msl,wind_speed_10m,wind_direction_10m&minutely_15=%s,precipitation,weather_code,wind_speed_10m&forecast_minutely_15=60&daily=weather_code,%s,%s,sunrise,sunset,uv_index_max,precipitation_sum,wind_speed_10m_max,sunshine_duration&current_weather=true&wind_speed_unit=ms&timeformat=unixtime&timezone=auto",
                     BuildConfig.BASE_URL,
                     lat,
                     lon,
