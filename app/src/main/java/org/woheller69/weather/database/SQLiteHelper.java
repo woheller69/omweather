@@ -149,8 +149,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             FORECAST_COLUMN_PRESSURE + " REAL," +
             FORECAST_COLUMN_PRECIPITATION + " REAL," +
             FORECAST_COLUMN_WIND_SPEED + " REAL," +
-            FORECAST_COLUMN_UV_INDEX + " REAL, " +
-            FORECAST_COLUMN_WIND_DIRECTION + " REAL)";
+            FORECAST_COLUMN_WIND_DIRECTION + " REAL, " +
+            FORECAST_COLUMN_UV_INDEX + " REAL)";
 
     private static final String CREATE_TABLE_WEEKFORECASTS = "CREATE TABLE " + TABLE_WEEKFORECAST +
             "(" +
