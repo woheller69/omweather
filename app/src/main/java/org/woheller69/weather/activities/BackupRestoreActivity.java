@@ -60,6 +60,7 @@ public class BackupRestoreActivity extends NavigationActivity{
         File intData;
         intData = new File(Environment.getDataDirectory()+"//data//" + this.getPackageName() + "//databases//");
         extStorage = Environment.getExternalStoragePublicDirectory(DIRECTORY_DOCUMENTS);
+        if (!extStorage.exists()) extStorage.mkdir();
         String filesBackup = getResources().getString(R.string.app_name)+".zip";
         final File dbBackup = new File(extStorage, filesBackup);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);

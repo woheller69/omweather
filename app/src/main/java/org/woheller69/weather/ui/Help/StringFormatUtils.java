@@ -74,7 +74,7 @@ public final class StringFormatUtils {
         if (android.text.format.DateFormat.is24HourFormat(context) || sharedPreferences.getBoolean("pref_TimeFormat", true)==TRUE){
             df = new SimpleDateFormat("HH:mm", Locale.getDefault());
             df.setTimeZone(TimeZone.getTimeZone("GMT"));
-        }else {
+        } else {
             df = new SimpleDateFormat("hh:mm aa", Locale.getDefault());
             df.setTimeZone(TimeZone.getTimeZone("GMT"));
         }
