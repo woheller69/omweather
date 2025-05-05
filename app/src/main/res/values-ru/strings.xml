@@ -8,9 +8,9 @@
     <string name="navigation_drawer_open">Открыть боковую панель</string>
     <string name="navigation_drawer_close">Закрыть боковую панель</string>
     <string name="next">Дальше</string>
-    <string name="okay">Да</string>
+    <string name="okay">Хорошо</string>
     <string name="slide1_heading">Добро пожаловать!</string>
-    <string name="slide1_text">Cirrus - программа прогноза погоды в ваших местах</string>
+    <string name="slide1_text">Cirrus - программа прогноза погоды в выбранных вами местах</string>
     <string name="slide2_text">Исходный код доступен на Github. Подробности в разделе \"О программе\"</string>
     <string name="card_details_heading">Сейчас</string>
     <string name="card_details_humidity">Влажность:</string>
