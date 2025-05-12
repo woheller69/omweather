@@ -118,4 +118,5 @@
     <string name="settings_widget_transparency">Прозрачность виджета</string>
     <string name="units_mi">миль</string>
     <string name="GridLayout">2 колонки</string>
+    <string name="settings_show_hourly_uv_index">Показывать почасовой UV-индекс</string>
 </resources>
