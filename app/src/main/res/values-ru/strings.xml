@@ -118,5 +118,12 @@
     <string name="settings_widget_transparency">Прозрачность виджета</string>
     <string name="units_mi">миль</string>
     <string name="GridLayout">2 колонки</string>
+    <string name="activity_backuprestore">Бекап/Восстановление</string>
+    <string name="backup_database">Бекап базы данных</string>
+    <string name="restore_database">Восстановление базы данных</string>
+    <string name="permission_required">Требуется разрешение</string>
+    <string name="permission_message">%s нужен доступ к файлам. Одобрите запрос и попробуйте ещё раз.</string>
+    <string name="toast_delete">Удалите файл и попробуйте ещё раз</string>
+    <string name="restore_database_message">Восстановление данных из папки Документы. Откройте \'Документы\' и выберите Cirrus.zip, если потребуется!</string>
     <string name="settings_show_hourly_uv_index">Показывать почасовой UV-индекс</string>
 </resources>
