@@ -119,7 +119,7 @@
     <string name="units_mi">миль</string>
     <string name="GridLayout">2 колонки</string>
     <string name="card_overview_weather_data_by">Данные предоставлены Open-Meteo.com</string>
-    <string name="activity_backuprestore">Бекап/Восстановление</string>
+    <string name="activity_backuprestore">Бекап</string>
     <string name="backup_database">Бекап базы данных</string>
     <string name="restore_database">Восстановление базы данных</string>
     <string name="permission_required">Требуется разрешение</string>
