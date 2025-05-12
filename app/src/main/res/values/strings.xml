@@ -127,6 +127,7 @@
     <string name="settings_widget_transparency">Widget transparency</string>
     <string name="units_mi">mi</string>
     <string name="GridLayout">2 columns</string>
+    <string name="card_overview_weather_data_by">Weather data by Open-Meteo.com</string>
     <string name="activity_backuprestore">Backup/Restore</string>
     <string name="backup_database">Backup database</string>
     <string name="restore_database">Restore database</string>
