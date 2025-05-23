@@ -56,9 +56,8 @@ public class WeatherWidget extends AppWidgetProvider {
         SharedPreferences prefManager = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
         SQLiteHelper db = SQLiteHelper.getInstance(context);
         if (!db.getAllCitiesToWatch().isEmpty()) {
-
             int cityID = getWidgetCityID(context);
-            if(prefManager.getBoolean("pref_GPS", true) && !prefManager.getBoolean("pref_GPS_manual", false)) updateLocation(context, cityID,false);
+            if(prefManager.getBoolean("pref_GPS", false) && !prefManager.getBoolean("pref_GPS_manual", false)) updateLocation(context, cityID,false);
             Intent intent = new Intent(context, UpdateDataService.class);
             intent.setAction(UpdateDataService.UPDATE_SINGLE_ACTION);
             intent.putExtra("cityId", cityID);
@@ -177,7 +176,7 @@ public class WeatherWidget extends AppWidgetProvider {
         }
 
         SharedPreferences prefManager = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
-        if(prefManager.getBoolean("pref_GPS", true) && !prefManager.getBoolean("pref_GPS_manual", false)) views.setViewVisibility(R.id.location_on,View.VISIBLE); else views.setViewVisibility(R.id.location_on,View.GONE);
+        if(prefManager.getBoolean("pref_GPS", false) && !prefManager.getBoolean("pref_GPS_manual", false)) views.setViewVisibility(R.id.location_on,View.VISIBLE); else views.setViewVisibility(R.id.location_on,View.GONE);
         views.setTextViewText(R.id.widget_updatetime, String.format("(%s)", StringFormatUtils.formatTimeWithoutZone(context, updateTime)));
         views.setViewPadding(R.id.widget_temperature,1,1,1,1);
         views.setTextViewText(R.id.widget_max_Temp,StringFormatUtils.formatTemperature(context, weekforecasts.get(0).getMaxTemperature()));
@@ -284,7 +283,7 @@ public class WeatherWidget extends AppWidgetProvider {
 
         PowerManager powerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
         Log.d("GPS", "Widget onUpdate");
-            if(prefManager.getBoolean("pref_GPS", true) && !prefManager.getBoolean("pref_GPS_manual", false) && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED && !powerManager.isPowerSaveMode()) {
+            if(prefManager.getBoolean("pref_GPS", false) && !prefManager.getBoolean("pref_GPS_manual", false) && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED && !powerManager.isPowerSaveMode()) {
                 if (locationListenerGPS==null) {
                     Log.d("GPS", "Listener null");
                     locationListenerGPS = new LocationListener() {
@@ -369,7 +368,7 @@ public class WeatherWidget extends AppWidgetProvider {
         if (intent.getBooleanExtra("Manual", false)) {
             int cityID = getWidgetCityID(context);
             SharedPreferences prefManager = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
-            if(prefManager.getBoolean("pref_GPS", true) && !prefManager.getBoolean("pref_GPS_manual", false)) updateLocation(context, cityID,true);
+            if(prefManager.getBoolean("pref_GPS", false) && !prefManager.getBoolean("pref_GPS_manual", false)) updateLocation(context, cityID,true);
         }
         super.onReceive(context,intent);
     }

@@ -170,7 +170,7 @@ public class ForecastCityActivity extends NavigationActivity implements IUpdatea
         SharedPreferences prefManager = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         updateLocationButton = menu.findItem(R.id.menu_update_location);
         SQLiteHelper db = SQLiteHelper.getInstance(this);
-        if(prefManager.getBoolean("pref_GPS", true)==TRUE && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED ) {
+        if(prefManager.getBoolean("pref_GPS", false)==TRUE && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED ) {
             updateLocationButton.setVisible(true);
             updateLocationButton.setActionView(R.layout.menu_update_location_view);
             updateLocationButton.getActionView().clearAnimation();
@@ -267,7 +267,7 @@ public class ForecastCityActivity extends NavigationActivity implements IUpdatea
                     tabLayoutMediator.attach();
                 }
                 SharedPreferences prefManager = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                if (prefManager.getBoolean("pref_GPS", true) == TRUE && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                if (prefManager.getBoolean("pref_GPS", false) == TRUE && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                     if (locationListenerGPS == null) {
                         Log.d("GPS", "Listener null");
                         locationListenerGPS = getNewLocationListener();
