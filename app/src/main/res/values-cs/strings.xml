@@ -102,37 +102,37 @@
     <string name="dialog_OK_button">OK</string>
     <string name="dialog_NO_button">Ne</string>
     <string name="dialog_Later_button">Možná později</string>
-    <string name="dialog_StarOnGitHub">Do you like this app? Please give a star on GitHub or buy the developer a coffee via PayPal.</string>
-    <string name="settings_show_pressure">Show air pressure</string>
+    <string name="dialog_StarOnGitHub">Líbí se vám tato aplikace? Dejte prosím hvězdičku na GitHubu nebo kupte vývojáři kávu přes PayPal.</string>
+    <string name="settings_show_pressure">Zobrazit tlak vzduchu</string>
     <string name="action_position" translatable="false">Update Location</string>
-    <string name="settings_GPS_manual">Manual update only</string>
-    <string name="rationale_background_location">Please also allow GPS usage in the background for use in the widget</string>
-    <string name="error_no_gps">Please turn on GPS</string>
+    <string name="settings_GPS_manual">Jen ruční aktualizace</string>
+    <string name="rationale_background_location">Povolte prosím také používání GPS na pozadí pro použití ve widgetu.</string>
+    <string name="error_no_gps">Zapněte prosím GPS</string>
     <string name="slide3_heading">Open-Meteo</string>
-    <string name="RainViewer">Rain Radar</string>
+    <string name="RainViewer">Srážkový Radar</string>
     <string name="action_rainviewer" translatable="false">Rain radar</string>
-    <string name="nonFreeNet">Allow access to RainViewer.com which is not an open-source network.</string>
+    <string name="nonFreeNet">Povolit přístupu k webu RainViewer.com, který není sítí s otevřeným zdrojovým kódem.</string>
     <string name="summary_reanalyze">Improve week icons by analyzing hourly forecasts between sunrise and sunset (experimental).</string>
-    <string name="settings_reanalyze">Week Icons</string>
-    <string name="settings_precipitation">Precipitation</string>
-    <string name="summary_precipitation">Use snow amount  instead of the equivalent amount of water.</string>
-    <string name="settings_forecast_days">Number of forecast days</string>
-    <string name="settings_apparent_temperature">Show \"feels like\" temperature</string>
+    <string name="settings_reanalyze">Ikony týdne</string>
+    <string name="settings_precipitation">Srážky</string>
+    <string name="summary_precipitation">Místo množství vody použít ekvivalentní množství sněhu.</string>
+    <string name="settings_forecast_days">Počet dnů předpovědi</string>
+    <string name="settings_apparent_temperature">Zobrazit \"pocitovou\" teplotu</string>
     <string name="github" translatable="false">GitHub</string>
     <string name="units_hours">h</string>
-    <string name="settings_title_precipitation">Precipitation</string>
-    <string name="about_license_intro">This app is licensed under GPLv3. It uses code from:</string>
+    <string name="settings_title_precipitation">Srážky</string>
+    <string name="about_license_intro">Tato aplikace je licencována pod licencí GPLv3. Používá kód z:</string>
     <string name="units_m_s">m/s</string>
     <string name="units_kn">kn</string>
-    <string name="settings_widget_transparency">Widget transparency</string>
+    <string name="settings_widget_transparency">Průhlednost widgetu</string>
     <string name="units_mi">mi</string>
     <string name="GridLayout">2 sloupce</string>
-    <string name="activity_backuprestore">Backup/Restore</string>
+    <string name="activity_backuprestore">Záloha/Obnova</string>
     <string name="backup_database">Zálohovat data</string>
     <string name="restore_database">Obnovit data</string>
     <string name="permission_required">Vyžadováno oprávnění</string>
-    <string name="permission_message">%s needs access to external storage. Please accept permission and try again.</string>
-    <string name="toast_delete">Please delete file and try again</string>
-    <string name="restore_database_message">Restore Data from Documents folder. Open folder \'Documents\' and select Cirrus.zip if needed!</string>
-    <string name="settings_show_hourly_uv_index">Show hourly UV index</string>
+    <string name="permission_message">%s potřebuje přístup k externímu úložišti. Přijměte prosím oprávnění a zkuste to znovu.</string>
+    <string name="toast_delete">Odstraňte soubor a zkuste to znovu</string>
+    <string name="restore_database_message">Obnovení dat ze složky Dokumenty. Otevřete složku \'Documents\' a v případě potřeby vyberte Cirrus.zip!</string>
+    <string name="settings_show_hourly_uv_index">Zobrazit hodinový index UV záření</string>
 </resources>
