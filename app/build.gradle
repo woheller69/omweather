@@ -12,14 +12,16 @@ android {
         includeInBundle = false
     }
 
-    compileSdk 34
+    android.buildFeatures.buildConfig true
+    namespace 'org.woheller69.weather'
+    compileSdk 35
 
     defaultConfig {
         applicationId "org.woheller69.omweather"
         minSdk 21
-        targetSdk 34
-        versionCode 39
-        versionName "3.9"
+        targetSdk 35
+        versionCode 40
+        versionName "4.0"
 
         buildConfigField "String", "BASE_URL", "\"https://api.open-meteo.com/v1/\""
         buildConfigField "String", "GITHUB_URL","\"https://github.com/woheller69/omweather/\""
@@ -37,14 +39,12 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.diogobernardino:williamchart:2.2'
     implementation 'androidx.preference:preference:1.2.1'
-    implementation 'androidx.appcompat:appcompat:1.5.1'
-    implementation 'com.google.android.material:material:1.6.1'
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'com.google.android.material:material:1.12.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.android.volley:volley:1.2.1'
-    implementation 'androidx.recyclerview:recyclerview:1.3.2'
+    implementation 'androidx.recyclerview:recyclerview:1.4.0'
     implementation 'androidx.cardview:cardview:1.0.0'
-    implementation "androidx.lifecycle:lifecycle-viewmodel:2.5.1" //needed due to duplicate class error
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1" //needed due to duplicate class error
     implementation 'org.osmdroid:osmdroid-android:6.1.18'
     implementation 'net.lingala.zip4j:zip4j:2.9.1'
 }

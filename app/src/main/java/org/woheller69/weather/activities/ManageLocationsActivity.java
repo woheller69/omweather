@@ -1,6 +1,7 @@
 package org.woheller69.weather.activities;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import androidx.appcompat.app.AlertDialog;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 
 import android.view.Gravity;
 import android.view.View;
+import android.view.WindowInsetsController;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -43,6 +45,12 @@ public class ManageLocationsActivity extends NavigationActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_locations);
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            getWindow().getInsetsController().setSystemBarsAppearance(
+                    WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS,
+                    WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
+            );
+        }
         context=this;
         database = SQLiteHelper.getInstance(getApplicationContext());
 
