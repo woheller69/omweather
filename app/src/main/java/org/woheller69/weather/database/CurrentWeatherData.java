@@ -118,7 +118,7 @@ public class CurrentWeatherData {
         currentTime.setTimeZone(TimeZone.getTimeZone("GMT"));
         currentTime.setTimeInMillis(System.currentTimeMillis() + timeZoneSeconds* 1000L);
         SQLiteHelper dbHelper = SQLiteHelper.getInstance(context);
-        if (timeSunrise==0 || timeSunset==0){
+        if ((timeSunrise - timeSunset) % 86400 == 0){
             if ((dbHelper.getCityToWatch(city_id).getLatitude())>0){  //northern hemisphere
                 return currentTime.get(Calendar.DAY_OF_YEAR) >= 80 && currentTime.get(Calendar.DAY_OF_YEAR) <= 265;  //from March 21 to September 22 (incl)
             }else{ //southern hemisphere

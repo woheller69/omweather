@@ -71,7 +71,7 @@ public class CourseOfDayAdapter extends RecyclerView.Adapter<CourseOfDayAdapter.
         forecastTime.setTimeInMillis(courseOfDayList.get(position).getLocalForecastTime(context));
 
         boolean isDay;
-        if (currentWeather.getTimeSunrise()==0 || currentWeather.getTimeSunset()==0){
+        if ((currentWeather.getTimeSunrise() - currentWeather.getTimeSunset()) % 86400 == 0){
             if ((dbHelper.getCityToWatch(courseOfDayList.get(position).getCity_id()).getLatitude())>0){  //northern hemisphere
                 isDay= forecastTime.get(Calendar.DAY_OF_YEAR) >= 80 && forecastTime.get(Calendar.DAY_OF_YEAR) <= 265;  //from March 21 to September 22 (incl)
             }else{ //southern hemisphere

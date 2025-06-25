@@ -251,7 +251,7 @@ public class CityWeatherAdapter extends RecyclerView.Adapter<CityWeatherAdapter.
                     }
                 }
                 if (nowCast!=null) {
-                    if (riseTime == zoneseconds * 1000L || setTime == zoneseconds * 1000L) holder.sun.setText("\u2600\u25b2 --:--" + " \u25bc --:--" );
+                    if ((riseTime - setTime) % 86400 == 0) holder.sun.setText("\u2600\u25b2 --:--" + " \u25bc --:--" );
                     else  {
                         holder.sun.setText("\u2600\u25b2 " + StringFormatUtils.formatTimeWithoutZone(context, riseTime) + " \u25bc " + StringFormatUtils.formatTimeWithoutZone(context, setTime));
                     }
@@ -273,7 +273,7 @@ public class CityWeatherAdapter extends RecyclerView.Adapter<CityWeatherAdapter.
 
                 holder.precipforecast.setVisibility(View.INVISIBLE);
                 if (next != null){
-                    if (riseTime==zoneseconds * 1000L || setTime==zoneseconds * 1000L) holder.sun.setText("\u2600\u25b2 --:--" + " \u25bc --:--" );
+                    if ((riseTime - setTime) % 86400 == 0) holder.sun.setText("\u2600\u25b2 --:--" + " \u25bc --:--" );
                     else  {
                         holder.sun.setText("\u2600\u25b2 " + StringFormatUtils.formatTimeWithoutZone(context, riseTime) + " \u25bc " + StringFormatUtils.formatTimeWithoutZone(context, setTime));
                     }

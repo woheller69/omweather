@@ -190,7 +190,7 @@ public class WeatherWidgetAllInOne extends AppWidgetProvider {
         views.setTextViewText(R.id.widget_city_name, city.getCityName());
         views.setInt(R.id.widget_background,"setAlpha", (int) ((100.0f - prefManager.getInt("pref_WidgetTransparency", 0)) * 255 / 100.0f));
 
-        if (riseTime==zoneseconds*1000 || setTime==zoneseconds*1000) views.setTextViewText(R.id.widget_sunrise_sunset,"\u2600\u25b2 --:--" + " \u25bc --:--");
+        if ((riseTime - setTime) % 86400 == 0) views.setTextViewText(R.id.widget_sunrise_sunset,"\u2600\u25b2 --:--" + " \u25bc --:--");
         else  {
             views.setTextViewText(R.id.widget_sunrise_sunset,"\u2600\u25b2\u2009" + StringFormatUtils.formatTimeWithoutZone(context, riseTime) + " \u25bc\u2009" + StringFormatUtils.formatTimeWithoutZone(context, setTime));
         }
@@ -221,7 +221,7 @@ public class WeatherWidgetAllInOne extends AppWidgetProvider {
                 forecastTime.setTimeZone(TimeZone.getTimeZone("GMT"));
                 forecastTime.setTimeInMillis(hourlyforecasts.get(i).getLocalForecastTime(context));
                 int hour = forecastTime.get(Calendar.HOUR) % 12;
-                if (weatherData.getTimeSunrise()==0 || weatherData.getTimeSunset()==0){
+                if ((weatherData.getTimeSunrise() - weatherData.getTimeSunset()) % 86400 == 0){
                     if ((dbHelper.getCityToWatch(hourlyforecasts.get(i).getCity_id()).getLatitude())>0){  //northern hemisphere
                         isDay= forecastTime.get(Calendar.DAY_OF_YEAR) >= 80 && forecastTime.get(Calendar.DAY_OF_YEAR) <= 265; //from March 21 to September 22 (incl)
                     }else{ //southern hemisphere
@@ -261,7 +261,7 @@ public class WeatherWidgetAllInOne extends AppWidgetProvider {
         for (int i=0;i<5;i++){
             c.setTimeInMillis(weekforecasts.get(i).getForecastTime()+zonemilliseconds);
 
-            if (currentWeather.getTimeSunrise()==0 || currentWeather.getTimeSunset()==0) {
+            if ((currentWeather.getTimeSunrise() - currentWeather.getTimeSunset()) % 86400 == 0) {
                 if ((dbHelper.getCityToWatch(cityId).getLatitude()) > 0) {  //northern hemisphere
                     isDayArray[i] = c.get(Calendar.DAY_OF_YEAR) >= 80 && c.get(Calendar.DAY_OF_YEAR) <= 265;  //from March 21 to September 22 (incl)
                 } else { //southern hemisphere
