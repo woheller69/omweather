@@ -62,12 +62,22 @@ public class NavigationActivity extends AppCompatActivity implements OnNavigatio
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        int promptCount = mSharedPreferences.getInt("battery_optimization_prompt_count", 0);
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkAppWidget()) {
-            PowerManager powerManager = (PowerManager) this.getSystemService(Context.POWER_SERVICE);
-            if (!powerManager.isIgnoringBatteryOptimizations(getPackageName())) startActivity(new Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS, Uri.parse("package:"+getPackageName())));
+            PowerManager powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
+            if (!powerManager.isIgnoringBatteryOptimizations(getPackageName())) {
+                if (promptCount < 3) {
+                    SharedPreferences.Editor editor = mSharedPreferences.edit();
+                    editor.putInt("battery_optimization_prompt_count", promptCount + 1);
+                    editor.apply();
+
+                    startActivity(new Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS, Uri.parse("package:"+getPackageName())));
+                }
+            }
         }
         AppWidgetManager.getInstance(this).getInstalledProviders();
-        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         mHandler = new Handler(Looper.getMainLooper());
         prefManager = new AppPreferencesManager(PreferenceManager.getDefaultSharedPreferences(this));
         if (prefManager.showStarDialog(this)) {
