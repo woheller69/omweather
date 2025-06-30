@@ -501,7 +501,7 @@ public class CityWeatherAdapter extends RecyclerView.Adapter<CityWeatherAdapter.
             precipitation.add(precipitationDataset);
 
             precipitationDataset.setColor(ContextCompat.getColor(context,R.color.blue));
-            precipitationDataset.setAlpha(0.4f);  // make precipitation bars transparent
+            precipitationDataset.setAlpha(0.6f);  // make precipitation bars transparent
 
             holder.lineChartView.addData(temperature);
             holder.lineChartView.setAxisBorderValues( mid-2*step, mid+2*step);
