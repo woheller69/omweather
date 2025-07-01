@@ -20,8 +20,8 @@ android {
         applicationId "org.woheller69.omweather"
         minSdk 21
         targetSdk 35
-        versionCode 41
-        versionName "4.1"
+        versionCode 42
+        versionName "4.2"
 
         buildConfigField "String", "BASE_URL", "\"https://api.open-meteo.com/v1/\""
         buildConfigField "String", "GITHUB_URL","\"https://github.com/woheller69/omweather/\""
