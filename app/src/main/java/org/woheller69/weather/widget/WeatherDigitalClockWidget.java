@@ -28,6 +28,9 @@ import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
 import androidx.preference.PreferenceManager;
+import androidx.work.ExistingPeriodicWorkPolicy;
+import androidx.work.PeriodicWorkRequest;
+import androidx.work.WorkManager;
 
 import org.woheller69.weather.R;
 import org.woheller69.weather.activities.ForecastCityActivity;
@@ -38,6 +41,7 @@ import org.woheller69.weather.database.QuarterHourlyForecast;
 import org.woheller69.weather.database.SQLiteHelper;
 import org.woheller69.weather.database.WeekForecast;
 import org.woheller69.weather.services.UpdateDataService;
+import org.woheller69.weather.services.WidgetUpdater;
 import org.woheller69.weather.ui.Help.StringFormatUtils;
 import org.woheller69.weather.ui.UiResourceProvider;
 
@@ -46,6 +50,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
+import java.util.concurrent.TimeUnit;
 
 public class WeatherDigitalClockWidget extends AppWidgetProvider {
     private static LocationListener locationListenerGPS;
@@ -199,46 +204,54 @@ public class WeatherDigitalClockWidget extends AppWidgetProvider {
 
     @Override
     public void onUpdate(final Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
+        PeriodicWorkRequest widgetUpdateRequest =
+                new PeriodicWorkRequest.Builder(WidgetUpdater.class,
+                        20, TimeUnit.MINUTES)
+                        .build();
+        WorkManager
+                .getInstance(context)
+                .enqueueUniquePeriodicWork("widgetUpdateWork", ExistingPeriodicWorkPolicy.KEEP, widgetUpdateRequest); //KEEP makes sure it is only initialized once
+
         SharedPreferences prefManager = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
         if (locationManager==null) locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
 
         PowerManager powerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
-        Log.d("GPS", "Widget onUpdate");
-            if(prefManager.getBoolean("pref_GPS", false) && !prefManager.getBoolean("pref_GPS_manual", false) && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED && !powerManager.isPowerSaveMode()) {
-                if (locationListenerGPS==null) {
-                    Log.d("GPS", "Listener null");
-                    locationListenerGPS = new LocationListener() {
-                        @Override
-                        public void onLocationChanged(Location location) {
-                            // There may be multiple widgets active, so update all of them
-                            Log.d("GPS", "Location changed");
-                            int[] appWidgetIds = AppWidgetManager.getInstance(context).getAppWidgetIds(new ComponentName(context, WeatherDigitalClockWidget.class)); //IDs Might have changed since last call of onUpdate
-                            for (int appWidgetId : appWidgetIds) {
-                                updateAppWidget(context, appWidgetId);
-                            }
-                        }
 
-                        @Deprecated
-                        @Override
-                        public void onStatusChanged(String provider, int status, Bundle extras) {
+        if(prefManager.getBoolean("pref_GPS", false) && !prefManager.getBoolean("pref_GPS_manual", false) && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED && !powerManager.isPowerSaveMode()) {
+            if (locationListenerGPS==null) {
+                Log.d("GPS", "Listener null");
+                locationListenerGPS = new LocationListener() {
+                    @Override
+                    public void onLocationChanged(Location location) {
+                        // There may be multiple widgets active, so update all of them
+                        Log.d("GPS", "Location changed");
+                        int[] appWidgetIds = AppWidgetManager.getInstance(context).getAppWidgetIds(new ComponentName(context, WeatherDigitalClockWidget.class)); //IDs Might have changed since last call of onUpdate
+                        for (int appWidgetId : appWidgetIds) {
+                            updateAppWidget(context, appWidgetId);
                         }
+                    }
 
-                        @Override
-                        public void onProviderEnabled(String provider) {
-                        }
+                    @Deprecated
+                    @Override
+                    public void onStatusChanged(String provider, int status, Bundle extras) {
+                    }
 
-                        @Override
-                        public void onProviderDisabled(String provider) {
-                        }
-                    };
-                    Log.d("GPS", "Request Updates");
-                    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 600000, 3000, locationListenerGPS);  //Update every 10 min, min distance 5km
-                }
-            }else {
-                Log.d("GPS","Remove Updates");
-                if (locationListenerGPS!=null) locationManager.removeUpdates(locationListenerGPS);
-                locationListenerGPS=null;
+                    @Override
+                    public void onProviderEnabled(String provider) {
+                    }
+
+                    @Override
+                    public void onProviderDisabled(String provider) {
+                    }
+                };
+                Log.d("GPS", "Request Updates");
+                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 600000, 3000, locationListenerGPS);  //Update every 10 min, min distance 5km
             }
+        }else {
+            Log.d("GPS","Remove Updates");
+            if (locationListenerGPS!=null) locationManager.removeUpdates(locationListenerGPS);
+            locationListenerGPS=null;
+        }
 
         // There may be multiple widgets active, so update all of them
         for (int appWidgetId : appWidgetIds) {
@@ -252,6 +265,8 @@ public class WeatherDigitalClockWidget extends AppWidgetProvider {
 
     @Override
     public void onEnabled(Context context) {
+        SharedPreferences prefManager = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
+        prefManager.edit().remove("battery_optimization_prompt_count").apply();
         // Enter relevant functionality for when the first widget is created
         SQLiteHelper dbHelper = SQLiteHelper.getInstance(context);
 

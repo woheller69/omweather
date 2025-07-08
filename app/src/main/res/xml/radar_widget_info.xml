@@ -8,5 +8,4 @@
     android:minResizeWidth="20dp"
     android:previewImage="@drawable/radar_widget_preview"
     android:resizeMode="horizontal|vertical"
-    android:updatePeriodMillis="1800000"
     android:widgetCategory="home_screen" />

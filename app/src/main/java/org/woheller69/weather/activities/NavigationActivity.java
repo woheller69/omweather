@@ -29,6 +29,7 @@ import android.os.PowerManager;
 import android.provider.Settings;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 
 import org.woheller69.weather.BuildConfig;
@@ -63,11 +64,11 @@ public class NavigationActivity extends AppCompatActivity implements OnNavigatio
         super.onCreate(savedInstanceState);
 
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        int promptCount = mSharedPreferences.getInt("battery_optimization_prompt_count", 0);
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkAppWidget()) {
+/*        int promptCount = mSharedPreferences.getInt("battery_optimization_prompt_count", 0);
+          if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkAppWidget()) {
             PowerManager powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
             if (!powerManager.isIgnoringBatteryOptimizations(getPackageName())) {
+                Toast.makeText(this, "Needs permission Ignore... "+promptCount, Toast.LENGTH_SHORT).show();
                 if (promptCount < 3) {
                     SharedPreferences.Editor editor = mSharedPreferences.edit();
                     editor.putInt("battery_optimization_prompt_count", promptCount + 1);
@@ -76,7 +77,7 @@ public class NavigationActivity extends AppCompatActivity implements OnNavigatio
                     startActivity(new Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS, Uri.parse("package:"+getPackageName())));
                 }
             }
-        }
+        }*/
         AppWidgetManager.getInstance(this).getInstalledProviders();
         mHandler = new Handler(Looper.getMainLooper());
         prefManager = new AppPreferencesManager(PreferenceManager.getDefaultSharedPreferences(this));

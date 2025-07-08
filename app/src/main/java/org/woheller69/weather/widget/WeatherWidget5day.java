@@ -19,19 +19,23 @@ import org.woheller69.weather.database.CurrentWeatherData;
 import org.woheller69.weather.database.SQLiteHelper;
 import org.woheller69.weather.database.WeekForecast;
 import org.woheller69.weather.services.UpdateDataService;
+import org.woheller69.weather.services.WidgetUpdater;
 import org.woheller69.weather.ui.Help.StringFormatUtils;
 import org.woheller69.weather.ui.UiResourceProvider;
-import org.woheller69.weather.weather_api.IApiToDatabaseConversion;
 import static org.woheller69.weather.database.SQLiteHelper.getWidgetCityID;
 
 import java.util.Calendar;
 import java.util.List;
 import java.util.TimeZone;
+import java.util.concurrent.TimeUnit;
 
 import static androidx.core.app.JobIntentService.enqueueWork;
 import static org.woheller69.weather.services.UpdateDataService.SKIP_UPDATE_INTERVAL;
 
 import androidx.preference.PreferenceManager;
+import androidx.work.ExistingPeriodicWorkPolicy;
+import androidx.work.PeriodicWorkRequest;
+import androidx.work.WorkManager;
 
 public class WeatherWidget5day extends AppWidgetProvider {
 
@@ -136,6 +140,14 @@ public class WeatherWidget5day extends AppWidgetProvider {
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
+        PeriodicWorkRequest widgetUpdateRequest =
+                new PeriodicWorkRequest.Builder(WidgetUpdater.class,
+                        6, TimeUnit.HOURS)
+                        .build();
+        WorkManager
+                .getInstance(context)
+                .enqueueUniquePeriodicWork("widgetUpdateWork5Day", ExistingPeriodicWorkPolicy.KEEP, widgetUpdateRequest);  //KEEP makes sure it is only initialized once
+
         // There may be multiple widgets active, so update all of them
         for (int appWidgetId : appWidgetIds) {
             updateAppWidget(context, appWidgetId);
@@ -149,6 +161,8 @@ public class WeatherWidget5day extends AppWidgetProvider {
 
     @Override
     public void onEnabled(Context context) {
+        SharedPreferences prefManager = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
+        prefManager.edit().remove("battery_optimization_prompt_count").apply();
         // Enter relevant functionality for when the first widget is created
         SQLiteHelper dbHelper = SQLiteHelper.getInstance(context);
 

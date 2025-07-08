@@ -8,5 +8,4 @@
     android:minResizeWidth="50dp"
     android:previewImage="@drawable/weather_widget5day_preview"
     android:resizeMode="horizontal|vertical"
-    android:updatePeriodMillis="21600000"
     android:widgetCategory="home_screen" />
