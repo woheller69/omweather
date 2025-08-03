@@ -36,6 +36,10 @@ This application is derived from Privacy Friendly Weather (https://github.com/Se
 The original function has been modified to support the new open source API from Open-Meteo.com with free access for non-commercial use.
 In addition a rain radar functionality powered by RainViewer API (https://www.rainviewer.com/api.html) is available.
 
+**Important note**:  RainViewer is significantly reducing its API services. Key impacts for Cirrus:
+- Maximum zoom levels strongly reduced (to zoom 9 starting September 2025, then zoom 7 in January 2026)
+- Infrared cloud data will be discontinued
+
 If permission for GPS is given the widget will automatically update position on a regular base.
 
 <img src="wmo_codes.png" width="600"/>
