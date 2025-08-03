@@ -114,8 +114,8 @@
     <string name="about_license_intro">Táto aplikácia je licencovaná pod GPLv3. Využíva zdrojové kódy týchto projektov:</string>
     <string name="units_m_s">m/s</string>
     <string name="units_kn">kn</string>
-    <string name="settings_widget_transparency">Widget transparency</string>
+    <string name="settings_widget_transparency">Priehľadnosť miniaplikácie</string>
     <string name="units_mi">mi</string>
-    <string name="GridLayout">2 stĺpec</string>
-    <string name="settings_show_hourly_uv_index">Show hourly UV index</string>
+    <string name="GridLayout">2 stĺpce</string>
+    <string name="settings_show_hourly_uv_index">Zobrazovať UV index v hodinovej predpovedi</string>
 </resources>
