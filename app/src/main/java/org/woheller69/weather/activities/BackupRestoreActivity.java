@@ -23,6 +23,7 @@ import net.lingala.zip4j.exception.ZipException;
 
 import org.woheller69.weather.database.Backup;
 import org.woheller69.weather.R;
+import org.woheller69.weather.ui.util.ThemeUtils;
 
 import java.io.File;
 import java.util.Objects;
@@ -36,12 +37,7 @@ public class BackupRestoreActivity extends NavigationActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_backuprestore);
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-            getWindow().getInsetsController().setSystemBarsAppearance(
-                    WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS,
-                    WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
-            );
-        }
+        ThemeUtils.setStatusBarAppearance(this);
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {

@@ -42,6 +42,7 @@ import org.woheller69.weather.database.SQLiteHelper;
 import org.woheller69.weather.database.WeekForecast;
 import org.woheller69.weather.ui.updater.IUpdateableCityUI;
 import org.woheller69.weather.ui.updater.ViewUpdater;
+import org.woheller69.weather.ui.util.ThemeUtils;
 import org.woheller69.weather.ui.viewPager.WeatherPagerAdapter;
 import static org.woheller69.weather.database.SQLiteHelper.getWidgetCityID;
 
@@ -106,12 +107,7 @@ public class ForecastCityActivity extends NavigationActivity implements IUpdatea
         super.onCreate(savedInstanceState);
         context=this;
         setContentView(R.layout.activity_forecast_city);
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-            getWindow().getInsetsController().setSystemBarsAppearance(
-                    WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS,
-                    WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
-            );
-        }
+        ThemeUtils.setStatusBarAppearance(this);
         initResources();
 
         viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {

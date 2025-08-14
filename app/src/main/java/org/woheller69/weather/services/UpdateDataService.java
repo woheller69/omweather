@@ -38,6 +38,7 @@ import org.json.JSONException;
 import org.woheller69.weather.BuildConfig;
 import org.woheller69.weather.R;
 import org.woheller69.weather.activities.NavigationActivity;
+import org.woheller69.weather.activities.RainViewerActivity;
 import org.woheller69.weather.database.CityToWatch;
 import org.woheller69.weather.database.HourlyForecast;
 import org.woheller69.weather.database.SQLiteHelper;
@@ -131,7 +132,7 @@ public class UpdateDataService extends JobIntentService {
 
         // Get the calculated radar timestamp
         long radarTimeGMT = calendar.getTimeInMillis();
-        int zoom = 10;
+        int zoom = RainViewerActivity.rainViewerMaxZoom;
         String radarUrl = "https://tilecache.rainviewer.com/v2/radar/" + radarTimeGMT/1000 + "/256/" + zoom +"/"+ city.getLatitude() +"/" + city.getLongitude() + "/2/1_1.png";
 
         ImageRequest imageRequest = new ImageRequest(radarUrl,

@@ -18,6 +18,7 @@ import androidx.preference.SeekBarPreference;
 
 import org.woheller69.weather.R;
 import org.woheller69.weather.database.SQLiteHelper;
+import org.woheller69.weather.ui.util.ThemeUtils;
 
 import static java.lang.Boolean.TRUE;
 
@@ -76,12 +77,7 @@ public class SettingsActivity extends NavigationActivity implements SharedPrefer
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_settings);
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-            getWindow().getInsetsController().setSystemBarsAppearance(
-                    WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS,
-                    WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
-            );
-        }
+        ThemeUtils.setStatusBarAppearance(this);
     }
 
     @Override

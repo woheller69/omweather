@@ -33,7 +33,7 @@
         <SeekBarPreference
             android:key="pref_number_days"
             android:title="@string/settings_forecast_days"
-            android:max="16"
+            android:max="15"
             android:defaultValue="8"
             app:showSeekBarValue="true"
             />

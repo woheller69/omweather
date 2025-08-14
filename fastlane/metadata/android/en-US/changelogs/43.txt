@@ -1,0 +1,5 @@
+Reduce max. zoom level for RainViewer due to discontinuation of services
+Keep screen on during RainViewer animation
+Improved update mechanism for widgets
+Translations
+Bugfixes

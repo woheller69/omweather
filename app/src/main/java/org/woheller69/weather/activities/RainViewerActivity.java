@@ -25,6 +25,7 @@ import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.view.WindowInsetsController;
+import android.view.WindowManager;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageButton;
@@ -55,6 +56,7 @@ import org.osmdroid.views.overlay.Marker;
 import org.osmdroid.views.overlay.TilesOverlay;
 import org.woheller69.weather.R;
 import org.woheller69.weather.ui.Help.StringFormatUtils;
+import org.woheller69.weather.ui.util.ThemeUtils;
 import org.woheller69.weather.ui.util.TilesOverlayEntry;
 
 import java.util.ArrayList;
@@ -83,6 +85,8 @@ public class RainViewerActivity extends AppCompatActivity {
     private List<TilesOverlayEntry> radarTilesOverlayEntries;
     private List<TilesOverlayEntry> infraredTilesOverlayEntries;
     private GeoPoint startPoint;
+    public static int rainViewerMaxZoom = 9;  //Todo: max 7 starting Jan 2026 and infrared frames + nowcast must be removed
+    private double initialZoom = 8d;
 
     @Override
     protected void onPause() {
@@ -101,12 +105,7 @@ public class RainViewerActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-            getWindow().getInsetsController().setSystemBarsAppearance(
-                    WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS,
-                    WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
-            );
-        }
+        ThemeUtils.setStatusBarAppearance(this);
 
         float latitude = getIntent().getFloatExtra("latitude", -1);
         float longitude = getIntent().getFloatExtra("longitude", -1);
@@ -147,7 +146,7 @@ public class RainViewerActivity extends AppCompatActivity {
             mapView2.getOverlayManager().getTilesOverlay().setColorFilter(null);
         }
 
-        mapView.getController().setZoom(8d);
+        mapView.getController().setZoom(initialZoom);
         mapView.addMapListener(new MapListener() {
             @Override
             public boolean onScroll(ScrollEvent event) {return false;}
@@ -159,7 +158,7 @@ public class RainViewerActivity extends AppCompatActivity {
                 return false;
             }
         });
-        mapView2.getController().setZoom(8d);
+        mapView2.getController().setZoom(initialZoom);
         mapView2.addMapListener(new MapListener() {
             @Override
             public boolean onScroll(ScrollEvent event) {return false;}
@@ -171,7 +170,7 @@ public class RainViewerActivity extends AppCompatActivity {
                 return false;
             }
         });
-        mapPreload.getController().setZoom(8d);
+        mapPreload.getController().setZoom(initialZoom);
         startPoint = new GeoPoint(latitude, longitude);
         mapView.getController().setCenter(startPoint);
         mapView2.getController().setCenter(startPoint);
@@ -269,8 +268,10 @@ public class RainViewerActivity extends AppCompatActivity {
             }
         };
         scheduledExecutorService.schedule(showFrameRunnable, 0, TimeUnit.MILLISECONDS);
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         } else {
             scheduledExecutorService.shutdownNow();
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         }
     }
 
@@ -416,7 +417,7 @@ public class RainViewerActivity extends AppCompatActivity {
         }
 
         final MapTileProviderBasic rainViewerTileProvider = new MapTileProviderBasic(this);
-        final ITileSource RainViewerTileSource = new XYTileSource("I"+ time, 1, 20, 256, "/0/0_0.png", new String[]{host+infraredFrame.getString("path")+"/256/"});
+        final ITileSource RainViewerTileSource = new XYTileSource("I"+ time, 1, rainViewerMaxZoom, 256, "/0/0_0.png", new String[]{host+infraredFrame.getString("path")+"/256/"});
         rainViewerTileProvider.setTileSource(RainViewerTileSource);
         rainViewerTileProvider.getTileRequestCompleteHandlers().add(mapView.getTileRequestCompleteHandler());
         rainViewerTileProvider.getTileRequestCompleteHandlers().add(mapView2.getTileRequestCompleteHandler());
@@ -452,7 +453,7 @@ public class RainViewerActivity extends AppCompatActivity {
         }
 
         final MapTileProviderBasic rainViewerTileProvider = new MapTileProviderBasic(this);
-        final ITileSource RainViewerTileSource = new XYTileSource("R"+ time, 1, 20, 256, "/2/1_1.png", new String[]{host+radarFrames.getJSONObject(position).getString("path")+"/256/"});
+        final ITileSource RainViewerTileSource = new XYTileSource("R"+ time, 1, rainViewerMaxZoom, 256, "/2/1_1.png", new String[]{host+radarFrames.getJSONObject(position).getString("path")+"/256/"});
         rainViewerTileProvider.setTileSource(RainViewerTileSource);
         rainViewerTileProvider.getTileRequestCompleteHandlers().add(mapView.getTileRequestCompleteHandler());
         rainViewerTileProvider.getTileRequestCompleteHandlers().add(mapView2.getTileRequestCompleteHandler());

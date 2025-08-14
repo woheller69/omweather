@@ -25,6 +25,7 @@ import org.woheller69.weather.dialogs.AddLocationDialogOmGeocodingAPI;
 import org.woheller69.weather.ui.RecycleList.RecyclerItemClickListener;
 import org.woheller69.weather.ui.RecycleList.RecyclerOverviewListAdapter;
 import org.woheller69.weather.ui.RecycleList.SimpleItemTouchHelperCallback;
+import org.woheller69.weather.ui.util.ThemeUtils;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -45,12 +46,7 @@ public class ManageLocationsActivity extends NavigationActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_locations);
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-            getWindow().getInsetsController().setSystemBarsAppearance(
-                    WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS,
-                    WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
-            );
-        }
+        ThemeUtils.setStatusBarAppearance(this);
         context=this;
         database = SQLiteHelper.getInstance(getApplicationContext());
 

@@ -83,6 +83,9 @@ public class OMDataExtractor implements IDataExtractor {
                 WeekForecast weekForecast = new WeekForecast();
                 weekForecast.setTimestamp(System.currentTimeMillis() / 1000);
                 if (timeArray != null && !timeArray.isNull(i)) weekForecast.setForecastTime((timeArray.getLong(i)+12*3600)*1000L);  //shift to midday
+
+                if (weathercodeArray == null || weathercodeArray.isNull(i) || weathercodeArray.getString(i).equals("null")) break; //Stop if the json contains "null" as String
+
                 if (weathercodeArray != null && !weathercodeArray.isNull(i)) weekForecast.setWeatherID(conversion.convertWeatherCategory(weathercodeArray.getString(i)));
                 if (tempMaxArray != null && !tempMaxArray.isNull(i)) weekForecast.setMaxTemperature((float) tempMaxArray.getDouble(i));
                 if (tempMinArray != null && !tempMinArray.isNull(i)) weekForecast.setMinTemperature((float) tempMinArray.getDouble(i));
@@ -141,6 +144,9 @@ public class OMDataExtractor implements IDataExtractor {
                 HourlyForecast hourlyForecast = new HourlyForecast();
                 hourlyForecast.setTimestamp(System.currentTimeMillis() / 1000);
                 if (timeArray != null && !timeArray.isNull(i)) hourlyForecast.setForecastTime(timeArray.getLong(i)*1000L);
+
+                if (weathercodeArray == null || weathercodeArray.isNull(i) || weathercodeArray.getString(i).equals("null")) break; //Stop if the json contains "null" as String
+
                 if (weathercodeArray != null && !weathercodeArray.isNull(i)) hourlyForecast.setWeatherID(conversion.convertWeatherCategory(weathercodeArray.getString(i)));
                 //if (weathercodeArray != null) hourlyForecast.setWeatherID(conversion.convertWeatherCategory(Integer.toString(i-24)));  //for icon test
                 if (tempArray != null && !tempArray.isNull(i)) hourlyForecast.setTemperature((float) tempArray.getDouble(i));

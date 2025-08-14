@@ -21,6 +21,7 @@ import android.widget.TextView;
 import org.woheller69.weather.R;
 import org.woheller69.weather.activities.ForecastCityActivity;
 import org.woheller69.weather.activities.SettingsActivity;
+import org.woheller69.weather.ui.util.ThemeUtils;
 
 
 /**
@@ -44,12 +45,8 @@ public class TutorialActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_tutorial);
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-            getWindow().getInsetsController().setSystemBarsAppearance(
-                    WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS,
-                    WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
-            );
-        }
+        ThemeUtils.setStatusBarAppearance(this);
+
         viewPager = (ViewPager) findViewById(R.id.view_pager);
         dotsLayout = (LinearLayout) findViewById(R.id.layoutDots);
         btnNext = (Button) findViewById(R.id.btn_next);

@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import org.woheller69.weather.BuildConfig;
 import org.woheller69.weather.R;
+import org.woheller69.weather.ui.util.ThemeUtils;
 
 /**
  * Created by yonjuni on 15.06.16.
@@ -17,12 +18,7 @@ public class AboutActivity extends NavigationActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-            getWindow().getInsetsController().setSystemBarsAppearance(
-                    WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS,
-                    WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
-            );
-        }
+        ThemeUtils.setStatusBarAppearance(this);
         ((TextView) findViewById(R.id.rainviewerURL)).setMovementMethod(LinkMovementMethod.getInstance());
         ((TextView) findViewById(R.id.openmeteoURL)).setMovementMethod(LinkMovementMethod.getInstance());
         ((TextView) findViewById(R.id.githubURL)).setMovementMethod(LinkMovementMethod.getInstance());
