@@ -75,6 +75,7 @@
             android:paddingHorizontal="7dp"
             android:layout_alignParentBottom="true"
             android:textColor="@color/colorAccent"
+            android:singleLine="true"
             android:alpha="0.65"
             android:background="@color/white" />
     </RelativeLayout>

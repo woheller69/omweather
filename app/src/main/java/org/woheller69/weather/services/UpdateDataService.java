@@ -132,7 +132,7 @@ public class UpdateDataService extends JobIntentService {
 
         // Get the calculated radar timestamp
         long radarTimeGMT = calendar.getTimeInMillis();
-        int zoom = RainViewerActivity.rainViewerMaxZoom;
+        int zoom = RainViewerActivity.rainViewerWidgetZoom;
         String radarUrl = "https://tilecache.rainviewer.com/v2/radar/" + radarTimeGMT/1000 + "/256/" + zoom +"/"+ city.getLatitude() +"/" + city.getLongitude() + "/2/1_1.png";
 
         ImageRequest imageRequest = new ImageRequest(radarUrl,

@@ -48,4 +48,5 @@ dependencies {
     implementation 'org.osmdroid:osmdroid-android:6.1.18'
     implementation 'net.lingala.zip4j:zip4j:2.9.1'
     implementation 'androidx.work:work-runtime:2.10.2'
+    implementation 'com.github.woheller69:FreeDroidWarn:+'
 }

@@ -85,7 +85,8 @@ public class RainViewerActivity extends AppCompatActivity {
     private List<TilesOverlayEntry> radarTilesOverlayEntries;
     private List<TilesOverlayEntry> infraredTilesOverlayEntries;
     private GeoPoint startPoint;
-    public static int rainViewerMaxZoom = 9;  //Todo: max 7 starting Jan 2026 and infrared frames + nowcast must be removed
+    public static int rainViewerWidgetZoom = 10;
+    public static int rainViewerMaxZoom = 11;  //Todo: max 7 starting Jan 2026 and infrared frames + nowcast must be removed
     private double initialZoom = 8d;
 
     @Override
