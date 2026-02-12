@@ -132,7 +132,7 @@ public class UpdateDataService extends JobIntentService {
 
         // Get the calculated radar timestamp
         long radarTimeGMT = calendar.getTimeInMillis();
-        int zoom = RainViewerActivity.rainViewerWidgetZoom;
+        int zoom = 7;  //as of Jan 2026 the max possible zoom is 7
         String radarUrl = "https://tilecache.rainviewer.com/v2/radar/" + radarTimeGMT/1000 + "/256/" + zoom +"/"+ city.getLatitude() +"/" + city.getLongitude() + "/2/1_1.png";
 
         ImageRequest imageRequest = new ImageRequest(radarUrl,
@@ -179,6 +179,20 @@ public class UpdateDataService extends JobIntentService {
 
     @NonNull
     public static Bitmap prepareAllInOneWidget(Context context, CityToWatch city, int zoom, long radarTime, Bitmap response1) {
+
+        // Zoom into bitmap by a factor of 4 due to max RainViewer zoom of 7
+        Bitmap original = response1;
+        int width = original.getWidth();
+        int height = original.getHeight();
+        int additionalZoom = 4;
+        int cropSize = 256 / additionalZoom;
+        int left = (width - cropSize) / 2;
+        int top = (height - cropSize) / 2;
+
+        Bitmap cropped = Bitmap.createBitmap(original, left, top, cropSize, cropSize);            // Zoom into center
+        response1 = Bitmap.createScaledBitmap(cropped, 256, 256, true );   // Now scale it to 256x256 using bilinear-like filtering
+        cropped.recycle();        // Clean up temporary bitmap
+
         Bitmap textBitmap = Bitmap.createBitmap(response1.getWidth(), response1.getHeight(), response1.getConfig());
         Canvas canvas = new Canvas(textBitmap);
         canvas.drawBitmap(response1, 0, 0, null); // draw the original image
@@ -188,12 +202,12 @@ public class UpdateDataService extends JobIntentService {
         paint.setTextSize(30);
         paint.setStrokeWidth(3.0f);
 
-        int widthTotalDistance = (int) (2 * 3.14 * 6378 * Math.abs(Math.cos(city.getLatitude() / 180 * 3.14)) / (Math.pow(2, zoom) * 256) * 256); ;
+        int widthTotalDistance = (int) (2 * 3.14 * 6378 * Math.abs(Math.cos(city.getLatitude() / 180 * 3.14)) / (Math.pow(2, zoom) * 256 * additionalZoom) * 256); //adapted for additional zoom
         String distanceUnit = context.getString(R.string.units_km);;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             if (LocaleData.getMeasurementSystem(ULocale.forLocale(Locale.getDefault())) != LocaleData.MeasurementSystem.SI){
                 distanceUnit = context.getString(R.string.units_mi);
-                widthTotalDistance = (int) (2 * 3.14 * 6378 * 0.6214 * Math.abs(Math.cos(city.getLatitude() / 180 * 3.14)) / (Math.pow(2, zoom) * 256) * 256);
+                widthTotalDistance = (int) (2 * 3.14 * 6378 * 0.6214 * Math.abs(Math.cos(city.getLatitude() / 180 * 3.14)) / (Math.pow(2, zoom) * 256 * additionalZoom) * 256); //adapted for additional zoom
             }
         }
 
