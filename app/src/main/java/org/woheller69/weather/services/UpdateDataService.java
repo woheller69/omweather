@@ -1,8 +1,5 @@
 package org.woheller69.weather.services;
 
-import static com.android.volley.toolbox.ImageRequest.DEFAULT_IMAGE_BACKOFF_MULT;
-import static com.android.volley.toolbox.ImageRequest.DEFAULT_IMAGE_MAX_RETRIES;
-
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
@@ -38,7 +35,6 @@ import org.json.JSONException;
 import org.woheller69.weather.BuildConfig;
 import org.woheller69.weather.R;
 import org.woheller69.weather.activities.NavigationActivity;
-import org.woheller69.weather.activities.RainViewerActivity;
 import org.woheller69.weather.database.CityToWatch;
 import org.woheller69.weather.database.HourlyForecast;
 import org.woheller69.weather.database.SQLiteHelper;
@@ -51,7 +47,6 @@ import org.woheller69.weather.widget.WeatherWidgetAllInOne;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.URL;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.ExecutionException;
@@ -67,7 +62,6 @@ import java.util.concurrent.TimeoutException;
 public class UpdateDataService extends JobIntentService {
 
     public static final String UPDATE_SINGLE_ACTION = "org.woheller69.weather.services.UpdateDataService.UPDATE_SINGLE_ACTION";
-    public static final String UPDATE_RADAR = "org.woheller69.weather.services.UpdateDataService.UPDATE_RADAR";
     public static final String SKIP_UPDATE_INTERVAL = "skipUpdateInterval";
     private static final long MIN_UPDATE_INTERVAL = 20;
 
@@ -98,8 +92,7 @@ public class UpdateDataService extends JobIntentService {
 
         if (intent != null) {
             if (UPDATE_SINGLE_ACTION.equals(intent.getAction())) {
-                handleUpdateSingle(intent);
-            }else if (UPDATE_RADAR.equals(intent.getAction())){
+                handleUpdateWeatherData(intent);
                 int cityId = intent.getIntExtra("cityId", -1);
                 if (cityId == SQLiteHelper.getWidgetCityID(getApplicationContext())) {
                     int numRadarWidgets = AppWidgetManager.getInstance(getApplicationContext()).getAppWidgetIds(new ComponentName(getApplicationContext(), RadarWidget.class)).length;
@@ -113,67 +106,84 @@ public class UpdateDataService extends JobIntentService {
     private void handleUpdateRadar(Intent intent) {
         int cityId = intent.getIntExtra("cityId",-1);
         CityToWatch city = dbHelper.getCityToWatch(cityId);
-        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
-        //Alternative without getting the .json would be to calculate the latest timestamp.
-        //About 40s after a 10-minute step (e.g. 10:10, 10:20,...) new tiles are available
 
-        // Convert current timestamp to a Calendar object
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(System.currentTimeMillis() - 45000L);  //subtract 45s as it might take about 40s for the new tiles
+        RequestQueue queue = Volley.newRequestQueue(this);
 
-        // Calculate the most recent 10-minute step by rounding down
-        int currentMinute = calendar.get(Calendar.MINUTE);
-        int roundedMinute = (currentMinute / 10) * 10;
+        String url = "https://api.rainviewer.com/public/weather-maps.json";
+        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+                response -> {
+                    // Parse the JSON response
+                    String host;
+                    JSONArray radarFrames;
+                    try {
+                        if (response != null && response.has("host")) {
+                            host = response.getString("host");
+                            if (response.has("radar") && response.getJSONObject("radar").has("past")){
+                                radarFrames = response.getJSONObject("radar").getJSONArray("past");
+                                // get latest path
+                                String path = (radarFrames.getJSONObject(radarFrames.length() - 1).getString("path"));
+                                long radarTimeGMT = (Long.parseLong(radarFrames.getJSONObject(radarFrames.length() - 1).getString("time"))) * 1000L;
+                                int zoom = 7;  //as of Jan 2026 the max possible zoom is 7
+                                String radarUrl = host + path + "/256/" + zoom +"/"+ city.getLatitude() +"/" + city.getLongitude() + "/2/1_1.png";
 
-        // Set rounded time
-        calendar.set(Calendar.MINUTE, roundedMinute);
-        calendar.set(Calendar.SECOND, 0);
-        calendar.set(Calendar.MILLISECOND, 0);
+                                ImageRequest imageRequest = new ImageRequest(radarUrl,
+                                        response1 -> {
+                                            //Save image and data for full widget update
+                                            RadarWidget.radarBitmap = response1;
+                                            WeatherWidgetAllInOne.radarBitmap = response1;
+                                            RadarWidget.radarTimeGMT = radarTimeGMT;
+                                            WeatherWidgetAllInOne.radarTimeGMT = radarTimeGMT;
+                                            RadarWidget.radarZoom = zoom;
+                                            WeatherWidgetAllInOne.radarZoom = zoom;
+                                            int zoneseconds = dbHelper.getCurrentWeatherByCityId(cityId).getTimeZoneSeconds();
 
-        // Get the calculated radar timestamp
-        long radarTimeGMT = calendar.getTimeInMillis();
-        int zoom = 7;  //as of Jan 2026 the max possible zoom is 7
-        String radarUrl = "https://tilecache.rainviewer.com/v2/radar/" + radarTimeGMT/1000 + "/256/" + zoom +"/"+ city.getLatitude() +"/" + city.getLongitude() + "/2/1_1.png";
+                                            //Partial update for radar view only
+                                            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getApplicationContext());
+                                            int[] widgetIDs = appWidgetManager.getAppWidgetIds(new ComponentName(getApplicationContext(), RadarWidget.class));
+                                            if (widgetIDs.length > 0 ) {
+                                                RemoteViews views = new RemoteViews(getApplicationContext().getPackageName(), R.layout.radar_widget);
+                                                views.setImageViewBitmap(R.id.widget_radar_view, UpdateDataService.prepareRadarWidget(getApplicationContext(), city, zoom, radarTimeGMT + zoneseconds *1000L, response1));
+                                                appWidgetManager.partiallyUpdateAppWidget(widgetIDs, views);
+                                            }
 
-        ImageRequest imageRequest = new ImageRequest(radarUrl,
-                response1 -> {
-                    //Save image and data for full widget update
-                    RadarWidget.radarBitmap = response1;
-                    WeatherWidgetAllInOne.radarBitmap = response1;
-                    RadarWidget.radarTimeGMT = radarTimeGMT;
-                    WeatherWidgetAllInOne.radarTimeGMT = radarTimeGMT;
-                    RadarWidget.radarZoom = zoom;
-                    WeatherWidgetAllInOne.radarZoom = zoom;
-                    int zoneseconds = dbHelper.getCurrentWeatherByCityId(cityId).getTimeZoneSeconds();
+                                            widgetIDs = appWidgetManager.getAppWidgetIds(new ComponentName(getApplicationContext(), WeatherWidgetAllInOne.class));
+                                            if (widgetIDs.length > 0 ) {
+                                                RemoteViews views = new RemoteViews(getApplicationContext().getPackageName(), R.layout.weather_widget_all_in_one);
+                                                views.setImageViewBitmap(R.id.widget_radar_view, UpdateDataService.prepareAllInOneWidget(getApplicationContext(), city, zoom, radarTimeGMT + zoneseconds *1000L, response1));
+                                                appWidgetManager.partiallyUpdateAppWidget(widgetIDs, views);
+                                            }
 
-                    //Partial update for radar view only
-                    AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getApplicationContext());
-                    int[] widgetIDs = appWidgetManager.getAppWidgetIds(new ComponentName(getApplicationContext(), RadarWidget.class));
-                    if (widgetIDs.length > 0 ) {
-                        RemoteViews views = new RemoteViews(getApplicationContext().getPackageName(), R.layout.radar_widget);
-                        views.setImageViewBitmap(R.id.widget_radar_view, UpdateDataService.prepareRadarWidget(getApplicationContext(), city, zoom, radarTimeGMT + zoneseconds *1000L, response1));
-                        appWidgetManager.partiallyUpdateAppWidget(widgetIDs, views);
+                                        },
+                                        0, 0, ImageView.ScaleType.CENTER_CROP, Bitmap.Config.RGB_565,
+                                        error1 -> {
+                                            // Handle the error
+                                            Log.d("DownloadRadarTile:", error1.toString()+" "+radarUrl);
+                                        });
+                                imageRequest.setRetryPolicy(
+                                        new DefaultRetryPolicy(
+                                                1500,
+                                                1, //1 retry
+                                                1.0f));
+                                queue.add(imageRequest);
+
+                            }
+
+                        }
+
+                    } catch (JSONException e) {
+                        throw new RuntimeException(e);
                     }
-
-                    widgetIDs = appWidgetManager.getAppWidgetIds(new ComponentName(getApplicationContext(), WeatherWidgetAllInOne.class));
-                    if (widgetIDs.length > 0 ) {
-                        RemoteViews views = new RemoteViews(getApplicationContext().getPackageName(), R.layout.weather_widget_all_in_one);
-                        views.setImageViewBitmap(R.id.widget_radar_view, UpdateDataService.prepareAllInOneWidget(getApplicationContext(), city, zoom, radarTimeGMT + zoneseconds *1000L, response1));
-                        appWidgetManager.partiallyUpdateAppWidget(widgetIDs, views);
-                    }
-
                 },
-                0, 0, ImageView.ScaleType.CENTER_CROP, Bitmap.Config.RGB_565,
-                error1 -> {
+                error -> {
                     // Handle the error
-                    Log.d("DownloadRadarTile:", error1.toString()+" "+radarUrl);
+                    Log.d("DownloadRadarJSON:", error.toString());
                 });
-        imageRequest.setRetryPolicy(
+        jsonRequest.setRetryPolicy(
                 new DefaultRetryPolicy(
-                        3000,   //default is 1000
-                        DEFAULT_IMAGE_MAX_RETRIES,
-                        DEFAULT_IMAGE_BACKOFF_MULT));
-        queue.add(imageRequest);
+                        1500,
+                        0, //no retry
+                        1.0f));
+        queue.add(jsonRequest);
 
     }
 
@@ -307,7 +317,7 @@ public class UpdateDataService extends JobIntentService {
         return closest;
     }
 
-    private void handleUpdateSingle(Intent intent) {
+    private void handleUpdateWeatherData(Intent intent) {
         int cityId = intent.getIntExtra("cityId",-1);
         CityToWatch city = dbHelper.getCityToWatch(cityId);
         boolean skipUpdateInterval = intent.getBooleanExtra(SKIP_UPDATE_INTERVAL, false);

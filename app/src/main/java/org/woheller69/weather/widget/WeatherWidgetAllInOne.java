@@ -335,12 +335,6 @@ public class WeatherWidgetAllInOne extends AppWidgetProvider {
 
         if (radarBitmap != null) views.setImageViewBitmap(R.id.widget_radar_view, UpdateDataService.prepareAllInOneWidget(context, city, radarZoom, radarTimeGMT + zoneseconds *1000L, radarBitmap));
 
-        // Now update radar
-        Intent intent3 = new Intent(context, UpdateDataService.class);
-        intent3.setAction(UpdateDataService.UPDATE_RADAR);
-        intent3.putExtra("cityId", getWidgetCityID(context));
-        enqueueWork(context, UpdateDataService.class, 0, intent3);
-
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
 
