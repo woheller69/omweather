@@ -80,7 +80,7 @@ public class RainViewerActivity extends AppCompatActivity {
     private boolean crossfadeRunning = false;
     private List<TilesOverlayEntry> radarTilesOverlayEntries;
     private GeoPoint startPoint;
-    public static int rainViewerMaxZoom = 11;  //max 7 starting Jan 2026
+    public static int rainViewerMaxZoom = 7;  //max 7 starting Jan 2026
     private double initialZoom = 7d;
 
     @Override

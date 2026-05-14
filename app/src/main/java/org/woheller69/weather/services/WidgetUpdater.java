@@ -14,12 +14,11 @@ import androidx.work.WorkerParameters;
 import java.util.List;
 
 public class WidgetUpdater extends Worker {
-    private Context mContext;
+
     public WidgetUpdater(
             @NonNull Context context,
             @NonNull WorkerParameters params) {
         super(context, params);
-        mContext = context;
     }
 
     @Override

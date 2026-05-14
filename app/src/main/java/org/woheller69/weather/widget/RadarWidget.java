@@ -1,6 +1,5 @@
 package org.woheller69.weather.widget;
 
-
 import static androidx.core.app.JobIntentService.enqueueWork;
 import static org.woheller69.weather.database.SQLiteHelper.getWidgetCityID;
 import static org.woheller69.weather.services.UpdateDataService.SKIP_UPDATE_INTERVAL;
@@ -142,7 +141,7 @@ public class RadarWidget extends AppWidgetProvider {
         }
         views.setOnClickPendingIntent(R.id.widget_layout, pendingIntent);
 
-        if (radarBitmap != null) views.setImageViewBitmap(R.id.widget_radar_view, UpdateDataService.prepareRadarWidget(context, city, radarZoom, radarTimeGMT + zoneseconds *1000L, radarBitmap));
+        if (radarBitmap != null) views.setImageViewBitmap(R.id.widget_radar_view, radarBitmap);
 
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
