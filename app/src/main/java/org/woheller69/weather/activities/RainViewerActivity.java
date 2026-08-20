@@ -195,7 +195,7 @@ public class RainViewerActivity extends AppCompatActivity {
     radarTilesOverlayEntries = new ArrayList<>();
     infraredTilesOverlayEntries = new ArrayList<>();
     licenseText = findViewById(R.id.license);
-    String text = "© <a href=\"https://www.openstreetmap.org/copyright/\">OpenStreetMap</a> contributors &amp; <a href=\"https://www.rainviewer.com/api.html\">RainViewer</a>";
+    String text = "© <a href=\"https://www.openstreetmap.org/copyright/\">OpenStreetMap</a> contributors &amp; <a href=\"https://librewxr.net\">LibreWXR</a>";
     licenseText.setText(Html.fromHtml(text));
     licenseText.setMovementMethod(LinkMovementMethod.getInstance());
     }
