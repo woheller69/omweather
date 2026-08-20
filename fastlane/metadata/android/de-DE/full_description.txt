@@ -1,6 +1,6 @@
 Wetter und Regenradar für jeden Ort - weltweit
 
-Die Wetterdaten werden über die freie API von Open-Meteo.com und RainViewer.com bereitgestellt.
+Die Wetterdaten werden über die freie API von Open-Meteo.com und LibreWXR bereitgestellt.
 
 Features:
 - Aktuelles Wetter
