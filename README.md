@@ -11,7 +11,12 @@ woheller69@t-online.de
 
   
 Or via this link (with fees)
-<a href="https://www.paypal.com/donate?hosted_button_id=XVXQ54LBLZ4AA"><img  align="left" src="https://img.shields.io/badge/Donate%20with%20Debit%20or%20Credit%20Card-002991?style=plastic"></a></pre>
+<a href="https://www.paypal.com/donate?hosted_button_id=XVXQ54LBLZ4AA"><img  align="left" src="https://img.shields.io/badge/Donate%20with%20Debit%20or%20Credit%20Card-002991?style=plastic"></a>
+
+Please also sponsor Open-Meteo and LibreWXR.
+These are essential for this app.
+
+</pre>
 
 
 | **RadarWeather** | **Gas Prices** | **Smart Eggtimer** |
