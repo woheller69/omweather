@@ -1,6 +1,6 @@
 Radar pogodowy i deszczowy dla dowolnej lokalizacji - na całym świecie
 
-Dane pogodowe są dostarczane za pośrednictwem bezpłatnego interfejsu API z Open-Meteo.com i RainViewer.com.
+Dane pogodowe są dostarczane za pośrednictwem bezpłatnego interfejsu API z Open-Meteo.com i LibreWXR.
 
 Cechy:
 - Obecna pogoda
