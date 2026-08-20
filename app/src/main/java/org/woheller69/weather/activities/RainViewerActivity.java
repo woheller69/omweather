@@ -454,7 +454,8 @@ public class RainViewerActivity extends AppCompatActivity {
         }
 
         final MapTileProviderBasic rainViewerTileProvider = new MapTileProviderBasic(this);
-        final ITileSource RainViewerTileSource = new XYTileSource("R"+ time, 1, rainViewerMaxZoom, 256, "/2/1_1.png", new String[]{host+radarFrames.getJSONObject(position).getString("path")+"/256/"});
+        String arrows = nightmode ? "?arrows=light" : "?arrows=dark";
+        final ITileSource RainViewerTileSource = new XYTileSource("R"+ time, 1, rainViewerMaxZoom, 256, "/2/1_1.png" + arrows, new String[]{host+radarFrames.getJSONObject(position).getString("path")+"/256/"});
         rainViewerTileProvider.setTileSource(RainViewerTileSource);
         rainViewerTileProvider.getTileRequestCompleteHandlers().add(mapView.getTileRequestCompleteHandler());
         rainViewerTileProvider.getTileRequestCompleteHandlers().add(mapView2.getTileRequestCompleteHandler());

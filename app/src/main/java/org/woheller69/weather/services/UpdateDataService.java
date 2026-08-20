@@ -25,14 +25,10 @@ import android.widget.RemoteViews;
 import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.woheller69.weather.BuildConfig;
 import org.woheller69.weather.R;
 import org.woheller69.weather.activities.NavigationActivity;
@@ -117,7 +113,6 @@ public class UpdateDataService extends JobIntentService {
 
         String host = "https://api.librewxr.net";
         int zoom = 10;
-        String path="/v2/radar/0";  //use timestamp 0 to get latest tile
 
         //Calculate the latest timestamp for the caption
         //About 40s after a 10-minute step (e.g. 10:10, 10:20,...) new tiles are available
@@ -136,7 +131,9 @@ public class UpdateDataService extends JobIntentService {
         calendar.set(Calendar.MILLISECOND, 0);
 
         // Get the calculated radar timestamp
-        long radarTimeGMT = calendar.getTimeInMillis();
+        long radarTimeGMT = ((System.currentTimeMillis() - calendar.getTimeInMillis()) < 300000) ? calendar.getTimeInMillis() : calendar.getTimeInMillis() + 600000;  //if nowcast is closer than latest radar use the nowcast
+
+        String path="/v2/radar/" + radarTimeGMT/1000;
 
         String radarUrl = host + path + "/256/" + zoom +"/"+ city.getLatitude() +"/" + city.getLongitude() + "/2/1_1.png";
 
@@ -192,10 +189,15 @@ public class UpdateDataService extends JobIntentService {
                 });
         imageRequest.setRetryPolicy(
                 new DefaultRetryPolicy(
-                        1500,
+                        2500,
                         1, //1 retry
                         1.0f));
         queue.add(imageRequest);
+        queue.addRequestEventListener((request, event) -> {
+            if(event == RequestQueue.RequestEvent.REQUEST_FINISHED ){
+                queue.getCache().clear();
+            }
+        });
 
     }
 
