@@ -77,6 +77,13 @@
             />
 
         <SwitchPreference
+            android:key="pref_showInfrared"
+            android:title="@string/RainViewer"
+            android:summary="@string/settings_show_infrared"
+            android:defaultValue="false"
+            />
+
+        <SwitchPreference
             android:key="pref_DarkMode"
             android:title="@string/settings_darkmode"
             android:defaultValue="false"

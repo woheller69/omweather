@@ -127,4 +127,5 @@
     <string name="toast_delete">Bitte die Datei zuerst löschen und erneut versuchen.</string>
     <string name="restore_database_message">Daten aus dem Dokumentenordner wiederherstellen. Falls nötig, Ordner \'Documents\' öffnen und Cirrus.zip auswählen!</string>
     <string name="settings_show_hourly_uv_index">Stündlichen UV Index anzeigen</string>
+    <string name="settings_show_infrared">Wolken anzeigen</string>
 </resources>

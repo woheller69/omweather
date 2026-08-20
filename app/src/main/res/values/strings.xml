@@ -134,4 +134,5 @@
     <string name="toast_delete">Please delete file and try again</string>
     <string name="restore_database_message">Restore Data from Documents folder. Open folder \'Documents\' and select Cirrus.zip if needed!</string>
     <string name="settings_show_hourly_uv_index">Show hourly UV index</string>
+    <string name="settings_show_infrared">Show clouds</string>
 </resources>

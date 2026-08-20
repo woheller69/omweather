@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name" translatable="false">Cirrus</string>
     <string name="activity_about">O aplikaci</string>
     <string name="activity_settings">Nastavení</string>
     <string name="activity_weather">Počasí</string>
@@ -11,7 +10,6 @@
     <string name="okay">Okay</string>
     <string name="slide1_heading">Vítejte!</string>
     <string name="slide1_text">Cirrus je aplikace pro zjištění aktuálního počasí a předpovědi pro vaše lokality.</string>
-    <string name="slide2_heading" translatable="false">Github</string>
     <string name="slide2_text">Zdrojový kód této aplikace je k dispozici na GitHubu. Pro další vysvětlení se podívejte na stránku O aplikaci.</string>
     <string name="card_details_heading">Nyní</string>
     <string name="card_details_humidity">Vlhkost:</string>

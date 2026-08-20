@@ -85,6 +85,7 @@ public class RainViewerActivity extends AppCompatActivity {
     private GeoPoint startPoint;
     public static int rainViewerMaxZoom = 12;
     private double initialZoom = 7d;
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onPause() {
@@ -110,7 +111,7 @@ public class RainViewerActivity extends AppCompatActivity {
         timezoneseconds = getIntent().getIntExtra("timezoneseconds",0);
 
         nightmode = false;
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         if(sharedPreferences.getBoolean("pref_DarkMode", false) == TRUE) {
             int nightModeFlags = getApplicationContext().getResources().getConfiguration().uiMode & android.content.res.Configuration.UI_MODE_NIGHT_MASK;
             if (nightModeFlags==android.content.res.Configuration.UI_MODE_NIGHT_YES) nightmode = true;
@@ -213,8 +214,10 @@ public class RainViewerActivity extends AppCompatActivity {
                     try {
                         if (response != null && response.has("host")) host = response.getString("host");
                         //Store the infrared frames
-                        if (response != null && response.has("satellite") && response.getJSONObject("satellite").has("infrared")) {
-                            infraredFrames = response.getJSONObject("satellite").getJSONArray("infrared");
+                        if (sharedPreferences.getBoolean("pref_showInfrared",false)){
+                            if (response != null && response.has("satellite") && response.getJSONObject("satellite").has("infrared")) {
+                                infraredFrames = response.getJSONObject("satellite").getJSONArray("infrared");
+                            }
                         }
 
                         //Store the radar frames and show current frame
@@ -276,7 +279,7 @@ public class RainViewerActivity extends AppCompatActivity {
     public void showFrame(int position){
         int preloadingDirection = position - animationPosition > 0 ? 1 : -1;
 
-        if (radarFrames == null || infraredFrames == null || crossfadeRunning){
+        if (radarFrames == null || crossfadeRunning){
             return;
         }
         try {
@@ -354,7 +357,7 @@ public class RainViewerActivity extends AppCompatActivity {
 
     private void replaceLayer(MapView map, TilesOverlay newRadarOverlay, TilesOverlay newInfraredOverlay, IGeoPoint center, double zoom) {
         map.getOverlays().clear();
-        map.getOverlays().add(newInfraredOverlay);
+        if (newInfraredOverlay!= null) map.getOverlays().add(newInfraredOverlay);
         map.getOverlays().add(newRadarOverlay);
 
         Marker positionMarker = new Marker(map);
@@ -385,8 +388,8 @@ public class RainViewerActivity extends AppCompatActivity {
         return closestFrame;
     }
 
-    @NonNull
     private TilesOverlay getNewInfraredOverlay(int position) throws JSONException {
+        if (infraredFrames == null) return null;
         long radarTime = Long.parseLong(radarFrames.getJSONObject(position).getString("time"));
         JSONObject infraredFrame = findClosestInfraredFrame(radarTime);
         long time = infraredFrame.getLong("time");
