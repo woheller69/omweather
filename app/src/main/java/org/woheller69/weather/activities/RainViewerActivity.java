@@ -14,6 +14,7 @@ import android.os.Bundle;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 import org.osmdroid.api.IGeoPoint;
 import org.osmdroid.config.Configuration;
 
@@ -75,10 +76,12 @@ public class RainViewerActivity extends AppCompatActivity {
     private int lastPastFramePosition;
     private boolean nightmode;
     private JSONArray radarFrames;
+    private JSONArray infraredFrames;
     private String host;
     private ScheduledExecutorService scheduledExecutorService;
     private boolean crossfadeRunning = false;
     private List<TilesOverlayEntry> radarTilesOverlayEntries;
+    private List<TilesOverlayEntry> infraredTilesOverlayEntries;
     private GeoPoint startPoint;
     public static int rainViewerMaxZoom = 12;
     private double initialZoom = 7d;
@@ -190,8 +193,9 @@ public class RainViewerActivity extends AppCompatActivity {
         });
 
     radarTilesOverlayEntries = new ArrayList<>();
+    infraredTilesOverlayEntries = new ArrayList<>();
     licenseText = findViewById(R.id.license);
-    String text = "© <a href=\"https://www.openstreetmap.org/copyright/\">OpenStreetMap</a> contributors &amp; <a href=\"https://librewxr.net\">LibreWXR</a>";
+    String text = "© <a href=\"https://www.openstreetmap.org/copyright/\">OpenStreetMap</a> contributors &amp; <a href=\"https://www.rainviewer.com/api.html\">RainViewer</a>";
     licenseText.setText(Html.fromHtml(text));
     licenseText.setMovementMethod(LinkMovementMethod.getInstance());
     }
@@ -208,12 +212,21 @@ public class RainViewerActivity extends AppCompatActivity {
                     // Parse the JSON response
                     try {
                         if (response != null && response.has("host")) host = response.getString("host");
+                        //Store the infrared frames
+                        if (response != null && response.has("satellite") && response.getJSONObject("satellite").has("infrared")) {
+                            infraredFrames = response.getJSONObject("satellite").getJSONArray("infrared");
+                        }
 
                         //Store the radar frames and show current frame
                         if (response != null && response.has("radar") && response.getJSONObject("radar").has("past")){
                             radarFrames = response.getJSONObject("radar").getJSONArray("past");
                             lastPastFramePosition = radarFrames.length() - 1;
-
+                            if (response.getJSONObject("radar").has("nowcast")) {
+                                JSONArray nowcastFrames = response.getJSONObject("radar").getJSONArray("nowcast");
+                                for (int i = 0; i < nowcastFrames.length(); i++) {
+                                    radarFrames.put(nowcastFrames.get(i));
+                                }
+                            }
                             showFrame(lastPastFramePosition);
                         }
 
@@ -263,23 +276,23 @@ public class RainViewerActivity extends AppCompatActivity {
     public void showFrame(int position){
         int preloadingDirection = position - animationPosition > 0 ? 1 : -1;
 
-        if (radarFrames == null || crossfadeRunning){
+        if (radarFrames == null || infraredFrames == null || crossfadeRunning){
             return;
         }
         try {
             position = (position + radarFrames.length()) % radarFrames.length();
             final TilesOverlay newRadarOverlay = getNewRadarOverlay(position);
-
+            final TilesOverlay newInfraredOverlay = getNewInfraredOverlay(position);
             IGeoPoint center;
             double zoom;
             if (mapView.getVisibility() == View.VISIBLE){
                 zoom = mapView.getZoomLevelDouble(); //take zoom from visible map
                 center = mapView.getMapCenter(); //take center from visible map
-                replaceLayer(mapView2, newRadarOverlay, center, zoom);
+                replaceLayer(mapView2, newRadarOverlay, newInfraredOverlay, center, zoom);
             } else {
                 zoom = mapView2.getZoomLevelDouble(); //take zoom from visible map
                 center = mapView2.getMapCenter(); //take center from visible map
-                replaceLayer(mapView, newRadarOverlay, center, zoom);
+                replaceLayer(mapView, newRadarOverlay, newInfraredOverlay, center, zoom);
             }
 
 
@@ -301,7 +314,8 @@ public class RainViewerActivity extends AppCompatActivity {
             //now preload next frame
             int preloadPosition = (position + preloadingDirection + radarFrames.length()) % radarFrames.length();
             final TilesOverlay newRadarPreloadOverlay = getNewRadarOverlay(preloadPosition);
-            replaceLayer(mapPreload, newRadarPreloadOverlay, center, zoom);
+            final TilesOverlay newInfraredPreloadOverlay = getNewInfraredOverlay(preloadPosition);
+            replaceLayer(mapPreload, newRadarPreloadOverlay, newInfraredPreloadOverlay, center, zoom);
 
         } catch (JSONException e) {
             throw new RuntimeException(e);
@@ -338,8 +352,9 @@ public class RainViewerActivity extends AppCompatActivity {
         map.getController().animateTo(map.getMapCenter());  //maybe no longer needed
     }
 
-    private void replaceLayer(MapView map, TilesOverlay newRadarOverlay, IGeoPoint center, double zoom) {
+    private void replaceLayer(MapView map, TilesOverlay newRadarOverlay, TilesOverlay newInfraredOverlay, IGeoPoint center, double zoom) {
         map.getOverlays().clear();
+        map.getOverlays().add(newInfraredOverlay);
         map.getOverlays().add(newRadarOverlay);
 
         Marker positionMarker = new Marker(map);
@@ -352,6 +367,77 @@ public class RainViewerActivity extends AppCompatActivity {
         map.getController().setZoom(zoom);
         map.getController().setCenter(center);
         map.getController().animateTo(center); //maybe no longer needed
+    }
+
+    public JSONObject findClosestInfraredFrame(long radarTime) throws JSONException {
+        JSONObject closestFrame = null;
+        long closestTimeDiff = Long.MAX_VALUE;
+
+        for (int i = 0; i < infraredFrames.length(); i++) {
+            JSONObject frame = infraredFrames.getJSONObject(i);
+            long frameTime = frame.getLong("time");
+            long timeDiff = Math.abs(frameTime - radarTime);
+            if (timeDiff < closestTimeDiff) {
+                closestFrame = frame;
+                closestTimeDiff = timeDiff;
+            }
+        }
+        return closestFrame;
+    }
+
+    @NonNull
+    private TilesOverlay getNewInfraredOverlay(int position) throws JSONException {
+        long radarTime = Long.parseLong(radarFrames.getJSONObject(position).getString("time"));
+        JSONObject infraredFrame = findClosestInfraredFrame(radarTime);
+        long time = infraredFrame.getLong("time");
+        for (TilesOverlayEntry entry : infraredTilesOverlayEntries) {
+            if (entry.getTime() == time){
+                final TilesOverlay newOverlay = entry.getTilesOverlay();
+                if (nightmode){
+                    ColorMatrix colorMatrix = new ColorMatrix(new float[]{
+                            1, 0, 0, 0, 255,
+                            0, 1, 0, 0, 255,
+                            0, 0, 1, 0, 255,
+                            0, 0, 0, 0.2f, 0
+                    });
+                    newOverlay.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
+                } else {
+                    ColorMatrix colorMatrix = new ColorMatrix(new float[]{
+                            -1, 0, 0, 0, 255,
+                            0, -1, 0, 0, 255,
+                            0, 0, -1, 0, 255,
+                            0, 0, 0, 0.3f, 0
+                    });
+                    newOverlay.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
+                }
+                return newOverlay;
+            }
+        }
+
+        final MapTileProviderBasic rainViewerTileProvider = new MapTileProviderBasic(this);
+        final ITileSource RainViewerTileSource = new XYTileSource("I"+ time, 1, rainViewerMaxZoom, 256, "/0/0_0.png", new String[]{host+infraredFrame.getString("path")+"/256/"});
+        rainViewerTileProvider.setTileSource(RainViewerTileSource);
+        rainViewerTileProvider.getTileRequestCompleteHandlers().add(mapView.getTileRequestCompleteHandler());
+        rainViewerTileProvider.getTileRequestCompleteHandlers().add(mapView2.getTileRequestCompleteHandler());
+        final TilesOverlay newOverlay = new TilesOverlay(rainViewerTileProvider, this);
+        newOverlay.setLoadingBackgroundColor(R.color.middlegrey);
+        TilesOverlayEntry newEntry = new TilesOverlayEntry(newOverlay,time);
+        infraredTilesOverlayEntries.add(newEntry);
+        if (nightmode) {
+            ColorMatrix colorMatrix = new ColorMatrix(new float[]{
+                    -1, 0, 0, 0, 255,
+                    0, -1, 0, 0, 255,
+                    0, 0, -1, 0, 255,
+                    0, 0, 0, 0.4f, 0
+            });
+
+            newOverlay.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
+        } else {
+            int transparency = 128; // 128 is 50% transparent
+            PorterDuffColorFilter filter = new PorterDuffColorFilter(Color.argb(transparency, 255, 255, 255), PorterDuff.Mode.MULTIPLY);
+            newOverlay.setColorFilter(filter);
+        }
+        return newOverlay;
     }
 
     @NonNull

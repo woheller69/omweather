@@ -48,6 +48,7 @@ import org.woheller69.weather.widget.WeatherWidgetAllInOne;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.URL;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.ExecutionException;
@@ -112,119 +113,94 @@ public class UpdateDataService extends JobIntentService {
 
         int cityId = intent.getIntExtra("cityId",-1);
         CityToWatch city = dbHelper.getCityToWatch(cityId);
-
         RequestQueue queue = Volley.newRequestQueue(this);
 
-        String url = "https://api.librewxr.net/public/weather-maps.json";
-        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, url, null,
-                response -> {
-                    // Parse the JSON response
-                    String host;
-                    JSONArray radarFrames;
-                    try {
-                        if (response != null && response.has("host")) {
-                            host = response.getString("host");
-                            if (response.has("radar") && response.getJSONObject("radar").has("past")){
-                                radarFrames = response.getJSONObject("radar").getJSONArray("past");
-                                // get latest path
-                                String path = (radarFrames.getJSONObject(radarFrames.length() - 1).getString("path"));
-                                long radarTimeGMT = (Long.parseLong(radarFrames.getJSONObject(radarFrames.length() - 1).getString("time"))) * 1000L;
-                                int zoom = 7;  //as of Jan 2026 the max possible zoom is 7
-                                String radarUrl = host + path + "/256/" + zoom +"/"+ city.getLatitude() +"/" + city.getLongitude() + "/2/1_1.png";
+        String host = "https://api.librewxr.net";
+        int zoom = 10;
+        String path="/v2/radar/0";  //use timestamp 0 to get latest tile
 
-                                ImageRequest imageRequest = new ImageRequest(radarUrl,
-                                        response1 -> {
-                                            int zoneseconds = dbHelper.getCurrentWeatherByCityId(cityId).getTimeZoneSeconds();
-                                            long adjustedRadarTime = radarTimeGMT + zoneseconds * 1000L;
+        //Calculate the latest timestamp for the caption
+        //About 40s after a 10-minute step (e.g. 10:10, 10:20,...) new tiles are available
 
-                                            // ⚡ Offload heavy bitmap work to background thread
-                                            Executors.newSingleThreadExecutor().execute(() -> {
-                                                // Prepare bitmaps off the main thread
-                                                Bitmap radarWidgetBitmap = UpdateDataService.prepareRadarWidget(
-                                                        getApplicationContext(), city, zoom, adjustedRadarTime, response1);
-                                                Bitmap allInOneBitmap = UpdateDataService.prepareAllInOneWidget(
-                                                        getApplicationContext(), city, zoom, adjustedRadarTime, response1);
+        // Convert current timestamp to a Calendar object
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis() - 45000L);  //subtract 45s as it might take about 40s for the new tiles
 
-                                                //Save image and data for full widget update
-                                                RadarWidget.radarBitmap = radarWidgetBitmap;
-                                                WeatherWidgetAllInOne.radarBitmap = allInOneBitmap;
-                                                RadarWidget.radarTimeGMT = radarTimeGMT;
-                                                WeatherWidgetAllInOne.radarTimeGMT = radarTimeGMT;
-                                                RadarWidget.radarZoom = zoom;
-                                                WeatherWidgetAllInOne.radarZoom = zoom;
+        // Calculate the most recent 10-minute step by rounding down
+        int currentMinute = calendar.get(Calendar.MINUTE);
+        int roundedMinute = (currentMinute / 10) * 10;
 
-                                                // Post back to main thread to update widgets
-                                                new Handler(Looper.getMainLooper()).post(() -> {
-                                                    AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getApplicationContext());
+        // Set rounded time
+        calendar.set(Calendar.MINUTE, roundedMinute);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
 
-                                                    // Update RadarWidget
-                                                    int[] radarWidgetIDs = appWidgetManager.getAppWidgetIds(
-                                                            new ComponentName(getApplicationContext(), RadarWidget.class));
-                                                    if (radarWidgetIDs.length > 0) {
-                                                        RemoteViews views = new RemoteViews(getApplicationContext().getPackageName(), R.layout.radar_widget);
-                                                        views.setImageViewBitmap(R.id.widget_radar_view, radarWidgetBitmap);
-                                                        appWidgetManager.partiallyUpdateAppWidget(radarWidgetIDs, views);
-                                                    }
+        // Get the calculated radar timestamp
+        long radarTimeGMT = calendar.getTimeInMillis();
 
-                                                    // Update WeatherWidgetAllInOne
-                                                    int[] allInOneWidgetIDs = appWidgetManager.getAppWidgetIds(
-                                                            new ComponentName(getApplicationContext(), WeatherWidgetAllInOne.class));
-                                                    if (allInOneWidgetIDs.length > 0) {
-                                                        RemoteViews views = new RemoteViews(getApplicationContext().getPackageName(), R.layout.weather_widget_all_in_one);
-                                                        views.setImageViewBitmap(R.id.widget_radar_view, allInOneBitmap);
-                                                        appWidgetManager.partiallyUpdateAppWidget(allInOneWidgetIDs, views);
-                                                    }
-                                                });
-                                            });
-                                        },
-                                        0, 0, ImageView.ScaleType.CENTER_CROP, Bitmap.Config.RGB_565,
-                                        error1 -> {
-                                            // Handle the error
-                                            Log.d("DownloadRadarTile:", error1.toString()+" "+radarUrl);
-                                        });
-                                imageRequest.setRetryPolicy(
-                                        new DefaultRetryPolicy(
-                                                1500,
-                                                1, //1 retry
-                                                1.0f));
-                                queue.add(imageRequest);
+        String radarUrl = host + path + "/256/" + zoom +"/"+ city.getLatitude() +"/" + city.getLongitude() + "/2/1_1.png";
 
+        ImageRequest imageRequest = new ImageRequest(radarUrl,
+                response1 -> {
+                    int zoneseconds = dbHelper.getCurrentWeatherByCityId(cityId).getTimeZoneSeconds();
+                    long adjustedRadarTime = radarTimeGMT + zoneseconds * 1000L;
+
+                    // ⚡ Offload heavy bitmap work to background thread
+                    Executors.newSingleThreadExecutor().execute(() -> {
+                        // Prepare bitmaps off the main thread
+                        Bitmap radarWidgetBitmap = UpdateDataService.prepareRadarWidget(
+                                getApplicationContext(), city, zoom, adjustedRadarTime, response1);
+                        Bitmap allInOneBitmap = UpdateDataService.prepareAllInOneWidget(
+                                getApplicationContext(), city, zoom, adjustedRadarTime, response1);
+
+                        //Save image and data for full widget update
+                        RadarWidget.radarBitmap = radarWidgetBitmap;
+                        WeatherWidgetAllInOne.radarBitmap = allInOneBitmap;
+                        RadarWidget.radarTimeGMT = radarTimeGMT;
+                        WeatherWidgetAllInOne.radarTimeGMT = radarTimeGMT;
+                        RadarWidget.radarZoom = zoom;
+                        WeatherWidgetAllInOne.radarZoom = zoom;
+
+                        // Post back to main thread to update widgets
+                        new Handler(Looper.getMainLooper()).post(() -> {
+                            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getApplicationContext());
+
+                            // Update RadarWidget
+                            int[] radarWidgetIDs = appWidgetManager.getAppWidgetIds(
+                                    new ComponentName(getApplicationContext(), RadarWidget.class));
+                            if (radarWidgetIDs.length > 0) {
+                                RemoteViews views = new RemoteViews(getApplicationContext().getPackageName(), R.layout.radar_widget);
+                                views.setImageViewBitmap(R.id.widget_radar_view, radarWidgetBitmap);
+                                appWidgetManager.partiallyUpdateAppWidget(radarWidgetIDs, views);
                             }
 
-                        }
-
-                    } catch (JSONException e) {
-                        throw new RuntimeException(e);
-                    }
+                            // Update WeatherWidgetAllInOne
+                            int[] allInOneWidgetIDs = appWidgetManager.getAppWidgetIds(
+                                    new ComponentName(getApplicationContext(), WeatherWidgetAllInOne.class));
+                            if (allInOneWidgetIDs.length > 0) {
+                                RemoteViews views = new RemoteViews(getApplicationContext().getPackageName(), R.layout.weather_widget_all_in_one);
+                                views.setImageViewBitmap(R.id.widget_radar_view, allInOneBitmap);
+                                appWidgetManager.partiallyUpdateAppWidget(allInOneWidgetIDs, views);
+                            }
+                        });
+                    });
                 },
-                error -> {
+                0, 0, ImageView.ScaleType.CENTER_CROP, Bitmap.Config.RGB_565,
+                error1 -> {
                     // Handle the error
-                    Log.d("DownloadRadarJSON:", error.toString());
+                    Log.d("DownloadRadarTile:", error1.toString()+" "+radarUrl);
                 });
-        jsonRequest.setRetryPolicy(
+        imageRequest.setRetryPolicy(
                 new DefaultRetryPolicy(
                         1500,
-                        0, //no retry
+                        1, //1 retry
                         1.0f));
-        queue.add(jsonRequest);
+        queue.add(imageRequest);
 
     }
 
     @NonNull
     public static Bitmap prepareAllInOneWidget(Context context, CityToWatch city, int zoom, long radarTime, Bitmap response1) {
-
-        // Zoom into bitmap by a factor of 4 due to max RainViewer zoom of 7
-        Bitmap original = response1;
-        int width = original.getWidth();
-        int height = original.getHeight();
-        int additionalZoom = 4;
-        int cropSize = 256 / additionalZoom;
-        int left = (width - cropSize) / 2;
-        int top = (height - cropSize) / 2;
-
-        Bitmap cropped = Bitmap.createBitmap(original, left, top, cropSize, cropSize);            // Zoom into center
-        response1 = Bitmap.createScaledBitmap(cropped, 256, 256, true );   // Now scale it to 256x256 using bilinear-like filtering
-        cropped.recycle();        // Clean up temporary bitmap
 
         Bitmap textBitmap = Bitmap.createBitmap(response1.getWidth(), response1.getHeight(), response1.getConfig());
         Canvas canvas = new Canvas(textBitmap);
@@ -235,12 +211,12 @@ public class UpdateDataService extends JobIntentService {
         paint.setTextSize(30);
         paint.setStrokeWidth(3.0f);
 
-        int widthTotalDistance = (int) (2 * 3.14 * 6378 * Math.abs(Math.cos(city.getLatitude() / 180 * 3.14)) / (Math.pow(2, zoom) * 256 * additionalZoom) * 256); //adapted for additional zoom
+        int widthTotalDistance = (int) (2 * 3.14 * 6378 * Math.abs(Math.cos(city.getLatitude() / 180 * 3.14)) / (Math.pow(2, zoom) * 256 ) * 256);
         String distanceUnit = context.getString(R.string.units_km);;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             if (LocaleData.getMeasurementSystem(ULocale.forLocale(Locale.getDefault())) != LocaleData.MeasurementSystem.SI){
                 distanceUnit = context.getString(R.string.units_mi);
-                widthTotalDistance = (int) (2 * 3.14 * 6378 * 0.6214 * Math.abs(Math.cos(city.getLatitude() / 180 * 3.14)) / (Math.pow(2, zoom) * 256 * additionalZoom) * 256); //adapted for additional zoom
+                widthTotalDistance = (int) (2 * 3.14 * 6378 * 0.6214 * Math.abs(Math.cos(city.getLatitude() / 180 * 3.14)) / (Math.pow(2, zoom) * 256 ) * 256);
             }
         }
 
