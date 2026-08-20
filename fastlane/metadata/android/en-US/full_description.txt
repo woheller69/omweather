@@ -1,6 +1,6 @@
 Weather and rain radar for any location - worldwide
 
-Weather data is provided via the free API from Open-Meteo.com and RainViewer.com.
+Weather data is provided via the free API from Open-Meteo.com and LibreWXR.
 
 Features:
 - Current weather
