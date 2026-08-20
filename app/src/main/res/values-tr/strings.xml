@@ -62,7 +62,7 @@
     <string name="long_press_text">Sıralamak için basılı tutun ve sürükleyin.</string>
     <string name="swipe_to_delete">Silmek için kaydırın</string>
     <string name="settings_title_display_options">Görüntüleme seçenekleri</string>
-    <string name="infoProvider">Hava durumu bilgileri Open-Meteo.com\'dan alınır \&amp; Rainviewer.com</string>
+    <string name="infoProvider">Hava durumu bilgileri Open-Meteo.com\'dan alınır \\&amp; LibreWXR.net</string>
     <string name="monday">Pazartesi</string>
     <string name="tuesday">Salı</string>
     <string name="wednesday">Çarşamba</string>
@@ -102,7 +102,6 @@
     <string name="error_no_gps">Lütfen GPS\'i açın</string>
     <string name="slide3_heading">Open-Meteo</string>
     <string name="RainViewer">Yağmur Radarı</string>
-    <string name="nonFreeNet">Açık kaynaklı bir ağ olmayan RainViewer.com\'a erişime izin verin.</string>
     <string name="summary_reanalyze">Gün doğumu ve gün batımı (deneysel) arasındaki saatlik tahminleri analiz ederek hafta simgelerini iyileştirin.</string>
     <string name="settings_reanalyze">Hafta Simgeleri</string>
     <string name="settings_precipitation">Yağış</string>

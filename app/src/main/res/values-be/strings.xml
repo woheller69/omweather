@@ -62,7 +62,7 @@
     <string name="long_press_text">Утрымлівайце і перацягвайце для сартаванняt.</string>
     <string name="swipe_to_delete">Правядзіце пальцам, каб выдаліць</string>
     <string name="settings_title_display_options">Параметры адлюстравання</string>
-    <string name="infoProvider">Інфармацыя пра надвор\'е атрымліваецца з Open-Meteo.com \&amp; Rainviewer.com</string>
+    <string name="infoProvider">Інфармацыя пра надвор\'е атрымліваецца з Open-Meteo.com \\&amp; LibreWXR.net</string>
     <string name="monday">Панядзелак</string>
     <string name="tuesday">Аўторак</string>
     <string name="wednesday">Серада</string>
@@ -102,7 +102,6 @@
     <string name="error_no_gps">Калі ласка, уключыце GPS</string>
     <string name="slide3_heading">Адчыніць-Mетэа</string>
     <string name="RainViewer">Радар дажджу</string>
-    <string name="nonFreeNet">Дазволіць доступ да RainViewer.com, які не з\'яўляецца сеткай з адкрытым зыходным кодам.</string>
     <string name="summary_reanalyze">Палепшыце значкі тыдня, аналізуючы пагадзінныя прагнозы паміж усходам і заходам сонца (эксперыментальна).</string>
     <string name="settings_reanalyze">Значкі тыдня</string>
     <string name="settings_precipitation">Ападкі</string>

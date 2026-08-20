@@ -62,7 +62,7 @@
     <string name="long_press_text">Houd ingedrukt en sleep om te sorteren.</string>
     <string name="swipe_to_delete">Veeg om te verwijderen</string>
     <string name="settings_title_display_options">weergaveopties</string>
-    <string name="infoProvider">Weerinformatie wordt opgehaald uit Open-Meteo.com \&amp; Rainviewer.com</string>
+    <string name="infoProvider">Weerinformatie wordt opgehaald uit Open-Meteo.com \\&amp; LibreWXR.net</string>
     <string name="monday">Maandag</string>
     <string name="tuesday">Dinsdag</string>
     <string name="wednesday">Woensdag</string>
@@ -102,7 +102,6 @@
     <string name="error_no_gps">Zet a.u.b. GPS aan</string>
     <string name="slide3_heading">Open-Meteo</string>
     <string name="RainViewer">Regenradar</string>
-    <string name="nonFreeNet">Geef toegang tot RainViewer.com, wat geen open-source netwerk is.</string>
     <string name="summary_reanalyze">Verbeter weekpictogrammen door uurlijkse voorspellingen tussen zonsopgang en zonsondergang te analyseren (experimenteel).</string>
     <string name="settings_reanalyze">Week pictogrammen</string>
     <string name="settings_precipitation">Neerslag</string>

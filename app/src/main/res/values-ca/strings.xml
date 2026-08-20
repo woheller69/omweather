@@ -55,7 +55,7 @@
     <string name="long_press_text">Mantingui presionat i arrastri per ordenar.</string>
     <string name="swipe_to_delete">Llisca per eliminar</string>
     <string name="settings_title_display_options">opcions de pantalla</string>
-    <string name="infoProvider">La informació meteorològica s\'obté de Open-Meteo.com i de Rainviewer.com</string>
+    <string name="infoProvider">La informació meteorològica s\'obté de Open-Meteo.com i de LibreWXR.net</string>
     <string name="monday">dilluns</string>
     <string name="tuesday">dimarts</string>
     <string name="wednesday">dimecres</string>
@@ -102,7 +102,6 @@
     <string name="error_no_gps">Si us plau, encengui el GPS</string>
     <string name="slide3_heading">Open-Meteo</string>
     <string name="RainViewer">Radar de pluja</string>
-    <string name="nonFreeNet">Permeti l\'accès a RainViewer.com, que no es una xarxa de codi font obert.</string>
     <string name="summary_reanalyze">Millori les icones de la semana analitzant els pronòstics per hora entre l\'alba i el capvespre (experimental).</string>
     <string name="settings_reanalyze">Icones de setmana</string>
     <string name="settings_precipitation">Precipitació</string>

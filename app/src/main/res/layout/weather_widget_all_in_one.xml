@@ -721,7 +721,7 @@
         android:layout_marginTop="0dp"
         android:layout_marginEnd="8dp"
         android:paddingBottom="3dp"
-        android:text="Weather data by Open-Meteo.com"
+        android:text="Data by Open-Meteo.com &amp; LibreWXR"
         android:textColor="@color/lightgrey"
         android:textSize="15dp" />
 </RelativeLayout>

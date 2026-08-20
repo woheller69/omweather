@@ -62,7 +62,7 @@
     <string name="long_press_text">Poradie zmeníte dlhým stlačením a presunutím.</string>
     <string name="swipe_to_delete">Posunutím zmazať</string>
     <string name="settings_title_display_options">Nastavenia zobrazenia</string>
-    <string name="infoProvider">Údaje o počasí pochádzajú zo služieb Open-Meteo.com a Rainviewer.com</string>
+    <string name="infoProvider">Údaje o počasí pochádzajú zo služieb Open-Meteo.com a LibreWXR.net</string>
     <string name="monday">Pondelok</string>
     <string name="tuesday">Utorok</string>
     <string name="wednesday">Streda</string>
@@ -102,7 +102,6 @@
     <string name="error_no_gps">Prosím zapnite GPS</string>
     <string name="slide3_heading">Open-Meteo</string>
     <string name="RainViewer">Zrážkový radar</string>
-    <string name="nonFreeNet">Povoliť prístup k stránke RainViewer.com, ktorá nie je open-source.</string>
     <string name="summary_reanalyze">Spresniť ikony v týždňovej predpovedi analýzou hodinových predpovedí medzi západom a východom slnka (experimentálne).</string>
     <string name="settings_reanalyze">Ikony v týždňovej predpovedi</string>
     <string name="settings_precipitation">Zrážky</string>

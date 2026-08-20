@@ -57,7 +57,7 @@
     <string name="card_error_heading">Fehler beim Abrufen der Wetterdaten</string>
     <string name="long_press_text">Halten und ziehen Sie, um die Städte zu sortieren.</string>
     <string name="swipe_to_delete">Wischen Sie zum Löschen</string>
-    <string name="infoProvider">Die Wetterinformationen stammen von Open-Meteo.com \&amp; Rainviewer.com</string>
+    <string name="infoProvider">Die Wetterinformationen stammen von Open-Meteo.com \\&amp; LibreWXR.net</string>
 
     <string name="monday">Montag</string>
     <string name="tuesday">Dienstag</string>
@@ -105,7 +105,6 @@
     <string name="error_no_gps">Bitte GPS einschalten</string>
     <string name="slide3_heading">Open-Meteo</string>
     <string name="RainViewer">Regenradar</string>
-    <string name="nonFreeNet">Erlauben Sie den Zugriff auf RainViewer.com, das kein Open-Source-Netzwerk ist.</string>
     <string name="summary_reanalyze">Verbessern der Wochensymbole durch Analyse der stündlichen Vorhersagen zwischen Sonnenaufgang und Sonnenuntergang (experimentell).</string>
     <string name="settings_reanalyze">Wochensymbole</string>
     <string name="settings_precipitation">Niederschlag</string>

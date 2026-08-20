@@ -64,7 +64,7 @@
     <string name="long_press_text">Hold og træk for at sortere.</string>
     <string name="swipe_to_delete">Stryg for at slette</string>
     <string name="settings_title_display_options">Visningsmuligheder</string>
-    <string name="infoProvider">Vejrinformation hentes fra Open-Meteo.com \&amp; Rainviewer.com</string>
+    <string name="infoProvider">Vejrinformation hentes fra Open-Meteo.com \\&amp; LibreWXR.net</string>
     <string name="monday">Mandag</string>
     <string name="tuesday">Tirsdag</string>
     <string name="wednesday">Onsdag</string>
@@ -104,7 +104,6 @@
     <string name="error_no_gps">Tænd venligst GPS</string>
     <string name="slide3_heading">Open-Meteo</string>
     <string name="RainViewer">Regn radar</string>
-    <string name="nonFreeNet">Allow access to RainViewer.com which is not an open-source network.</string>
     <string name="summary_reanalyze">Forbedre ugeikoner ved at analysere timeprognoser mellem solopgang og solnedgang (eksperimentel).</string>
     <string name="settings_reanalyze">Uge ikoner</string>
     <string name="settings_precipitation">Nedbør</string>

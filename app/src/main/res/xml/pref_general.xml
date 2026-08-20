@@ -23,13 +23,6 @@
             android:defaultValue="false"
             />
 
-        <SwitchPreference
-            android:key="pref_rainviewer"
-            android:title="@string/RainViewer"
-            android:summary="@string/nonFreeNet"
-            android:defaultValue="false"
-            />
-
         <SeekBarPreference
             android:key="pref_number_days"
             android:title="@string/settings_forecast_days"

@@ -56,7 +56,7 @@
     <string name="card_error_heading">Erreur lors de l\'obtention des données météorologiques</string>
     <string name="long_press_text">Maintenez et faites glisser pour trier les villes.</string>
     <string name="swipe_to_delete">Balayez pour effacer</string>
-    <string name="infoProvider">Les informations météorologiques proviennent du Open-Meteo.com \&amp; Rainviewer.com</string>
+    <string name="infoProvider">Les informations météorologiques proviennent du Open-Meteo.com \\&amp; LibreWXR.net</string>
     <string name="monday">Lundi</string>
     <string name="tuesday">Mardi</string>
     <string name="wednesday">Mercredi</string>
@@ -103,7 +103,6 @@
     <string name="error_no_gps">Veuillez activer le GPS</string>
     <string name="slide3_heading">Open-Meteo</string>
     <string name="RainViewer">Radar de pluie</string>
-    <string name="nonFreeNet">Autorisez l\'accès à RainViewer.com qui n\'est pas un réseau open source.</string>
     <string name="summary_reanalyze">Améliorez les icônes de la semaine en analysant les prévisions horaires entre le lever et le coucher du soleil (expérimental).</string>
     <string name="settings_reanalyze">Icônes de la semaine</string>
     <string name="settings_precipitation">Précipitation</string>

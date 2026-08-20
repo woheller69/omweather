@@ -29,7 +29,7 @@
     <string name="about_more_info">More information can be found on:</string>
     <string name="about_github" translatable="false"><a href="https://github.com/woheller69/omweather">Github-Repo</a></string>
     <string name="about_openmeteo" translatable="false"><a href="https://open-meteo.com">Open-Meteo \n(Attribution 4.0 International CC BY 4.0)</a></string>
-    <string name="about_rainviewer" translatable="false"><a href="https://rainviewer.com">RainViewer</a></string>
+    <string name="about_rainviewer" translatable="false"><a href="https://LibreWXR.net">LibreWXR</a></string>
     <string name="activity_settings_title">Settings</string>
     <string name="settings_title_units">Units</string>
     <string name="settings_title_temperature">Temperature</string>
@@ -68,7 +68,7 @@
     <string name="long_press_text">Hold and drag to sort.</string>
     <string name="swipe_to_delete">Swipe to delete</string>
     <string name="settings_title_display_options">Display options</string>
-    <string name="infoProvider">Weather information is fetched from Open-Meteo.com \&amp; Rainviewer.com</string>
+    <string name="infoProvider">Weather information is fetched from Open-Meteo.com \&amp; LibreWXR.net</string>
     <string name="monday">Monday</string>
     <string name="tuesday">Tuesday</string>
     <string name="wednesday">Wednesday</string>
@@ -111,7 +111,6 @@
     <string name="slide3_heading">Open-Meteo</string>
     <string name="RainViewer">Rain Radar</string>
     <string name="action_rainviewer" translatable="false">Rain radar</string>
-    <string name="nonFreeNet">Allow access to RainViewer.com which is not an open-source network.</string>
     <string name="summary_reanalyze">Improve week icons by analyzing hourly forecasts between sunrise and sunset (experimental).</string>
     <string name="settings_reanalyze">Week Icons</string>
     <string name="settings_precipitation">Precipitation</string>

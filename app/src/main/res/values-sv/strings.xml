@@ -62,7 +62,7 @@
     <string name="long_press_text">Håll och dra för att sortera.</string>
     <string name="swipe_to_delete">Svep för att radera</string>
     <string name="settings_title_display_options">Skärmalternativ</string>
-    <string name="infoProvider">Väderinformation hämtas från Open-Meteo.com \&amp; Rainviewer.com</string>
+    <string name="infoProvider">Väderinformation hämtas från Open-Meteo.com \\&amp; LibreWXR.net</string>
     <string name="monday">Måndag</string>
     <string name="tuesday">Tisdag</string>
     <string name="wednesday">Onsdag</string>
@@ -102,7 +102,6 @@
     <string name="error_no_gps">Slå på GPS</string>
     <string name="slide3_heading">Open-Meteo</string>
     <string name="RainViewer">Regnradar</string>
-    <string name="nonFreeNet">Tillåt åtkomst till RainViewer.com som inte är ett nätverk med öppen källkod.</string>
     <string name="summary_reanalyze">Förbättra veckoikoner genom att analysera timprognoser mellan soluppgång och solnedgång (experimentell).</string>
     <string name="settings_reanalyze">Vecka ikoner</string>
     <string name="settings_precipitation">Nederbörd</string>

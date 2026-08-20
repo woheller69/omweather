@@ -80,7 +80,7 @@ public class RainViewerActivity extends AppCompatActivity {
     private boolean crossfadeRunning = false;
     private List<TilesOverlayEntry> radarTilesOverlayEntries;
     private GeoPoint startPoint;
-    public static int rainViewerMaxZoom = 7;  //max 7 starting Jan 2026
+    public static int rainViewerMaxZoom = 12;
     private double initialZoom = 7d;
 
     @Override
@@ -191,7 +191,7 @@ public class RainViewerActivity extends AppCompatActivity {
 
     radarTilesOverlayEntries = new ArrayList<>();
     licenseText = findViewById(R.id.license);
-    String text = "© <a href=\"https://www.openstreetmap.org/copyright/\">OpenStreetMap</a> contributors &amp; <a href=\"https://www.rainviewer.com/api.html\">RainViewer</a>";
+    String text = "© <a href=\"https://www.openstreetmap.org/copyright/\">OpenStreetMap</a> contributors &amp; <a href=\"https://librewxr.net\">LibreWXR</a>";
     licenseText.setText(Html.fromHtml(text));
     licenseText.setMovementMethod(LinkMovementMethod.getInstance());
     }
@@ -202,7 +202,7 @@ public class RainViewerActivity extends AppCompatActivity {
 
         RequestQueue queue = Volley.newRequestQueue(this);
 
-        String url = "https://api.rainviewer.com/public/weather-maps.json";
+        String url = "https://api.librewxr.net/public/weather-maps.json";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 response -> {
                     // Parse the JSON response

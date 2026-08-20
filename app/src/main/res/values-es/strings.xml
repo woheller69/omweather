@@ -55,7 +55,7 @@
     <string name="long_press_text">Mantenga presionado y arrastre para ordenar.</string>
     <string name="swipe_to_delete">Deslizar para eliminar</string>
     <string name="settings_title_display_options">opciones de pantalla</string>
-    <string name="infoProvider">La información meteorológica se obtiene de Open-Meteo.com \&amp; Rainviewer.com</string>
+    <string name="infoProvider">La información meteorológica se obtiene de Open-Meteo.com \\&amp; LibreWXR.net</string>
     <string name="monday">lunes</string>
     <string name="tuesday">martes</string>
     <string name="wednesday">miércoles</string>
@@ -102,7 +102,6 @@
     <string name="error_no_gps">Por favor, encienda el GPS</string>
     <string name="slide3_heading">Open-Meteo</string>
     <string name="RainViewer">Radar de lluvia</string>
-    <string name="nonFreeNet">Permita el acceso a RainViewer.com, que no es una red de código abierto.</string>
     <string name="summary_reanalyze">Mejore los íconos de la semana analizando los pronósticos por hora entre el amanecer y el atardecer (experimental).</string>
     <string name="settings_reanalyze">Iconos de semana</string>
     <string name="settings_precipitation">Precipitación</string>

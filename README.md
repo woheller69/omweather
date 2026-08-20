@@ -41,11 +41,7 @@ Weather and rain radar for any location - worldwide
 This application is derived from Privacy Friendly Weather (https://github.com/SecUSo/privacy-friendly-weather).
 
 The original function has been modified to support the new open source API from Open-Meteo.com with free access for non-commercial use.
-In addition a rain radar functionality powered by RainViewer API (https://www.rainviewer.com/api.html) is available.
-
-**Important note**:  RainViewer is significantly reducing its API services. Key impacts for Cirrus:
-- Maximum zoom levels strongly reduced (to zoom 9 starting September 2025, then zoom 7 in January 2026)
-- Infrared cloud data will be discontinued
+In addition a rain radar functionality powered by the new open source API LibreWXR (https://librewxr.net/) is built-in.
 
 If permission for GPS is given the widget will automatically update position on a regular base.
 
@@ -60,7 +56,7 @@ This app - like the original app Privacy Friendly Weather - is licensed under th
 
 The app also uses:
 - The weather data service is provided by [Open-Meteo](https://open-meteo.com/), under <a href='http://creativecommons.org/licenses/by/4.0/'>Attribution 4.0 International (CC BY 4.0)</a>
-- RainViewer API which is free (https://www.rainviewer.com/api.html)
+- Rain radar data is proviced by [LibreWXR](https://github.com/JoshuaKimsey/LibreWXR), under <a href='http://creativecommons.org/licenses/by/4.0/'>Attribution 4.0 International (CC BY 4.0)</a>
 - Icons from [Google Material Design Icons](https://material.io/resources/icons/) licensed under <a href='http://www.apache.org/licenses/LICENSE-2.0'>Apache License Version 2.0</a>
 - Material Components for Android (https://github.com/material-components/material-components-android) which is licensed under <a href='https://github.com/material-components/material-components-android/blob/master/LICENSE'>Apache License Version 2.0</a>
 - Leaflet which is licensed under the very permissive <a href='https://github.com/Leaflet/Leaflet/blob/master/FAQ.md'>2-clause BSD License</a>

@@ -63,7 +63,7 @@
     <string name="long_press_text">Ударживайте и перемещайте для сортировки</string>
     <string name="swipe_to_delete">Смахните для удаления</string>
     <string name="settings_title_display_options">Настройки отображения</string>
-    <string name="infoProvider">Погодные данные поступают от Open-Meteo.com и Rainviewer.com</string>
+    <string name="infoProvider">Погодные данные поступают от Open-Meteo.com и LibreWXR.net</string>
     <string name="monday">Понедельник</string>
     <string name="tuesday">Вторник</string>
     <string name="wednesday">Среда</string>
@@ -103,7 +103,6 @@
     <string name="error_no_gps">Пожалуйста, включите GPS</string>
     <string name="slide3_heading">Open-Meteo</string>
     <string name="RainViewer">Радар погоды</string>
-    <string name="nonFreeNet">Разрешить доступ к RainViewer.com, не являющимся сетью с открытым исходным кодом.</string>
     <string name="summary_reanalyze">Улучшать недельные значки, анализируя почасовые прогнозы между восходом и заходом солнца (экспериментально).</string>
     <string name="settings_reanalyze">Недельные значки</string>
     <string name="settings_precipitation">Осадки</string>

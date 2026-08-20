@@ -115,7 +115,7 @@ public class UpdateDataService extends JobIntentService {
 
         RequestQueue queue = Volley.newRequestQueue(this);
 
-        String url = "https://api.rainviewer.com/public/weather-maps.json";
+        String url = "https://api.librewxr.net/public/weather-maps.json";
         JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 response -> {
                     // Parse the JSON response

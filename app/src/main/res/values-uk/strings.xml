@@ -62,7 +62,7 @@
     <string name="long_press_text">Утримуйте та перетягніть, щоб сортувати.</string>
     <string name="swipe_to_delete">Проведіть, щоб видалити</string>
     <string name="settings_title_display_options">Параметри відображення</string>
-    <string name="infoProvider">Інформація про погоду отримується з Open-Meteo.com \&amp; Rainviewer.com</string>
+    <string name="infoProvider">Інформація про погоду отримується з Open-Meteo.com \\&amp; LibreWXR.net</string>
     <string name="monday">Понеділок</string>
     <string name="tuesday">Вівторок</string>
     <string name="wednesday">Середа</string>
@@ -102,7 +102,6 @@
     <string name="error_no_gps">Увімкніть GPS</string>
     <string name="slide3_heading">Open-Meteo</string>
     <string name="RainViewer">Rain Radar</string>
-    <string name="nonFreeNet">Дозвольте доступ до RainViewer.com, який не є мережею з відкритим кодом.</string>
     <string name="summary_reanalyze">Покращувати піктограми тижня, аналізуючи погодинні прогнози між сходом і заходом сонця (експериментально).</string>
     <string name="settings_reanalyze">Піктограми тижня</string>
     <string name="settings_precipitation">Опади</string>
