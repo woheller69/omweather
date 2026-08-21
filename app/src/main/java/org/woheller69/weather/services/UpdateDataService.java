@@ -135,7 +135,7 @@ public class UpdateDataService extends JobIntentService {
 
         String path="/v2/radar/" + radarTimeGMT/1000;
 
-        String radarUrl = host + path + "/256/" + zoom +"/"+ city.getLatitude() +"/" + city.getLongitude() + "/2/1_1.png";
+        String radarUrl = host + path + "/256/" + zoom +"/"+ city.getLatitude() +"/" + city.getLongitude() + "/2/1_1.png?arrows=dark";
 
         ImageRequest imageRequest = new ImageRequest(radarUrl,
                 response1 -> {
