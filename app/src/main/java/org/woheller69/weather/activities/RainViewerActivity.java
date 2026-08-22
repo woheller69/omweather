@@ -84,7 +84,7 @@ public class RainViewerActivity extends AppCompatActivity {
     private List<TilesOverlayEntry> infraredTilesOverlayEntries;
     private GeoPoint startPoint;
     public static int rainViewerMaxZoom = 12;
-    private double initialZoom = 8d;
+    private double initialZoom = 9d;
     private SharedPreferences sharedPreferences;
 
     @Override
