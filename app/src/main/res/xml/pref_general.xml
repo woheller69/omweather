@@ -88,6 +88,16 @@
             android:title="@string/settings_darkmode"
             android:defaultValue="false"
             />
+
+        <SeekBarPreference
+            android:key="pref_radar_widget_zoom"
+            android:title="@string/settings_radar_widget_zoom"
+            android:max="11"
+            android:defaultValue="10"
+            app:showSeekBarValue="true"
+            app:min="5"
+            />
+
         <SeekBarPreference
             android:key="pref_WidgetTransparency"
             android:title="@string/settings_widget_transparency"

@@ -4,12 +4,14 @@ import static java.lang.Boolean.TRUE;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.net.Uri;
 import android.os.Bundle;
 
 import org.json.JSONArray;
@@ -26,6 +28,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -86,6 +89,7 @@ public class RainViewerActivity extends AppCompatActivity {
     public static int rainViewerMaxZoom = 12;
     private double initialZoom = 9d;
     private SharedPreferences sharedPreferences;
+    private Button donateLibreWXR;
 
     @Override
     protected void onPause() {
@@ -123,6 +127,8 @@ public class RainViewerActivity extends AppCompatActivity {
         mapPreload = findViewById(R.id.map_preload);
         mapPreload.setTileSource(TileSourceFactory.MAPNIK);
         mapPreload.setTilesScaledToDpi(true);
+        donateLibreWXR = findViewById(R.id.donate_librewxr);
+        donateLibreWXR.setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://librewxr.net/support"))));
 
         Configuration.getInstance().load(this, PreferenceManager.getDefaultSharedPreferences(this));
         Configuration.getInstance().setUserAgentValue(getPackageName());

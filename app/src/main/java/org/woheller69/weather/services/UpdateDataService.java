@@ -4,6 +4,7 @@ import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -17,6 +18,7 @@ import android.os.Handler;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.core.app.JobIntentService;
+import androidx.preference.PreferenceManager;
 
 import android.os.Looper;
 import android.util.Log;
@@ -112,7 +114,8 @@ public class UpdateDataService extends JobIntentService {
         RequestQueue queue = Volley.newRequestQueue(this);
 
         String host = "https://api.librewxr.net";
-        int zoom = 10;
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        int zoom = sp.getInt("pref_radar_widget_zoom", 10);
 
         //Calculate the latest timestamp for the caption
         //About 40s after a 10-minute step (e.g. 10:10, 10:20,...) new tiles are available
