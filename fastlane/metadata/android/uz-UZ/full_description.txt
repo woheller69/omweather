@@ -1,0 +1,14 @@
+Istalgan joy uchun ob-havo va yomg‘ir radari - butun dunyo bo‘ylab
+
+Ob-havo ma’lumotlari Open-Meteo.com va LibreWXR bepul API orqali taqdim etiladi.
+
+Xususiyatlari:
+- Joriy ob-havo
+- 16 kungacha soatlik prognozlar
+- Yomg‘ir radari
+- GPS orqali joylashuvni avtomatik yangilash funksiyasiga ega vidjet
+- Reklamasiz
+
+Minimal ruxsatlar:
+Cirrus faqat minimal miqdordagi ruxsatni talab qiladi, ya’ni faqat INTERNET ruxsati. Ushbu ruxsat ob-havo ma’lumotlarini olish uchun masofaviy serverlarga HTTP so‘rovlarini yuborish uchun zarur.
+Ixtiyoriy: GPS uchun ruxsat.
