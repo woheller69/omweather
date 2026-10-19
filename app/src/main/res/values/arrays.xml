@@ -4,10 +4,12 @@
     <string-array name="temperatureUnitsArray">
         <item>@string/settings_celsius</item>
         <item>@string/settings_fahrenheit</item>
+        <item>@string/settings_kelvin</item>
     </string-array>
     <string-array name="temperatureUnitsValues">
         <item>1</item>
         <item>2</item>
+        <item>3</item>
     </string-array>
 
     <string-array name="speedUnitsArray">
