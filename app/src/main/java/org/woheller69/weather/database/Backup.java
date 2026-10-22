@@ -59,8 +59,16 @@ public class Backup {
             InputStream src = context.getContentResolver().openInputStream(zipFile);
             try {
                 try (ZipInputStream zipInputStream = new ZipInputStream(src)) {
+                    File canonicalTargetDir = targetDir.getCanonicalFile();
+                    String targetPath = canonicalTargetDir.getPath();
+                    String targetPrefix = targetPath.endsWith(File.separator)
+                            ? targetPath : targetPath + File.separator;
                     while ((zipEntry = zipInputStream.getNextEntry()) != null) {
-                        File extractedFile = new File(targetDir ,zipEntry.getName());
+                        File extractedFile = new File(canonicalTargetDir, zipEntry.getName()).getCanonicalFile();
+                        String extractedPath = extractedFile.getPath();
+                        if (extractedPath.equals(targetPath) || !extractedPath.startsWith(targetPrefix)) {
+                            continue;
+                        }
                         try (OutputStream outputStream = Files.newOutputStream(extractedFile.toPath())) {
                             while ((readLen = zipInputStream.read(readBuffer)) != -1) {
                                 outputStream.write(readBuffer, 0, readLen);
