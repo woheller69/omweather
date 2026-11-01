@@ -121,7 +121,6 @@ public class ForecastCityActivity extends NavigationActivity implements IUpdatea
                 if (timestamp + updateInterval - systemTime <= 0) {
                     if (pagerAdapter.getCityIDForPos(position)!=getWidgetCityID(context)||locationListenerGPS==null) { //do not update first TAB while location is updating
                         WeatherPagerAdapter.refreshSingleData(getApplicationContext(),true, pagerAdapter.getCityIDForPos(position));
-                        ForecastCityActivity.startRefreshAnimation();
                     }
                 }
                 //post method needed to avoid Illegal State Exception: Cannot call this method in a scroll callback.
@@ -196,7 +195,6 @@ public class ForecastCityActivity extends NavigationActivity implements IUpdatea
         refreshActionButton = menu.findItem(R.id.menu_refresh);
         refreshActionButton.setActionView(R.layout.menu_refresh_action_view);
         refreshActionButton.getActionView().setOnClickListener(v -> m.performIdentifierAction(refreshActionButton.getItemId(), 0));
-        if (isRefreshing) startRefreshAnimation();
 
         rainviewerButton = menu.findItem(R.id.menu_rainviewer);
         rainviewerButton.setActionView(R.layout.menu_rainviewer_view);
@@ -224,7 +222,6 @@ public class ForecastCityActivity extends NavigationActivity implements IUpdatea
         }else if (id==R.id.menu_refresh){
             if (!db.getAllCitiesToWatch().isEmpty()) {  //only if at least one city is watched, otherwise crash
                 WeatherPagerAdapter.refreshSingleData(getApplicationContext(),true, pagerAdapter.getCityIDForPos(viewPager2.getCurrentItem()));
-                ForecastCityActivity.startRefreshAnimation();
             }
         } else if (id==R.id.menu_update_location) {
             locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
@@ -263,19 +260,13 @@ public class ForecastCityActivity extends NavigationActivity implements IUpdatea
     }
 
     @Override
-    public void processNewCurrentWeatherData(CurrentWeatherData data) {
-        stopRefreshAnimation();
-    }
+    public void processNewCurrentWeatherData(CurrentWeatherData data) {}
 
     @Override
-    public void processNewWeekForecasts(List<WeekForecast> forecasts) {
-        stopRefreshAnimation();
-    }
+    public void processNewWeekForecasts(List<WeekForecast> forecasts) {}
 
     @Override
-    public void processNewForecasts(List<HourlyForecast> hourlyForecasts) {
-        stopRefreshAnimation();
-    }
+    public void processNewForecasts(List<HourlyForecast> hourlyForecasts) {}
 
     public static void stopRefreshAnimation(){
         if (refreshActionButton != null && refreshActionButton.getActionView() != null) {
@@ -289,7 +280,7 @@ public class ForecastCityActivity extends NavigationActivity implements IUpdatea
         if(refreshActionButton !=null && refreshActionButton.getActionView() != null) {
             RotateAnimation rotate = new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
             rotate.setDuration(500);
-            rotate.setRepeatCount(5);
+            rotate.setRepeatCount(120); //fallback stop after 60s
             rotate.setInterpolator(new LinearInterpolator());
             rotate.setAnimationListener(new Animation.AnimationListener() {
                 @Override

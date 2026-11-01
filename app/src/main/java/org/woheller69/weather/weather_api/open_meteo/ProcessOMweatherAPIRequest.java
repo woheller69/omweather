@@ -5,6 +5,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Handler;
+import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.Toast;
 
@@ -13,6 +14,7 @@ import com.android.volley.VolleyError;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.woheller69.weather.R;
+import org.woheller69.weather.activities.ForecastCityActivity;
 import org.woheller69.weather.activities.NavigationActivity;
 import org.woheller69.weather.database.CityToWatch;
 import org.woheller69.weather.database.CurrentWeatherData;
@@ -47,7 +49,7 @@ public class ProcessOMweatherAPIRequest implements IProcessHttpRequest {
     /**
      * Constants
      */
-    private final String DEBUG_TAG = "process_forecast";
+    private final String DEBUG_TAG = "Open-Meteo request";
 
     /**
      * Member variables
@@ -73,6 +75,7 @@ public class ProcessOMweatherAPIRequest implements IProcessHttpRequest {
      */
     @Override
     public void processSuccessScenario(String response, int cityId) {
+        ForecastCityActivity.stopRefreshAnimation();
 
         IDataExtractor extractor = new OMDataExtractor(context);
         try {
@@ -224,11 +227,13 @@ public class ProcessOMweatherAPIRequest implements IProcessHttpRequest {
      */
     @Override
     public void processFailScenario(final VolleyError error) {
+        ForecastCityActivity.stopRefreshAnimation();
         Handler h = new Handler(this.context.getMainLooper());
         h.post(new Runnable() {
             @Override
             public void run() {
                 if (NavigationActivity.isVisible) Toast.makeText(context, context.getResources().getString(R.string.error_fetch_forecast), Toast.LENGTH_LONG).show();
+                Log.d(DEBUG_TAG, error.toString());
             }
         });
     }

@@ -1,37 +1,21 @@
 package org.woheller69.weather.http;
 
 import android.content.Context;
-import android.util.Log;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.woheller69.weather.BuildConfig;
+import org.woheller69.weather.activities.ForecastCityActivity;
 import org.woheller69.weather.weather_api.IProcessHttpRequest;
 
-import java.io.BufferedInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.security.KeyManagementException;
-import java.security.KeyStore;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.cert.Certificate;
-import java.security.cert.CertificateException;
-import java.security.cert.CertificateFactory;
-import java.security.cert.X509Certificate;
 import java.util.HashMap;
 import java.util.Map;
-
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSocketFactory;
-import javax.net.ssl.TrustManagerFactory;
 
 /**
  * This class implements the IHttpRequest interface. It provides HTTP requests by using Volley.
@@ -102,9 +86,12 @@ public class VolleyHttpRequest implements IHttpRequest {
                 return params;
             }
         };
-
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+                10000, //10s timeout
+                1, //1 retry
+                1.0f));
         queue.add(stringRequest);
+        ForecastCityActivity.startRefreshAnimation();
     }
-
 
 }
