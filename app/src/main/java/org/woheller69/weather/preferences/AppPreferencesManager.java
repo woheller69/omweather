@@ -49,10 +49,12 @@ public class AppPreferencesManager {
      **
      */
     public float convertTemperatureFromCelsius(float temperature) {
-        // 1 = Celsius (fallback), 2 = Fahrenheit
+        // 1 = Celsius (fallback), 2 = Fahrenheit, 3 = Kelvin
         int prefValue = Integer.parseInt(preferences.getString("temperatureUnit", "1"));
         if (prefValue == 1) {
             return temperature;
+        } else if (prefValue == 3) {
+            return temperature + 273.15f;
         } else {
             return (((temperature * 9) / 5) + 32);
         }
@@ -69,12 +71,14 @@ public class AppPreferencesManager {
     }
 
     /**
-     * @return Returns "°C" in case Celsius is set and "°F" if Fahrenheit was selected.
+     * @return Returns "°C" in case Celsius is set and "°F" if Fahrenheit was selected or "K" if Kelvin was selected
      */
     public String getTemperatureUnit() {
         int prefValue = Integer.parseInt(preferences.getString("temperatureUnit", "1"));
         if (prefValue == 1) {
             return "°C";
+        } else if (prefValue == 3) {
+            return "K";
         } else {
             return "°F";
         }

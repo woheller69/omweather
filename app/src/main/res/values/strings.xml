@@ -34,6 +34,7 @@
     <string name="settings_title_units">Units</string>
     <string name="settings_title_temperature">Temperature</string>
     <string name="settings_celsius">Celsius</string>
+    <string name="settings_kelvin">Kelvin</string>
     <string name="settings_fahrenheit">Fahrenheit</string>
     <string name="settings_title_speed">Wind speed</string>
     <string name="abbreviation_monday">Mo.</string>
@@ -85,6 +86,7 @@
     <string name="units_mm_h">mm/h</string>
     <string name="units_km_h">km/h</string>
     <string name="units_mph">mph</string>
+    <string name="units_K">K</string>
     <string name="units_in" translatable="false">\u2033</string>
     <string name="card_details_rain60min">☔ 60 min:</string>
     <string name="error_no_rain60min_data">no data</string>
