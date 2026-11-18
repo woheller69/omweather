@@ -1,0 +1,14 @@
+Tiempo y radar de lluvia para cualquier lugar del mundo
+
+Los datos meteorológicos se obtienen a través de la API gratuita de Open-Meteo.com y LibreWXR.
+
+Funciones:
+- Tiempo actual
+- Previsión por horas de hasta 16 días
+- Radar de lluvia
+- Widget con actualización automática opcional de la posición por GPS
+- Sin publicidad
+
+Permisos mínimos:
+Cirrus solo necesita los permisos mínimos, en concreto únicamente el permiso INTERNET. Este permiso es necesario para hacer peticiones HTTP a servidores remotos y obtener los datos meteorológicos.
+Opcional: autorización para el GPS.
